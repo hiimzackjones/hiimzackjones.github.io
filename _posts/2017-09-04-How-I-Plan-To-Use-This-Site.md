@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How I Plan To Use This site"
+title:  "How I plan to use this site."
 date:   2017-09-05 24:35:00 -0500
 categories: General
 ---
