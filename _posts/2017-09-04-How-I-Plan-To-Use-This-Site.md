@@ -20,7 +20,7 @@ As well as some other general topics as well like
 - CTFs 
 - General Networking
 
-I haven't finished working out the details on directorys and things on the site, so for now it's just going to be a single feed on the main page. Sorryyyyy. If you're looking for a post with a paticular topic just use the good ole Find feature <code> CTRL + F </code>. 
+I haven't finished working out the details on directories and things on the site, so for now it's just going to be a single feed on the main page. Sorryyyyy. If you're looking for a post with a particular topic just use the good ole Find feature <code> CTRL + F </code>. 
 
 ## Plans
 Right now I'm trying to catch up on publishing some notes from the class periods we have already went through. It might take some time. Afterwards I'll start adding some extra things. I have a IP Address and Subnet post I will be throwing up shortly as well as What is Github/Git/Github Pages, maybe even how to use Jekyll (making this website). It could be a good introduction for writing some code and hosting things on a repo. Please let me know if anything is broken on the site. If there are topics you think would be nice to have up let me know as well. 
