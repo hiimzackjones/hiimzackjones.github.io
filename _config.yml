@@ -13,18 +13,16 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Zack Jones
+title: Zack Jones' Notebook
 email: ztj20@email.vccs.edu
 description: > # this means to ignore newlines until "baseurl:"
   I have no clue what I'm doing. Use these notes at your own risk. 
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://hiimzackjones.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: hiimzackjones
 github_username:  hiimzackjones
 
-#adding the pages option to include _pages directory list
-# done with adding pages 
-
 # Build settings
+
 markdown: kramdown
 theme: minima
 plugins:
