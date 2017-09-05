@@ -1,7 +1,0 @@
-## Things I need to remember to write about
-
-- [ ] for an empty checkbox
-- [X] for an checked checkbox
-
-## Things I want to spend more time learning/writing on
-
