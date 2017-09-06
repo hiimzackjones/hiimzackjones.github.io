@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Class notes"
+date:   2017-09-04 23:00:39 -0400
+categories: Cisco
+---
+PuTTY 
+telnet 23 vs ssh 22
+
+ 
+
+
+
