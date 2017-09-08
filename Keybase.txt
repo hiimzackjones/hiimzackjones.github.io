@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/hiimzackjones
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://hiimzackjones.github.io
+  * I am hiimzackjones (https://keybase.io/hiimzackjones) on keybase.
+  * I have a public key ASCJICtm8QubCK8geOj4vHzgkqDY50aOpTtF79UCCKxbAAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012089202b66f10b9b08af2078e8f8bc7ce092a0d8e7468ea53b45efd50208ac5b000a",
+      "host": "keybase.io",
+      "kid": "012089202b66f10b9b08af2078e8f8bc7ce092a0d8e7468ea53b45efd50208ac5b000a",
+      "uid": "36f9ae87bbd2511384a3c7ce37794619",
+      "username": "hiimzackjones"
+    },
+    "merkle_root": {
+      "ctime": 1504591821,
+      "hash": "100c2a642cfb0d48d366fd777250d177ef3d54c9b250fbdf4471ca289e2c4745abd0c406f1b938354899ba86e4b21460e2eb60a476edf47e0aa9897682e4ce4d",
+      "hash_meta": "debaa1b9ddb8e54aa27615640857039200f15c5b3086e6da71ed6cbf5542a836",
+      "seqno": 1367307
+    },
+    "service": {
+      "hostname": "hiimzackjones.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.27"
+  },
+  "ctime": 1504591956,
+  "expire_in": 504576000,
+  "prev": "2261d9cbf33ac8e356710bd097c4e72d7994746c34863eb67c626bbdda09c798",
+  "seqno": 19,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgiSArZvELmwivIHjo+Lx84JKg2OdGjqU7Re/VAgisWwAKp3BheWxvYWTFA1V7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwODkyMDJiNjZmMTBiOWIwOGFmMjA3OGU4ZjhiYzdjZTA5MmEwZDhlNzQ2OGVhNTNiNDVlZmQ1MDIwOGFjNWIwMDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwODkyMDJiNjZmMTBiOWIwOGFmMjA3OGU4ZjhiYzdjZTA5MmEwZDhlNzQ2OGVhNTNiNDVlZmQ1MDIwOGFjNWIwMDBhIiwidWlkIjoiMzZmOWFlODdiYmQyNTExMzg0YTNjN2NlMzc3OTQ2MTkiLCJ1c2VybmFtZSI6ImhpaW16YWNram9uZXMifSwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE1MDQ1OTE4MjEsImhhc2giOiIxMDBjMmE2NDJjZmIwZDQ4ZDM2NmZkNzc3MjUwZDE3N2VmM2Q1NGM5YjI1MGZiZGY0NDcxY2EyODllMmM0NzQ1YWJkMGM0MDZmMWI5MzgzNTQ4OTliYTg2ZTRiMjE0NjBlMmViNjBhNDc2ZWRmNDdlMGFhOTg5NzY4MmU0Y2U0ZCIsImhhc2hfbWV0YSI6ImRlYmFhMWI5ZGRiOGU1NGFhMjc2MTU2NDA4NTcwMzkyMDBmMTVjNWIzMDg2ZTZkYTcxZWQ2Y2JmNTU0MmE4MzYiLCJzZXFubyI6MTM2NzMwN30sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJoaWltemFja2pvbmVzLmdpdGh1Yi5pbyIsInByb3RvY29sIjoiaHR0cHM6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjI3In0sImN0aW1lIjoxNTA0NTkxOTU2LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwicHJldiI6IjIyNjFkOWNiZjMzYWM4ZTM1NjcxMGJkMDk3YzRlNzJkNzk5NDc0NmMzNDg2M2ViNjdjNjI2YmJkZGEwOWM3OTgiLCJzZXFubyI6MTksInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RA6sUk0NJQRGIKsbF2NoMXrqKvt9Q0sNquaojMEze7iWuNgJhIQJqyFbUScEbEJs7RTQzDiiCi9XUijlfK3EWyCKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKCOTkek9td+6YQLLXHp3G8MDckikOift2xx6p+XCAfvo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/hiimzackjones
+
+==================================================================
