@@ -28,7 +28,7 @@ These are only the class subjects. Because I'm overly nerdy and I worked a bit t
 I haven't finished working out the details on directories and things on the site, so for now it's just going to be a single feed on the main page. Sorryyyyy. If you're looking for a post with a particular topic just use the good ole Find feature <code> CTRL + F </code>.
 
 ## What else?
-Check with me on Twitter @hiimzackjones to keep up with when I post. Because this is a blog, you can also subscribe to it as an RSS. If you actually want to follow this and want to be notified of posts as they come out. Just email me - [zack@projectwosho.com](mailto:zack@projectwosho.com)
+Check with me on Twitter [@hiimzackjones](https://twitter.com/hiimzackjones) to keep up with when I post. Because this is a blog, you can also subscribe to it as an RSS. If you actually want to follow this and want to be notified of posts as they come out. Just email me - [zack@projectwosho.com](mailto:zack@projectwosho.com)
 
 Okay. Fingers crossed this won't be the only post for the rest of eternity.
 
