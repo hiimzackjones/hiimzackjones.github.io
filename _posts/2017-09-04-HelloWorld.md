@@ -5,7 +5,7 @@ date:   2017-09-15 10:45:00 -0400
 categories: General
 ---
 
-![Very Nice!](/assets/img/thumbsup.gif)
+<iframe src="https://giphy.com/embed/CQhvppGGlxgA0" width="480" height="328" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/CQhvppGGlxgA0">Very Nice!</a></p>
 
 ## Hi internet. Welcome to my website of notes and stuff.
 In efforts to fully grasp my inner nerd and technologist tendencies, I made a site. This site is made with Jekyll and is hosted on Github.io. I write all my posts using Markdown and I use VIM as my editor. That in combination with a few others because I desperately need the spell check. Whoops.
