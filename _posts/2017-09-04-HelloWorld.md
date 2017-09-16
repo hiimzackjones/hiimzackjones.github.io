@@ -40,7 +40,7 @@ Check with me on Twitter [@hiimzackjones](https://twitter.com/hiimzackjones) to 
 Okay. Fingers crossed this won't be the only post for the rest of eternity.
 
 <html>
-<img src ="https://hiimzackjones.github.io/assets/img/regret,gif" alt="Here goes">
+<img src ="https://hiimzackjones.github.io/assets/img/regret.gif" alt="Here goes">
 </html>
 
 Cheers,
