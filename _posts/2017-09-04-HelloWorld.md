@@ -5,9 +5,14 @@ date:   2017-09-15 10:45:00 -0400
 categories: General
 ---
 
-<iframe src="https://giphy.com/embed/CQhvppGGlxgA0" width="480" height="328" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ## Hi internet. Welcome to my website of notes and stuff.
+
+
+<iframe src="https://giphy.com/embed/CQhvppGGlxgA0" width="480" height="328" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
+
 In efforts to fully grasp my inner nerd and technologist tendencies, I made a site. This site is made with Jekyll and is hosted on Github.io. I write all my posts using Markdown and I use VIM as my editor. That in combination with a few others because I desperately need the spell check. Whoops.
 
 ## Where is the juice?
