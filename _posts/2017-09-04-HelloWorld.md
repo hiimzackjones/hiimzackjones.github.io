@@ -39,7 +39,7 @@ Check with me on Twitter [@hiimzackjones](https://twitter.com/hiimzackjones) to 
 
 Okay. Fingers crossed this won't be the only post for the rest of eternity.
 
-![Oh man, here goes...](https://hiimzackjones.github.io/assets/img/regret,gif)
+<img src ="https://hiimzackjones.github.io/assets/img/regret,gif" alt="Here goes">
 
 Cheers,
 
