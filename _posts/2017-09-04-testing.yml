@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "test"
+date:   2017-09-15 10:45:00 -0400
+categories: General
+---
+
+{% assign image_files = site.static_files | where: "image", true %}
+{% for myimage in image_files %}
+  {{ myimage.path }}
+{% endfor %}
