@@ -11,7 +11,7 @@ categories: General
 
 <iframe src="https://giphy.com/embed/CQhvppGGlxgA0" width="480" height="328" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 ###### Note: I had planned on calling this website "The Notebook" but I'm not a Ryan G fan and I wouldn't want anyone to get their hopes up.
-<p>
+
 Anyway, In efforts to fully grasp my inner nerd and technologist tendencies, I made a site. This site is made with Jekyll and is hosted on Github.io. I write all my posts using Markdown and I use VIM as my editor. That in combination with a few others because I desperately need the spell check. Whoops.
 
 
