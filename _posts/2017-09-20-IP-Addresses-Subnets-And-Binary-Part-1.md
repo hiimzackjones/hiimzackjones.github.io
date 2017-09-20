@@ -2,9 +2,10 @@
 
 Okay so. I'm going to make some notes on this. Because this the most fundamental thing you need to know to do ... anything really. so. I'm not going to waste time. Leh do it.
 
----
 
 <iframe src="https://giphy.com/embed/YQitE4YNQNahy" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
 
 ### 1. Decimal numbers are confusing. Binary makes this way easier.
 
@@ -225,7 +226,7 @@ Well. That makes sense right? To review. The bits double from right to left. The
 ---
 <iframe src="https://giphy.com/embed/l3q2Ph0I1osaagoQE" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
-#### Okay take a breather. We are going to get back into subnet masking, but for now, let this settle in.
+### Okay take a breather. We are going to get back into subnet masking, but for now, let this settle in.
 
 Go through this, if you have questions find me on twitter @hiimzackjones or email me at ztj20@email.vccs.edu. Soon there will be more to this post. If you've read this far down, then thanks. Means a lot.
 
