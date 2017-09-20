@@ -181,7 +181,7 @@ Look at just 2 and 4.
 100 - 4
 ```  
 
-Yep. It doubles too. well. Let's just increment from 0 to a full 8 bit binary number and note where there is only one bit as a 1.  
+Yep. It doubles too. well. Let's just increment from 0 to the number 8 and note where there is only one bit as a 1.  
 
 ```
 00000001 - 1
