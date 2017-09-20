@@ -200,12 +200,15 @@ Look. (This graph may not work)
 ```
 
 
-Let's look at this binary number we saw earlier. (This graph may not work) 
+Let's look at this binary number we saw earlier. (This graph may not work)
+
+```
 
 |128|64 |32 |16 |8  |4  |2  |1  |
 |---|---|---|---|---|---|---|---|
 |1  |0  |1  |0  |1  |0  |0  |0  |  
 
+```
 
 1\*128 + 0\*64 + 1\*32 + 1\*32 + 0\*16 + 1\*8 + 0\*4 + 0\*2 + 0\*1 = 168
 
