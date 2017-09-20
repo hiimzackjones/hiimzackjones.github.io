@@ -2,7 +2,7 @@
 layout: post
 title:  "IP addresses, subnets, and Binary part 1"
 date:   2017-09-20 2:30:00 -0400
-categories: General
+categories: Networking
 ---
 
 
