@@ -17,7 +17,7 @@ title: Zack Jones' Notebook
 email: ztj20@email.vccs.edu
 author: Zachary Jones
 description: > # this means to ignore newlines until "baseurl:"
-  I have no clue what I'm doing. Use these notes at your own risk. 
+  I have no clue what I'm doing. Use these notes at your own risk.
 url: "http://hiimzackjones.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: hiimzackjones
 github_username:  hiimzackjones
@@ -28,6 +28,12 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
