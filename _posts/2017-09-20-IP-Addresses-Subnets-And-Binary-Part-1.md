@@ -33,20 +33,21 @@ This is the subnet in binary.
 
  <code> 11111111.11111111.11111111.00000000 </code>
 
- Here is the trick, imagine it stacked, subnet mask on top of the IP. I'll make it easier.
-
-```
-11111111.11111111.11111111.00000000
-11000000.10101000.00000001.00000001
-```
-
 ---
 
 ### 2. What does the subnet actually mean?
 Cool. Now let's do a thing that's going to make subnet masking super fricking easy.
 
 I repeat, **this is the part that isn't always shown to noobs but makes you less noob in seconds if you get blessed enough to see it**
-Write the same thing, but put an extra space or 2 between where the subnet changes from 1s to 0s. *Like so friends.*
+
+Here is the trick, imagine it stacked, subnet mask on top of the IP. I'll make it easier.
+
+```
+11111111.11111111.11111111.00000000
+11000000.10101000.00000001.00000001
+```
+
+Now here is the magic trick. Write the same thing, but put an extra space or 2 between where the subnet changes from 1s to 0s. *Like so friends.*
 
 ```
 11111111.11111111.11111111.  00000000
