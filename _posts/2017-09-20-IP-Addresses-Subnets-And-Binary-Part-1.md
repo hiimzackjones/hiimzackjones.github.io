@@ -4,6 +4,8 @@ Okay so. I'm going to make some notes on this. Because this the most fundamental
 
 ---
 
+<iframe src="https://giphy.com/embed/YQitE4YNQNahy" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
 ### 1. Decimal numbers are confusing. Binary makes this way easier.
 
 This is an ip address example
@@ -62,6 +64,8 @@ The numbers on the left are talking about the network, and the numbers on the ri
 
 #####E A S Y.
 
+
+<iframe src="https://giphy.com/embed/ZvLUtG6BZkBi0" width="480" height="366" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 ---
 
 ### 3. Time to learn that binary real quick like
@@ -217,6 +221,9 @@ Let's look at this binary number we saw earlier. (This graph may not work)
 Well. That makes sense right? To review. The bits double from right to left. The third bit from the right has the value of 4, the one directly to the left of it has a value of 8. So even if you can't remember those numbers, you should be able to start with one and double over and over until you get all the values from right to left.  
 
 *NOTE. If it doubles from right to left, it gets cut in half coming from the left going to the right. (you'll see this when you do subnetting.)*  
+
+---
+<iframe src="https://giphy.com/embed/l3q2Ph0I1osaagoQE" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 #### Okay take a breather. We are going to get back into subnet masking, but for now, let this settle in.
 
