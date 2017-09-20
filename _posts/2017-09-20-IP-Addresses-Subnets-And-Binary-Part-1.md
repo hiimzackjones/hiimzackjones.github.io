@@ -40,7 +40,7 @@ Cool. Now let's do a thing that's going to make subnet masking super fricking ea
 
 I repeat, **this is the part that isn't always shown to noobs but makes you less noob in seconds if you get blessed enough to see it**
 
-Here is the trick, imagine it stacked, subnet mask on top of the IP. I'll make it easier.
+To setup this magic trick just imagine it stacked, subnet mask on top of the IP. I'll make it easier.
 
 ```
 11111111.11111111.11111111.00000000
