@@ -10,7 +10,7 @@ Hi I'm Zack Jones and this is a collection of notes as well as projects that I'v
 Here are some links to get in touch with me further. 
 
 [Twitter @hiimzackjones](http://twitter.com/hiimzackjones)  
-[Youtube.com - I might be posting videos here from time to time](http://youtube.com/hiimzackjones)  
+[Youtube.com - I might be posting videos here from time to time](https://www.youtube.com/channel/UCSiBNrMJ1vSA2iY9Bw2ncmw)  
 [My Github where this site as well as other stuff will be available](https://github.com/hiimzackjones)  
 My Entrepreneur focused Resume - coming soon! Email me if you're looking for this.   
 My Technologist/Networking/CyberSecurity focused Resume - coming soon! Email me if you're looking for this.  
