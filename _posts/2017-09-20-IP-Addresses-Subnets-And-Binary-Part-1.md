@@ -1,3 +1,11 @@
+---
+layout: post
+title:  "IP addresses, subnets, and Binary part 1"
+date:   2017-09-20 2:30:00 -0400
+categories: General
+---
+
+
 ## Binary, Ip addresses, Subnet masking.
 
 Okay so. I'm going to make some notes on this. Because this the most fundamental thing you need to know to do ... anything really. so. I'm not going to waste time. Leh do it.
