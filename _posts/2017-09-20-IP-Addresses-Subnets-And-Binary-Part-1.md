@@ -21,7 +21,7 @@ This is a subnet mask example
 255.255.255.0
 ```
 
-These are written in Human readable numbers (Decimal for the technical), most humans prefer it this way. Be a better human by figuring this mess out in the right way. *Also known as binary.*
+These are written in human readable numbers (Decimal for the technical), most humans prefer it this way. Be a better human by figuring this mess out in the right way. *Also known as binary.*
 
 At some point you'll need to be able to do this stuffs in Decimal notation. But until you understand what that even is, **you've got to understand it on a binary level.** The decimal notation like I showed you above is literally only that way because writing binary takes forever and our brains don't quickly compute it. That is the only reason. So for now forget it.
 
@@ -33,7 +33,7 @@ This is the subnet in binary.
 
  <code> 11111111.11111111.11111111.00000000 </code>
 
- Learn to imagine it stacked. Subnet mask on top of the IP. I'll make it easier.
+ Here is the trick, imagine it stacked, subnet mask on top of the IP. I'll make it easier.
 
 ```
 11111111.11111111.11111111.00000000
@@ -45,7 +45,7 @@ This is the subnet in binary.
 ### 2. What does the subnet actually mean?
 Cool. Now let's do a thing that's going to make subnet masking super fricking easy.
 
-I repeat, **this is the part that everyone leaves out, and if we start with it, the rest would be easy.**
+I repeat, **this is the part that isn't always shown to noobs but makes you less noob in seconds if you get blessed enough to see it**
 Write the same thing, but put an extra space or 2 between where the subnet changes from 1s to 0s. *Like so friends.*
 
 ```
@@ -63,7 +63,7 @@ The numbers on the left are talking about the network, and the numbers on the ri
 - what part of the IP address talks about the network based on the subnet
 - What part about the IP address talks about the hosts (Clients, computers, etc) on that network based on the subnet
 
-#####E A S Y.
+**E A S Y.**
 
 
 <iframe src="https://giphy.com/embed/ZvLUtG6BZkBi0" width="480" height="366" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -71,9 +71,11 @@ The numbers on the left are talking about the network, and the numbers on the ri
 
 ### 3. Time to learn that binary real quick like
 
-I want to take your new subnetting knowledge to the next level. But you have to learn more about binary first. I wanted to give you that taste of *"subnetting is really dang easy"* as a piece of encouragement.
+*I say real quick like because this is going to take a hot minute. My bad.*
 
-#####Okay binary... here we go.
+So I want to take your new subnetting knowledge to the next level. But you have to learn more about binary first. I wanted to give you that taste of *"subnetting is really dang easy"* as a piece of encouragement.
+
+**Okay binary... here we go.**
 
 If I were to say to increment in decimal starting from 1, and increment 8 numbers. It would be so easy for you, because you think in decimal. But doing in binary is different. So despite this next section seeming trivial, do it anyway. And if you don't know what I'm talking about. here.
 
