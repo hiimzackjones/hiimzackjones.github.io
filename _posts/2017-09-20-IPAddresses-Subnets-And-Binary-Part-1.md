@@ -187,7 +187,7 @@ Yep. It doubles too. well. Let's just increment from 0 to a full 8 bit binary nu
 
 *Okay. So this is the correct place to tell you that if you were to make a note on the value of each bit, you'll notice it's in the power of 2s. Because each time you increment into another digit to the left, you're doubling.*
 
-Look.  
+Look. (This graph may not work)
 
 ```
 |4  |2  |1  |  
@@ -200,7 +200,7 @@ Look.
 ```
 
 
-Let's look at this binary number we saw earlier.  
+Let's look at this binary number we saw earlier. (This graph may not work) 
 
 |128|64 |32 |16 |8  |4  |2  |1  |
 |---|---|---|---|---|---|---|---|
