@@ -2,7 +2,20 @@
 
 // Define defaults for each variable.
 
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+// pallet 
+// red     ff6e67
+// green   5af78e
+// yellow  f4f99d
+// purp    caa9fa
+// pink    ff92d0
+// blue    9aedfe
+// grey    c7c7c7
+// bg      282a36
+// bglite  565a6d
+// "bold"  ebebeb
+// blelink 005cbb
+
+$base-font-family: monaco, Consolas, "Lucida Console", monospace;
 $base-font-size:   16px !default;
 $base-font-weight: 400 !default;
 $small-font-size:  $base-font-size * 0.875 !default;
@@ -10,13 +23,17 @@ $base-line-height: 1.5 !default;
 
 $spacing-unit:     30px !default;
 
-$text-color:       #111 !default;
-$background-color: #fdfdfd !default;
-$brand-color:      #2a7ae2 !default;
+$text-color:       #FFFFFF !default;
+$background-color: #292a36 !default;
+$brand-color:      #FFFFFF !default;  // links email etc. 
 
-$grey-color:       #828282 !default;
-$grey-color-light: lighten($grey-color, 40%) !default;
-$grey-color-dark:  darken($grey-color, 25%) !default;
+$link-color:   #f4f99d !default ;
+$plink-color:  #f4f99d !default ; //visited
+$hlink-color:  #f4f99d !default ; //hover
+$code-color:   #565a6d !default ; //grey for code
+$grey-color:       #5af78e !default;  // time and dates etc
+$grey-color-light: #9aedfe !default;  // thin lines
+$grey-color-dark:  #ffffff !default; // Title section
 
 // Width of the content area
 $content-width:    800px !default;

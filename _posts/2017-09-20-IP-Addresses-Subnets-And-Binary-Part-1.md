@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "IP addresses, subnets, and Binary part 1"
+title:  
 date:   2017-09-20 2:30:00 -0400
 categories: Networking
 ---
-
 
 ## Binary, Ip addresses, Subnet masking.
 
@@ -19,15 +18,14 @@ Okay so. I'm going to make some notes on this. Because this the most fundamental
 
 This is an ip address example
 
-```
-192.168.1.1
-```
+
+<code>192.168.1.1 </code>
+
 
 This is a subnet mask example
 
-```
-255.255.255.0
-```
+
+<code>255.255.255.0 </code>
 
 These are written in human readable numbers (Decimal for the technical), most humans prefer it this way. Be a better human by figuring this mess out in the right way. *Also known as binary.*
 
@@ -50,15 +48,18 @@ I repeat, **this is the part that isn't always shown to noobs but makes you less
 
 To setup this magic trick just imagine it stacked, subnet mask on top of the IP. I'll make it easier.
 
+
 ```
-11111111.11111111.11111111.00000000
-11000000.10101000.00000001.00000001
+11111111.11111111.11111111.00000000  
+11000000.10101000.00000001.00000001 
 ```
+
 
 Now here is the magic trick. Write the same thing, but put an extra space or 2 between where the subnet changes from 1s to 0s. *Like so friends.*
 
+
 ```
-11111111.11111111.11111111.  00000000
+11111111.11111111.11111111.  00000000 
 11000000.10101000.00000001.  00000001
 ```
 

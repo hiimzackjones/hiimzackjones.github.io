@@ -1,11 +1,31 @@
 /**
  * Reset some basic elements
  */
+ 
+ // pallet 
+// red     ff6e67
+// green   5af78e
+// yellow  f4f99d
+// purp    caa9fa
+// pink    ff92d0
+// blue    9aedfe
+// grey    c7c7c7
+// bg      282a36
+// bglite  565a6d
+// "bold"  ebebeb
+// blelink 005cbb
+
 body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
+p, blockquote, pre,
 dl, dd, ol, ul, figure {
   margin: 0;
   padding: 0;
+}
+
+hr {
+ margin: 2;
+ padding: 2;
+
 }
 
 
@@ -73,7 +93,9 @@ li {
   > ul,
   > ol {
     margin-bottom: 0;
+   
   }
+   color: #ebebeb;
 }
 
 
@@ -81,8 +103,14 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
+h1, {
   font-weight: $base-font-weight;
+  color: #ff92d0;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: $base-font-weight;
+  color: #f4f99d;
 }
 
 
@@ -91,15 +119,15 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: $brand-color;
+  color: $link-color;
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+    color: $plink-color;
   }
 
   &:hover {
-    color: $text-color;
+    color: $hlink-color;
     text-decoration: underline;
   }
 
@@ -137,9 +165,9 @@ blockquote {
 pre,
 code {
   @include relative-font-size(0.9375);
-  border: 1px solid $grey-color-light;
+  border: 1px solid $code-color;
   border-radius: 3px;
-  background-color: #eef;
+  background-color: $code-color;
 }
 
 code {
