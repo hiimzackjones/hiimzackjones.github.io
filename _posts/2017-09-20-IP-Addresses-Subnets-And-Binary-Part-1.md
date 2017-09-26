@@ -246,5 +246,5 @@ Cheers,
 
 Zack
 
-
-*[<h2>Part 2</h2>](https://hiimzackjones.github.io/networking/2017/09/26/IP-Addresses-Subnets-And-Binary-Part-2.html)* 
+---
+*[Part 2](https://hiimzackjones.github.io/networking/2017/09/26/IP-Addresses-Subnets-And-Binary-Part-2.html)* 
