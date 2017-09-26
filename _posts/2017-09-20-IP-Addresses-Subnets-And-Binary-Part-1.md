@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  
-date:   2017-09-20 2:30:00 -0400
+date: 2017-09-20 2:30:00 -0400
 categories: Networking
 ---
 
 ## Binary, Ip addresses, Subnet masking.
 
-Okay so. I'm going to make some notes on this. Because this the most fundamental thing you need to know to do ... anything really. so. I'm not going to waste time. Leh do it.
+Okay so. I'm going to make some notes on this. Because this the most fundamental thing you need to know to do ... anything really. so. I'm not going to waste time. Leh do it. Heads up, this page is perf for noobs. If you've got binary down and just want to learn subnets [head to part 2](fixThislink)
 
 
 <iframe src="https://giphy.com/embed/YQitE4YNQNahy" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -240,7 +240,7 @@ Well. That makes sense right? To review. The bits double from right to left. The
 
 ### Okay take a breather. We are going to get back into subnet masking, but for now, let this settle in.
 
-Go through this, if you have questions find me on twitter @hiimzackjones or email me at ztj20@email.vccs.edu. Soon there will be more to this post. If you've read this far down, then thanks. Means a lot.
+Go through this, if you have questions find me on twitter [@hiimzackjones](http://twitter.com/hiimzackjones) or email me at [ztj20@email.vccs.edu](mailto:ztj20@email.vccs.edu). Soon there will be more to this post. If you've read this far down, then thanks. Means a lot.
 
 Cheers,
 
