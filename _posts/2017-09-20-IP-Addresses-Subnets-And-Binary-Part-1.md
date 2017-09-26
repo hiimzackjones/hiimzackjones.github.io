@@ -240,8 +240,11 @@ Well. That makes sense right? To review. The bits double from right to left. The
 
 ### Okay take a breather. We are going to get back into subnet masking, but for now, let this settle in.
 
-Go through this, if you have questions find me on twitter [@hiimzackjones](http://twitter.com/hiimzackjones) or email me at [ztj20@email.vccs.edu](mailto:ztj20@email.vccs.edu). Soon there will be more to this post. If you've read this far down, then thanks. Means a lot.
+Go through this, if you have questions find me on twitter [@hiimzackjones](http://twitter.com/hiimzackjones) or email me at [ztj20@email.vccs.edu](mailto:ztj20@email.vccs.edu). If you think you're ready for Part 2 - [Here it is.](https://hiimzackjones.github.io/networking/2017/09/26/IP-Addresses-Subnets-And-Binary-Part-2.html) If you've read this far down, then thanks. Means a lot.
 
 Cheers,
 
 Zack
+
+
+*[Part 2](https://hiimzackjones.github.io/networking/2017/09/26/IP-Addresses-Subnets-And-Binary-Part-2.html)* 
