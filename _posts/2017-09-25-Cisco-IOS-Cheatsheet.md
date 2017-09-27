@@ -9,7 +9,7 @@ categories: Networking
 
 I'll expand on this as class goes on. Use this as needed. 
 
-####Moving from user EXEC mode to privildged EXEC mode and into configure mode.  
+#### Moving from user EXEC mode to privildged EXEC mode and into configure mode.  
 
 ```                                      
 |---------------------|-------------------------------------------|
@@ -18,7 +18,7 @@ I'll expand on this as class goes on. Use this as needed.
 |         (config)#   |  hostname PutANameHere                    |
 |---------------------|-------------------------------------------|
 ```
-####Moving to interface commands (to allow for writing configuration info for those interfaces) 
+#### Moving to interface commands (to allow for writing configuration info for those interfaces) 
 
 ```                       
 |---------------------|-------------------------------------------|
@@ -28,7 +28,7 @@ I'll expand on this as class goes on. Use this as needed.
 |         (config)#   |  interface gigabitethernet 0/0            |
 |---------------------|-------------------------------------------|
 ```
-####Setting interface commands (writing configuration information for interfaces  
+#### Setting interface commands (writing configuration information for interfaces  
 
 ```                                   
 |---------------------|-------------------------------------------|
@@ -37,7 +37,7 @@ I'll expand on this as class goes on. Use this as needed.
 |      (config-if)#   |  clock rate 56000                         |
 |-----------------------------------------------------------------|
 ```
-####Networking Protocol commands (for advertising networks to adjacent routers.)   
+#### Networking Protocol commands (for advertising networks to adjacent routers.)   
                                            
 ```
 |---------------------|-------------------------------------------|
@@ -45,7 +45,7 @@ I'll expand on this as class goes on. Use this as needed.
 |  (config-router)#   |  network 192.168.1.0 255.255.255.0        |
 |---------------------|-------------------------------------------|
 ```
-####Setting DHCP on router. (for distributing IP addresses to hosts in that network  
+#### Setting DHCP on router. (for distributing IP addresses to hosts in that network  
 
 ```
 |---------------------|-------------------------------------------|
@@ -54,7 +54,7 @@ I'll expand on this as class goes on. Use this as needed.
 |    (config-dhcp)#   |  dns-server 291.168.1.80                  |
 |---------------------|-------------------------------------------|
 ```
-####Moving to line config  
+#### Moving to line config  
 
 ```
 |---------------------|-------------------------------------------|
@@ -64,7 +64,8 @@ I'll expand on this as class goes on. Use this as needed.
 |---------------------|-------------------------------------------|
 
 ```
-####Setting up line connection to allow connections with a password 
+#### Setting up line connection to allow connections with a password 
+
 ```
 
 |-----------------------------------------------------------------|
@@ -73,25 +74,28 @@ I'll expand on this as class goes on. Use this as needed.
 |router(config-line)# | exit                                      |
 |-----------------------------------------------------------------|
 ```
-####Starting a service (like password encryption)        
+#### Starting a service (like password encryption) 
+       
 ```
 
 |-----------------------------------------------------------------|
 |         (config)#   | service password-encryption               |
 |---------------------|-------------------------------------------|
 ```
-####Security and password setup   
+#### Security and password setup   
   
                          
 
-#####For access to privileged EXEC mode 
+#### For access to privileged EXEC mode 
+
 ```        
 |---------------------|-------------------------------------------|
 |         (config)#   | enable password                           |
 |---------------------|-------------------------------------------|
 
 ```
-#####For encrypted privileged EXEC password
+#### For encrypted privileged EXEC password
+
 ```
              
 |---------------------|-------------------------------------------|
