@@ -129,7 +129,7 @@ Computer:Playing Me$ cat FirstScript.sh
 Cool. Looks good. If you want to edit it just use vim again. i to edit it. make sure to :wq it.  
 
 
-Now. This is a new linux command that is pretty important. It comes into play often if you're writing stuff like this. The file so far doesn't have the ability to just be executed. We wouldn't want these scripts just ready to run all willy nilly as soon as we write them right?  
+Now. This is a new linux command that we haven't used yet, but it is pretty important. It comes into play often if you're writing stuff like this. The file so far doesn't have the ability to just be executed. We wouldn't want these scripts just ready to run all willy nilly as soon as we write them right?  
 
 
 Let's make it work.  
