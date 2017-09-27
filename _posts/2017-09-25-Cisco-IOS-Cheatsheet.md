@@ -86,7 +86,7 @@ I'll expand on this as class goes on. Use this as needed.
   
                          
 
-#### For access to privileged EXEC mode 
+*For access to privileged EXEC mode* 
 
 ```        
 |---------------------|-------------------------------------------|
@@ -94,7 +94,7 @@ I'll expand on this as class goes on. Use this as needed.
 |---------------------|-------------------------------------------|
 
 ```
-#### For encrypted privileged EXEC password
+*For encrypted privileged EXEC password*
 
 ```
              
