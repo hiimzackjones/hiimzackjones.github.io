@@ -10,7 +10,7 @@ I decided to change it up and let you in on some of the things I've learned in t
 
 ## Getting into Cyber Security.  
 
-This subtitle is misleading, mainly because when you think about folks who are "into cyber security", the one's that are inspiring and fun to follow on Twitter, most of the time they didn't "get into cyber security", they just liked it. And became part of it's culture. Just like getting into sports or scrapbooking or Taylor Swift.
+This subtitle is misleading, mainly because when you think about folks who are "into cyber security", many of the one's that are truly inspiring most of the time didn't "get into cyber security". They made it to where they are by loving something about it and often becoming part of the culture to be around other's who love something about it. Just like getting into sports or scrapbooking or Taylor Swift.
 
 Immediately you think to yourself 
 > "I will never like Cyber Security as much as I like Taylor Swift" 
@@ -27,7 +27,7 @@ Immediately you think to yourself
   
 
 ## The starting point is a boring place  
-You picked this field for a reason. Hopefully it wasn't money. Hopefully something about it feels awesome. Chances are that it has nothing to do with subnetting or Cisco IOS commands. Yep. And then, let me guess - you go to class and you don't experience any of that awesome and then you're like, I don't know if this is for me.  
+You picked this field for a reason. Hopefully it wasn't money. Hopefully something about it feels tingly and awesome. Chances are that it has nothing to do with subnetting or Cisco IOS commands. Also I wouldn't be making a far off guess to say that you go to class and not have any of that awesome that got you there in the first place resulting in the 'I don't know if this is for me' that happens to so many people.  
 
 <iframe src="https://giphy.com/embed/eveLVPcHcbl0A" width="480" height="262" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -42,7 +42,7 @@ This is the part of this post that matters. I'm not going to give you a concrete
 
 #### Find ways to be entertained by it. 
 
-Start with a single book - like Hacking the Hacker by Roger A Grimes.(Ask me for it, I'll let you borrow my copy) Or hopping on Twitter and finding who is who. This will be the tell tell. If you don't find something in a book, or a youtube channel, or podcast, at least one thing that makes you feel awesome, your job doing network security analysis isn't going to feel good. I'll say that my start in all of this was from getting excited about the smart IT dudes and dudettes in movies. That made me want to learn if it was possible to be like them, leading to googling stuff and landing on things like [Hackthissite.org](http://hackthissite.org) or [Hak5's](http://hak5.org) Youtube. I still check that stuff out on the regular despite finding it 10 years ago. 
+Start with a single book - like [Hacking the Hacker by Roger A Grimes](https://www.amazon.com/Hacking-Hacker-Learn-Experts-Hackers/dp/1119396212/ref=sr_1_1?ie=UTF8&qid=1506652044&sr=8-1&keywords=hacking+the+hacker).(Ask me for it, I'll let you borrow my copy) Or hopping on Twitter and finding who is who. This will be the tell tell. If you don't find something in a book, or a youtube channel, or podcast, at least one thing that makes you feel awesome, your job doing network security analysis isn't going to feel good. I'll say that my start in all of this was from getting excited about the smart IT dudes and dudettes in movies. That made me want to learn if it was possible to be like them, leading to googling stuff and landing on things like [Hackthissite.org](http://hackthissite.org) or [Hak5's](http://hak5.org) Youtube. Come to find out, you can in fact do some of the stuff they do, and it pays. And it's in crazy demand. And it's sort of like a superpower. And there isn't and end to learning it. That should be exciting right? 
 
 >Seriously, really pay attention to how this stuff makes you feel.
 
@@ -51,7 +51,9 @@ The goal is to find what makes you feel like this fella and run towards it.
 <iframe src="https://giphy.com/embed/l0HlFTlbKx9KMZC5q" width="480" height="419" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> 
 
 #### Work from the right starting place. 
-I want to write sweet networking scripts and be really awesome at CTFs and real work pentesting. But, last time I tried jumping right into it, I got mad overwhelmed man. Like. Sad city. But it was only because I felt hopeless and lost. You have to get a foothold on what you know and work your way up. **The issue is that most infosec media that is exciting is also a bit intimidating** 
+I want to write sweet networking scripts and be really awesome at CTFs and real work pentesting. But, last time I tried jumping right into it, I got mad overwhelmed man. Like. Sad city. But it was only because I felt hopeless and lost. You have to get a foothold on what you know and work your way up. **The issue is that most infosec media that is exciting is also a bit intimidating**    
+
+*If you don't know where your starting place is, google something you already know something about. You'll find something else there that you don't know yet*  
 
 >"If watching someone do something feels so impossible it seems like magic, remember what it felt like when you realized the coin wasn't behind your ear, it was just between your uncle's fingers"  
   -Some guy once said this. 
