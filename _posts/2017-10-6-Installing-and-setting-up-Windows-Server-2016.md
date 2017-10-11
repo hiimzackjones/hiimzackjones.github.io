@@ -85,6 +85,8 @@ Alright the install.
 11) Once logging in, you'll be sitting in front of Server Manager. It will look like this. 
 ![Starting up](/assets/img/servergifs/SVRDESKPTOP/2017-10-05-6.39.58-PM.png) 
 
+--- 
+
 
 ## Basic setup
 Now before you can use server there are a few things you're going to want to do to get it setup. Being a server, it's going to... serve and the clients that use those services will need to know where to find it. So you're going to want to set up a static IP right out of the gate. Let's do that now.
