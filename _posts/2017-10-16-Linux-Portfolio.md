@@ -17,7 +17,10 @@ Linux is a unix based operating system that was developed during the 90s and is 
 
 ## Open Source vs Closed Source
 Linux is known as an Open Source system. This means two things: 
-* It first means that essentially anyone can be part of the development. When working on systems as vital as a full operating system, having varying developers means that the systems are almost always secure and reliable. Applications that are open source developed often go through many improvements and changes and are facilitated using a version control system. To put it simply, imagine many different suggestions for what to do next on a project, and then the best options get put into play.  
+* It first means that essentially anyone can be part of the development. When working on systems as vital as a full operating system, having varying developers means that the systems are almost always secure and reliable. Applications that are open source developed often go through many improvements and changes and are facilitated using a version control system. To put it simply, imagine many different suggestions for what to do next on a project, and then the best options get put into play.
+* It also means that the rights to use the software is generally open and free for anyone to use. 
+Open source allows to have as many people using and working on the progress of the system at once. In theory this makes the system inheirently stronger. 
+
 
 ## Distros
 Distros are short for Distributions and the different versions of linux. Sometimes Distros are created or forked from different opinions or methods for doing something in the Open Source Development process. Distros are also created for specific needs, like taking a system and adjusting it so it works well in a manufacturing environment for controlling machines, or creating a system that works on a small embedded device. 
@@ -66,7 +69,7 @@ Write about using the terminal for the first time. how the $ works. etc.
 ## Basic Bash Commands
 
 ### cd
-cd [OPTION] {directory-name}
+<code>cd [OPTION] {directory-name}</code>
 The cd command takes a directory as an argument and changes the shell’s active working directory. You can move into directories that are within other directories as well as moving out of a directory you’re in into a previous directory as well. You can also use the ~ as an alias for the home directory.   
 Examples
 $ cd Documents
@@ -97,6 +100,7 @@ will show a long listing of the file or directory you are in. This is good for s
 will show all hidden files in the directory you are in. Hidden files in Linux display with a “.” in its file name. A hidden file or “hidden directory” is typically used for storing user preferences or preserving the state of a utility. 
 
 ### Echo
+Write about echo. 
 
 
 ### Creating/removing/relocating files and directories
