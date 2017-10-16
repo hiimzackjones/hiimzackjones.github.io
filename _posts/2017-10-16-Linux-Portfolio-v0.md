@@ -4,6 +4,8 @@ title:
 date: 2017-10-16 12:32:00 -0400 
 categories: Linux 
 ---
+
+This document is a ongoing document where I will be adding Portfolio items for ITE221. I may have ugly drafty things on this page. I'll update the date on the page each time there is an update. 
 ## What is linux?
 
 Linux is a unix based operating system that was developed during the 90s and is made up of many different versions and distributions for various needs ranging from Retail Point of Sale systems to GPS systems, cell phone operating systems, and even hacking tools. Linux is known for having particular features like:
@@ -68,7 +70,7 @@ Write about using the terminal for the first time. how the $ works. etc.
 
 ## Basic Bash Commands
 
-# cd
+### cd
 <code>cd [OPTION] {directory-name}</code>
 The cd command takes a directory as an argument and changes the shell’s active working directory. You can move into directories that are within other directories as well as moving out of a directory you’re in into a previous directory as well. You can also use the ~ as an alias for the home directory.   
 Examples
@@ -82,102 +84,79 @@ $ cd ../
 Moves back a directory
 
 
-# man
+### man
 <Code>man [OPTION] {keyword}</code>
 The man command will take a keyword argument and display a manual page for the keyword. Generally the keyword should be another bash command or application. 
 Examples
 <code>$man ls</code>
 This will display the syntax and use of the ls command and it’s available options. 
 
-# ls
+### ls
 <code>ls [OPTION]</code>
 The ls command prints out the contents of a directory. This includes files, directories and executables. 
 The ls command has various options that can be useful.  
 Examples
-<code>$ls -l<c/ode> 
+<code>$ls -l</code> 
 will show a long listing of the file or directory you are in. This is good for seeing additional information like individual file’s permissions.
 <code>$ls -A</code> 
 will show all hidden files in the directory you are in. Hidden files in Linux display with a “.” in its file name. A hidden file or “hidden directory” is typically used for storing user preferences or preserving the state of a utility. 
 
-# Echo
+### Echo
 Write about echo. 
 
 
 ## Creating/removing/relocating files and directories
 
-Mkdir
-mkdir [OPTION] {directory-name}
+### mkdir
+<code>mkdir [OPTION] {directory-name}</code>
 The mkdir command takes a new directory name as an argument and creates that directory. will create a new empty directory. 
 Examples
-$mkdir NewFolder
+<code>$mkdir NewFolder</code>
 This will create a new directory called NewFolder 
 
-
-
-
-Rmdir
-rmdir [OPTION] {directory-name}
+### rmdir
+<code>rmdir [OPTION] {directory-name}</code>
 The rmdir command takes an existing directory as an argument and deletes that directory. This command only removes empty directories. 
 Examples
-$ rmdir OldDirectory
+<code>$ rmdir OldDirectory</code>
 This removes the directory called OldDirectory 
 
-
-
-
-rm 
-rm [OPTION] {file-name}
+### rm 
+<code>rm [OPTION] {file-name}</code>
 The rm command takes a file as an argument and deletes that file. 
 A popular option to use with rm is the -r option. This option removes recursive files within a directory and can be used as a substitution to rmdir. 
 Examples
-$ rm deletethis.txt
+<code>$ rm deletethis.txt</code>
 This deletes the file deletethis.txt
-$ rm -r ThisFolderWillBeDeletedIncludingTheFilesInside
+<code>$ rm -r ThisFolderWillBeDeletedIncludingTheFilesInside</code>
 This deletes the folder ThisFoldWillBeDeletedInculdingTheFIlesInside and the recusive files and directories. 
 
-
-
-
-
-
-
-
-
-
-
-
-Cp
-cp [OPTION] {file-name}{new-file-name}
+### cp
+<code>cp [OPTION] {file-name}{new-file-name}</code>
 The cp command copies a file and takes two arguments. First argument being the file to be copied, and the second argument being the name of the new copied version of the file. You can also copy multiple files, a directory and it’s recursive files or copy a file into another directory. 
 Examples
-$ Cp FileNeededToBeCopied TheCopyOfTheFile
+<code>$ cp FileNeededToBeCopied TheCopyOfTheFile</code>
 Creates a copy of FileNeededToBeCopied called TheCopyofTheFile
-$ Cp File1 /Documents/file2
+<code>$ Cp File1 /Documents/file2</code>
 Creates a copy of File1 into the directory Documents called file2
-$ Cp CopyThis This AndThis Documents/ToThisDirectory 
+<code>$ Cp CopyThis This AndThis Documents/ToThisDirectory</code> 
 Creates copies of CopyThis and This and AndThis into the directory ToThisDirectory in the Documents directory
-$ Cp -r  AFolderAndContents NewFolder
+<code>$ Cp -r  AFolderAndContents NewFolder</code>
 Copies the folder AFolderAndContents and the contents into a new directory called NewFolder
 
-
-
-
-Mv
-mv [OPTION] {file-name}{directory-name}
+### mv
+<code>mv [OPTION] {file-name}{directory-name}</code>
 The mv command takes two arguments. The first being a file that you’d like to move and then second being a directory you’d like to move it into. You can also change the name of the moved file or move all files located in a directory to a new directory. 
 Examples
-Mv File.iso Folder1
+<code>Mv File.iso Folder1</code>
 This moves the file File.iso into Folder1
-Mv picture.jpeg Pictures/CoolPicture.jpeg
+<code>Mv picture.jpeg Pictures/CoolPicture.jpeg</code>
 This moves the file picture.jpeg into the folder Pictures and renames it to CoolPicture.jpeg
-Mv * /Documents/MovedFiles
+<code>Mv * /Documents/MovedFiles</code>
 This moves all files in the current working directory into the folder called MovedFiles located in Documents
 
-
-
-
-Less
-less [OPTION] {file-name}
+### less
+<code>less [OPTION] {file-name}</code>
 The less command takes a filename as an argument and prints onto the screen one page at a time. It allows you to scroll within a text file. Only used for viewing the contents of the file. Use q to quit less. 
 Examples
 
@@ -185,25 +164,23 @@ Examples
 
 
 More
-more [OPTION] {file-name}
+<code>more [OPTION] {file-name}</code>
 The more command is a pager used to view the contents of a text file, similar to less, only one screen a time. The “space bar” is used to move forward and “q” to quit. 
  Command syntax is:
-more [options] [file_name]
+<code>more [options] [file_name]</code>
 
 
 Head
-head [OPTION] {file-name}
+<code>head [OPTION] {file-name}</code>
 By using the head command, it will display the few lines of text to show on the terminal screen. Option -n can be used to set a specific number of lines returned on the output display.
-The command syntax is:
-head [options] [file_name]
-Example 
+
 
 
 Tail
-tail [OPTION] {file-name}
+<code>tail [OPTION] {file-name}</code>
 The tail command will display the last few lines of text in the output on the terminal screen. Tail can used to monitor files in real time to see new lines being added to it using the -f option. Also the -n or just -[specific number] to display, such as -4
 The command syntax is:
-tail [option] [file_name]
+<code>tail [option] [file_name]</code>
 
 
 
@@ -211,9 +188,17 @@ tail [option] [file_name]
 
 
 Cat
-cat [OPTION] {file-name}
+<code>cat [OPTION] {file-name}</code>
 The cat command can be used in three different ways. It’s general purpose is to display contents of a file onto the command line. 
 
+
+---
+
+---
+
+---
+
+drafting below.
 
 ## Touch
 
