@@ -68,7 +68,7 @@ Write about using the terminal for the first time. how the $ works. etc.
 
 ## Basic Bash Commands
 
-### cd
+# cd
 <code>cd [OPTION] {directory-name}</code>
 The cd command takes a directory as an argument and changes the shell’s active working directory. You can move into directories that are within other directories as well as moving out of a directory you’re in into a previous directory as well. You can also use the ~ as an alias for the home directory.   
 Examples
@@ -82,14 +82,14 @@ $ cd ../
 Moves back a directory
 
 
-### man
+# man
 <Code>man [OPTION] {keyword}</code>
 The man command will take a keyword argument and display a manual page for the keyword. Generally the keyword should be another bash command or application. 
 Examples
 <code>$man ls</code>
 This will display the syntax and use of the ls command and it’s available options. 
 
-### ls
+# ls
 <code>ls [OPTION]</code>
 The ls command prints out the contents of a directory. This includes files, directories and executables. 
 The ls command has various options that can be useful.  
@@ -99,11 +99,11 @@ will show a long listing of the file or directory you are in. This is good for s
 <code>$ls -A</code> 
 will show all hidden files in the directory you are in. Hidden files in Linux display with a “.” in its file name. A hidden file or “hidden directory” is typically used for storing user preferences or preserving the state of a utility. 
 
-### Echo
+# Echo
 Write about echo. 
 
 
-### Creating/removing/relocating files and directories
+## Creating/removing/relocating files and directories
 
 Mkdir
 mkdir [OPTION] {directory-name}
