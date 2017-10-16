@@ -33,11 +33,11 @@ Live Booting allows a user to explore Linux or use it as if it was installed lik
 Note: When running live, you’re running directly from RAM, meaning it’s resource intensive. You’ll need a bit of extra RAM to run a live boot. 
 
 
-##Linux vs Unix
+## Linux vs Unix
 You may see some people use these titles interchangeably or even use *NIX to talk about either of them. What you need to know is that Linux was developed from Unix, in the same way Windows was developed from DOS. Other operating systems are also based off Unix like MacOS, Android, iOS, and even Playstation 4. To put it simply, everything that isn’t Windows is most likely based off a Unix system.  
 
 
-##Why is Linux Important?
+## Why is Linux Important?
 Linux is an IT admin’s dream. Linux has been known to have very little virus issues, is often crash proof, and gets updated very quickly. That along with it’s price (free) makes it great for servers, small business networks, and development environments. The ease of development on a Linux or Unix based system make it great for developers. The availability of tools like bash scripts also make it easy for Admins to do tasks that sometimes can take a long time if done step by step. 
 
 ---
@@ -60,12 +60,12 @@ Linux is an IT admin’s dream. Linux has been known to have very little virus i
 
 ---
 
-#Working in the Terminal
+# Working in the Terminal
 Write about using the terminal for the first time. how the $ works. etc. 
 
-##Basic Bash Commands
+## Basic Bash Commands
 
-###cd
+### cd
 cd [OPTION] {directory-name}
 The cd command takes a directory as an argument and changes the shell’s active working directory. You can move into directories that are within other directories as well as moving out of a directory you’re in into a previous directory as well. You can also use the ~ as an alias for the home directory.   
 Examples
@@ -79,14 +79,14 @@ $ cd ../
 Moves back a directory
 
 
-###man
+### man
 <Code>man [OPTION] {keyword}</code>
 The man command will take a keyword argument and display a manual page for the keyword. Generally the keyword should be another bash command or application. 
 Examples
 <code>$man ls</code>
 This will display the syntax and use of the ls command and it’s available options. 
 
-###ls
+### ls
 <code>ls [OPTION]</code>
 The ls command prints out the contents of a directory. This includes files, directories and executables. 
 The ls command has various options that can be useful.  
@@ -96,7 +96,7 @@ will show a long listing of the file or directory you are in. This is good for s
 <code>$ls -A</code> 
 will show all hidden files in the directory you are in. Hidden files in Linux display with a “.” in its file name. A hidden file or “hidden directory” is typically used for storing user preferences or preserving the state of a utility. 
 
-###Echo
+### Echo
 
 
 ### Creating/removing/relocating files and directories
