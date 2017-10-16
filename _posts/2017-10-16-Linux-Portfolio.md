@@ -4,8 +4,6 @@ title:
 date: 2017-10-16 12:32:00 -0400 
 categories: Linux 
 ---
-## Linux Portfolio 
-
 ## What is linux?
 
 Linux is a unix based operating system that was developed during the 90s and is made up of many different versions and distributions for various needs ranging from Retail Point of Sale systems to GPS systems, cell phone operating systems, and even hacking tools. Linux is known for having particular features like:
@@ -45,6 +43,7 @@ You may see some people use these titles interchangeably or even use *NIX to tal
 Linux is an IT admin’s dream. Linux has been known to have very little virus issues, is often crash proof, and gets updated very quickly. That along with it’s price (free) makes it great for servers, small business networks, and development environments. The ease of development on a Linux or Unix based system make it great for developers. The availability of tools like bash scripts also make it easy for Admins to do tasks that sometimes can take a long time if done step by step. 
 
 ---
+
 
 # Installing Ubuntu Linux (in progress)
 1. Download the Ubuntu iso from the Ubuntu website. 
