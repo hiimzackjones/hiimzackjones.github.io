@@ -1,13 +1,12 @@
 --- 
 layout: post 
 title: 
-date: 2017-09-26 20:32:00 -0400 
+date: 2017-10-16 12:32:00 -0400 
 categories: Linux 
 ---
 ## Linux Portfolio 
 
 ## What is linux?
- Image result for tux image 
 
 Linux is a unix based operating system that was developed during the 90s and is made up of many different versions and distributions for various needs ranging from Retail Point of Sale systems to GPS systems, cell phone operating systems, and even hacking tools. Linux is known for having particular features like:
 - Being a free operating system as well as server option
@@ -24,16 +23,18 @@ Open source allows to have as many people using and working on the progress of t
 
 ## Distros
 Distros are short for Distributions and the different versions of linux. Sometimes Distros are created or forked from different opinions or methods for doing something in the Open Source Development process. Distros are also created for specific needs, like taking a system and adjusting it so it works well in a manufacturing environment for controlling machines, or creating a system that works on a small embedded device. 
-Note: Information about distros and their updates can be found on DistroWatch.com
+> Note: Information about distros and their updates can be found on DistroWatch.com
 
-## Live boot
+## Live Boot
 A popular way to run Linux is the Live boot. Often users have machines with operating systems already installed and want to use Linux periodically or for special use cases, for that the Live boot comes in handy. Live booting is simple:
 * Download the linux distro’s ISO from it’s website. Find the appropriate website from distrowatch.com
 * Burn the ISO to a Disk or to a USB Flash drive. 
 * Boot your machine up and use the appropriate key combination during startup to tell the computer to boot to the CD or to do Flash drive. 
 * You’re live! 
-Live Booting allows a user to explore Linux or use it as if it was installed like a typical Operating system. Live booting allows you to work in an isolated system, not interfering with the hard drive or the original operating system. This makes it good for system and hardware diagnosis as well as leaving a limited footprint. Because it’s isolated from the harddrive, it doesn’t have a way to save files beyond the computer’s shutdown. This lack of persistence is both a benefit as well as a limitation. Some flash drive installs can be formatted and installed with a part of its available storage as persistent storage to remedy this. 
-Note: When running live, you’re running directly from RAM, meaning it’s resource intensive. You’ll need a bit of extra RAM to run a live boot. 
+Live Booting allows a user to explore Linux or use it as if it was installed like a typical Operating system. Live booting allows you to work in an isolated system, not interfering with the hard drive or the original operating system.  
+
+This makes it good for system and hardware diagnosis as well as leaving a limited footprint. Because it’s isolated from the harddrive, it doesn’t have a way to save files beyond the computer’s shutdown. This lack of persistence is both a benefit as well as a limitation. Some flash drive installs can be formatted and installed with a part of its available storage as persistent storage to remedy this. 
+> Note: When running live, you’re running directly from RAM, meaning it’s resource intensive. You’ll need a bit of extra RAM to run a live boot. 
 
 
 ## Linux vs Unix
