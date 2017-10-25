@@ -50,8 +50,9 @@ I'll expand on this as class goes on. Use this as needed.
 ```
 |---------------------|-------------------------------------------|
 |         (config)#   |  ip dhcp pool PutANameHere                |
+|    (config-dhcp)#   |  network 192.168.1.0 255.255.255.224      |
 |    (config-dhcp)#   |  default-router 192.168.1.1               |
-|    (config-dhcp)#   |  dns-server 291.168.1.80                  |
+|    (config-dhcp)#   |  dns-server 192.168.1.80                  |
 |---------------------|-------------------------------------------|
 ```
 #### Moving to line config  
