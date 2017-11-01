@@ -11,22 +11,22 @@ Basically there was a file named 'flag' hidden deep within some directories and 
 
 ---
 I started by making the directories and fake files as well as the flag file. I put all of this in a directory called tree. Coincidentally I use a command called tree to go ahead and show how the files are layed out before we test out the find command.  
-![1](/assets/img/find/1.gif)  
+![1](/assets/img/Find/1.gif)  
 
 I made the 'branches' pretty deep. If the output of tree was confusing, here is what it looks like.   
-![2](/assets/img/find/2.png)  
+![2](/assets/img/Find/2.png)  
 
 So the find command is really easy. Use <code>man find</code> to read about it. in this case I used <code>find [directory to start from] -name [keyword to look for in name]</code>  
 
 I knew that it was at least in Documents/tree and it had the name 'flag' in it.   
 
 Notice that it does the same sort of printing out that a command like pwd does.   
-![3](/assets/img/find/3.gif)  
+![3](/assets/img/Find/3.gif)  
 Okay so we found it. But we need to cat out the contents. So we could use cat and copy and paste. Or cd into it by copying and pasting. I did that here.   
-![4](/assets/img/find/4.gif)  
+![4](/assets/img/Find/4.gif)  
 So doing this challenge in a few lines is cool and all but sometimes it feels inefficient to have to leave the keyboard to copy and paste.    
 This is one of those moments where you can really take advantage of the shell.  
-![5](/assets/img/find/5.gif)  
+![5](/assets/img/Find/5.gif)  
   
 Here I did the two commands I did in the first example but I sort of nested a command within another. In the <code> cat flag </code> command, I replace flag with the first line. But I use a special syntax to tell <code>cat</code> to do things in a certain order. Notice <code> $() </code>   
 It's basically like this-   
