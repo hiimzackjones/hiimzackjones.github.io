@@ -4,8 +4,11 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 ---
+---
 
 
+
+# Hi
 Fancy seeing you here. I've been learning how to do stuff and writing it all down. You can read it if you like. 
 
 # Links
