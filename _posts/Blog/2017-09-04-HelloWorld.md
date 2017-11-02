@@ -2,7 +2,7 @@
 layout: post
 title:  "Hello World."
 date:   2017-09-15 10:45:00 -0400
-categories: General
+categories: Blog
 ---
 
 

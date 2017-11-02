@@ -17,7 +17,7 @@ title: Hi
 email: ztj20@email.vccs.edu
 author: Zachary Jones
 description: > # this means to ignore newlines until "baseurl:"
-  I have no clue what I'm doing. Use these notes at your own risk.
+ #Pewpew 
 url: "http://hiimzackjones.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: hiimzackjones
 github_username:  hiimzackjones
@@ -35,6 +35,8 @@ defaults:
       path: "assets/img"
     values:
       image: true
+      
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
