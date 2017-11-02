@@ -4,14 +4,12 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 ---
----
 
 
-
-# Hi
+## Hi
 Fancy seeing you here. I've been learning how to do stuff and writing it all down. You can read it if you like. 
 
-# Links
+### Links
 Here are some links to get in touch with me further. 
 
 [Twitter @hiimzackjones](http://twitter.com/hiimzackjones)    
