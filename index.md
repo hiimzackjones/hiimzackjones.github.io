@@ -5,7 +5,7 @@
 layout: home
 ---
 
-# Hello Friend.
+
 Fancy seeing you here. I've been learning how to do stuff and writing it all down. You can read it if you like. 
 
 # Links
