@@ -198,6 +198,7 @@ Yep. It doubles too. well. Let's just increment from 0 to the number 8 and note 
 00000011
 00000100 - 4
 00000101
+00000110
 00000111
 00001000 - 8
 ```  
