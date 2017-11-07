@@ -9,7 +9,7 @@ This document is a ongoing document where I will be adding Portfolio items for I
 ## What is linux?
 
 Linux is a unix based operating system that was developed during the 90s and is made up of many different versions and distributions for various needs ranging from Retail Point of Sale systems to GPS systems, cell phone operating systems, and even hacking tools. Linux is known for having particular features like:
-- Being a free operating system as well as server option
+- Being a free operating system with server capabilities. 
 - Having an open source development system and use. 
 - easily modifiable and to create custom systems for specific needs
 - Being extremely reliable. 
