@@ -1,7 +1,7 @@
 --- 
 layout: post 
 title: 
-date: 2017-09-26 20:32:00 -0400 
+date: 2017-11-28 6:32:00 -0400 
 categories: Cisco 
 ---
 ## Cisco IOS Cheatsheet
@@ -36,6 +36,13 @@ I'll expand on this as class goes on. Use this as needed.
 |      (config-if)#   |  no shutdown                              |
 |      (config-if)#   |  clock rate 56000                         |
 |-----------------------------------------------------------------|
+```
+#### Default Routes/ Static Routes   
+                                           
+```
+|---------------------|-------------------------------------------|
+|         (config)#   | ip route 0.0.0.0 0.0.0.0 192.168.0.1      |     
+|---------------------|-------------------------------------------|
 ```
 #### Networking Protocol commands (for advertising networks to adjacent routers.)   
                                            
