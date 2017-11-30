@@ -40,7 +40,7 @@ To setup for the creation of the Nano image, create a directory somewhere on the
 Next run Powershell as admin and import the module. Move to the directory that the scripts are in and run the following command. 
 
 ```
-Import-Module ./NanoServerImageGenerator.psm1 - Verbose
+Import-Module ./NanoServerImageGenerator.psm1 -Verbose
 ```  
 
 The Verbose option allows you to see the progress as the module is setup. This switch is optional.  
