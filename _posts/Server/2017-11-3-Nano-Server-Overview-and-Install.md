@@ -56,7 +56,114 @@ It will then prompt you for a password. Powershell will then show progress in th
 
 ![Nano3](/assets/img/servergifs/nano/nano3.gif)
 
-...to be continued
+
+Once this is complete, you will now have a virtual disk that is ready to be brought into Hyper-V and booted up. I'll have another post for creating virtual machines on Hyper-V. Here is a quick outline of the process. 
+
+- To make use of Nano Server, you will want it to have a network setup. Create a Virtual Switch in Hyper-V. 
+
+- Create a new Virtual Machine in Hyper-V by clicking New and then Virtual Machine in the Actions bar of Hyper-V. 
+
+- Set up the new machine with a name and desired settings. Note: In most cases you will want to set up this machine as a generation 2 machine. 
+
+- Instead of creating a new virtual disk, use an existing disk and choose the image that we just created. 
+
+
+Start your machine. 
+
+![Nano4](/assets/img/servergifs/nano/nano4.png)
+
+
+This is the starting point of the Nano Server's console. You will want to set up the machine as Administator first. Login using the username Administrator and the password you set earlier when you were creating the image. You will not need to connect it to a domain at this time. (We haven't set that up yet)
+
+
+
+Go ahead and set up the network settings similar to how you would set up a typical machine in the interface's properties and then IPv4. 
+
+![Nano5](/assets/img/servergifs/nano/nano5.png)
+
+
+To do this, select Networking and then select the interface. From there you will see the settings details for that interface. Hit F11 to change the settings for IPv4. 
+
+![Nano6](/assets/img/servergifs/nano/nano6.png)
+
+
+Toggle DHCP off by pressing F4. You now can enter in your IP address, default gateway, subnet mask, etc. Tab between lines and when you finish press enter.  
+
+![Nano7](/assets/img/servergifs/nano/nano7.png)
+ 
+
+
+exit by pressing ESC. 
+
+Confirm that your settings were saved back in the inteface's menu. 
+
+![Nano8](/assets/img/servergifs/nano/nano8.png)
+
+
+Before using Nano Server, you may want to look through the firewall settings and enable any of the services you plan to use. Some settings I will be choosing for this will be all of the various file sharing features. 
+
+> This is one of the most unique features for Nano. Esentially nothing is allowed. And you will have to cut on the specific features you know you'll use. This is part of it's lightweight nature and security. 
+
+![Nano9](/assets/img/servergifs/nano/nano9.png)
+
+With file sharing setup on your Nano Server, you should be able to access it by going directly to the IP address in an explorer window. 
+
+Next you will want to join the Nano Server to the domain. There are different ways to add it to the domain. In this case I will do an offline domain join. 
+
+Create the odjblob file configure script with this powershell command. 
+
+```
+djoin.exe /provision /domain nlblab.com /machine MachineName /save odjblob
+```
+
+
+Open PowerShell as admin and run this line to allow your domain controller to do a remote connection to the nano server. This line edits your security configuration. This adds the ip to the trusted hosts list. 
+
+```
+Set-Item WSMan:\localhost\Client\TrustedHosts "192.168.1.170"
+```
+
+Use the IP address you setup for your Nano Server in place of 192.186.1.170
+
+enter in Y to confirm and press enter. 
+
+enter these lines to open a PowerShell session. You don't have to create an alias for the ip but it makes it easier. 
+```
+$ip="192.168.1.170"
+Enter-PSSession -ComputerName $ip -Credential $ip\Administrator
+```
+
+Copy the odjblob file that was created with the djoin.exe line earlier from your domain controller over to your NanoServer machine in explorer. 
+
+Finally use this line to add the NanoServer to the domain
+
+```
+djoin /requestodj /loadfile C:\odjblob /windowspath C:\windows /localos
+```
+Press enter and once you see *The operation completed successfully* then you will need to restart. 
+
+<code> shutdown -r -t 0 </code>
+
+You will see the connection being lost and then you should be able to reconnect to the machine. 
+
+From here you should be able to use the domain in the Nano Server login.
+
+That's it. That's installing Nano Server and adding it to a domain. 
+
+If you'd like to test this machine you can create a html page, or md page and place it on the root directory of the Nano Server. Then from a browser you can use the IP address of the name or the machine to open up the page. Simple! 
+
+
+
+
+Cheers, 
+Zack Jones
+
+
+
+*Additional images will be added soon*
+
+
+
 
 
 
