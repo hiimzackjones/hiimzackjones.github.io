@@ -9,3 +9,6 @@ Too many posts due on the same day. And yes, I faked the dates on the posts. Mai
 
 
 aka mud in a cup. 
+
+
+Properties > Sharing  > adjust default permissions > add groups (if needed) > Click Done
