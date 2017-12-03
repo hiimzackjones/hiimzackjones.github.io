@@ -91,7 +91,7 @@ Alright the install.
 ## Basic setup
 Now before you can use server there are a few things you're going to want to do to get it setup. Being a server, it's going to... serve and the clients that use those services will need to know where to find it. So you're going to want to set up a static IP right out of the gate. Let's do that now.
 
-1)In Server Manager, to get to your IPv4 settings you need to be in the Local Server section. There you will see the Properties and a section called ethernet. Most likely, you will see that the server has IPv4 assigned by DHCP and IPv6 enabled.
+1)In Server Manager, to get to your IPv4 settings you need to be in the Local Server section. There you will see the Properties and a section called Ethernet. Most likely, you will see that the server has IPv4 assigned by DHCP and IPv6 enabled.
 ![png](/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.26-PM.png)
 2)Click to open up the list of interfaces available for your machine. You may have more than one interface available. My machine only has one.
 ![png](/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.39-PM.png)
