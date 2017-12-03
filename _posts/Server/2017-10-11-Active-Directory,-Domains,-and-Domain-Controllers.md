@@ -5,6 +5,8 @@ date: 2017-10-11 22:54:00 -0400
 categories: Server 
 ---
 
+*in progress, posted to show work for class*
+
 
 # Active Directory, Domains, and Domain Controllers
 
@@ -35,15 +37,19 @@ A good example of a hostname that happens often would be ftp.business.com, which
 ### Domain
 
 
-*todo* 
-- Create a Domain User
-- Create a Domain Group
-- Create a Domain Orgainizational Unit
+## Making a new Domain User
+In the start menu, open up Active Directory Users and Computers. YOu will see in your local Domain a list of Organizational units. Here you can create groups and users and organize them. 
+
+To make a user, make sure the group you'd like to add th user to is selected. Then use the Add A New User from the top menu. It will be the icon of a person's head. A New Object - User window will appear. Fill out the information as needed included the name and description and the Logon name. Press next. Now add a password to that user's account. You can change some of the settings for the password here including expiration, allowing the user to change the password, and first time logon password change. Press next. Review the new user's settings and press finish. 
 
 
- 
- 
-... This post is well on it's way. 
+
+## Making a new Domain Group
+
+
+## Creating a Domain Organizational Unit
+
+
 
 
 
