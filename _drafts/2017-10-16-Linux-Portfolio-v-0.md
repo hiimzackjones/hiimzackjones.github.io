@@ -6,6 +6,7 @@ categories: Linux
 ---
 
 This document is a ongoing document where I will be adding Portfolio items for ITE221. I may have ugly drafty things on this page. I'll update the date on the page each time there is an update. 
+
 ## What is linux?
 
 Linux is a unix based operating system that was developed during the 90s and is made up of many different versions and distributions for various needs ranging from Retail Point of Sale systems to GPS systems, cell phone operating systems, and even hacking tools. Linux is known for having particular features like:
@@ -34,15 +35,16 @@ A popular way to run Linux is the Live boot. Often users have machines with oper
 Live Booting allows a user to explore Linux or use it as if it was installed like a typical Operating system. Live booting allows you to work in an isolated system, not interfering with the hard drive or the original operating system.  
 
 This makes it good for system and hardware diagnosis as well as leaving a limited footprint. Because it’s isolated from the harddrive, it doesn’t have a way to save files beyond the computer’s shutdown. This lack of persistence is both a benefit as well as a limitation. Some flash drive installs can be formatted and installed with a part of its available storage as persistent storage to remedy this. 
-> Note: When running live, you’re running directly from RAM, meaning it’s resource intensive. You’ll need a bit of extra RAM to run a live boot. 
+> Note: When running live, you’re running directly from RAM, meaning it’s resource intensive. You’ll need a bit of extra RAM to run a live boot.   
 
 
 ## Linux vs Unix
-You may see some people use these titles interchangeably or even use *NIX to talk about either of them. What you need to know is that Linux was developed from Unix, in the same way Windows was developed from DOS. Other operating systems are also based off Unix like MacOS, Android, iOS, and even Playstation 4. To put it simply, everything that isn’t Windows is most likely based off a Unix system.  
+You may see some people use these titles interchangeably or even use *NIX to talk about either of them. What you need to know is that Linux was developed from Unix, in the same way Windows was developed from DOS. Other operating systems are also based off Unix like MacOS, Android, iOS, and even Playstation 4. To put it simply, everything that isn’t Windows is most likely based off a Unix system. 
 
 
 ## Why is Linux Important?
 Linux is an IT admin’s dream. Linux has been known to have very little virus issues, is often crash proof, and gets updated very quickly. That along with it’s price (free) makes it great for servers, small business networks, and development environments. The ease of development on a Linux or Unix based system make it great for developers. The availability of tools like bash scripts also make it easy for Admins to do tasks that sometimes can take a long time if done step by step. 
+
 
 ---
 
