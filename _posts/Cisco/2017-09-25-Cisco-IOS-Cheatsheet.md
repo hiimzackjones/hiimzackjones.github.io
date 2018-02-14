@@ -78,7 +78,7 @@ I'll expand on this as class goes on. Use this as needed.
 |----------------------------------|-----------------------------------------------|
 | [On inside router](config-if)#   | ip nat in                                     |
 | [On outside router](config-if)#  | ip nat out                                    |
-|                    (config-if)#  | ip nat inside source list 1 in g0/0 overload  |
+|                       (config)#  | ip nat inside source list 1 in g0/0 overload  |
 |----------------------------------|-----------------------------------------------|
 
 ```
