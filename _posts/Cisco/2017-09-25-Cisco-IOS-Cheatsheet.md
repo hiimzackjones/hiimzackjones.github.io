@@ -84,6 +84,16 @@ I'll expand on this as class goes on. Use this as needed.
 |---------------------|-------------------------------------------|
 
 ```
+#### Nat Translation  
+
+```
+|----------------------------------|-----------------------------------------------|
+| [On inside router](config-if)#   | ip nat in                                     |
+| [On outside router](config-if)#  | ip nat out                                    |
+|                       (config)#  | ip nat inside source list 1 in g0/0 overload  |
+|----------------------------------|-----------------------------------------------|
+
+```
 #### Setting up line connection to allow connections with a password 
 
 ```
