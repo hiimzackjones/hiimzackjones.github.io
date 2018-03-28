@@ -9,6 +9,17 @@ categories: Cisco
 
 I'll expand on this as class goes on. Use this as needed. 
 
+#### Clearing a router in lab (3 options) 
+
+```                                      
+|---------------------|-------------------------------------------|
+|                 #   |  write erase                              |
+|                 #   |  erase startup-config                     |
+|                 #   |  erase nvram:                             |
+|                 #   |  reload                                   |
+|---------------------|-------------------------------------------|
+```
+
 #### Moving from user EXEC mode to privildged EXEC mode and into configure mode.  
 
 ```                                      
@@ -32,6 +43,7 @@ I'll expand on this as class goes on. Use this as needed.
 
 ```                                   
 |---------------------|-------------------------------------------|
+|      (config-if)#   |  description Link to LAN2                 |
 |      (config-if)#   |  ip address 192.168.1.1 255.255.255.0     |
 |      (config-if)#   |  no shutdown                              |
 |      (config-if)#   |  clock rate 56000                         |
@@ -92,7 +104,6 @@ I'll expand on this as class goes on. Use this as needed.
 ```
 #### Security and password setup   
   
-                         
 
 *For access to privileged EXEC mode* 
 
@@ -110,6 +121,24 @@ I'll expand on this as class goes on. Use this as needed.
 |         (config)#   | enable secret <passwordOnNextLine>        |
 |---------------------|-------------------------------------------|
 ``` 
+
+
+#### Great uses of the show command   
+  
+
+*For access to privileged EXEC mode* 
+
+```        
+|---------------------|-------------------------------------------|
+|                 #   | show interface status                     |
+|                 #   | show interfaces                           |
+|                 #   | show mac address table                    |
+|                 #   | show ip g0/0/0                            |
+|                 #   | show ip route 192.168.1.1 255.255.255.0   |
+|                 #   | show run | begin line vty                 |
+|---------------------|-------------------------------------------|
+
+```
 
 
 
