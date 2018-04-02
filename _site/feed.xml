@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-02T18:47:25-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
+</subtitle><author><name>Zachary Jones</name></author><entry><title type="html">NCL Gym Exploitation PYTHON1</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON1" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
+
+&lt;p&gt;This flag is a Python password flag. Figure out what the password should be to satisfy the if statement. Easy.&lt;/p&gt;
+
+&lt;p&gt;Here is the code.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Invalid args&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;83&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;correct&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;incorrect&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;There are a few things in here that can be just thrown to the side because it won’t make a difference to the mission. It’s just house keeping. Afterwards you have just this.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;83&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;correct&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There are parts to this that if you haven’t seen you may need to do a quick googles. 
+Those things are&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ord()&lt;/li&gt;
+  &lt;li&gt;len()&lt;/li&gt;
+  &lt;li&gt;and the password[1] part.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;basically 
+ord() is the oppsite of chr()
+ord takes a character and gives the unicode of the character. 
+ie&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; ord('c')
+99
+&amp;gt;&amp;gt;&amp;gt; ord('a')
+97
+&amp;gt;&amp;gt;&amp;gt; chr(97)
+'a'
+&amp;gt;&amp;gt;&amp;gt; chr(99)
+'c'
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;so to figure out 
+&lt;code&gt; ord(password[1]) == 83: &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Open up terminal and run 
+&lt;code&gt;python&lt;/code&gt;
+&lt;code&gt; chr(83) &lt;/code&gt;
+to get the character&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; chr(83)
+'S'
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;len() takes a string and counts the length.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;len(cat)
+&amp;gt;&amp;gt;&amp;gt; 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and then the password[1] part. That’s happening because the password string is being iterated through each character. so the [1] spot is what it’s looking at. Remember that means the second spot because [0] is the first.&lt;/p&gt;
+
+&lt;p&gt;so we can sort of sudocode out what we need…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;start at 0 and each time you do this move up a letter
+
+for the current letter we are looking at in password:
+
+    add the value of the letter to a thing called builder.
+
+    when builder's total hits 1000
+        and the total length of the password is 10
+        and the second letter of the string is 'S'
+    print &quot;correct&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;wrote modified code to double check&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Invalid args&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then ran it with the same letter 3 times.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python Python1-test.py aaa
+97
+194
+291
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Edited the test python to print the ord and the builder values through the characters&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Invalid args&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Builder ='&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-----'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Ord ='&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-----'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;and output was beautifully&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python Python1-test2.py aaa
+Builder =
+97
+-----
+Ord =
+97
+-----
+Builder =
+194
+-----
+Ord =
+97
+-----
+Builder =
+291
+-----
+Ord =
+97
+-----
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Added a print of length by throwing this into the for loop&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;print len(password)
+print '-----'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now I came up with a random password that seemed to satisfy the conditions.&lt;/p&gt;
+
+&lt;p&gt;I picked tSaaxaacaa. Not sure why. Ran it in our program.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python Python1-test4.py tSaaxaacaa
+Builder =
+116
+-----
+Ord =
+116
+-----
+10
+-----
+Builder =
+199
+-----
+Ord =
+83
+-----
+10
+-----
+Builder =
+296
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+393
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+513
+-----
+Ord =
+120
+-----
+10
+-----
+Builder =
+610
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+707
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+806
+-----
+Ord =
+99
+-----
+10
+-----
+Builder =
+903
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+1000
+-----
+Ord =
+97
+-----
+10
+-----
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;It seemed to meet the conditions. Len was 10. The second character ord was 83 and we hit our goal of 1000.&lt;/p&gt;
+
+&lt;p&gt;Run it in the PYTHON1.py program annnndddd.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python PYTHON1.py tSaaxaacaa
+correct
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Okay Done and Done. This took a little bit of time to run through but it was worth 150 points. Whew.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Implementing Windows Deployment Services</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html" rel="alternate" type="text/html" title="Implementing Windows Deployment Services" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html">&lt;blockquote&gt;
+  &lt;p&gt;DRAFT IN PROGRESS&lt;br /&gt;
+ -Zack
+&lt;img src=&quot;/assets/img/servergifs/wds/1.png&quot; alt=&quot;1.png&quot; /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/2.png&quot; alt=&quot;2.png&quot; /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/3.png&quot; alt=&quot;3.png&quot; /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/4.png&quot; alt=&quot;4.png&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Windows Deployment Services.&lt;/p&gt;
+
+&lt;p&gt;Deploying Windows to machines from a Windows Server.&lt;/p&gt;
+
+&lt;p&gt;To use WDS with an install, you need to make &lt;strong&gt;both&lt;/strong&gt; a boot image and a install image.&lt;/p&gt;
+
+&lt;p&gt;The Windows server 2016 DVD or ISO has the boot image and the install image.&lt;/p&gt;
+
+&lt;p&gt;you can find them in the Sources Folder.&lt;/p&gt;
+
+&lt;p&gt;They will be named boot.wim and install.wim&lt;/p&gt;
+
+&lt;p&gt;Adding the Boot Image:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to server Manager&lt;/li&gt;
+  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
+  &lt;li&gt;Right click Boot Images and click Add Boot Image&lt;/li&gt;
+  &lt;li&gt;Find the boot.wim file. Click Open&lt;/li&gt;
+  &lt;li&gt;Next until finished.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Do the same with the install image but put it in the Install Images folder.&lt;/p&gt;
+
+&lt;p&gt;https://www.youtube.com/watch?v=qIsCv7Gh2fY&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">DRAFT IN PROGRESS -Zack</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;a)Configuring Storage Pools and Storage Spaces
+b)Implementing iSCSI Storage
+c)Implementing Storage Replica&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Implementing High Availability And Disaster Recovery Options With Hyper V</title><link href="http://localhost:4000/server/2018/03/28/Implementing-High-Availability-and-Disaster-Recovery-Options-with-Hyper-V.html" rel="alternate" type="text/html" title="Implementing High Availability And Disaster Recovery Options With Hyper V" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-High-Availability-and-Disaster-Recovery-Options-with-Hyper-V</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-High-Availability-and-Disaster-Recovery-Options-with-Hyper-V.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;a) Implementing Virtual Machine Movement
+b)Implementing Hyper-V Replica&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;a)Installing the Failover Feature
+ b)Validate Cluster Configuration
+ c)Creating a Cluster
+ d)Adding a shared Drive to the Cluster (iSCSI)&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test a)Installing the Failover Feature b)Validate Cluster Configuration c)Creating a Cluster d)Adding a shared Drive to the Cluster (iSCSI)</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;a) Configuring Virtual Machines&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test a) Configuring Virtual Machines</summary></entry><entry><title type="html">Configuring Hyper V Storage</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Storage.html" rel="alternate" type="text/html" title="Configuring Hyper V Storage" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Storage</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Storage.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;a) Working with Virtual Disks&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;a) Configuring Hyper-V Networking&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">The Almighty Hyper V</title><link href="http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V.html" rel="alternate" type="text/html" title="The Almighty Hyper V" /><published>2017-11-29T09:36:00-05:00</published><updated>2017-11-29T09:36:00-05:00</updated><id>http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V</id><content type="html" xml:base="http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V.html">&lt;p&gt;Create a virtual switch. 
+Connect virtual swtich to the virtual NIC.&lt;/p&gt;
+
+&lt;p&gt;ask about sysprep&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Create a virtual switch. Connect virtual swtich to the virtual NIC.</summary></entry></feed>
