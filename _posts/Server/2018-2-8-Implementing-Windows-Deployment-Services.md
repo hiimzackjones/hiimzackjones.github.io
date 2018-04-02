@@ -5,6 +5,14 @@ date: 2018-3-28 22:54:00 -0400
 categories: Server 
 ---
 
+
+>DRAFT IN PROGRESS  
+ -Zack
+![1.png](/assets/img/servergifs/wds/1.png)
+![2.png](/assets/img/servergifs/wds/2.png)
+![3.png](/assets/img/servergifs/wds/3.png)
+![4.png](/assets/img/servergifs/wds/4.png)
+
 Windows Deployment Services. 
 
 Deploying Windows to machines from a Windows Server. 
