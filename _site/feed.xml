@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-17T21:31:08-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-17T23:26:27-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
 </subtitle><author><name>Zachary Jones</name></author><entry><title type="html">NCL Gym Exploitation PYTHON2</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON2" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
 
 &lt;p&gt;Wut.&lt;/p&gt;
@@ -857,7 +857,141 @@ PXE client then downloads the file via TFTP and then runs file
 |         (config)#   | enable secret &amp;lt;passwordOnNextLine&amp;gt;        |
 |---------------------|-------------------------------------------|
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Cisco IOS Cheatsheet</summary></entry><entry><title type="html">Nano Server Overview And Install</title><link href="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html" rel="alternate" type="text/html" title="Nano Server Overview And Install" /><published>2017-11-03T10:36:00-04:00</published><updated>2017-11-03T10:36:00-04:00</updated><id>http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install</id><content type="html" xml:base="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html">&lt;p&gt;&lt;em&gt;You can find more information about Windows Server 2016 and Server Core in a previous post&lt;/em&gt; 
+&lt;/div&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Cisco IOS Cheatsheet</summary></entry><entry><title type="html">Disks And Volumes</title><link href="http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html" rel="alternate" type="text/html" title="Disks And Volumes" /><published>2017-11-20T09:36:00-05:00</published><updated>2017-11-20T09:36:00-05:00</updated><id>http://localhost:4000/server/2017/11/20/Disks-And-Volumes</id><content type="html" xml:base="http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html">&lt;h3 id=&quot;interface-types&quot;&gt;Interface Types&lt;/h3&gt;
+
+&lt;h4 id=&quot;scsi&quot;&gt;SCSI&lt;/h4&gt;
+&lt;p&gt;This storage type is actually more of a protocol and a set of standards than it is a type of physical Device. It’s usually used in server envirnoments with Harddrives chained together. &lt;strong&gt;SCSI drives are useful for their speed and volume.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;sata&quot;&gt;SATA&lt;/h4&gt;
+&lt;p&gt;The S is SATA stands for serial and can transfer fairly quickly. SATA includes the physical SATA interface and has replaced IDE Drives for the post part. This is the standard in most consumer machines.&lt;/p&gt;
+
+&lt;h4 id=&quot;usb&quot;&gt;USB&lt;/h4&gt;
+&lt;p&gt;USB refers to drives that connect via the USB port on a computer. USB comes in 2.0 and 3.0. The 3.0 type is a faster type but both 3.0 devices and ports work fine with the respective 2.0 counterparts.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;volumes-partitions-and-partition-styles&quot;&gt;Volumes, Partitions, and Partition Styles.&lt;/h3&gt;
+
+&lt;p&gt;Volumes and Partitions often get confused. It’s important to note that a disk needs at least one partition and that partitions can be empty non-initialized sections. You can give these partitions structure, and these structures fall into different categories as well. More on that later. Volumes are partitions that have a file structure setup, often it’s an operating system or a simple storage device.&lt;/p&gt;
+
+&lt;p&gt;Here is a visual to give you a better idea. 
+&lt;img src=&quot;assets/img/vol/1.png&quot; alt=&quot;Disk Management&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice that Disk 0 has multiple partitions all set up in unique ways. Then there is a &lt;strong&gt;NTFS&lt;/strong&gt; file system setup as the bootable disk.&lt;/p&gt;
+
+&lt;p&gt;The organizational system and style of the partition can come in different flavors as well. Two major flavors are&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;GPT&lt;/strong&gt; GUID partition table&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;MBR&lt;/strong&gt; Master Boot Record&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;why-gpt-over-mbr&quot;&gt;Why GPT over MBR?&lt;/h4&gt;
+&lt;p&gt;What you need to know is that &lt;strong&gt;MBR&lt;/strong&gt; is a much older system and the way that the partitions and tables are setup may be less efficient. MBR also has a limit of 2 TB of space that it can recognize per each of it’s max 4 partitions. The bootloader in the MBR isn’t smart enough to handle much more than a classic BIOS system. So use with EFI isn’t possible. Also, without getting into too much detail. The usused space between the partition table + bootloader and the 1st partition is much smaller. Due to the way it’s organizes within it’s sectors, there is no need to leave gaps between the elements.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;disk-maintenance&quot;&gt;Disk Maintenance&lt;/h3&gt;
+
+&lt;h4 id=&quot;disk-management&quot;&gt;Disk Management&lt;/h4&gt;
+&lt;p&gt;Working with storage devices to create partitions and volumes can be done with various tools. On Server 2016, the native application is &lt;strong&gt;Disk Management&lt;/strong&gt; as pictured above.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;To get to Disk Management, you have a few options&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Search for it in the start menu&lt;/li&gt;
+  &lt;li&gt;Find it in Administrative tools&lt;/li&gt;
+  &lt;li&gt;run &lt;code&gt;diskmgmt.mcs&lt;/code&gt; in the run window or command line&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;using-powershell&quot;&gt;Using Powershell.&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/img/vol/3.png&quot; alt=&quot;PowerShell Example&quot; /&gt;
+You can also use some commands in powershell to handle your Disks, partitions, and volumes. Here are some basic starting points. These commandlets have their own set of possible options and arugments that make them useful. Use &lt;code&gt;man CommandName &lt;/code&gt; or &lt;code&gt; help CommandName &lt;/code&gt; to learn more.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-Disk
+Initialize-Disk
+Get-Partition
+Get-Volume
+Format-Volume
+Set-StorageSetting
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;trusty-diskpart&quot;&gt;Trusty DiskPart&lt;/h4&gt;
+
+&lt;p&gt;For many years, the goto for disk maintenance is DiskPart. Similar to using powershell, DiskPart is a command like tool for handling storage. &lt;br /&gt;
+&lt;img src=&quot;assets/img/vol/2.png&quot; alt=&quot;DiskPart Example&quot; /&gt;&lt;br /&gt;
+Here are some commands. Use &lt;code&gt;Diskpart /? &lt;/code&gt; to get a better idea of how to use DiskPart.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Diskpart list disk
+select disk &amp;lt;number&amp;gt;
+clean
+create partition primary
+select partition &amp;lt;number&amp;gt;
+active
+assign letter=&amp;lt;letter&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;file-systems&quot;&gt;File Systems&lt;/h3&gt;
+
+&lt;p&gt;The file system handles how the data is organized without a volume. It’s role is to isolate particular parts of data so that it understand where one thing starts and another begins. It’s what gives storage devices the ability to name files and have directories. Each system is very unique and has it’s own benefits.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of types:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;FAT&lt;/li&gt;
+  &lt;li&gt;exFAT&lt;/li&gt;
+  &lt;li&gt;NTFS&lt;/li&gt;
+  &lt;li&gt;ISO&lt;/li&gt;
+  &lt;li&gt;HFS&lt;/li&gt;
+  &lt;li&gt;ext&lt;/li&gt;
+  &lt;li&gt;VMFS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Some of these types include the ability to journal or to record the intentions of changes before the changes occur. Such that if the actual changes fail, the journal still exists and can often be quicker at bringing back to a working state. Also, some systems alow for versioning of files or allowing for copies of a file at different stages of it’s existance. This works by keeping up with the ‘deltas’ of a file as it changes such that files can easily be reverted back in case of failure or emergency.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;creating-vhds&quot;&gt;Creating VHDs&lt;/h3&gt;
+
+&lt;p&gt;Aside from formating physical disks, adding partitions to flash drives, and naming your drives cool names, you can use a system like Disk Manager to create Virtual Disks for the use in Virtual Machines or for containing and isolating files.&lt;/p&gt;
+
+&lt;h4 id=&quot;virtual-disks-vhds-and-vhdx&quot;&gt;Virtual Disks VHDs and VHDX&lt;/h4&gt;
+&lt;p&gt;We can easily simulate a physical harddrive in the virtual space within a harddrive. In other words, you can make harddrives that sit on your harddrive and can be moved and copied in the same way you would copy a text file. These harddrives are called VHDs or VHDXs.&lt;/p&gt;
+
+&lt;p&gt;You can create Virtual Disks in three ways:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Disk Management&lt;/li&gt;
+  &lt;li&gt;Using Hyper-V Manager&lt;/li&gt;
+  &lt;li&gt;Powershell command line.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;making-a-vhd-using-disk-management&quot;&gt;Making a VHD using Disk Management&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Open Disk Management by searching for it in the start menu&lt;/li&gt;
+  &lt;li&gt;In the top menu choose &lt;em&gt;Action&lt;/em&gt; and then &lt;em&gt;Create New Virtual Disk&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Set the disk’s name, size, and location. You can choose between a traditional VHD or a VHDX. 
+&lt;img src=&quot;assets/img/vol/4.png&quot; alt=&quot;Creating a New VHD&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll notice that you have a new drive in Disk Management but it’s showing up black instead of blue. It will be Not Initialized, Unallocated, and Offline.
+&lt;img src=&quot;assets/img/vol/5.png&quot; alt=&quot;New VHD in Disk Managment&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Right click in the grey box that has Disk 1 (or whatever number) and Initialize the Disk. 
+&lt;img src=&quot;assets/img/vol/6.png&quot; alt=&quot;Init New VHD&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Set the partition style you’d like to use for this disk.&lt;/li&gt;
+  &lt;li&gt;now Right click into the white rectangle space beside that and create a new volume.
+&lt;img src=&quot;assets/img/vol/7.png&quot; alt=&quot;New Volume&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;you will then be prompted to decide the file system type and the name of the volume. 
+&lt;img src=&quot;assets/img/vol/8.png&quot; alt=&quot;Finishing New Volume Wizard&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Click finish.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Interface Types</summary></entry><entry><title type="html">Nano Server Overview And Install</title><link href="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html" rel="alternate" type="text/html" title="Nano Server Overview And Install" /><published>2017-11-03T10:36:00-04:00</published><updated>2017-11-03T10:36:00-04:00</updated><id>http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install</id><content type="html" xml:base="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html">&lt;p&gt;&lt;em&gt;You can find more information about Windows Server 2016 and Server Core in a previous post&lt;/em&gt; 
 &lt;a href=&quot;https://hiimzackjones.github.io/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;amp;-Server-Core.html&quot;&gt;… This previous post to be exact.&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;overview-of-nano-server&quot;&gt;Overview of Nano Server&lt;/h2&gt;
@@ -1633,158 +1767,4 @@ You’ve seen local users. Local users are your typical log in, log out, pick an
 &lt;p&gt;When making a group that you plan to use as part of the local domain, make sure you choose that option in the &lt;em&gt;New Object - Group&lt;/em&gt; menu.&lt;/p&gt;
 
 &lt;p&gt;Cheers, &lt;br /&gt;
-Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">in progress, this post will have screenshots soon</summary></entry><entry><title type="html">Installing And Setting Up Windows Server 2016 &amp;amp; Server Core</title><link href="http://localhost:4000/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&-Server-Core.html" rel="alternate" type="text/html" title="Installing And Setting Up Windows Server 2016 &amp; Server Core" /><published>2017-10-06T22:54:00-04:00</published><updated>2017-10-06T22:54:00-04:00</updated><id>http://localhost:4000/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;-Server-Core</id><content type="html" xml:base="http://localhost:4000/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;-Server-Core.html">&lt;h1 id=&quot;installing-and-setting-up-windows-server-2016&quot;&gt;Installing and Setting up Windows Server 2016&lt;/h1&gt;
-
-&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;Installing Windows Server 2016 is very similar to installing other Windows versions. This won’t be hard. Don’t panic. I added copious amounts of gifs to help you.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
-&lt;p&gt;First off, if you check the requirements for installing server like you should, you will see something like:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;1.4 GHz with 64 bit architecture&lt;/li&gt;
-  &lt;li&gt;512 MB of Ram or 2 GB if you’re using the Desktop Environment.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It’s important to take in consideration what the uses of the server will be. It’s not uncommon for a server to run Hyper-V with multiple clients, Active Directory, and a handful of other services. It’s a good idea to take in consideration and even plan the server’s roles and needed resources for it to handle it’s job. Windows Server with the Desktop Environment will have a hard time running on 2 gigs of RAM. For example, the server setup I’m working on at home will have a 1 TB HD, and 16 GB of ram with something like a 2.4 quad core processor. Long story short, Minimum requirements aren’t something you should ever worry with unless you’re doing something like testing out installs or building on a budget. The server should have the resources it needs that fits your (or your clients) budget while doing the intended jobs.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;picking-the-right-version&quot;&gt;Picking the right version&lt;/h2&gt;
-&lt;p&gt;There are a few different flavors of Windows Server 2016 and at first it can see confusing. Here is the breakdown.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Windows Server Essentials&lt;/li&gt;
-  &lt;li&gt;Windows Server Standard&lt;/li&gt;
-  &lt;li&gt;Windows Server Datacenter&lt;/li&gt;
-  &lt;li&gt;Microsoft Hyper-V Server&lt;/li&gt;
-  &lt;li&gt;Windows Storage Server 2016 Workgroup Edition&lt;/li&gt;
-  &lt;li&gt;Windows Storage Server 2016 Standard Edition&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;with-or-without-the-gui&quot;&gt;With or without the GUI&lt;/h3&gt;
-&lt;p&gt;While you may be used to doing things with GUI because you can’t quite remember where to go to change the background, or change your password and you like to have some visual clues, a GUI can take up resources as well as can give attackers plenty of running features to poke at. 
-This is where Core comes into play. Core is a fully functioning version of Server that reduces the attack surface and can be easier to install and deploy between machines. We can get into that later.&lt;/p&gt;
-
-&lt;h3 id=&quot;a-quick-overview-of-nano&quot;&gt;A quick overview of Nano&lt;/h3&gt;
-&lt;p&gt;The smallest and newest of the Server options is Nano. Nano Server is a headless essentials system for managing remotely. Nano has a very small footprint but isn’t as easy to manage as Core. Nano Server is meant specifically for running “born-in-the-cloud” applications and containers.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Headless&lt;/strong&gt; meaning it’s a server without a monitor and keyboard and peripherals. Specifically meant to be logged into to manage.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Born-in-the-Cloud&lt;/strong&gt; is a term that describes applications that are designed specifically for the cloud or cloud computing. Essentially replace the word cloud with “internet” and you’ve got it. These applications live online in servers instead of on your harddrive. Applications are becoming born-in-the-cloud more and more often due to it’s ability to scale and be dynamic over time.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Containers&lt;/strong&gt; are a technology similar to Virtual Machines in the sense that the files or applications in the containers are separated from the rest of the working environment. This protects it’s neighboring applications as well as itself. This comes in handy when prototyping and developing a cloud application that will reside alongside developed applications.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;installing-server-w-desktop-environment&quot;&gt;Installing Server w/ Desktop Environment&lt;/h2&gt;
-&lt;p&gt;Alright the install.&lt;/p&gt;
-
-&lt;p&gt;1) Pop in the Flash Drive or DVD or find the ISO and boot into it.
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/Oct-05-2017-16-52-03.gif&quot; alt=&quot;Windows Server install&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;2)Windows setup window will ask you some info so that your keyboard works and that it speaks your language.
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.54.01-PM.png&quot; alt=&quot;Setup Window&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;3)Tell it to install. 
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.54.13-PM.png&quot; alt=&quot;install&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;4)Put in your activation code or skip it for now
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.54.53-PM.png&quot; alt=&quot;Activation&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;5)Pick the version you’d like to install. In this case we want to Desktop Experience and we won’t be needing the ever expensive and large Datacenter version.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.56.46-PM.png&quot; alt=&quot;Picking the Version&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;6)Custom install for a fresh install, or Upgrade if installing on top of an existing version of Windows 
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.57.19-PM.png&quot; alt=&quot;Upgrade or Custom&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;7)Pick the volume/partition you’d like to install to or let the installer format how it’d like. In this case I erased all existing partitions by clicking them and deleting, leaving an unallocated space. Choose where you’d like to install and click next. If you’d like to create a separate partition, do that here now by clicking new.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.57.27-PM.png&quot; alt=&quot;Setting up the partition&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;8) Wait for the install to complete and restart. This could take a bit of time. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/Oct-05-2017-18-36-04.gif&quot; alt=&quot;Waiting for the install &quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;9)Let it think. This isn’t actually a step, but I made a gif for it anyway so here you go.
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/Oct-05-2017-18-37-18.gif&quot; alt=&quot;Starting up&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;10)I don’t have a screenshot for this, but I’m almost certain it asks for you to setup a password at this point.&lt;/p&gt;
-
-&lt;p&gt;11) Once logging in, you’ll be sitting in front of Server Manager. It will look like this. 
-&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-6.39.58-PM.png&quot; alt=&quot;Starting up&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;basic-setup&quot;&gt;Basic setup&lt;/h2&gt;
-&lt;p&gt;Now before you can use server there are a few things you’re going to want to do to get it setup. Being a server, it’s going to… serve and the clients that use those services will need to know where to find it. So you’re going to want to set up a static IP right out of the gate. Let’s do that now.&lt;/p&gt;
-
-&lt;p&gt;1)In Server Manager, to get to your IPv4 settings you need to be in the Local Server section. There you will see the Properties and a section called Ethernet. Most likely, you will see that the server has IPv4 assigned by DHCP and IPv6 enabled.
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.26-PM.png&quot; alt=&quot;png&quot; /&gt;
-2)Click to open up the list of interfaces available for your machine. You may have more than one interface available. My machine only has one.
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.39-PM.png&quot; alt=&quot;png&quot; /&gt;
-3) Right click and click on properties. From there you will see an option for IPv4. Double click or right click it to open the IPv4 options. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.50-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
-4) Choose Use the following IP address: and enter in your information. On my network I will bet setting it up with a Class C IP address with 107 as it’s host number. Make sure to give it a Default Gateway as well as at least one DNS. If you don’t have a DNS setup, you can just use 8.8.8.8  &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.27.03-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
-5) You should see that in the Server Manager under properties, the ethernet section is updated.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.27.39-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
-6) You can do an ipconfig from the command line to make sure it worked. I’d also suggest pinging the gateway as well as another machine running on the network to make sure. Because ping as you go. 
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.31.42-PM.png&quot; alt=&quot;png&quot; /&gt;
-7)You may notice your hostname is something funky. Go ahead and change that. Back at the Properties section in the Sever manager, click on the Computer Name link at the top. &lt;br /&gt;
-8)Notice that there is a section for description and a separate button for changing the name. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.36.20-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
-9)The Computer Name/Domain Changes window will pop up. Go ahead and change your computer name to something meaningful. For now leave the default workgroup. We will talk about domain stuff later. You’ll have to restart after that.   &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.36.48-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s all we will do for now.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;installing-server-core&quot;&gt;Installing Server Core&lt;/h2&gt;
-
-&lt;p&gt;It’s important to talk about Server Core because in many cases, you may be thrown into a pre-existing environment and if you’ve never at least experienced Core, it may be overwhelming.&lt;/p&gt;
-
-&lt;p&gt;1)Follow the install steps as you would for Desktop, but pick the Standard without the Desktop Environment. This install should take much less time than the Desktop Version we just did. I set this core server up with 32 GB on the HD and 800 MB for RAM.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/SVRCORE/2017-10-06-6.51.15-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;2)Once the install completes, it will prompt you to change the admin password before it starts up. G
-&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-19-04-45.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;3)You’re done installing. Simple stuff. Notice that Core is just a CLI, similar to DOS. To see the available commands, you can run help. 
-&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-19-07-12.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;4)The next thing you might want to do is to check the system information. To information about your machine like it’s boot device, domain, architecture, NICS, and Hyper-V just run a systeminfo command and give it a moment to get it’s life together.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-10-2017-13-21-10.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;5)Now that you’ve poked around. Let’s go ahead and actually configure some things on Core. Much of the configuration for the server itself can be done from a command called sconfig. Go ahead and run that now to see what it looks like. Note: sconfig has to be run using sconfig.cmd. This is because sconfig is a batch file that is designed to be interpreted by the command line.&lt;/p&gt;
-
-&lt;p&gt;6)Once you open it you may notice that sconfig has a simple menu system. You choose options by typing the number in. The options should speak for themselves. Set up the hostname for this machine by picking option 2 and giving it a name. It will restart when you are finished.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-20-27-41.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;6)Like we did with the desktop version, we will need to set this server up with a static IP. Sconfig is where you would do that.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Press 8 to setup Network settings&lt;/li&gt;
-  &lt;li&gt;pick your NIC by it’s respective number&lt;/li&gt;
-  &lt;li&gt;Press 1 to setup the NIC’s address&lt;/li&gt;
-  &lt;li&gt;Press S to setup as a Static IP&lt;/li&gt;
-  &lt;li&gt;Enter the IP&lt;/li&gt;
-  &lt;li&gt;Either type the subnet mask or leave it blank for 255.255.255.0&lt;/li&gt;
-  &lt;li&gt;Enter the Default Gateway.&lt;/li&gt;
-  &lt;li&gt;Press 4 to wrap it up and return to menu.
-&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-20-41-59.gif&quot; alt=&quot;png&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;That should get you started. Thats installing two different kinds of Windows Servers and setting their IP addresses and their hostnames. Another important server option to install would be Nano, but I plan on dedicating a whole post to Nano by itself.&lt;/p&gt;
-
-&lt;p&gt;Okay done and done. Thanks for reading this far.&lt;/p&gt;
-
-&lt;p&gt;Cheers, 
-Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Installing and Setting up Windows Server 2016</summary></entry></feed>
+Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">in progress, this post will have screenshots soon</summary></entry></feed>
