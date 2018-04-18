@@ -22,16 +22,16 @@ The computer systems infrastructure of a particular corporation, business, or or
 
 ### Hostnames
 Hostnames are made up of the machine name as well as the Domain name. For example Finance1.sweetbusiness.com would be a full host name. That host name relates directory to an IP address of a machine. 
-A good example of a hostname that happens often would be ftp.business.com, which generally would be what you would assign an FTP server as.
+A good example of a hostname that happens often would be something like **ftp.business.com**, which would be an example for an FTP server host address. 
  
 ### Domains
-Domains are what make using a server in an enterprise or campus setting vital. Essentially the domain is the overarching group of 
+Domains are what make using a server in an enterprise or campus setting vital. Essentially the domain is the overarching group of -  
 
 - machines
 - services those machines use
 - and user accounts
 
-that belong to central database. Domains allow for organization between the users, as well as separate organization between the computers, and then security parameters to be applied to those groups to allow and disallow particular machines and users from files, services, etc. Domains are for the security of the company or organization, but also allow for an Admin to organize different offices, branches, and user roles using sub domains and additional domains to a Forest(See below). 
+- that belong to central database. Domains allow for organization between the users, as well as separate organization between the computers, and then security parameters to be applied to those groups to allow and disallow particular machines and users from files, services, etc. Domains are for the security of the company or organization, but also allow for an Admin to organize different offices, branches, and user roles using sub domains and additional domains to a Forest(See below). 
 
 ### Domain Controller
 A Domain Controller is a machine that handles those accounts and machines. The Domain Controller is the Administrative hub for the complete Domain. 

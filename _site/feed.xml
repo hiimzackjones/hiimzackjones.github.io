@@ -1,5 +1,331 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-02T18:47:25-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
-</subtitle><author><name>Zachary Jones</name></author><entry><title type="html">NCL Gym Exploitation PYTHON1</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON1" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-17T21:31:08-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
+</subtitle><author><name>Zachary Jones</name></author><entry><title type="html">NCL Gym Exploitation PYTHON2</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON2" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
+
+&lt;p&gt;Wut.&lt;/p&gt;
+
+&lt;p&gt;I’ve made a few python scripts before and I’ve never seen pyc. Google time.&lt;/p&gt;
+
+&lt;p&gt;Oh. Well. This is usually where I stop. I usually skip compiled stuff, and a pyc is a compiled python program.&lt;/p&gt;
+
+&lt;p&gt;Luckily there are tools to undo the ugly compiled mess. I’m on a Mac so I used brew to install uncompyle6. Again I googled for a bit.&lt;/p&gt;
+
+&lt;p&gt;uncompyle6 is simple. Put in a pyc and out comes code.&lt;/p&gt;
+
+&lt;p&gt;This is what my terminal spits out&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ uncompyle6 PYTHON2.pyc
+# uncompyle6 version 3.1.1
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.10 (default, Jul 15 2017, 17:16:57)
+# [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)]
+# Embedded file name: NCL-2015-Python2.py
+# Compiled at: 2015-11-12 17:43:01
+import sys
+
+def main():
+    if len(sys.argv) != 2:
+        print 'Invalid args'
+        return
+    password = sys.argv[1]
+    counter = 0
+    vals = list('tfzbwlyzljylawhzzdvyk')
+    if len(password) != len(vals):
+        print 'incorrect'
+        return
+    while counter &amp;lt; len(password):
+        x = ord(password[counter]) + 7
+        if x &amp;gt; ord('z'):
+            x -= 26
+        if chr(x) != vals[counter]:
+            print 'incorrect'
+            return
+        counter += 1
+
+    print 'correct'
+
+
+if __name__ == '__main__':
+    main()
+# okay decompiling PYTHON2.pyc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ugh. I should have put that into a file or something. Run it again but do it better!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ uncompyle6 PYTHON2.pyc &amp;gt; thisisthecode.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Head over to sublime text and browse on over to find this beautiful python code that I can actually work with.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Invalid args'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'tfzbwlyzljylawhzzdvyk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'incorrect'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'incorrect'&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'correct'&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Okay okay. Let’s try to figure this sucker out. Diving in section by section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;vals = list('tfzbwlyzljylawhzzdvyk')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;turns tfzbwlyzljylawhzzdvyk into a list of each letter. so vals[2], the third item in the vals list is z. For example:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;if your password isn’t the length of the vals list then no go.&lt;/p&gt;
+
+&lt;p&gt;Checking the length of val&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;len('tfzbwlyzljylawhzzdvyk')
+&amp;gt;&amp;gt;&amp;gt;21
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;So the password is 21 characters.&lt;/p&gt;
+
+&lt;p&gt;If you’ve got that far then it runs a while loop.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Starting at the first position, do stuff until we get to the end. Okay simple. So far we are just setting up the parameters of the length of the password and telling the code to check each character until we get to the end. Nothing really important yet.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This is interesting. It looks at the current letter and makes the ord and adds 7 to it. And then sets it to a variable called X. So basically, make the letters into numbers and move them up 7.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;this is where you can imagine and assume that this letters to numbers thing is going to at some point be undone. Go ahead and imagine that. Good. Got it? For example, a password of ‘aaa’ would ord into something like ‘111’ and then we add 7 to make it ‘888’ and then back to letters ‘hhh’. Hmm. Whatever that’s weird.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Moving on.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Basically if we get to z, go back to a. &lt;br /&gt;
+This is here so that after the letter z we loop back to a.&lt;/p&gt;
+
+&lt;p&gt;This next part is the part that matters most.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So far we have done a lot with shifting things back and forth. So at first glance, this looks confusing, but it basically says, letter for letter, our manipulated password (the plus 7 ord stuff) needs to equal the string in val. Or at least that is what it looks like.&lt;/p&gt;
+
+&lt;p&gt;Of course I wrote a test code. I commented some things in the code, but most importantly, before the last if, and before the if statement that loops things back, I print both the vals[counter] and the chr(x)&lt;/p&gt;
+
+&lt;p&gt;I then comment out the last if completely so it doesn’t stop running.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Invalid args'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#counts the length                         &lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'tfzbwlyzljylawhzzdvyk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#list() converts a string into a list made up of the letters&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#password must be 21 characters&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'length of the password must be 21 letters'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#moving through the letters&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#add 7 to the ord of the letter&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# this is our test code here&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;#Back to normal code&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# when the ord hits lowercase z, move x back&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;#if chr(x) != vals[counter]: #if the current letter does not equal the counter&lt;/span&gt;
+           &lt;span class=&quot;c&quot;&gt;# print 'counter has to equal the thing'&lt;/span&gt;
+
+           &lt;span class=&quot;c&quot;&gt;# return&lt;/span&gt;
+        
+        &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+    
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then I run it.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+$ python PYTHON2-test.py aaaaaaaaaaaaaaaaaaaaa
+t
+h
+f
+h
+z
+h
+b
+h
+w
+h
+l
+h
+y
+h
+z
+h
+l
+h
+j
+h
+y
+h
+l
+h
+a
+h
+w
+h
+h
+h
+z
+h
+z
+h
+d
+h
+v
+h
+y
+h
+k
+h
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;so. Remember it’s doing a single character print of the vals[counter] then chr(x) and repeating. so every odd character is vals[counter] and every even is chr(x). So split it up and line them side by side and see what we get.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;t h
+f h
+z h
+b h
+w h
+l h
+y h
+z h
+l h
+j h
+y h
+l h
+a h
+w h
+h h
+z h
+z h
+d h
+v h
+y h
+k h
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Weirdddd. It worked just like we thought it maybe would. And remember we are printed these two lines of letters because they have to match.&lt;/p&gt;
+
+&lt;p&gt;Weeelllll.&lt;/p&gt;
+
+&lt;p&gt;Then maybe we can flip the code?&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;I know we could do this with pencil and paper but why not try to use this code that is already in front of us?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;change it to&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and of course we have to flip&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; 
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Remember, this is there so that if the counter goes past z, make it start back at a.&lt;/p&gt;
+
+&lt;p&gt;so the oppsite would be: if it subtracts below a, push it back up to z.
+And while we are here let’s delete the code we put in the print their string. No need.&lt;/p&gt;
+
+&lt;p&gt;Now let’s put in their string as the input and see what comes out.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;m
+_
+s
+[
+p
+e
+r
+s
+e
+c
+r
+e
+Z
+p
+a
+s
+s
+]
+o
+r
+d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eh. it’s not quite looping back the way we want it to. &lt;br /&gt;
+But wait. let’s look at it for a second. &lt;br /&gt;
+&lt;code&gt;m_s[persecreZpass]ord&lt;/code&gt;&lt;br /&gt;
+So. Maybe I’m not the best with Python and I messed something up   somewhere. But. It’s clear that the password is something in like likes of:&lt;br /&gt;
+ &lt;code&gt;mysupersecretpassword&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s try it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ python PYTHON2.py mysupersecretpassword
+correct
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;lolll.&lt;/p&gt;
+
+&lt;p&gt;Okay done.&lt;/p&gt;
+
+&lt;p&gt;-Cheers&lt;/p&gt;
+
+&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation PYTHON1</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON1" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
 
 &lt;p&gt;This flag is a Python password flag. Figure out what the password should be to satisfy the if statement. Easy.&lt;/p&gt;
 
@@ -73,7 +399,7 @@ to get the character&lt;/p&gt;
 
 &lt;p&gt;len() takes a string and counts the length.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;len(cat)
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;len('cat')
 &amp;gt;&amp;gt;&amp;gt; 3
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -81,20 +407,21 @@ to get the character&lt;/p&gt;
 &lt;p&gt;and then the password[1] part. That’s happening because the password string is being iterated through each character. so the [1] spot is what it’s looking at. Remember that means the second spot because [0] is the first.&lt;/p&gt;
 
 &lt;p&gt;so we can sort of sudocode out what we need…&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;start at 0 and each time you do this move up a letter
-
-for the current letter we are looking at in password:
-
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Starting at the first letter
+Builder starts at 0
+  for the current letter we are looking at in password do this and loop: 
     add the value of the letter to a thing called builder.
-
-    when builder's total hits 1000
-        and the total length of the password is 10
-        and the second letter of the string is 'S'
-    print &quot;correct&quot;
+    
+    if builder's total hits 1000
+    and the total length of the password is 10
+    and the second letter of the string is 'S'
+      print &quot;correct&quot;
+    else
+    you got it wrong
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;wrote modified code to double check&lt;/p&gt;
+&lt;p&gt;I decided to write a modified version of the code to double check&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
@@ -277,57 +604,1187 @@ correct
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Implementing Windows Deployment Services</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html" rel="alternate" type="text/html" title="Implementing Windows Deployment Services" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html">&lt;blockquote&gt;
-  &lt;p&gt;DRAFT IN PROGRESS&lt;br /&gt;
- -Zack
-&lt;img src=&quot;/assets/img/servergifs/wds/1.png&quot; alt=&quot;1.png&quot; /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/2.png&quot; alt=&quot;2.png&quot; /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/3.png&quot; alt=&quot;3.png&quot; /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/4.png&quot; alt=&quot;4.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Implementing Windows Deployment Services</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html" rel="alternate" type="text/html" title="Implementing Windows Deployment Services" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html">&lt;h2 id=&quot;how-it-works&quot;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is &lt;strong&gt;PXE boot&lt;/strong&gt; enabled.&lt;/p&gt;
+
+&lt;p&gt;Esentially the boot images will be stored on some storage device on the network. The WDS server will respond to the DHCP server when a machine is starting to PXE boot. Letting it know that it’s able to help with an installation over the network. The machine PXE booting will then give the user a list of bootable OSs sitting on the WDS and from there it’s almost identical to a typical installation.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-dhcp-handles-the-request&quot;&gt;The DHCP handles the request&lt;/h4&gt;
+&lt;p&gt;The DHCP plays a huge part in making WDS work. Here is how the client requests for the install.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PXE client sents a UDP broadcast for a DHCP DISCOVER on port 67
+DHCP server replies directly with the IP address of the WDS Server on port 68 
+PXE client then reqests the name of the boot file from DHCP
+WDS server sends a DHCP ACK with the boot file name
+PXE client requests for that file
+PXE client then downloads the file via TFTP and then runs file
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Active directory isn’t completely necessary to make this happen. The server needs to have the role installed and needs to be an admin on some domain. Otherwise any machine should be able to request WDS to help it out. You can set WDS to only talk to machines that have be prestaged, have machines request to be prestaged, or just have any machine chat with the WDS without worrying about it.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Windows Deployment Services.&lt;/p&gt;
+&lt;p&gt;Okay let’s get to it. Before we install make sure you have these guys:&lt;/p&gt;
 
-&lt;p&gt;Deploying Windows to machines from a Windows Server.&lt;/p&gt;
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;DHCP Server&lt;/strong&gt; (Router or Server)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Active Directory Domain Services&lt;/strong&gt; on a Sever setup as Administrator on that domain.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;DNS server&lt;/strong&gt; to point machines to the server for the PXE boot.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;OS install .iso&lt;/strong&gt; and files&lt;/li&gt;
+  &lt;li&gt;Server has &lt;strong&gt;NTFS system&lt;/strong&gt; to store the bootable images. (in paticular, something other than the HD holding the Server. WDS will slow your server down to a crawl otherwise)&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;To use WDS with an install, you need to make &lt;strong&gt;both&lt;/strong&gt; a boot image and a install image.&lt;/p&gt;
+&lt;h3 id=&quot;installing-the-wds-server-role&quot;&gt;Installing the WDS Server Role&lt;/h3&gt;
+&lt;p&gt;Like any other server role, you have to install it. Just in case you’ve missed the other posts on that. Here ya go:&lt;/p&gt;
 
-&lt;p&gt;The Windows server 2016 DVD or ISO has the boot image and the install image.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To install the WDS server role:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Server Manager go to the Manage option in the toolbar&lt;/li&gt;
+  &lt;li&gt;Add roles and features&lt;/li&gt;
+  &lt;li&gt;Hit next to pass the first prompt&lt;/li&gt;
+  &lt;li&gt;Select the server you’d like to add the Role&lt;/li&gt;
+  &lt;li&gt;then find the WDS option and check it off.&lt;/li&gt;
+  &lt;li&gt;hit next until you get to the end and allow it to install and restart if needed.&lt;/li&gt;
+  &lt;li&gt;Check to make sure your WDS role is on the side bar of Server Manager. If it’s there. You’re good to go!&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;you can find them in the Sources Folder.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/1.png&quot; alt=&quot;Server Manager&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;They will be named boot.wim and install.wim&lt;/p&gt;
+&lt;h2 id=&quot;configuring-wds&quot;&gt;Configuring WDS&lt;/h2&gt;
 
-&lt;p&gt;Adding the Boot Image:&lt;/p&gt;
+&lt;p&gt;Alright. Now that you’ve installed the feature. You’re going to have to set some of it up. Remember when I mentioned using a seperate storage device? Or who gets to talk with WDS? This is that part. Here ya go:&lt;/p&gt;
+
+&lt;p&gt;When you open the WDS section, it will show the Servers and the Events for this role. Use this if you have multiple servers handling WDS or you’d like to see how a deployment went.&lt;/p&gt;
+
+&lt;p&gt;For now we want to make sure this server is configured.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Right click the server you’re adding WDS to and in the drop down menu select Windows Deployment Services. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/5.png&quot; alt=&quot;Opening WDS Management Console&quot; /&gt;&lt;br /&gt;
+&lt;em&gt;You can also find Windows Deployment Services by searching it in the Start menu.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/2.png&quot; alt=&quot;WDS&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Find the server you are installing on. It should be in the left side inventory section.&lt;/li&gt;
+  &lt;li&gt;If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured.&lt;/li&gt;
+  &lt;li&gt;Right click the server and select configure server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Set up with these options:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Integrated with Active Directory
+&lt;img src=&quot;/assets/img/servergifs/wds/8.png&quot; alt=&quot;Configuring WDS Active Directory or Standalone&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;default Installation Folder Location &lt;em&gt;or to your specific needs&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note-1: if this server is also the DHCP, the additional options for Proxy DHCP Server will be given as well. Just check both sections off. 
+&lt;img src=&quot;/assets/img/servergifs/wds/6.png&quot; alt=&quot;Configuring WDS DHCP Prompt&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note-2: It’s important to know that in a lab envirnoment the locaiton of the install folder doesn’t matter. But almost always, you would want this drive to be somewhere seperate so it doesn’t use up resources on your Server machine&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/9.png&quot; alt=&quot;Selecting Volume for WDS Images Warning&quot; /&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Set the &lt;strong&gt;PXE Server Initial Settings&lt;/strong&gt; as needed. For the lab, &lt;em&gt;Respond to all client computers&lt;/em&gt; should be fine. This is just setting the parameters for what computers can use this feature to install. 
+&lt;img src=&quot;/assets/img/servergifs/wds/10.png&quot; alt=&quot;PXE Respond to prompt&quot; /&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: You can set it up so that only computer you have prestaged can get installs. This is most likely the more secure option but requires more planning and work as an admin.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It will begin configuring the WDS. You can click finish if you’re done. If you’d like to start adding images to use with WDS, you can check off &lt;em&gt;Add images to the server now&lt;/em&gt;. Otherwise adding images can be found under the server’s drop down in Windows Deployment Services. 
+&lt;img src=&quot;/assets/img/servergifs/wds/3.png&quot; alt=&quot;WDS after config&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-images-to-wds-server&quot;&gt;Adding Images to WDS Server&lt;/h2&gt;
+
+&lt;p&gt;To use WDS with an install, you need to make &lt;strong&gt;both&lt;/strong&gt; a boot image and a install image. This is where your install .iso comes in play. Depending on which Windows or Windows Sever install you’re looking to deploy. Load up the disk or flash drive to the server.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;boot.wim&lt;/em&gt; - found inside the .iso under Sources
+&lt;em&gt;install.wim&lt;/em&gt; - also found inside the .iso under Sources.&lt;/p&gt;
+
+&lt;h4 id=&quot;adding-the-boot-image&quot;&gt;Adding the Boot Image:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to Server Manager&lt;/li&gt;
+  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
+  &lt;li&gt;Right click Boot Images and click Add Boot Image
+&lt;img src=&quot;/assets/img/servergifs/wds/4.png&quot; alt=&quot;adding image file&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Find the &lt;em&gt;boot.wim&lt;/em&gt; file. Click Open&lt;/li&gt;
+  &lt;li&gt;Next until finished.&lt;br /&gt;
+&lt;strong&gt;Do yourself a favor and name the image something specific to that OS, when PXE lists the options, this Image name is what it will show you&lt;/strong&gt; 
+&lt;img src=&quot;/assets/img/servergifs/wds/7.png&quot; alt=&quot;Naming the imagine file&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;adding-the-install-image&quot;&gt;Adding the Install Image:&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;Go to server Manager&lt;/li&gt;
   &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
-  &lt;li&gt;Right click Boot Images and click Add Boot Image&lt;/li&gt;
-  &lt;li&gt;Find the boot.wim file. Click Open&lt;/li&gt;
+  &lt;li&gt;Right click Install Images and click Add Install&lt;/li&gt;
+  &lt;li&gt;It will make you create a group image. Name this image something descriptive. example: &lt;em&gt;Windows Server 2016 64 bit&lt;/em&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/11.png&quot; alt=&quot;Images summary&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Find the install.wim file. Click Open&lt;/li&gt;
+  &lt;li&gt;Check off the OS images that you’d like to include if there are more than one.&lt;/li&gt;
   &lt;li&gt;Next until finished.&lt;/li&gt;
+  &lt;li&gt;wait for the Image Wizard to complete.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Do the same with the install image but put it in the Install Images folder.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Note: you can also create capture images on machines that have been updated, configured, and have paticular programs installed. This is covered in a later post.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;https://www.youtube.com/watch?v=qIsCv7Gh2fY&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">DRAFT IN PROGRESS -Zack</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+&lt;h2 id=&quot;using-wds-to-install&quot;&gt;Using WDS to install&lt;/h2&gt;
 
-&lt;p&gt;a)Configuring Storage Pools and Storage Spaces
-b)Implementing iSCSI Storage
-c)Implementing Storage Replica&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Implementing High Availability And Disaster Recovery Options With Hyper V</title><link href="http://localhost:4000/server/2018/03/28/Implementing-High-Availability-and-Disaster-Recovery-Options-with-Hyper-V.html" rel="alternate" type="text/html" title="Implementing High Availability And Disaster Recovery Options With Hyper V" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-High-Availability-and-Disaster-Recovery-Options-with-Hyper-V</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-High-Availability-and-Disaster-Recovery-Options-with-Hyper-V.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+&lt;p&gt;Now all you have to do is boot up the machine and make sure the PXE boot is enabled. &lt;strong&gt;It’s important that the machine or VM is set to Legacy booting.&lt;/strong&gt; Make sure the machine is on the network and it should handle the rest. Follow your typical install steps and you’re done and done!&lt;/p&gt;
 
-&lt;p&gt;a) Implementing Virtual Machine Movement
-b)Implementing Hyper-V Replica&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/12.png&quot; alt=&quot;Install working fine&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;a)Installing the Failover Feature
- b)Validate Cluster Configuration
- c)Creating a Cluster
- d)Adding a shared Drive to the Cluster (iSCSI)&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test a)Installing the Failover Feature b)Validate Cluster Configuration c)Creating a Cluster d)Adding a shared Drive to the Cluster (iSCSI)</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+&lt;p&gt;There you go.&lt;/p&gt;
 
-&lt;p&gt;a) Configuring Virtual Machines&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test a) Configuring Virtual Machines</summary></entry><entry><title type="html">Configuring Hyper V Storage</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Storage.html" rel="alternate" type="text/html" title="Configuring Hyper V Storage" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Storage</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Storage.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+&lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;a) Working with Virtual Disks&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">How it works Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is PXE boot enabled.</summary></entry><entry><title type="html">Cisco Ios Cheatsheet</title><link href="http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet.html" rel="alternate" type="text/html" title="Cisco Ios Cheatsheet" /><published>2017-11-28T05:32:00-05:00</published><updated>2017-11-28T05:32:00-05:00</updated><id>http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet</id><content type="html" xml:base="http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet.html">&lt;h2 id=&quot;cisco-ios-cheatsheet&quot;&gt;Cisco IOS Cheatsheet&lt;/h2&gt;
 
-&lt;p&gt;a) Configuring Hyper-V Networking&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Test</summary></entry><entry><title type="html">The Almighty Hyper V</title><link href="http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V.html" rel="alternate" type="text/html" title="The Almighty Hyper V" /><published>2017-11-29T09:36:00-05:00</published><updated>2017-11-29T09:36:00-05:00</updated><id>http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V</id><content type="html" xml:base="http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V.html">&lt;p&gt;Create a virtual switch. 
-Connect virtual swtich to the virtual NIC.&lt;/p&gt;
+&lt;p&gt;I’ll expand on this as class goes on. Use this as needed.&lt;/p&gt;
 
-&lt;p&gt;ask about sysprep&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Create a virtual switch. Connect virtual swtich to the virtual NIC.</summary></entry></feed>
+&lt;h4 id=&quot;moving-from-user-exec-mode-to-privildged-exec-mode-and-into-configure-mode&quot;&gt;Moving from user EXEC mode to privildged EXEC mode and into configure mode.&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|           Router&amp;gt;   |  enable                                   |
+|                 #   |  configure terminal                       |
+|         (config)#   |  hostname PutANameHere                    |
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;moving-to-interface-commands-to-allow-for-writing-configuration-info-for-those-interfaces&quot;&gt;Moving to interface commands (to allow for writing configuration info for those interfaces)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|         (config)#   |  interface serial 0/0/0                   |
+|         (config)#   |  interface fastethernet 0/0               |
+|         (config)#   |  interface ethernet 0/0                   |
+|         (config)#   |  interface gigabitethernet 0/0            |
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;setting-interface-commands-writing-configuration-information-for-interfaces&quot;&gt;Setting interface commands (writing configuration information for interfaces&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|      (config-if)#   |  ip address 192.168.1.1 255.255.255.0     |
+|      (config-if)#   |  no shutdown                              |
+|      (config-if)#   |  clock rate 56000                         |
+|-----------------------------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;default-routes-static-routes&quot;&gt;Default Routes/ Static Routes&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|         (config)#   | ip route 0.0.0.0 0.0.0.0 192.168.0.1      |     
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;networking-protocol-commands-for-advertising-networks-to-adjacent-routers&quot;&gt;Networking Protocol commands (for advertising networks to adjacent routers.)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|         (config)#   |  router eigrp 1                           |
+|  (config-router)#   |  network 192.168.1.0 255.255.255.0        |
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;setting-dhcp-on-router-for-distributing-ip-addresses-to-hosts-in-that-network&quot;&gt;Setting DHCP on router. (for distributing IP addresses to hosts in that network&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|         (config)#   |  ip dhcp pool PutANameHere                |
+|    (config-dhcp)#   |  network 192.168.1.0 255.255.255.224      |
+|    (config-dhcp)#   |  default-router 192.168.1.1               |
+|    (config-dhcp)#   |  dns-server 192.168.1.80                  |
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;moving-to-line-config&quot;&gt;Moving to line config&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|         (config)#   | line console 0                            |
+|         (config)#   | line vty 0 4                              |
+|         (config)#   | line aux 0                                |
+|---------------------|-------------------------------------------|
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;nat-translation&quot;&gt;Nat Translation&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|----------------------------------|-----------------------------------------------|
+| [On inside router](config-if)#   | ip nat in                                     |
+| [On outside router](config-if)#  | ip nat out                                    |
+|                       (config)#  | ip nat inside source list 1 in g0/0 overload  |
+|----------------------------------|-----------------------------------------------|
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;setting-up-line-connection-to-allow-connections-with-a-password&quot;&gt;Setting up line connection to allow connections with a password&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+|-----------------------------------------------------------------|
+|router(config-line)# | login                                     |
+|router(config-line)# | password &amp;lt;passwordOnNextLine&amp;gt;             |
+|router(config-line)# | exit                                      |
+|-----------------------------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;starting-a-service-like-password-encryption&quot;&gt;Starting a service (like password encryption)&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+|-----------------------------------------------------------------|
+|         (config)#   | service password-encryption               |
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;security-and-password-setup&quot;&gt;Security and password setup&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;For access to privileged EXEC mode&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;|---------------------|-------------------------------------------|
+|         (config)#   | enable password                           |
+|---------------------|-------------------------------------------|
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;For encrypted privileged EXEC password&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;             
+|---------------------|-------------------------------------------|
+|         (config)#   | enable secret &amp;lt;passwordOnNextLine&amp;gt;        |
+|---------------------|-------------------------------------------|
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Cisco IOS Cheatsheet</summary></entry><entry><title type="html">Nano Server Overview And Install</title><link href="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html" rel="alternate" type="text/html" title="Nano Server Overview And Install" /><published>2017-11-03T10:36:00-04:00</published><updated>2017-11-03T10:36:00-04:00</updated><id>http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install</id><content type="html" xml:base="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html">&lt;p&gt;&lt;em&gt;You can find more information about Windows Server 2016 and Server Core in a previous post&lt;/em&gt; 
+&lt;a href=&quot;https://hiimzackjones.github.io/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;amp;-Server-Core.html&quot;&gt;… This previous post to be exact.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;overview-of-nano-server&quot;&gt;Overview of Nano Server&lt;/h2&gt;
+
+&lt;p&gt;Nano Server is a unique way to install a server machine with a lightweight footprint that allows for remote management similar to Core, but is even more lightweight than Core. Nano Server works well with cloud based development and running “born-in-the-cloud” containers or applications. It’s a headless install, meaning it’s a server without a monitor and keyboard and peripherals. It’s specifically meant to be logged into to manage.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-benefits-of-lightweight&quot;&gt;The Benefits of Lightweight&lt;/h2&gt;
+&lt;p&gt;The purpose of Nano is to be light weight and it’s base footprint is a remarkable 460 megabytes. The small footprint allows for better security, quick install times, fast restarting, less resource use, etc. Windows Server 2016 is typically much heavier than it needs to be for running things like micro-services, ‘cloud-native’ applications, containers, etc. Nano is sufficient for services like DNS, small web server (IIS), and being a storage host for a Scale-Out File Server.&lt;/p&gt;
+
+&lt;h2 id=&quot;nano-server-for-developers&quot;&gt;Nano Server for Developers&lt;/h2&gt;
+
+&lt;p&gt;Nano comes Cloud-ready as an application and development platform.&lt;/p&gt;
+
+&lt;p&gt;Developing on Nano allows you to have a single ‘machine’ for that particular app, minimizing any dependencies or libraries on that particular box. When using something like a Windows desktop machine, often a developer will be working on multiple projects, all with a multitude of frameworks dependencies, and APIs as well as all of the extra clutter the machine naturally has. Packaging on Nano is simple and clean using Nano’s Windows Server App installer (WSA) and it’s built in package management system similar to apt-get or npm. Using Nano Server for development allows you to configure the machine with specific intentions - be it deployment, development, testing, or production. In theory, multiple Nano Servers can be setup, one for each particular stage in your development process or workflow. Additionally, security can be a major concern for developers, and as mentioned above, Nano is inherently secure due to it’s minimal footprint. Additionally, frameworks like Node.js can also be easily installed and ran on top of Nano.&lt;/p&gt;
+
+&lt;h2 id=&quot;ways-nano-server-can-be-ran&quot;&gt;Ways Nano Server Can Be Ran.&lt;/h2&gt;
+&lt;p&gt;Nano Server is headless, but can be ran as OS in multiple ways inlcuding through a VM, Hyper-V containers, or on physical hardware as Host OS. It can also be accessed remotely.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-nano-server-image&quot;&gt;The Nano Server Image&lt;/h2&gt;
+&lt;p&gt;A unique feature of Nano server is the the need to inject roles and features as you build the OS image for whatever use case you may need. In other words, if you are planning to use Nano server as a DNS server only, there would be no need for the OS to have SoFS services and features as part of the OS image. Each time a Nano Server machine is created, the image should be built for that machines needs.&lt;/p&gt;
+
+&lt;h2 id=&quot;installing-nano&quot;&gt;Installing Nano&lt;/h2&gt;
+
+&lt;p&gt;In this example we will be installing our Nano Server as a VM on Hyper-V with an image setup for webserver IIS feature included. Nano Server is installed using the NanoServerImageGenerator scripts  imported as a module in PowerShell. The NanoServerImageGenerator scripts can be found on the Windows Server 2016 installation media.&lt;/p&gt;
+
+&lt;p&gt;To setup for the creation of the Nano image, create a directory somewhere on the server. For example in Documents create a folder called Nano. Paste the scripts into that folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano1.gif&quot; alt=&quot;Nano1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next run Powershell as admin and import the module. Move to the directory that the scripts are in and run the following command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Import-Module ./NanoServerImageGenerator.psm1 -Verbose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The Verbose option allows you to see the progress as the module is setup. This switch is optional.&lt;/p&gt;
+
+&lt;p&gt;Once the module is imported, you will run a script to create a new nano server image. Depending on what type of image you’d like to create, some of your options made be different than the example.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The MediaPath in this example refers back to the installation disk on drive D. The BasePath is for setting a temp location for configuration files. The target path is where the image file will be created. In this case, we will use the extension of .vhdx for our virtual machine. We should also set the Deployment type as Guest since it will be a guest machine on Hyper-V.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-NanoServerImage -Edition Standard -MediaPath D:\ -BasePath C:\Nano -TargetPath C:\Nano\NanoServer1.vhdx - DeploymentType Guest -ComputerName My-Nano-Server -storage -Package Microsoft-NanoServer-IIS-Package
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It will then prompt you for a password. PowerShell will then show progress in the top of the window with a green status bar.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano3.gif&quot; alt=&quot;Nano3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once this is complete, you will now have a virtual disk that is ready to be brought into Hyper-V and booted up. I’ll have another post for creating virtual machines on Hyper-V. Here is a quick outline of the process.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;To make use of Nano Server, you will want it to have a network setup. Create a Virtual Switch in Hyper-V.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a new Virtual Machine in Hyper-V by clicking New and then Virtual Machine in the Actions bar of Hyper-V.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set up the new machine with a name and desired settings. Note: In most cases you will want to set up this machine as a generation 2 machine.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Instead of creating a new virtual disk, use an existing disk and choose the image that we just created.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Start your machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano4.png&quot; alt=&quot;Nano4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the starting point of the Nano Server’s console. You will want to set up the machine as Administrator first. Login using the user-name Administrator and the password you set earlier when you were creating the image. You will not need to connect it to a domain at this time. (We haven’t set that up yet)&lt;/p&gt;
+
+&lt;p&gt;Go ahead and set up the network settings similar to how you would set up a typical machine in the interface’s properties and then IPv4.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano5.png&quot; alt=&quot;Nano5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To do this, select Networking and then select the interface. From there you will see the settings details for that interface. Hit F11 to change the settings for IPv4.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano6.png&quot; alt=&quot;Nano6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Toggle DHCP off by pressing F4. You now can enter in your IP address, default gateway, subnet mask, etc. Tab between lines and when you finish press enter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano7.png&quot; alt=&quot;Nano7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;exit by pressing ESC.&lt;/p&gt;
+
+&lt;p&gt;Confirm that your settings were saved back in the interface’s menu.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano8.png&quot; alt=&quot;Nano8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Before using Nano Server, you may want to look through the firewall settings and enable any of the services you plan to use. Some settings I will be choosing for this will be all of the various file sharing features.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is one of the most unique features for Nano. Essentially nothing is allowed. And you will have to cut on the specific features you know you’ll use. This is part of it’s lightweight nature and security.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano9.png&quot; alt=&quot;Nano9&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With file sharing setup on your Nano Server, you should be able to access it by going directly to the IP address in an explorer window.&lt;/p&gt;
+
+&lt;p&gt;Next you will want to join the Nano Server to the domain. There are different ways to add it to the domain. In this case I will do an offline domain join.&lt;/p&gt;
+
+&lt;p&gt;Create the odjblob file configure script with this PowerShell command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;djoin.exe /provision /domain nlblab.com /machine MachineName /save odjblob
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Open PowerShell as admin and run this line to allow your domain controller to do a remote connection to the nano server. This line edits your security configuration. This adds the IP to the trusted hosts list.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set-Item WSMan:\localhost\Client\TrustedHosts &quot;192.168.1.170&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Use the IP address you setup for your Nano Server in place of 192.186.1.170&lt;/p&gt;
+
+&lt;p&gt;enter in Y to confirm and press enter.&lt;/p&gt;
+
+&lt;p&gt;enter these lines to open a PowerShell session. You don’t have to create an alias for the IP but it makes it easier.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ip=&quot;192.168.1.170&quot;
+Enter-PSSession -ComputerName $ip -Credential $ip\Administrator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Copy the odjblob file that was created with the djoin.exe line earlier from your domain controller over to your NanoServer machine in explorer.&lt;/p&gt;
+
+&lt;p&gt;Finally use this line to add the NanoServer to the domain&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;djoin /requestodj /loadfile C:\odjblob /windowspath C:\windows /localos
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Press enter and once you see &lt;em&gt;The operation completed successfully&lt;/em&gt; then you will need to restart.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt; shutdown -r -t 0 &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You will see the connection being lost and then you should be able to reconnect to the machine.&lt;/p&gt;
+
+&lt;p&gt;From here you should be able to use the domain in the Nano Server login.&lt;/p&gt;
+
+&lt;p&gt;That’s it. That’s installing Nano Server and adding it to a domain.&lt;/p&gt;
+
+&lt;p&gt;If you’d like to test this machine you can create a HTML page, or MD page and place it on the root directory of the Nano Server. Then from a browser you can use the IP address of the name or the machine to open up the page. Simple!&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack Jones&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Additional images will be added soon&lt;/em&gt;&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">You can find more information about Windows Server 2016 and Server Core in a previous post … This previous post to be exact.</summary></entry><entry><title type="html">The Find Command And Nesting Bash Commands</title><link href="http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html" rel="alternate" type="text/html" title="The Find Command And Nesting Bash Commands" /><published>2017-10-31T23:34:00-04:00</published><updated>2017-10-31T23:34:00-04:00</updated><id>http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands</id><content type="html" xml:base="http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html">&lt;p&gt;I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool.&lt;/p&gt;
+
+&lt;p&gt;Basically there was a file named ‘flag’ hidden deep within some directories and each directory had multiple files. If I wanted to find the file using basic commands I could have simply just used cd and ls and manually looked through each directory. But that could take forever. So I looked around and find a Linux command that would look within the directory tree for any files with the keyword I told it to look for. It was such a useful command that I decided to write a quick post on it.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;I started by making the directories and fake files as well as the flag file. I put all of this in a directory called tree. Coincidentally I use a command called tree to go ahead and show how the files are layed out before we test out the find command.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Find/1.gif&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I made the ‘branches’ pretty deep. If the output of tree was confusing, here is what it looks like. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Find/2.png&quot; alt=&quot;2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So the find command is really easy. Use &lt;code&gt;man find&lt;/code&gt; to read about it. in this case I used &lt;code&gt;find [directory to start from] -name [keyword to look for in name]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I knew that it was at least in Documents/tree and it had the name ‘flag’ in it.&lt;/p&gt;
+
+&lt;p&gt;Notice that it does the same sort of printing out that a command like pwd does. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Find/3.gif&quot; alt=&quot;3&quot; /&gt;&lt;br /&gt;
+Okay so we found it. But we need to cat out the contents. So we could use cat and copy and paste. Or cd into it by copying and pasting. I did that here. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Find/4.gif&quot; alt=&quot;4&quot; /&gt;&lt;br /&gt;
+So doing this challenge in a few lines is cool and all but sometimes it feels inefficient to have to leave the keyboard to copy and paste.  &lt;br /&gt;
+This is one of those moments where you can really take advantage of the shell.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Find/5.gif&quot; alt=&quot;5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here I did the two commands I did in the first example but I sort of nested a command within another. In the &lt;code&gt; cat flag &lt;/code&gt; command, I replace flag with the first line. But I use a special syntax to tell &lt;code&gt;cat&lt;/code&gt; to do things in a certain order. Notice &lt;code&gt; $() &lt;/code&gt; &lt;br /&gt;
+It’s basically like this-&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;command2 $(Command1)&lt;/code&gt;  &lt;br /&gt;
+Where Command1 is the first command the shell executes, then the output of that command is used as the argument for Command2. That’s a basic way to explain it.&lt;/p&gt;
+
+&lt;p&gt;Well. That’s all I have. Use find to find stuff and use $() to ‘nest’ a command in the place of another command’s argument.&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool.</summary></entry><entry><title type="html">Reading Routing Tables In Ios</title><link href="http://localhost:4000/cisco/2017/10/22/Reading-Routing-Tables-in-IOS.html" rel="alternate" type="text/html" title="Reading Routing Tables In Ios" /><published>2017-10-22T19:42:00-04:00</published><updated>2017-10-22T19:42:00-04:00</updated><id>http://localhost:4000/cisco/2017/10/22/Reading-Routing-Tables-in-IOS</id><content type="html" xml:base="http://localhost:4000/cisco/2017/10/22/Reading-Routing-Tables-in-IOS.html">&lt;h2 id=&quot;the-cisco-ios-routing-table&quot;&gt;The Cisco IOS Routing Table&lt;/h2&gt;
+
+&lt;p&gt;The routing table in IOS shows the different routes or additional neighboring networks that an IP packet may need to go. It also lists the hardware port that a packet will need to be sent. It will consist of directly connected routes as well as routes that have been advertised by adjacent routers. Knowing where networks are helps the router know what interface and port to shoot the little fella to.&lt;/p&gt;
+
+&lt;h3 id=&quot;look-at-it&quot;&gt;Look at it.&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/1.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;&lt;br /&gt;
+It looks scary. Unlike the Netstat -r command on windows, it’s not organized with columns or anything so it may be sort of hard to understand unless you know what you’re looking for. Huuzah for blog posts and break it down for you.&lt;/p&gt;
+
+&lt;h3 id=&quot;start-on-line-1&quot;&gt;Start on line 1.&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/2.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;
+This line starts off with an IP address for a network. 10.0.0.0/8. It tells you how many subnets it has and it’s masks number. And that’s all. This is all you need to know to take your first step to routing a packet. “Yeah this is the network I need to send it to, now how do I do it?” Thus the next lines.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-next-lines&quot;&gt;The Next Lines.&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/3.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;
+These next two sections are the two subnets it mentions above. It shows both because both they are broadcasted to it via EIGRP. We know this because it has a prefix of ‘D’. These advertisements are coming from the interface 209.165.200.226 on some adjacent router that has been connected on Interface Serial 0/0/0. Easy. No matter what subnet your IP packet falls into, It will go through Serial 0/0/0 into the next router via 209.165.200.226 and then that router handles the rest. Bye packets.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-connected-routes&quot;&gt;Other connected routes.&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/4.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;
+There are three other routes this router knows about. These three routes are organized in the same way as the first, but the information is slightly different because they are directly connected. The three examples are also only connected to 1 subnet of each network(to be expected) but no matter what the subnet is, you’ll most likely be sending it their way and letting that subnet’s router handle where it goes next with it’s own routing table.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-network-ids-line-1&quot;&gt;The Network IDs (line 1)&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/5.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;
+The first line can be identified easily. It always say something about having x amount of subnets and x amount of masks. The IP before that line is always the over arching network ID without regard of subnets.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-specifically-these-subnets-line-2&quot;&gt;More specifically, these subnets… (line 2)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/6.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;
+The second line is the Network ID including the Subnet. It has a prefix of C meaning that somehow our router is directly connected to that network (but how? line 3 knows) Again, we are just trying to traverse through the right places to get to our host. Getting to the right network that has the right subnet sounds like a good plan.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-definitive-route-line-3&quot;&gt;The definitive route. (line 3)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/CiscoRoutingTable/7.png&quot; alt=&quot;Routing Table Pictures&quot; /&gt;
+The third line is the exact place on the current router the packet should go for that route. It’s the definitive IP and port that is “Linked” (Prefix L) that allows us to get our IP packet friend into it’s next hop. Basically it’s saying “Listen if you’re trying to get that packet to any subnet that belongs to 192.168.10.0 shoot it through the interface that has the IP of 192.168.10.1. It’s called Gigabit Ethernet 0/0.” Simple.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Example:
+ For example, an IP packet - 192.168.11.131 can go be routed to 192.168.11.0 through the  current router’s IP of 192.168.11.1. It will be on the network 192.168.11.0, but we can  assume that it consists of two subnets and the subnet of 192.168.11.128 will also be on that same router. There is no need to record that into the table, we’ve made it to the correct router, the router will do the rest.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That’s it. Done and Done you understand routing tables.&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">The Cisco IOS Routing Table</summary></entry><entry><title type="html">Itn 221 Linux Portfolio V1.3</title><link href="http://localhost:4000/linux/2017/10/16/ITN-221-Linux-Portfolio-v1.3.html" rel="alternate" type="text/html" title="Itn 221 Linux Portfolio V1.3" /><published>2017-10-16T12:32:00-04:00</published><updated>2017-10-16T12:32:00-04:00</updated><id>http://localhost:4000/linux/2017/10/16/ITN-221-Linux-Portfolio-v1.3</id><content type="html" xml:base="http://localhost:4000/linux/2017/10/16/ITN-221-Linux-Portfolio-v1.3.html">&lt;p&gt;This document is a ongoing document where I will be adding Portfolio items for ITE221. I may have ugly drafty things on this page. I’ll update the date on the page each time there is an update.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-linux&quot;&gt;What is linux?&lt;/h2&gt;
+
+&lt;p&gt;Linux is a unix based operating system that was developed during the 90s and is made up of many different versions and distributions for various needs ranging from Retail Point of Sale systems to GPS systems, cell phone operating systems, and even hacking tools. Linux is known for having particular features like:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Being a free operating system with server capabilities.&lt;/li&gt;
+  &lt;li&gt;Having an open source development system and use.&lt;/li&gt;
+  &lt;li&gt;easily modifiable and to create custom systems for specific needs&lt;/li&gt;
+  &lt;li&gt;Being extremely reliable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why-is-linux-important&quot;&gt;Why is Linux Important&lt;/h2&gt;
+&lt;p&gt;Linux is an IT admin’s dream. Linux has been known to be resilient against viruses, can be  crash proof, and gets updated very quickly. That along with it’s price (generally free) makes it great for servers, small business networks, and development environments. The ease of development on a Linux or Unix based system make it great for developers. The availability of tools like bash scripts also make it easy for admins to do tasks that sometimes can take a long time if done step by step.&lt;/p&gt;
+
+&lt;h2 id=&quot;open-source-vs-closed-source&quot;&gt;Open Source vs Closed Source&lt;/h2&gt;
+&lt;p&gt;Linux has been Open Source Developed. This means two things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It first means that essentially anyone can be part of the development. When working on systems as vital as a full operating system, having varying developers means that the systems are almost always secure and reliable. Applications that are open source developed often go through many improvements and changes and are facilitated using a version control system. To put it simply, imagine many different suggestions for what to do next on a project, and then the best options get put into play.&lt;/li&gt;
+  &lt;li&gt;It also means that the rights to use the software is generally open and free for anyone to use. 
+Open source allows to have as many people using and working on the progress of the system at once. In theory this makes the system inheirently stronger.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;distros&quot;&gt;Distros&lt;/h2&gt;
+&lt;p&gt;Distros are short for Distributions and the different versions of linux. Sometimes Distros are created or forked from different opinions or methods for doing something in the Open Source Development process. Distros are also created for specific needs, like taking a system and adjusting it so it works well in a manufacturing environment for controlling machines, or creating a system that works on a small embedded device.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Information about distros and their updates can be found on DistroWatch.com&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;##Live Boot
+A popular way to run Linux is the Live boot. Often users have machines with operating systems already installed and want to use Linux periodically or for special use cases. In those cases, the Live boot comes in handy. Live booting is esentially using any machine to boot into a linux OS that is loaded onto a flash drive or CD rom.&lt;/p&gt;
+
+&lt;h4 id=&quot;to-live-boot&quot;&gt;To Live boot:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Download the linux distro’s ISO from it’s website. Find the appropriate website from distrowatch.com&lt;/li&gt;
+  &lt;li&gt;Burn the ISO to a Disk or to a USB Flash drive.&lt;/li&gt;
+  &lt;li&gt;Boot your machine up and use the appropriate key combination during startup to tell the computer to boot to the CD or to do Flash drive.&lt;/li&gt;
+  &lt;li&gt;You’re live! 
+Live Booting allows a user to explore Linux or use it as if it was installed like a typical Operating system. Live booting allows you to work in an isolated system, not interfering with the hard drive or the original operating system.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This makes it good for system and hardware diagnosis as well as leaving a limited footprint. Because it’s isolated from the harddrive, it doesn’t have a way to save files beyond the computer’s shutdown. This lack of persistence is both a benefit as well as a limitation. Some flash drive installs can be formatted and installed with a part of its available storage as persistent storage to remedy this.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Note: When running live, you’re running directly from RAM, meaning it’s resource intensive. You’ll need a bit of extra RAM to run a live boot.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;linux-vs-unix&quot;&gt;Linux vs Unix&lt;/h2&gt;
+&lt;p&gt;You may see some people use these titles interchangeably or even use &lt;em&gt;NIX to talk about either of them. What you need to know is that Linux was developed from Unix, in the same way Windows was developed from DOS. Other operating systems are also based off Unix like MacOS, Android, iOS, and even Playstation 4. To put it simply, everything that isn’t Windows is most likely based off a Unix system.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;installing-ubuntu-linux&quot;&gt;Installing Ubuntu Linux&lt;/h1&gt;
+
+&lt;p&gt;In this quick walkthrough of installation, I’ve decided to use the ever popular Ubuntu. These instructions are a general overview and may be sightly different depending on what Distro you decide to use. The idea is the same.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the Ubuntu iso from the Ubuntu website. Make sure you pick the version you’d like and the correct architecture.
+    &lt;blockquote&gt;
+      &lt;p&gt;Note: Some Distros will come with many different iso versions for various machine types, including small ARM devices, cell phones, 32 and 64 bit machines, and even VM specific. These aren’t always mandatory but can make it easier.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Burn the ISO to a CD, DVD, or burned onto a Flashdrive. If you’re installing onto a Virtual Machine, the .iso file does not need to be burned onto a disk or setup to be bootable. You may install directly from the .iso.&lt;/li&gt;
+  &lt;li&gt;While starting up your machine, use the appropriate key combination to get to the boot options and choose the medium that the linux installer is located&lt;/li&gt;
+  &lt;li&gt;The computer will now boot into the installer. Some installers will give you various options for the version you’d like to install or even the option to Live Boot. Graphical installs will be the easiest for a first timer.&lt;/li&gt;
+  &lt;li&gt;The installer will ask for the language to use during the install
+&lt;img src=&quot;/assets/img/Linux/Install_Ubuntu/1.png&quot; alt=&quot;Install 1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Pick Install Ubuntu to install onto the machine’s harddrive. This install process will format the harddrive partition and erase all data on that drive.&lt;/li&gt;
+  &lt;li&gt;The preparing to install download menu will prompt you to allow it to download updates and additional third party software during install. You can skip these, but choosing them now takes care of these so we don’t have to do it later.&lt;/li&gt;
+  &lt;li&gt;The installation type menu will ask you how to handle the the formatting of the harddrive. You can choose to erase and install. You’ll also be prompted for the options of hard drive encryption and Logical Volume management. These are not mandatory for the install but could be useful.&lt;/li&gt;
+  &lt;li&gt;Click install now and a prompt will review how the harddrive will be handled and what options will be included. Review and click continue to start the install.&lt;/li&gt;
+  &lt;li&gt;It will ask about your timezone and location. Choose your location and press continue.&lt;/li&gt;
+  &lt;li&gt;Select your keyboard layout and hit continue.&lt;/li&gt;
+  &lt;li&gt;You’ll be prompted to enter in user account information including the name and and password. Fill this out and hit continue. Some versions and other Distros will ask for you to create the Admin account here as well.&lt;/li&gt;
+  &lt;li&gt;The install will begin and a progress bar will be shown. This may time some time. 
+&lt;img src=&quot;/assets/img/Linux/Install_Ubuntu/4.png&quot; alt=&quot;Install 4&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Once the install is complete, it will prompt you to restart. Once the computer restarts, the install is complete.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You’re done. You now have a Linux OS install with an Admin account and a local account.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;first-time-in-linux&quot;&gt;First Time in Linux&lt;/h1&gt;
+
+&lt;h2 id=&quot;environments&quot;&gt;Environments.&lt;/h2&gt;
+
+&lt;p&gt;When it comes to linux. The options of Distros, and versions of each Distro, as well as the actual environments give you plenty of options and customization available within Linux. It’s important to note the difference between Linux Desktop Environments and Linux Distros.&lt;br /&gt;
+Desktop Environments are essentially the style and layout of the Desktop GUI. Many Distros will use the same Desktop Environments. I won’t go over all of the environments but I will note that Ubuntu uses the Unity Environment. If you’re familiar with Mac OS you’ll see similarities between Unity’s organization of a application bar, a app interface called a HUD that includes a search bar, and even the top bar. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/1.png&quot; alt=&quot;Ubuntu Tour 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Later we will talk a little bit about Kali Linux. Kali uses the Gnome Environment. Gnome is very close to Unity, but has some slight differences like the Activities tool bar drop down and some differences in the file manager.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/9.png&quot; alt=&quot;Ubuntu Tour 9&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lastly I will mention the KDE environment due to it’s similarity to older Windows Environments.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/10.png&quot; alt=&quot;Ubuntu Tour 10&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;KDE is unique compared to Gnome and Unity and includes things like desktop widgets. KDE is known to be resource efficient (although DEs like LXDE and IceWM are much lighter) when set correctly, making it a lightweight option. KDE has been made popular as the Environment for Kubuntu.&lt;/p&gt;
+
+&lt;h2 id=&quot;ubuntu-tour&quot;&gt;Ubuntu Tour&lt;/h2&gt;
+
+&lt;h3 id=&quot;desktop&quot;&gt;Desktop&lt;/h3&gt;
+&lt;p&gt;Alright let’s start with the Desktop
+&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/1.png&quot; alt=&quot;Ubuntu Tour 1&quot; /&gt;
+The first thing you’ll notice about Ubuntu is that it has a bar with pinned applications on the left side. The top and bottom icons on the bar aren’t applications. The top is actually the Application HUB while the bottom is your typical trashcan.&lt;/p&gt;
+
+&lt;h3 id=&quot;application-hub&quot;&gt;Application HUB&lt;/h3&gt;
+&lt;p&gt;You can use the Application HUB to quickly find all your applications and search for a specific one by name. You can also organize the applications in various ways to help you find what you’re looking. This is useful for finding applications in cases you don’t know what they are called. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/6.png&quot; alt=&quot;Ubuntu Tour 6&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;top-bar&quot;&gt;Top Bar&lt;/h3&gt;
+&lt;p&gt;Back to the desktop you’ll notice that across the top there is a sort of bar with some icons on it. This bar is customizable and as a default shows icons for battery, wifi, the time, and also a quick way to get to settings.&lt;/p&gt;
+
+&lt;h3 id=&quot;top-bar-settings&quot;&gt;Top Bar Settings&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/2.png&quot; alt=&quot;Ubuntu Tour 2&quot; /&gt;&lt;br /&gt;
+In this small settings menu, you can log out, shut down, and see information about the computer. It also has an option for opening the full settings menu.&lt;/p&gt;
+
+&lt;h3 id=&quot;settings&quot;&gt;Settings&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/3.png&quot; alt=&quot;Ubuntu Tour 3&quot; /&gt;&lt;br /&gt;
+In settings, this is where you can change things like the appearance, peripheral devices, power management, accounts, etc. This is where you can add additional accounts.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-an-account&quot;&gt;Adding an Account&lt;/h3&gt;
+&lt;p&gt;To add an account, click on User Accounts. In the User accounts menu, you will see a list of already existing accounts, and below you will see a set of + and - buttons. These buttons will allow you to add and delete accounts. But first, you must Authenticate yourself as the Admin. On the top right corner there is a clock. Click that to Authenticate. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/4.png&quot; alt=&quot;Ubuntu Tour 4&quot; /&gt;&lt;br /&gt;
+From here you can add an account and set it as a standard account or admin.&lt;/p&gt;
+
+&lt;h3 id=&quot;file-management&quot;&gt;File Management&lt;/h3&gt;
+&lt;p&gt;Next let’s check out the file management system. Back at your desktop, in the sidebar there is a file cabinet icon. Click that. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour/5.png&quot; alt=&quot;Ubuntu Tour 5&quot; /&gt;&lt;br /&gt;
+This is similar to explorer.exe in Windows or Finder in Mac. Your accounts default directories will be listed on the left side and your files and folders will be on the right. On the top right corner you can use the buttons to search for files, change out the files are laid out, and add new files and folders.&lt;/p&gt;
+
+&lt;h3 id=&quot;updated-ubuntu&quot;&gt;Updated Ubuntu&lt;/h3&gt;
+&lt;p&gt;While putting this portfolio together, I updated my version of Ubuntu to find the interface’s layout to be much different than above. To be thorough, here are some images to show the differences.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-desktop&quot;&gt;The Desktop&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour_New/1.png&quot; alt=&quot;Updated Ubuntu&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;the-settings&quot;&gt;The Settings&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour_New/2.png&quot; alt=&quot;Updated Ubuntu&quot; /&gt;
+&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour_New/3.png&quot; alt=&quot;Updated Ubuntu&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;account-settings&quot;&gt;Account Settings&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Ubuntu_Tour_New/4.png&quot; alt=&quot;Updated Ubuntu&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Despite the update in the GUI, the navigation should be very similar.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;the-terminal&quot;&gt;The Terminal&lt;/h1&gt;
+&lt;p&gt;The easiest way to explain the terminal is to compare it to a chat window, or text messaging. The Terminal is essentially a way to talk to the computer using a set of commands and arguments and syntax as input and then it does work based on what you tell it, generally spitting out some sort of output for you or actions like changing settings or file manipulation. The Terminal can be found in the HUB for applications and can also be brought up using &lt;code&gt;Alt+ctrl+t&lt;/code&gt; on most Linux Distros.&lt;/p&gt;
+
+&lt;p&gt;The terminal starts with a prompt. In that prompt, it gives you some information. Depending on what operating system you’re on. It may show a few different things in the prompt. Just know that generally it will show you&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The account you’re on&lt;/li&gt;
+  &lt;li&gt;The machine you’re on&lt;/li&gt;
+  &lt;li&gt;The current directory you are working in&lt;/li&gt;
+  &lt;li&gt;and a symbol to prompt you for your input. For root accounts the symbol will be # and for all other accounts it will be $.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are a few examples. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/Linux/Terminal/1.png&quot; alt=&quot;Terminal&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Terminal/2.png&quot; alt=&quot;Terminal&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/Terminal/3.png&quot; alt=&quot;Terminal&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;working-in-the-terminal&quot;&gt;Working in the Terminal&lt;/h2&gt;
+&lt;p&gt;The terminal take commands line by line. Commands will act like small applications or functions to do certain jobs. Like finding a file, or showing an IP route. Some commands will work fine by themselves, but many will take arguments and options. Options are exactly as they sound. Arguments are inputs that you give it, sometimes an argument is a number, or a file name, or an IP address. Each command will have different arugments and options that it will accept.&lt;/p&gt;
+
+&lt;p&gt;Possible command syntax
+&lt;code&gt;command&lt;/code&gt;
+&lt;code&gt;command --option&lt;/code&gt;
+&lt;code&gt;command --option argument&lt;/code&gt;
+&lt;code&gt;command --option argument argument2 argument3&lt;/code&gt;
+&lt;code&gt;command argument&lt;/code&gt;
+Also options are often simplified by a single letter. For example instead of –option, the command may accept -o. These simlifications will be different. Another note is that options can sometimes be stacked on top of each other.&lt;/p&gt;
+
+&lt;p&gt;Here is a logical example. Let’s call it a Pseudo Command. This isn’t an actual command but you could guess what this command represents.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;drive --fast  --WindowsDown  58W&lt;/code&gt;
+or 
+&lt;code&gt;drive -f -W 58N&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Imagine what this command may mean. The command says to drive. With the options of Fast and WindowsDown. It also has an argument of 58W. We could gather that this command would tell the computer to Drive fast with the windows down on 58N. Simple.&lt;/p&gt;
+
+&lt;h3 id=&quot;super-user-do&quot;&gt;Super User do!&lt;/h3&gt;
+&lt;p&gt;Sometimes when you are working in terminal, you may be issuing a command that changes some settings in the account or operating system. The OS will sometimes tell you that you do not have permission to make those changes. Whenever the terminal outputs a permissions issue, you should try the command with ‘sudo’ at the start. This tells it that you are looking to make the changes as an Admin. It will ask for a password and then continue running the command you’ve issued. To follow with the previous example: &lt;code&gt;sudo drive --slow --AC Route66&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;moving-around-in-terminal&quot;&gt;Moving Around in Terminal&lt;/h3&gt;
+&lt;p&gt;Some of the first commands that you should learn are commands to help you move around within the file system, much in the same way that you would click through folders to find files. The following commands are for moving around and looking through directories.&lt;/p&gt;
+
+&lt;h4 id=&quot;pwd&quot;&gt;pwd&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;pwd&lt;/code&gt;
+PWD stands for Print Working Directory and will print out onto the terminal the Directory (folder) that you’re currently in, as well as the directories that it sits in. So if you have a folder named MyFolder in a folder named Files in a folder called Everything, it may look something like Everything/Files/MyFolder. Of course the EverythingFolder is most likely sitting within the user’s file structure. For example it may be on your Desktop within your User files.  &lt;br /&gt;
+For example: &lt;code&gt;/Users/zack/Desktop/Everything/Files/MyFolder&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ls&quot;&gt;ls&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ls&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;ls -l&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;ls -la&lt;/code&gt;&lt;br /&gt;
+Another terminal command that will help you move around between files is the ls command. This command is simple. It lists all the files and directories in the current working directory. just type ls with no options and press enter. You can also use the -l option to get additional information like the user and ownership of files as well as the time it was created and the permissions. You can also use the -a option to get all files including hidden files. 
+For example, here are a few ways to use ls.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Zacks-MacBook-Pro:MyFolder zack$ ls -a
+.		..		Folder		HomeWork.txt	picture.jpeg
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Zacks-MacBook-Pro:MyFolder zack$ ls -l
+total 0
+-rw-r--r--  1 zack  staff  0 Nov  6 14:44 Folder
+-rw-r--r--  1 zack  staff  0 Nov  6 14:44 HomeWork.txt
+-rw-r--r--  1 zack  staff  0 Nov  6 14:44 picture.jpeg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Zacks-MacBook-Pro:MyFolder zack$ ls -la
+total 0
+drwxr-xr-x  5 zack  staff  170 Nov  6 14:44 .
+drwxr-xr-x  3 zack  staff  102 Nov  6 14:31 ..
+-rw-r--r--  1 zack  staff    0 Nov  6 14:44 Folder
+-rw-r--r--  1 zack  staff    0 Nov  6 14:44 HomeWork.txt
+-rw-r--r--  1 zack  staff    0 Nov  6 14:44 picture.jpeg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;cd&quot;&gt;cd&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt; cd Directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt; cd Directory/Directory2&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt; cd ../ &lt;/code&gt;&lt;br /&gt;
+&lt;code&gt; cd  ~/Users/Me/Desktop &lt;/code&gt;&lt;br /&gt;
+The cd command stands for change directory. This command will allow you to move into different directories. It takes various types of arguments to help you move forward and backward and laterial. You can even move recursively down into directories. The arugment for cd needs to be relative to the current working directory. For example if you are currently in a folder named ‘Cars’ and within that folder there is another folder called ‘Hondas’ you would simply &lt;code&gt;cd Hondas&lt;/code&gt;. You can also move back through folders by using &lt;code&gt;cd ../&lt;code&gt; where the dots represent the previous directory's name. So if you wanted to move back two directories you could use &lt;code&gt;../../&lt;code&gt;. You don't have to type the name of the directory because it is implied. Also, if the directory you are in belongs to a directory that has other directories, you can move laterally by using &lt;code&gt;../OtherFolder&lt;/code&gt;  
+Lastly, you will often want to use the&lt;/code&gt;&lt;/code&gt;&lt;/code&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The use of ~ allows you to type an exact directory address regardless of what your current working directory is. So even if you are in Users/Me/Documents/Homework you could use &lt;code&gt; cd ~/Users/Me/Taxes/2017/W2Files &lt;/code&gt; and move directly to it.&lt;/p&gt;
+
+&lt;h3 id=&quot;making-and-removing-files--directories&quot;&gt;Making and Removing Files &amp;amp; Directories&lt;/h3&gt;
+&lt;p&gt;The next few commands are the basic commands for creating new empty files and directories. This is similar to File -&amp;gt; New Folder/text document or right clicking to do the same job in Windows or even in Mac. Learning these commands will help you do things like organize your files as well as create packages as a developer.&lt;/p&gt;
+&lt;h4 id=&quot;touch&quot;&gt;touch&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;touch newfile.txt&lt;/code&gt;  &lt;br /&gt;
+&lt;code&gt;touch NewCode.js index.js data.json&lt;/code&gt;  &lt;br /&gt;
+&lt;code&gt;touch emptyFile&lt;/code&gt;&lt;br /&gt;
+The touch command is for creating empty files in the current working directory. The files can be any format with any extension. For example, creating a blank text file you would just &lt;code&gt;touch MyText.txt&lt;/code&gt; or if you were planning to write Python code that will need a couple files to work you might create them all at once using &lt;code&gt;touch MyCode.py MoreCode.py &lt;/code&gt; The touch command has a few options that are available to allow for timestamp modificaton.&lt;/p&gt;
+&lt;h4 id=&quot;mkdir&quot;&gt;mkdir&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;mkdir DirectoryName&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir FolderOne FolderTwo&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir -p This/Will/Make/These/Directories This/Will/Make/Only/These/Last/Two&lt;/code&gt;&lt;br /&gt;
+Similar to touch, mkdir creates empty directories in the current working directory. You can create multiple directories as well just by putting spaces between the directory names. The -p option creates directories within directories as long as the parent directories don’t already exist.&lt;br /&gt;
+Using the above example of&lt;br /&gt;
+ &lt;code&gt;mkdir -p This/Will/Make/These/Directories This/Will/Make/Only/These/Last/Two&lt;/code&gt;&lt;br /&gt;
+  this is what the directory structure will look like.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+└── This
+    └── Will
+        └── Make
+            ├── Only
+            │   └── These
+            │       └── Last
+            │           └── Two
+            └── These
+                └── Directories
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h4 id=&quot;rm&quot;&gt;rm&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;rm FileINeedToDelete.txt&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm FirstFileToRemove.c SecondFileToRemove.jpg&lt;/code&gt;&lt;br /&gt;
+Once you’ve learned how to make files and folders, it’s important to know how to remove them. The rm command removes files. It can be used to remove Directories as well, but there is a special option for that. To use rm, make sure you are in the current working directory of the file, and pass the file name as an argument to the rm command as seen above.&lt;/p&gt;
+
+&lt;h4 id=&quot;rmdir&quot;&gt;rmdir&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;rmdir EmptyDirectory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rmdir -rf DirectoryWithFilesAndSubDirectories&lt;/code&gt;&lt;br /&gt;
+Similar to rm, rmdir removes directories. This command without any options will only remove directories that are empty. If you’d like to remove a directory with it’s contents, you must use the option -r or more efficently -rf.&lt;/p&gt;
+
+&lt;h3 id=&quot;installing-packages-with-apt-get&quot;&gt;Installing packages with apt-get&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;apt-get install packagename&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;apt-cache search .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;dpgk -l&lt;/code&gt;&lt;br /&gt;
+A vital tool that is utilized in most versions of Linux is the apt-get. APT stands for The Advanced Package Tool and is used to quickly install command line tools. These tools are prepackaged together to make it easy to install. This can be useful for admins to quickly add applications on multiple computers using scripts. To install packages simply use &lt;code&gt;apt-get install ThePackageName&lt;/code&gt; and follow the prompt. You can update the list of packages using &lt;code&gt;apt-get update&lt;/code&gt;. If you’re interested in searching through the repository of available packages, you can use &lt;code&gt;apt-cache search PackageName&lt;/code&gt; or look at all of them using &lt;code&gt;apt cache search .&lt;/code&gt; And finally you can list the packages that have already been installed buy using &lt;code&gt;dpgk -l&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;It’s important to note that each distrubution of Linux may use a different repostories for packages. For example, the popular penentration testing Linux Distro - ‘Kali’ uses a unique repo with specialized networking tools.&lt;/p&gt;
+
+&lt;h3 id=&quot;additional-terminal-commands--tools&quot;&gt;Additional Terminal Commands &amp;amp; Tools&lt;/h3&gt;
+&lt;h4 id=&quot;man&quot;&gt;man&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;man rmdir&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;man touch&lt;/code&gt;&lt;br /&gt;
+The man command is used to read information about commands to learn what options and syntax to use with the command. It gives examples and is a great resource for learning more about a command. Pass the name of a command into the man command to read it’s contents.&lt;/p&gt;
+
+&lt;h4 id=&quot;grep&quot;&gt;grep&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;grep &quot;Looking for this literal string&quot; InThisFile&lt;/code&gt; &lt;br /&gt;
+&lt;code&gt;grep -i &quot;ThIsWiLlBecAsEInsenSITive&quot; Inthis&lt;/code&gt;&lt;br /&gt;
+Grep is a funny sounding command that does a lot of searching magic. The grep command has loads of options and ways to use it to search within files or even output from the terminal. This can be useful if you are looking through multiple files for a paticualr string of information. For example, let’s say you have 3 files with a list of first and last names in it. People1.txt People2.txt and People3.txt. You could use grep to find all the names that have the last name of Richards using this example grep:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grep Richards People*.txt
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This command will search for any lines with the word ‘Richards’ in it in any file staring with People ending with .txt. It will then print out just those lines.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;note: the use of * in an argument signifies a wild card. The wildcard is basically a placeholder for any character. Meaning it can represent multiple files.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You can use the -i option to tell grep to find strings even if the letter case is different. The above example:&lt;br /&gt;
+&lt;code&gt;grep -i &quot;ThIsWiLlBecAsEInsenSITive&quot; Inthis&lt;/code&gt;  &lt;br /&gt;
+Would output the strings ‘thiswillbecaseinsensitive’ as well as ‘ThisWillBeCaseInsensitive’ even though the cases do not match.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;find&quot;&gt;Find&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt; Find thing&lt;/code&gt;
+&lt;code&gt;Find -name &quot;ReallyImportantFile.txt&quot;&lt;/code&gt;&lt;br /&gt;
+The Find command will search recursively based off of a regular as an argument. It will take wild cards as part of the input and can be used to find any files with paticular keywords.&lt;/p&gt;
+&lt;h4 id=&quot;cat&quot;&gt;Cat&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt; cat Code.py &lt;/code&gt;&lt;br /&gt;
+&lt;code&gt; cat logfile.txt &lt;/code&gt;&lt;br /&gt;
+Cat will echo out the contents of any file including text files, binaries, and scripts. This is similar to using Vim but doesn’t let you edit the code. Often used with a grep and a pipe: &lt;code&gt; cat file.txt | 'keyword' &lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;vim&quot;&gt;Vim&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt; vim program.c &lt;/code&gt;&lt;br /&gt;
+Vim is a CLI based editor for writing text files, scripts, and code in various languague. Vim can recognize file types and have syntax highlighting.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Other terminal based editors are available and are popular. Some of these editors include: Nano, Emacs, gedit.&lt;/p&gt;
+  &lt;h4 id=&quot;pipe-&quot;&gt;pipe ‘|’&lt;/h4&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The pipe character is used to pass output of a command to another command. As seen above a popular combination would to to cat out the contents of a file, then using grep on that output to filter out paticular lines.&lt;br /&gt;
+&lt;code&gt;cat logs.txt | grep 'error'&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;using--to-nest-commands&quot;&gt;Using $() to nest commands&lt;/h4&gt;
+&lt;p&gt;Use $() to nest a command within a command. For example &lt;code&gt; Dothis $(ToTheOutPutOfThis) &lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;file-manipulation-with--and-&quot;&gt;File Manipulation with &amp;gt;,», &amp;lt;,and «&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt; &amp;gt; &lt;/code&gt; for pushing output of a command into a new file. Overwriting existing content if it’s an exisiting file.  &lt;br /&gt;
+&lt;code&gt; &amp;gt;&amp;gt; &lt;/code&gt; for pushing output of a command into an exisiting file, appending the content it already has.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;networking&quot;&gt;Networking&lt;/h1&gt;
+&lt;h2 id=&quot;basic-networking-concepts&quot;&gt;Basic Networking Concepts&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;On Site&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ip-addresses-and-subnets&quot;&gt;IP addresses and Subnets&lt;/h3&gt;
+&lt;p&gt;http://hiimzackjones.com/networking/2017/09/20/IP-Addresses-Subnets-And-Binary-Part-1.html&lt;/p&gt;
+
+&lt;p&gt;http://hiimzackjones.com/networking/2017/09/26/IP-Addresses-Subnets-And-Binary-Part-2.html&lt;/p&gt;
+&lt;h3 id=&quot;routing&quot;&gt;Routing&lt;/h3&gt;
+
+&lt;h3 id=&quot;dns&quot;&gt;DNS&lt;/h3&gt;
+
+&lt;h3 id=&quot;dhcp&quot;&gt;DHCP&lt;/h3&gt;
+
+&lt;h2 id=&quot;networking-commands&quot;&gt;Networking Commands&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;apt-get net-tools&lt;/li&gt;
+  &lt;li&gt;ping&lt;/li&gt;
+  &lt;li&gt;ifconfig&lt;/li&gt;
+  &lt;li&gt;netstat&lt;/li&gt;
+  &lt;li&gt;traceroute&lt;/li&gt;
+  &lt;li&gt;mtr&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;ssh-telnet-and-rdp&quot;&gt;SSH, Telnet, and RDP&lt;/h1&gt;
+&lt;h2 id=&quot;telnet--ssh&quot;&gt;Telnet &amp;amp; SSH&lt;/h2&gt;
+&lt;h2 id=&quot;rdp&quot;&gt;RDP&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;virtual-machines&quot;&gt;Virtual Machines&lt;/h1&gt;
+&lt;h2 id=&quot;installing-virtualbox-and-a-vm&quot;&gt;Installing VirtualBox and a VM&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;using-linux-as-a-developer&quot;&gt;Using Linux as a Developer&lt;/h1&gt;
+&lt;h1 id=&quot;vim-1&quot;&gt;Vim&lt;/h1&gt;
+&lt;h1 id=&quot;bash-scripts&quot;&gt;Bash Scripts&lt;/h1&gt;
+&lt;h1 id=&quot;git&quot;&gt;Git&lt;/h1&gt;
+&lt;h1 id=&quot;python&quot;&gt;Python&lt;/h1&gt;
+&lt;h1 id=&quot;nodejs&quot;&gt;Node.js&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;intro-to-kali&quot;&gt;Intro to Kali&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;What is pen testing?&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zachary Jones</name></author><summary type="html">This document is a ongoing document where I will be adding Portfolio items for ITE221. I may have ugly drafty things on this page. I’ll update the date on the page each time there is an update.</summary></entry><entry><title type="html">Active Directory, Domains, And Domain Controllers</title><link href="http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html" rel="alternate" type="text/html" title="Active Directory, Domains, And Domain Controllers" /><published>2017-10-11T22:54:00-04:00</published><updated>2017-10-11T22:54:00-04:00</updated><id>http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers</id><content type="html" xml:base="http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html">&lt;p&gt;&lt;em&gt;in progress, this post will have screenshots soon&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;active-directory-domains-and-domain-controllers&quot;&gt;Active Directory, Domains, and Domain Controllers&lt;/h1&gt;
+
+&lt;p&gt;These three topics can seem to be almost the same thing, and for that I’m dedicating a whole post to them. I’m going to make this quick.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;##Some quick background vocab.&lt;/p&gt;
+
+&lt;h3 id=&quot;enterprise-environment&quot;&gt;Enterprise Environment&lt;/h3&gt;
+&lt;p&gt;The computer systems infrastructure of a particular corporation, business, or organization that is often made up of servers and hosts and other end devices such as printers. Most enterprise environments are designed to give the organization a safe system for maintaining preparatory data storage and working together, while also having the ability to have various layers and segmentation. That’s a good enough definition for now.&lt;/p&gt;
+
+&lt;h3 id=&quot;hostnames&quot;&gt;Hostnames&lt;/h3&gt;
+&lt;p&gt;Hostnames are made up of the machine name as well as the Domain name. For example Finance1.sweetbusiness.com would be a full host name. That host name relates directory to an IP address of a machine. 
+A good example of a hostname that happens often would be something like &lt;strong&gt;ftp.business.com&lt;/strong&gt;, which would be an example for an FTP server host address.&lt;/p&gt;
+
+&lt;h3 id=&quot;domains&quot;&gt;Domains&lt;/h3&gt;
+&lt;p&gt;Domains are what make using a server in an enterprise or campus setting vital. Essentially the domain is the overarching group of -&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;machines&lt;/li&gt;
+  &lt;li&gt;services those machines use&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;and user accounts&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;that belong to central database. Domains allow for organization between the users, as well as separate organization between the computers, and then security parameters to be applied to those groups to allow and disallow particular machines and users from files, services, etc. Domains are for the security of the company or organization, but also allow for an Admin to organize different offices, branches, and user roles using sub domains and additional domains to a Forest(See below).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;domain-controller&quot;&gt;Domain Controller&lt;/h3&gt;
+&lt;p&gt;A Domain Controller is a machine that handles those accounts and machines. The Domain Controller is the Administrative hub for the complete Domain.&lt;/p&gt;
+
+&lt;h3 id=&quot;active-directory&quot;&gt;Active Directory&lt;/h3&gt;
+&lt;p&gt;Active Directory is the Windows version of a Domain Controllers management software. Active Directory is not a domain controller, but what a domain controller uses to handle and manage the domain. These terms are sometimes use interchangeably but don’t always mean the same thing.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Users accounts can be Local or Domain
+You’ve seen local users. Local users are your typical log in, log out, pick another person, put in a password, “oh look my stuff is here instead of that other guy’s” thing. Domain users are the same… sort if. Domain users belong to the server, as part of the Domain, and can be logged into with different machines. The login password can be changed by the Administrator running the domain, and loads of other settings and permissions can be adjusted.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;trees&quot;&gt;Trees&lt;/h3&gt;
+&lt;p&gt;Similar to file structure trees, Active Directory Trees are the collection of all the domains that may be in a group. Sometimes organized in a hierarchical way.&lt;/p&gt;
+
+&lt;h3 id=&quot;forests&quot;&gt;Forests&lt;/h3&gt;
+&lt;p&gt;A forest is the top level of Active Directory. (aka the top level of a Domain) It holds all the Domain Controllers, including lower level domains of a root domain.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;setting-up-a-domain&quot;&gt;Setting up a domain&lt;/h2&gt;
+
+&lt;p&gt;Setting up a domain starts with adding the features needed, i.e the Active Directory Domain Services (ADDS) and then promoting your main server to be a domain controller, aka the Root Domain Controller. From there you may be creating a new forest if needed and then creating the domain itself. Here we go.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-active-directory-domain-services-feature&quot;&gt;Adding Active Directory Domain Services Feature&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;First click on the Add Roles and Features tab in the Server Manager Dashboard.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Press Next until you get to the Server Pool section. Here you will pick the Server you’d like to use as a Domain Controller, i.e. add this feature to. You may have multiple servers depending on your setup, make sure to pick the correct one.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Protip: Make sure to name your servers using a naming convention that helps you know something about that server. Giving them arbitrary names will make tasks like this a pain. Picking the location, or Roles/features/services as part of the name will help you in the long run!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Press Next.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Check off the Active Directory Domain Services Feature, go ahead and ‘add features’&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Next&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Leave Defaults&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;promoting-a-server-to-domain-controller&quot;&gt;Promoting a Server to Domain Controller&lt;/h3&gt;
+
+&lt;p&gt;Now that you’ve added the feature’s we are going to start the process of actually making the server a Domain Controller.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the Add Roles and Features Wizard find the option that says ‘Promote this server to a domain controller’. It will open the Active Directory Domain Services Configuration Wizard.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Assuming that we are setting up a Domain from scratch, there should not be any other Domain Controllers setup. This means there won’t be a Forest setup. The forest exists only after a Root Domain Controller exists. Choose Add a new forest and give that forest a name.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;naming convention for this is often domainbranch.local or domainbranch.internal. Something like the companyname.local works fine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Press Next. And give it some time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The next screen will ask the functional level. Functional level will be based off of the oldest server OS that you will be running. If you plan to run Server 2012, make sure to set it to 2012. &lt;strong&gt;Do not use the lowest because it seems easier, please use the highest available for your planned domain and network&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Give it a password for admin login.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Press Next&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You will get a DNS delegation error. It’s okay.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Press Next and wait.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set the netbios name and press next. You can leave it as default.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Press Next until Prerequisites. Wait for it to check. Then press close and install. You’ll need to restart the machine after this to wrap up the Domain Controller setup.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Next time you login, you can log in using the admin domain account instead of the local. Use the domain name we created earlier and administrator as the login.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To test this out you can open up Active Directory Users and Computers and under Domain Controllers you should see your server.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;making-a-new-domain-user-group-or-organizational-unit&quot;&gt;Making a new Domain User, group, or Organizational Unit.&lt;/h2&gt;
+
+&lt;p&gt;Each of these are technically Organizational Units and for the most part will be created in the same way. In the example below, I explain creating a User, but creating other OUs work the same way.&lt;/p&gt;
+
+&lt;p&gt;The method I explain will be using the GUI. You can also do this through the CLI in PowerShell as well.&lt;/p&gt;
+
+&lt;p&gt;In the start menu, you can:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;open up &lt;em&gt;Active Directory Users and Computers&lt;/em&gt; from the administrative tools tile.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Find it in the applications list in start menu.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;find it in the the Tools drop-down of the Server Manager interface.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You will see in your local Domain a list of Organizational units. Here you can create groups and users and organize them.&lt;/p&gt;
+
+&lt;p&gt;To make a user, make sure the group you’d like to add th user to is selected. Then use the Add A New User from the top menu. It will be the icon of a person’s head. You can also right click &amp;gt; New &amp;gt; New User.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;New Object - User&lt;/em&gt; window will appear. Fill out the information as needed included the name and description and the Logon name. Press next. Now add a password to that user’s account. You can change some of the settings for the password here including expiration, allowing the user to change the password, and first time logon password change. Press next. Review the new user’s settings and press finish.&lt;/p&gt;
+
+&lt;p&gt;When making a group that you plan to use as part of the local domain, make sure you choose that option in the &lt;em&gt;New Object - Group&lt;/em&gt; menu.&lt;/p&gt;
+
+&lt;p&gt;Cheers, &lt;br /&gt;
+Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">in progress, this post will have screenshots soon</summary></entry><entry><title type="html">Installing And Setting Up Windows Server 2016 &amp;amp; Server Core</title><link href="http://localhost:4000/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&-Server-Core.html" rel="alternate" type="text/html" title="Installing And Setting Up Windows Server 2016 &amp; Server Core" /><published>2017-10-06T22:54:00-04:00</published><updated>2017-10-06T22:54:00-04:00</updated><id>http://localhost:4000/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;-Server-Core</id><content type="html" xml:base="http://localhost:4000/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;-Server-Core.html">&lt;h1 id=&quot;installing-and-setting-up-windows-server-2016&quot;&gt;Installing and Setting up Windows Server 2016&lt;/h1&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Installing Windows Server 2016 is very similar to installing other Windows versions. This won’t be hard. Don’t panic. I added copious amounts of gifs to help you.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
+&lt;p&gt;First off, if you check the requirements for installing server like you should, you will see something like:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;1.4 GHz with 64 bit architecture&lt;/li&gt;
+  &lt;li&gt;512 MB of Ram or 2 GB if you’re using the Desktop Environment.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s important to take in consideration what the uses of the server will be. It’s not uncommon for a server to run Hyper-V with multiple clients, Active Directory, and a handful of other services. It’s a good idea to take in consideration and even plan the server’s roles and needed resources for it to handle it’s job. Windows Server with the Desktop Environment will have a hard time running on 2 gigs of RAM. For example, the server setup I’m working on at home will have a 1 TB HD, and 16 GB of ram with something like a 2.4 quad core processor. Long story short, Minimum requirements aren’t something you should ever worry with unless you’re doing something like testing out installs or building on a budget. The server should have the resources it needs that fits your (or your clients) budget while doing the intended jobs.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;picking-the-right-version&quot;&gt;Picking the right version&lt;/h2&gt;
+&lt;p&gt;There are a few different flavors of Windows Server 2016 and at first it can see confusing. Here is the breakdown.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Windows Server Essentials&lt;/li&gt;
+  &lt;li&gt;Windows Server Standard&lt;/li&gt;
+  &lt;li&gt;Windows Server Datacenter&lt;/li&gt;
+  &lt;li&gt;Microsoft Hyper-V Server&lt;/li&gt;
+  &lt;li&gt;Windows Storage Server 2016 Workgroup Edition&lt;/li&gt;
+  &lt;li&gt;Windows Storage Server 2016 Standard Edition&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;with-or-without-the-gui&quot;&gt;With or without the GUI&lt;/h3&gt;
+&lt;p&gt;While you may be used to doing things with GUI because you can’t quite remember where to go to change the background, or change your password and you like to have some visual clues, a GUI can take up resources as well as can give attackers plenty of running features to poke at. 
+This is where Core comes into play. Core is a fully functioning version of Server that reduces the attack surface and can be easier to install and deploy between machines. We can get into that later.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-quick-overview-of-nano&quot;&gt;A quick overview of Nano&lt;/h3&gt;
+&lt;p&gt;The smallest and newest of the Server options is Nano. Nano Server is a headless essentials system for managing remotely. Nano has a very small footprint but isn’t as easy to manage as Core. Nano Server is meant specifically for running “born-in-the-cloud” applications and containers.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Headless&lt;/strong&gt; meaning it’s a server without a monitor and keyboard and peripherals. Specifically meant to be logged into to manage.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Born-in-the-Cloud&lt;/strong&gt; is a term that describes applications that are designed specifically for the cloud or cloud computing. Essentially replace the word cloud with “internet” and you’ve got it. These applications live online in servers instead of on your harddrive. Applications are becoming born-in-the-cloud more and more often due to it’s ability to scale and be dynamic over time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Containers&lt;/strong&gt; are a technology similar to Virtual Machines in the sense that the files or applications in the containers are separated from the rest of the working environment. This protects it’s neighboring applications as well as itself. This comes in handy when prototyping and developing a cloud application that will reside alongside developed applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;installing-server-w-desktop-environment&quot;&gt;Installing Server w/ Desktop Environment&lt;/h2&gt;
+&lt;p&gt;Alright the install.&lt;/p&gt;
+
+&lt;p&gt;1) Pop in the Flash Drive or DVD or find the ISO and boot into it.
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/Oct-05-2017-16-52-03.gif&quot; alt=&quot;Windows Server install&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2)Windows setup window will ask you some info so that your keyboard works and that it speaks your language.
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.54.01-PM.png&quot; alt=&quot;Setup Window&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3)Tell it to install. 
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.54.13-PM.png&quot; alt=&quot;install&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4)Put in your activation code or skip it for now
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.54.53-PM.png&quot; alt=&quot;Activation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5)Pick the version you’d like to install. In this case we want to Desktop Experience and we won’t be needing the ever expensive and large Datacenter version.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.56.46-PM.png&quot; alt=&quot;Picking the Version&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;6)Custom install for a fresh install, or Upgrade if installing on top of an existing version of Windows 
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.57.19-PM.png&quot; alt=&quot;Upgrade or Custom&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;7)Pick the volume/partition you’d like to install to or let the installer format how it’d like. In this case I erased all existing partitions by clicking them and deleting, leaving an unallocated space. Choose where you’d like to install and click next. If you’d like to create a separate partition, do that here now by clicking new.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-4.57.27-PM.png&quot; alt=&quot;Setting up the partition&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;8) Wait for the install to complete and restart. This could take a bit of time. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/Oct-05-2017-18-36-04.gif&quot; alt=&quot;Waiting for the install &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;9)Let it think. This isn’t actually a step, but I made a gif for it anyway so here you go.
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/Oct-05-2017-18-37-18.gif&quot; alt=&quot;Starting up&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;10)I don’t have a screenshot for this, but I’m almost certain it asks for you to setup a password at this point.&lt;/p&gt;
+
+&lt;p&gt;11) Once logging in, you’ll be sitting in front of Server Manager. It will look like this. 
+&lt;img src=&quot;/assets/img/servergifs/SVRDESKPTOP/2017-10-05-6.39.58-PM.png&quot; alt=&quot;Starting up&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;basic-setup&quot;&gt;Basic setup&lt;/h2&gt;
+&lt;p&gt;Now before you can use server there are a few things you’re going to want to do to get it setup. Being a server, it’s going to… serve and the clients that use those services will need to know where to find it. So you’re going to want to set up a static IP right out of the gate. Let’s do that now.&lt;/p&gt;
+
+&lt;p&gt;1)In Server Manager, to get to your IPv4 settings you need to be in the Local Server section. There you will see the Properties and a section called Ethernet. Most likely, you will see that the server has IPv4 assigned by DHCP and IPv6 enabled.
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.26-PM.png&quot; alt=&quot;png&quot; /&gt;
+2)Click to open up the list of interfaces available for your machine. You may have more than one interface available. My machine only has one.
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.39-PM.png&quot; alt=&quot;png&quot; /&gt;
+3) Right click and click on properties. From there you will see an option for IPv4. Double click or right click it to open the IPv4 options. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.17.50-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
+4) Choose Use the following IP address: and enter in your information. On my network I will bet setting it up with a Class C IP address with 107 as it’s host number. Make sure to give it a Default Gateway as well as at least one DNS. If you don’t have a DNS setup, you can just use 8.8.8.8  &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.27.03-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
+5) You should see that in the Server Manager under properties, the ethernet section is updated.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.27.39-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
+6) You can do an ipconfig from the command line to make sure it worked. I’d also suggest pinging the gateway as well as another machine running on the network to make sure. Because ping as you go. 
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.31.42-PM.png&quot; alt=&quot;png&quot; /&gt;
+7)You may notice your hostname is something funky. Go ahead and change that. Back at the Properties section in the Sever manager, click on the Computer Name link at the top. &lt;br /&gt;
+8)Notice that there is a section for description and a separate button for changing the name. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.36.20-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;br /&gt;
+9)The Computer Name/Domain Changes window will pop up. Go ahead and change your computer name to something meaningful. For now leave the default workgroup. We will talk about domain stuff later. You’ll have to restart after that.   &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/ServerBasicSetup/2017-10-07-4.36.48-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s all we will do for now.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;installing-server-core&quot;&gt;Installing Server Core&lt;/h2&gt;
+
+&lt;p&gt;It’s important to talk about Server Core because in many cases, you may be thrown into a pre-existing environment and if you’ve never at least experienced Core, it may be overwhelming.&lt;/p&gt;
+
+&lt;p&gt;1)Follow the install steps as you would for Desktop, but pick the Standard without the Desktop Environment. This install should take much less time than the Desktop Version we just did. I set this core server up with 32 GB on the HD and 800 MB for RAM.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/SVRCORE/2017-10-06-6.51.15-PM.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2)Once the install completes, it will prompt you to change the admin password before it starts up. G
+&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-19-04-45.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3)You’re done installing. Simple stuff. Notice that Core is just a CLI, similar to DOS. To see the available commands, you can run help. 
+&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-19-07-12.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4)The next thing you might want to do is to check the system information. To information about your machine like it’s boot device, domain, architecture, NICS, and Hyper-V just run a systeminfo command and give it a moment to get it’s life together.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-10-2017-13-21-10.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5)Now that you’ve poked around. Let’s go ahead and actually configure some things on Core. Much of the configuration for the server itself can be done from a command called sconfig. Go ahead and run that now to see what it looks like. Note: sconfig has to be run using sconfig.cmd. This is because sconfig is a batch file that is designed to be interpreted by the command line.&lt;/p&gt;
+
+&lt;p&gt;6)Once you open it you may notice that sconfig has a simple menu system. You choose options by typing the number in. The options should speak for themselves. Set up the hostname for this machine by picking option 2 and giving it a name. It will restart when you are finished.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-20-27-41.gif&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;6)Like we did with the desktop version, we will need to set this server up with a static IP. Sconfig is where you would do that.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Press 8 to setup Network settings&lt;/li&gt;
+  &lt;li&gt;pick your NIC by it’s respective number&lt;/li&gt;
+  &lt;li&gt;Press 1 to setup the NIC’s address&lt;/li&gt;
+  &lt;li&gt;Press S to setup as a Static IP&lt;/li&gt;
+  &lt;li&gt;Enter the IP&lt;/li&gt;
+  &lt;li&gt;Either type the subnet mask or leave it blank for 255.255.255.0&lt;/li&gt;
+  &lt;li&gt;Enter the Default Gateway.&lt;/li&gt;
+  &lt;li&gt;Press 4 to wrap it up and return to menu.
+&lt;img src=&quot;/assets/img/servergifs/SVRCORE/Oct-06-2017-20-41-59.gif&quot; alt=&quot;png&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That should get you started. Thats installing two different kinds of Windows Servers and setting their IP addresses and their hostnames. Another important server option to install would be Nano, but I plan on dedicating a whole post to Nano by itself.&lt;/p&gt;
+
+&lt;p&gt;Okay done and done. Thanks for reading this far.&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Installing and Setting up Windows Server 2016</summary></entry></feed>
