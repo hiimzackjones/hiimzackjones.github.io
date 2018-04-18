@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-18T16:34:17-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-18T17:43:25-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
 </subtitle><author><name>Zachary Jones</name></author><entry><title type="html">NCL Gym Exploitation PYTHON2</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON2" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
 
 &lt;p&gt;Wut.&lt;/p&gt;
@@ -649,7 +649,7 @@ PXE client then downloads the file via TFTP and then runs file
   &lt;li&gt;Check to make sure your WDS role is on the side bar of Server Manager. If it’s there. You’re good to go!&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/1.png&quot; alt=&quot;Server Manager&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/1.PNG&quot; alt=&quot;Server Manager&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;configuring-wds&quot;&gt;Configuring WDS&lt;/h2&gt;
 
@@ -664,7 +664,7 @@ PXE client then downloads the file via TFTP and then runs file
 &lt;em&gt;You can also find Windows Deployment Services by searching it in the Start menu.&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/2.png&quot; alt=&quot;WDS&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/2.PNG&quot; alt=&quot;WDS&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Find the server you are installing on. It should be in the left side inventory section.&lt;/li&gt;
   &lt;li&gt;If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured.&lt;/li&gt;
@@ -981,17 +981,17 @@ If there are any issues, use the report to help you sovle them before moving for
 
 &lt;h3 id=&quot;hardware-options&quot;&gt;Hardware Options&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervset/1.png&quot; alt=&quot;Hyper V Settings&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;assets/img/servergifs/hypervSet/1.png&quot; alt=&quot;Hyper V Settings&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hyper-V settings feels similar to Device Manager and can be used to:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Set which harddrive VHD to use and adjust VHD settings&lt;/li&gt;
   &lt;li&gt;Set which NICs/ Virtual Switches to use
-&lt;img src=&quot;/assets/img/servergifs/hypervset/4.png&quot; alt=&quot;Network Switches&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/img/servergifs/hypervSet/4.PNG&quot; alt=&quot;Network Switches&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;Adjust available RAM&lt;/li&gt;
   &lt;li&gt;adjust the processor useage allocation&lt;/li&gt;
   &lt;li&gt;‘load’ a disk into the virtual disk drive
-&lt;img src=&quot;/assets/img/servergifs/hypervset/3.png&quot; alt=&quot;hyperv using an iso&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/img/servergifs/hypervSet/3.PNG&quot; alt=&quot;hyperv using an iso&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
@@ -1009,7 +1009,7 @@ If there are any issues, use the report to help you sovle them before moving for
   &lt;li&gt;Automatic start and stop of VM&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervset/2.png&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
 
 &lt;h3 id=&quot;basic-hyper-v-networking&quot;&gt;Basic Hyper-V Networking&lt;/h3&gt;
 

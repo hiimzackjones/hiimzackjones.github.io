@@ -120,15 +120,15 @@ You can create Virtual Disks in three ways:
 ![Creating a New VHD](/assets/img/servergifs/vol/4.png)  
 
 You'll notice that you have a new drive in Disk Management but it's showing up black instead of blue. It will be Not Initialized, Unallocated, and Offline.  
-![New VHD in Disk Managment](/assets/img/servergifs/vol/5.png)   
+![New VHD in Disk Managment](/assets/img/servergifs/vol/5.PNG)   
 
 - Right click in the grey box that has Disk 1 (or whatever number) and Initialize the Disk.   
-![Init New VHD](/assets/img/servergifs/vol/6.png)  
+![Init New VHD](/assets/img/servergifs/vol/6.PNG)  
 - Set the partition style you'd like to use for this disk.   
 - now Right click into the white rectangle space beside that and create a new volume.  
-![New Volume](/assets/img/servergifs/vol/7.png)   
+![New Volume](/assets/img/servergifs/vol/7.PNG)   
 - you will then be prompted to decide the file system type and the name of the volume.   
-![Finishing New Volume Wizard](/assets/img/servergifs/vol/8.png)  
+![Finishing New Volume Wizard](/assets/img/servergifs/vol/8.PNG)  
 - Click finish. 
 
 

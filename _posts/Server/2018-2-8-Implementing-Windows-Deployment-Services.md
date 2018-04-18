@@ -46,7 +46,7 @@ Like any other server role, you have to install it. Just in case you've missed t
 - hit next until you get to the end and allow it to install and restart if needed. 
 - Check to make sure your WDS role is on the side bar of Server Manager. If it's there. You're good to go! 
 
-![Server Manager](/assets/img/servergifs/wds/1.png)
+![Server Manager](/assets/img/servergifs/wds/1.PNG)
 
 
 
@@ -62,7 +62,7 @@ For now we want to make sure this server is configured.
 ![Opening WDS Management Console](/assets/img/servergifs/wds/5.png)  
 *You can also find Windows Deployment Services by searching it in the Start menu.*
 
-![WDS](/assets/img/servergifs/wds/2.png)
+![WDS](/assets/img/servergifs/wds/2.PNG)
 - Find the server you are installing on. It should be in the left side inventory section.
 - If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured. 
 - Right click the server and select configure server. 

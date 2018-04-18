@@ -11,16 +11,16 @@ Hyper-V settings can be adjusted for each VM and will in essence adjust the aspe
 
 ### Hardware Options
 
-![Hyper V Settings](/assets/img/servergifs/hypervset/1.png)
+![Hyper V Settings](assets/img/servergifs/hypervSet/1.png)
 
 Hyper-V settings feels similar to Device Manager and can be used to: 
 - Set which harddrive VHD to use and adjust VHD settings
 - Set which NICs/ Virtual Switches to use
-![Network Switches](/assets/img/servergifs/hypervset/4.png)
+![Network Switches](/assets/img/servergifs/hypervSet/4.PNG)
 - Adjust available RAM
 - adjust the processor useage allocation
 - 'load' a disk into the virtual disk drive
-![hyperv using an iso](/assets/img/servergifs/hypervset/3.png)
+![hyperv using an iso](/assets/img/servergifs/hypervSet/3.PNG)
 
 >These settings sometimes can only be adjusted when the machine is turned off, but for some settings can be adjusted as the machine is running. For example loading a local .iso as a Disk in the virtual Disk drive
 
@@ -33,4 +33,4 @@ You will also notice a section near the bottom of the left hand side that is cal
 - Creating checkpoints and it's file location
 - Automatic start and stop of VM
 
-![Management Options](/assets/img/servergifs/hypervset/2.png)
+![Management Options](/assets/img/servergifs/hypervSet/2.PNG)
