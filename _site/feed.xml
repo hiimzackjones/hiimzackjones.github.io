@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-18T09:29:03-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-18T16:34:17-04:00</updated><id>http://localhost:4000/</id><title type="html">Hi</title><subtitle>#Pewpew 
 </subtitle><author><name>Zachary Jones</name></author><entry><title type="html">NCL Gym Exploitation PYTHON2</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation PYTHON2" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
 
 &lt;p&gt;Wut.&lt;/p&gt;
@@ -745,148 +745,385 @@ PXE client then downloads the file via TFTP and then runs file
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">How it works Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is PXE boot enabled.</summary></entry><entry><title type="html">Implementing Windows Deployment Services</title><link href="http://localhost:4000/2018/02/08/Implementing-Windows-Deployment-Services.html" rel="alternate" type="text/html" title="Implementing Windows Deployment Services" /><published>2018-02-08T00:00:00-05:00</published><updated>2018-02-08T00:00:00-05:00</updated><id>http://localhost:4000/2018/02/08/Implementing-Windows-Deployment-Services</id><content type="html" xml:base="http://localhost:4000/2018/02/08/Implementing-Windows-Deployment-Services.html">&lt;h2 id=&quot;how-it-works&quot;&gt;How it works&lt;/h2&gt;
-&lt;p&gt;Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is &lt;strong&gt;PXE boot&lt;/strong&gt; enabled.&lt;/p&gt;
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">How it works Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is PXE boot enabled.</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h3 id=&quot;software-defined-storage--storage-pools&quot;&gt;Software Defined Storage &amp;amp; Storage Pools&lt;/h3&gt;
+&lt;p&gt;Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.&lt;/p&gt;
 
-&lt;p&gt;Esentially the boot images will be stored on some storage device on the network. The WDS server will respond to the DHCP server when a machine is starting to PXE boot. Letting it know that it’s able to help with an installation over the network. The machine PXE booting will then give the user a list of bootable OSs sitting on the WDS and from there it’s almost identical to a typical installation.&lt;/p&gt;
+&lt;p&gt;Storage pools are a type of software defined storage system that takes multiple physical devices and creates a single Pool resource to create virtual ‘logical’ volumes from. Imagine having 3 harddrives 2 GB a piece. Then you collect their storage capabilities together to then create something like 2 VHDs with 3GB of space each. This is &lt;em&gt;sort of&lt;/em&gt; how Storage Pools work.&lt;/p&gt;
 
-&lt;h4 id=&quot;the-dhcp-handles-the-request&quot;&gt;The DHCP handles the request&lt;/h4&gt;
-&lt;p&gt;The DHCP plays a huge part in making WDS work. Here is how the client requests for the install.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PXE client sents a UDP broadcast for a DHCP DISCOVER on port 67
-DHCP server replies directly with the IP address of the WDS Server on port 68 
-PXE client then reqests the name of the boot file from DHCP
-WDS server sends a DHCP ACK with the boot file name
-PXE client requests for that file
-PXE client then downloads the file via TFTP and then runs file
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+|--------------------------|--------------------------|
+|                          |                          |
+|          3GB             |          3GB             | ----- Logical Volumes
+|                          |                          |
+|--------------------------|--------------------------|
+|-----------------------------------------------------|
+|                                                     |
+|                         6GB                         | ----- Volume Pool
+|                                                     |
+|-----------------------------------------------------|
+|-----------------|-----------------|-----------------|
+|                 |                 |                 |
+|       2GB       |       2GB       |       2GB       | ----- Physical Volumes
+|                 |                 |                 |
+|-----------------|-----------------|-----------------|
+
+
+
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Active directory isn’t completely necessary to make this happen. The server needs to have the role installed and needs to be an admin on some domain. Otherwise any machine should be able to request WDS to help it out. You can set WDS to only talk to machines that have be prestaged, have machines request to be prestaged, or just have any machine chat with the WDS without worrying about it.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Okay let’s get to it. Before we install make sure you have these guys:&lt;/p&gt;
-
-&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;DHCP Server&lt;/strong&gt; (Router or Server)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Active Directory Domain Services&lt;/strong&gt; on a Sever setup as Administrator on that domain.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;DNS server&lt;/strong&gt; to point machines to the server for the PXE boot.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;OS install .iso&lt;/strong&gt; and files&lt;/li&gt;
-  &lt;li&gt;Server has &lt;strong&gt;NTFS system&lt;/strong&gt; to store the bootable images. (in paticular, something other than the HD holding the Server. WDS will slow your server down to a crawl otherwise)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;installing-the-wds-server-role&quot;&gt;Installing the WDS Server Role&lt;/h3&gt;
-&lt;p&gt;Like any other server role, you have to install it. Just in case you’ve missed the other posts on that. Here ya go:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;To install the WDS server role:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;In Server Manager go to the Manage option in the toolbar&lt;/li&gt;
-  &lt;li&gt;Add roles and features&lt;/li&gt;
-  &lt;li&gt;Hit next to pass the first prompt&lt;/li&gt;
-  &lt;li&gt;Select the server you’d like to add the Role&lt;/li&gt;
-  &lt;li&gt;then find the WDS option and check it off.&lt;/li&gt;
-  &lt;li&gt;hit next until you get to the end and allow it to install and restart if needed.&lt;/li&gt;
-  &lt;li&gt;Check to make sure your WDS role is on the side bar of Server Manager. If it’s there. You’re good to go!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/1.png&quot; alt=&quot;Server Manager&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;configuring-wds&quot;&gt;Configuring WDS&lt;/h2&gt;
-
-&lt;p&gt;Alright. Now that you’ve installed the feature. You’re going to have to set some of it up. Remember when I mentioned using a seperate storage device? Or who gets to talk with WDS? This is that part. Here ya go:&lt;/p&gt;
-
-&lt;p&gt;When you open the WDS section, it will show the Servers and the Events for this role. Use this if you have multiple servers handling WDS or you’d like to see how a deployment went.&lt;/p&gt;
-
-&lt;p&gt;For now we want to make sure this server is configured.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Right click the server you’re adding WDS to and in the drop down menu select Windows Deployment Services. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/5.png&quot; alt=&quot;Opening WDS Management Console&quot; /&gt;&lt;br /&gt;
-&lt;em&gt;You can also find Windows Deployment Services by searching it in the Start menu.&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/2.png&quot; alt=&quot;WDS&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Find the server you are installing on. It should be in the left side inventory section.&lt;/li&gt;
-  &lt;li&gt;If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured.&lt;/li&gt;
-  &lt;li&gt;Right click the server and select configure server.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;Set up with these options:&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Integrated with Active Directory
-&lt;img src=&quot;/assets/img/servergifs/wds/8.png&quot; alt=&quot;Configuring WDS Active Directory or Standalone&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;default Installation Folder Location &lt;em&gt;or to your specific needs&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;There are ways to arrange the pool’s resources such that instead of just adding up all the space, you use some of the space as a redudant system to create a failsafe. Pools can allow for a drive to completely fail and the data saved onto that logical volume still be accessible.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note-1: if this server is also the DHCP, the additional options for Proxy DHCP Server will be given as well. Just check both sections off. 
-&lt;img src=&quot;/assets/img/servergifs/wds/6.png&quot; alt=&quot;Configuring WDS DHCP Prompt&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;Note: this look familiar if you’ve used LVM before. Same concepts. It’s all software defined storage.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Note-2: It’s important to know that in a lab envirnoment the locaiton of the install folder doesn’t matter. But almost always, you would want this drive to be somewhere seperate so it doesn’t use up resources on your Server machine&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/9.png&quot; alt=&quot;Selecting Volume for WDS Images Warning&quot; /&gt;&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Set the &lt;strong&gt;PXE Server Initial Settings&lt;/strong&gt; as needed. For the lab, &lt;em&gt;Respond to all client computers&lt;/em&gt; should be fine. This is just setting the parameters for what computers can use this feature to install. 
-&lt;img src=&quot;/assets/img/servergifs/wds/10.png&quot; alt=&quot;PXE Respond to prompt&quot; /&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
+&lt;h3 id=&quot;adding-the-feature&quot;&gt;Adding the Feature&lt;/h3&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Note: You can set it up so that only computer you have prestaged can get installs. This is most likely the more secure option but requires more planning and work as an admin.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;As done before, make sure that the File and Storage Services feature is installed from the Server Manager &amp;gt; Manage &amp;gt; Add Roles and Features.&lt;/p&gt;
 
-&lt;p&gt;It will begin configuring the WDS. You can click finish if you’re done. If you’d like to start adding images to use with WDS, you can check off &lt;em&gt;Add images to the server now&lt;/em&gt;. Otherwise adding images can be found under the server’s drop down in Windows Deployment Services. 
-&lt;img src=&quot;/assets/img/servergifs/wds/3.png&quot; alt=&quot;WDS after config&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;adding-images-to-wds-server&quot;&gt;Adding Images to WDS Server&lt;/h2&gt;
-
-&lt;p&gt;To use WDS with an install, you need to make &lt;strong&gt;both&lt;/strong&gt; a boot image and a install image. This is where your install .iso comes in play. Depending on which Windows or Windows Sever install you’re looking to deploy. Load up the disk or flash drive to the server.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;boot.wim&lt;/em&gt; - found inside the .iso under Sources
-&lt;em&gt;install.wim&lt;/em&gt; - also found inside the .iso under Sources.&lt;/p&gt;
-
-&lt;h4 id=&quot;adding-the-boot-image&quot;&gt;Adding the Boot Image:&lt;/h4&gt;
+&lt;h3 id=&quot;configuring-storage-pools-and-storage-spaces&quot;&gt;Configuring Storage Pools and Storage Spaces&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Go to Server Manager&lt;/li&gt;
-  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
-  &lt;li&gt;Right click Boot Images and click Add Boot Image
-&lt;img src=&quot;/assets/img/servergifs/wds/4.png&quot; alt=&quot;adding image file&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Find the &lt;em&gt;boot.wim&lt;/em&gt; file. Click Open&lt;/li&gt;
-  &lt;li&gt;Next until finished.&lt;br /&gt;
-&lt;strong&gt;Do yourself a favor and name the image something specific to that OS, when PXE lists the options, this Image name is what it will show you&lt;/strong&gt; 
-&lt;img src=&quot;/assets/img/servergifs/wds/7.png&quot; alt=&quot;Naming the imagine file&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;In Server Manager head to File and Storage Services&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/2.png&quot; alt=&quot;Go to file and storage services&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Select the Storage Pools option from the left menu&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/3.png&quot; alt=&quot;Go to Storage pools&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;In the top right corner select TASKS and then New Storage Pool&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/4.png&quot; alt=&quot;go to tasks and new storage pool&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now give this new pool a name and select which group of disks you’d like to use.
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/5.png&quot; alt=&quot;name it&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now you should be able to add the disk you’d like to use in this pool. You have options for allocation for setting up hot swaps if needed. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/6.png&quot; alt=&quot;add physical disks (you need three for RAID5)&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Review the summary and click create&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/7.png&quot; alt=&quot;confirm&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;adding-the-install-image&quot;&gt;Adding the Install Image:&lt;/h4&gt;
+&lt;h3 id=&quot;creating-volumes-in-the-pool&quot;&gt;Creating volumes in the pool&lt;/h3&gt;
+
+&lt;p&gt;Now that your physical drives are being used in a pool, you’ll need to create logical volumes or virtual drives to be able to utilize the storage.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-virtual-disk-in-the-pool&quot;&gt;Creating a Virtual Disk in the Pool&lt;/h3&gt;
+&lt;p&gt;So now you can see that you have a new storage pool but under it there is a section for Virtual Disks, and it’s empty.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Go to server Manager&lt;/li&gt;
-  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
-  &lt;li&gt;Right click Install Images and click Add Install&lt;/li&gt;
-  &lt;li&gt;It will make you create a group image. Name this image something descriptive. example: &lt;em&gt;Windows Server 2016 64 bit&lt;/em&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/11.png&quot; alt=&quot;Images summary&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Find the install.wim file. Click Open&lt;/li&gt;
-  &lt;li&gt;Check off the OS images that you’d like to include if there are more than one.&lt;/li&gt;
-  &lt;li&gt;Next until finished.&lt;/li&gt;
-  &lt;li&gt;wait for the Image Wizard to complete.&lt;/li&gt;
+  &lt;li&gt;Click Tasks and click create new virtual disk. Or you can click the &lt;em&gt;New Virtual Disk Wizard&lt;/em&gt; link within the virtual disk section. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/8.png&quot; alt=&quot;New Virtual Disk Wizard Link&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;It will then ask you to select the pool that you’d like to use. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/10.png&quot; alt=&quot;Selecting a pool&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;This next section is the layout section. Choose between:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Simple - no fail safe, allows for the most space usage
+Mirror - Drive is mirror onto other drives so if a failure happens, it can be found on another drive. *(this comes in a two way or three way flavor. Allowing for two drives to fail)*
+Parity - Works against single drive failures. 
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/11.png&quot; alt=&quot;Selecting Layout&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Select if you’d like to thin provision or a typical fixed provision. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/12.png&quot; alt=&quot;Privisioning Type setup&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;set the drive’s size.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/13.png&quot; alt=&quot;Selecting Size&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Now just review your options before you finish. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/14.png&quot; alt=&quot;Confirm options&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;The Wizard will now create your virtual disk and you should be able to find it in the Server Manager under the File and Storage Manager. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/15.png&quot; alt=&quot;New Virtual Disk in Manager&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;iscsi-storage&quot;&gt;iSCSI Storage&lt;/h2&gt;
+&lt;p&gt;With iSCSI you will have the iSCSI disk, target, and initiator. This can be very confusing at first. Let’s clear that up.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disk&lt;/strong&gt; - The disk does not mean that it’s a physical iSCSI disk. What we are talking about is a VHD that is setup to communication using iSCSI&lt;br /&gt;
+&lt;strong&gt;Target&lt;/strong&gt; - The target is esentailly the iSCSI server. It will be where machines communicate to access the iSCSI resource.&lt;br /&gt;
+&lt;strong&gt;Initiator&lt;/strong&gt; - these are the machines on the network that ‘initiate’ a connection to the &lt;em&gt;Target&lt;/em&gt; to get access to the iSCSI Drive.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-iscsi-virtual-disk&quot;&gt;Creating a iSCSI Virtual Disk&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ll be skipping the iSCSI Role installation. The specific option you will want is the &lt;strong&gt;&lt;em&gt;iSCSI Services&lt;/em&gt;&lt;/strong&gt; with the &lt;strong&gt;&lt;em&gt;iSCSI Target Server&lt;/em&gt;&lt;/strong&gt; selection&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In the iSCSI section of the File and Storage Services Server Manager interface. Click &lt;em&gt;TASKS&lt;/em&gt; and create a new iSCSI Virtual Disk&lt;/li&gt;
+  &lt;li&gt;Select the volume you’d like to use.&lt;/li&gt;
+  &lt;li&gt;Give it a name&lt;/li&gt;
+  &lt;li&gt;Select the size and the space allocation type.&lt;/li&gt;
+  &lt;li&gt;You’ll now start making the Target. Click New iSCSI target&lt;/li&gt;
+  &lt;li&gt;Give it a name. You can use the &lt;em&gt;lon&lt;/em&gt; naming convention to help keep things organized.&lt;/li&gt;
+  &lt;li&gt;You will now add the iniatiator. Remember the initiator is the machine that will access this drive. You can add it by it’s name on the domain or by it’s IP address. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/16.png&quot; alt=&quot;Setting up Initator&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note: you can also create capture images on machines that have been updated, configured, and have paticular programs installed. This is covered in a later post.&lt;/p&gt;
+  &lt;p&gt;Note: The iniatiator will actually have to iniate the connection. This is just setting up who can be iniatiators.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;using-wds-to-install&quot;&gt;Using WDS to install&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;You can setup CHAP to authenticate. This is a good security measure but doesn’t have to be setup for it to work. In the lab, you can skip this.&lt;/li&gt;
+  &lt;li&gt;Review your setup and complete.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Now all you have to do is boot up the machine and make sure the PXE boot is enabled. &lt;strong&gt;It’s important that the machine or VM is set to Legacy booting.&lt;/strong&gt; Make sure the machine is on the network and it should handle the rest. Follow your typical install steps and you’re done and done!&lt;/p&gt;
+&lt;p&gt;You’ll see that the iSCSI section of the File and Storage Services will show that it clears the disk and then shows who is connected to it. For now it shouldn’t be connected to anyone.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/12.png&quot; alt=&quot;Install working fine&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;iscsi-initiator&quot;&gt;iSCSI Initiator&lt;/h3&gt;
+&lt;p&gt;On another machine that you’d like to access the iSCSI drive from. You will use the iSCSI Initiator application to make this connection. You can find this in Tools within the Server Manager or you can search for it in the start bar on other Windows machines.&lt;/p&gt;
 
-&lt;p&gt;There you go.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;For your target, enter in either the host name with the domain, or use it’s IP address to search for that machine under quick connect.&lt;/li&gt;
+  &lt;li&gt;If you setup the Initiator in the previous section. You should see &lt;em&gt;Login Succeeded.&lt;/em&gt; in the Progress Report section.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Cheers,&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Note: before accessing the iSCSI drive, you will have to bring it online in Disk Management. It will not have allocated space and it will not be initialized as a disk. Set up this disk like a typical disk and give it a new volume before you can access it. &lt;em&gt;See my post on volumes to see more on how to do this&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">How it works Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is PXE boot enabled.</summary></entry><entry><title type="html">Cisco Ios Cheatsheet</title><link href="http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet.html" rel="alternate" type="text/html" title="Cisco Ios Cheatsheet" /><published>2017-11-28T05:32:00-05:00</published><updated>2017-11-28T05:32:00-05:00</updated><id>http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet</id><content type="html" xml:base="http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet.html">&lt;h2 id=&quot;cisco-ios-cheatsheet&quot;&gt;Cisco IOS Cheatsheet&lt;/h2&gt;
+&lt;p&gt;You’re done!&lt;/p&gt;
+
+&lt;h3 id=&quot;giving-your-iscsi-isns-domain-set-and-zone&quot;&gt;Giving your iSCSI iSNS Domain set and zone.&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can setup an iSNS server to give your iSCSI targets a domain name on your network. iSNS creates nodes with targets, disks, and initiators. You can give them zones and sets within the Domain called Discovery Domains. I won’t cover this now but it can be pretty useful.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;storage-replica&quot;&gt;Storage Replica&lt;/h2&gt;
+&lt;p&gt;Storage Replica is a feature that allows two servers create a complete block level copy over SMB between two drives. AKA a image quality copy over the network. It doesn’t use a snapshot type technology, but constantly sends data over. This is good for disastery recovery and for log backups, databases, etc.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is not drive sharing. This is creating a copy of a drive from one drive to another.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;add-the-feature-first&quot;&gt;Add the feature first&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Add Roles and Features. Find and add Storage Relica.&lt;/li&gt;
+  &lt;li&gt;On the server you are creating a replica with. Do the same process.&lt;/li&gt;
+  &lt;li&gt;reboot both machines.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;configuring-in-powershell&quot;&gt;Configuring in Powershell&lt;/h3&gt;
+&lt;p&gt;There aren’t any GUI options for Storage Replica. You’ll have to do this in powershell.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-SRPartnership -SourceComputerName &amp;lt;Name&amp;gt; -SourceRGNName &amp;lt;Name&amp;gt; Source RG -sourceVolumeName &amp;lt;Drive Letter&amp;gt; -SourceLogVolumeName &amp;lt;Letter for replica&amp;gt; DestinationRG -DestinationVolume &amp;lt;Drive Letter&amp;gt; DestinationLogVolume &amp;lt;Drive Letter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;SRPartnership is the relationship between two machines with Storage Replica running. This command creates that relationship.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: if you use computer names in this, you will need to make sure your DNS is working. Otherwise you can use IP addresses&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Run the commanlet and wait for it to complete with an output of the summary.&lt;/p&gt;
+
+&lt;p&gt;To check to see if your Storage Replica is working you can run this Powershell command:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(Get-SRGroup).Replicas | Select-Object Numofbyesremaining
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;It will show how many bytes are left as it copies itself over.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Storage Replicas are great in combination with Failover to allow for a strong redudant system.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Software Defined Storage &amp;amp; Storage Pools Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;p&gt;Before you can Implement Network Load Balancing, here are some prerequisites:&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;All hosts in the cluster must be on the same subnet&lt;/li&gt;
+  &lt;li&gt;All adapters in cluster must be setup as either &lt;em&gt;multicast&lt;/em&gt; or &lt;em&gt;unicast&lt;/em&gt; but not a mixture of both&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;if unicast&lt;/em&gt; the NIC used to handle client-to-cluster traffic must support changing its MAC address&lt;/li&gt;
+  &lt;li&gt;IPs must be static on the nodes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;installing-nlb-nodes&quot;&gt;Installing NLB Nodes&lt;/h3&gt;
+&lt;p&gt;Like most other features. You must install this from Server Manager, add roles and features.&lt;/p&gt;
+
+&lt;p&gt;Select &lt;em&gt;Network Load Balancing&lt;/em&gt; from the features section.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-nlb-cluster&quot;&gt;Creating a NLB Cluster&lt;/h3&gt;
+
+&lt;p&gt;Under the Netowkr Load Blancing Manger&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Right click the cluster and click New Cluster&lt;/li&gt;
+  &lt;li&gt;Set the host as your current server&lt;/li&gt;
+  &lt;li&gt;Select the interface for this specific cluster&lt;/li&gt;
+  &lt;li&gt;find the IP address in the Dedicated IP address section and hit next&lt;/li&gt;
+  &lt;li&gt;Add an IP address that is shared by all clusters and it will add the IP to the adapters&lt;/li&gt;
+  &lt;li&gt;add the IP address for the NLB Cluster&lt;/li&gt;
+  &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
+  &lt;li&gt;Set any applicable port rules&lt;/li&gt;
+  &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
+&lt;p&gt;To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select &lt;em&gt;Failover Clustering&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;validate-cluster-configuration&quot;&gt;Validate Cluster Configuration&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to Failover Clustering in the tools of Server Manager,&lt;/li&gt;
+  &lt;li&gt;on the right side there will be a Actions panel where you can select &lt;em&gt;Validate Configuration&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Add the names of the servers in the text boxes and continue&lt;/li&gt;
+  &lt;li&gt;then &lt;strong&gt;Run all Tests&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This will check to make sure the inventory, the stroage, the system configs, and Hyper-V is setup and ready for Clustering. Errors will show up in the &lt;strong&gt;Failover Cluster Report&lt;/strong&gt;&lt;br /&gt;
+If there are any issues, use the report to help you sovle them before moving forward.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-cluster&quot;&gt;Creating a Cluster&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In the same actions pane, click create new cluster&lt;/li&gt;
+  &lt;li&gt;select the first server and cluster and add&lt;/li&gt;
+  &lt;li&gt;Name the cluster and type the IP address of the Cluster that we set up previously.&lt;/li&gt;
+  &lt;li&gt;Finish&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Your cluster should show up in the Cluster’s tool section of the Server Manager.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
+
+&lt;p&gt;Hyper-V settings can be adjusted for each VM and will in essence adjust the aspects of the VM that would usually be physical components.&lt;/p&gt;
+
+&lt;h3 id=&quot;hardware-options&quot;&gt;Hardware Options&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervset/1.png&quot; alt=&quot;Hyper V Settings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hyper-V settings feels similar to Device Manager and can be used to:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Set which harddrive VHD to use and adjust VHD settings&lt;/li&gt;
+  &lt;li&gt;Set which NICs/ Virtual Switches to use
+&lt;img src=&quot;/assets/img/servergifs/hypervset/4.png&quot; alt=&quot;Network Switches&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Adjust available RAM&lt;/li&gt;
+  &lt;li&gt;adjust the processor useage allocation&lt;/li&gt;
+  &lt;li&gt;‘load’ a disk into the virtual disk drive
+&lt;img src=&quot;/assets/img/servergifs/hypervset/3.png&quot; alt=&quot;hyperv using an iso&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;These settings sometimes can only be adjusted when the machine is turned off, but for some settings can be adjusted as the machine is running. For example loading a local .iso as a Disk in the virtual Disk drive&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;management-options&quot;&gt;Management Options&lt;/h3&gt;
+
+&lt;p&gt;You will also notice a section near the bottom of the left hand side that is called Managment. Here is a Hyper-V specific set of options for managing Hyper-V such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;using a VM Heartbeat&lt;/li&gt;
+  &lt;li&gt;Renaming the VM&lt;/li&gt;
+  &lt;li&gt;Creating checkpoints and it’s file location&lt;/li&gt;
+  &lt;li&gt;Automatic start and stop of VM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervset/2.png&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
+
+&lt;h3 id=&quot;basic-hyper-v-networking&quot;&gt;Basic Hyper-V Networking&lt;/h3&gt;
+
+&lt;p&gt;There are a couple of places you can Management parts of the virtual network. First, you will want to go to the Virtual Switch Settings in Hyper-V to be able to do basic switch configuration.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In Hyper-V Manager, go to the actions bar and select the Hyper-V Switch Manager&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hypervn/1.png&quot; alt=&quot;HyperV Actions&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;In the switch manager, you should see any switches you’ve created, as well as the default switch. 
+&lt;img src=&quot;/assets/img/servergifs/hypervn/2.png&quot; alt=&quot;HyperV&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;here you can configure your switch to be external, internal, or private. As explained in another post…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Private&lt;/em&gt; - isolation from the rest of the network, VMs on the same host can connect together with this setting. 
+&lt;em&gt;Internal&lt;/em&gt; - Same as Private but can also communicate with the host as well.
+&lt;em&gt;External&lt;/em&gt; - Faces the network like a physical machine.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Machines that are on Private or Internal networks will usually have to have their IP addresses set unless there is a DHCP server on a VM or on the host machine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you’ve set up the switch as external, you will need to link it to an external switch if you’d like to allow it to get to the outside network or internet.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Once you’ve setup the switches, you should be able to access them to change their IP addresses and adjust some of their settings in your local machines network adapter list.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hypervn/3.png&quot; alt=&quot;Network Adapters&quot; /&gt;&lt;br /&gt;
+As you can see, there is a default switch, A switch with a custom name. And then individual switches most likely used as external switches for single VMs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;changing-a-vms-switch&quot;&gt;Changing a VMs Switch&lt;/h3&gt;
+
+&lt;p&gt;Changing the Virtual Switch you use can be handled in the VMs settings.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Head to the vm settings for the specific VM you’re working on within Hyper-V Manager&lt;/li&gt;
+  &lt;li&gt;Under hardware there will be a Legacy Network Adapter section. Go there.&lt;/li&gt;
+  &lt;li&gt;There you will see a drop down for the Vritual Switch you’d like to use. 
+&lt;img src=&quot;/assets/img/servergifs/hypervset/4.png&quot; alt=&quot;Selecting switch&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Once you’ve changed the settings you can apply the settings and quit out.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;nic-teaming&quot;&gt;NIC Teaming&lt;/h3&gt;
+&lt;p&gt;Under the Legacy Network Adapter option in the Hyper-V Settings, you will see the dropdown for Advanced Features. Here you can add a handful of advanced features, one including NIC teaming. Select this if you want a NIC to be allow to be part of NIC teaming.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervn/4.png&quot; alt=&quot;Nic Teaming&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Setting Up Hyper-V and First VM</title><link href="http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V.html" rel="alternate" type="text/html" title="Setting Up Hyper-V and First VM" /><published>2017-11-29T09:36:00-05:00</published><updated>2017-11-29T09:36:00-05:00</updated><id>http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V</id><content type="html" xml:base="http://localhost:4000/server/2017/11/29/The-Almighty-Hyper-V.html">&lt;h3 id=&quot;install-the-hyper-v-role&quot;&gt;Install the Hyper-V Role&lt;/h3&gt;
+&lt;p&gt;As done before, let’s really quickly add this role and feature.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Server Manager, add roles and features. Select the Correct Server, and add any features needed to run Hyper-V.&lt;/li&gt;
+  &lt;li&gt;You can setup the NIC for the Hyper-V machines here or later in Hyper-V Manager.&lt;/li&gt;
+  &lt;li&gt;You can also setup migration if needed. You can skip it for now.&lt;/li&gt;
+  &lt;li&gt;Set location of the virtual harddrive and the Machine config files.&lt;/li&gt;
+  &lt;li&gt;Restart server when finished.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;hyper-v-manager&quot;&gt;Hyper-V Manager.&lt;/h3&gt;
+
+&lt;p&gt;Now you will need to setup Hyper-V manager. Head to tools and open Hyper-V Manager.&lt;/p&gt;
+
+&lt;p&gt;In Hyper-V manager you will see Hyper-V Servers on the left drop down. Click the Server you are working on and you will see actions on the Right panel. This is where much of the managment will happen. 
+&lt;img src=&quot;/assets/img/servergifs/hyperv/1.png&quot; alt=&quot;Hyper-V Manager&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;setting-up-a-virtual-switch&quot;&gt;Setting up a Virtual Switch&lt;/h4&gt;
+
+&lt;p&gt;These machines are virtual and need a similar virtual switch to allow it to connect to each other, to the host machine, or out to the network. Depending on how you setup your virtual switch, you can isolate your VM envirnoment or have the face the internet like a typical machine.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Virtual Switch Manager&lt;/li&gt;
+  &lt;li&gt;Choose between external, internal, or Private. Again these are the settings for how this switch will interact with the rest of the network.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Private&lt;/strong&gt; - isolation from the rest of the network, VMs on the same host can connect together with this setting. &lt;br /&gt;
+&lt;strong&gt;Internal&lt;/strong&gt; - Same as Private but can also communicate with the host as well.&lt;br /&gt;
+&lt;strong&gt;External&lt;/strong&gt; - Faces the network like a physical machine.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Machines that are on Private or Internal networks will usually have to have their IP addresses set unless there is a DHCP server on a VM or on the host machine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If you’ve set up the switch as external, you will need to link it to an external switch if you’d like to allow it to get to the outside network or internet.  &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hyperv/2.png&quot; alt=&quot;External Switch NIC&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In your networking Connections you should see your new interface.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-virtual-machine&quot;&gt;New Virtual Machine&lt;/h3&gt;
+
+&lt;p&gt;To setup a new virtual machine:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;click new virtual machine in action&lt;/li&gt;
+  &lt;li&gt;Name it&lt;/li&gt;
+  &lt;li&gt;Pick Generation 1 or 2.&lt;/li&gt;
+  &lt;li&gt;Set the amount of Ram and if you want to use Dynamic memory&lt;/li&gt;
+  &lt;li&gt;Set connection to the virtual switch we jsut made.&lt;/li&gt;
+  &lt;li&gt;Create a new Virtual Hard Drive if you haven’t already. Give it a name, location, and size. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hyperv/3.png&quot; alt=&quot;HyperV Hard Drive&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;This next section allows you to attach an .iso to the machine for it’s first boot so you can install an operating system on this VM. You can attach it as a disk, or iso or some other options if you’d like. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hyperv/4.png&quot; alt=&quot;Attaching an ISO&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;finish the prompt.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You should now see a new VM in the Virtual Machine list for your server.&lt;/p&gt;
+
+&lt;h3 id=&quot;vm-first-boot-and-os-install&quot;&gt;VM first boot and OS install&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Double click the VM to connect to it.&lt;/li&gt;
+  &lt;li&gt;A window will appear running the VM. 
+&lt;img src=&quot;/assets/img/servergifs/hyperv/5.png&quot; alt=&quot;First boot&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;If the machine is setup to external, it should pull from the DHCP to get an IP. Otherwise set up a static IP.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That’s it.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Install the Hyper-V Role As done before, let’s really quickly add this role and feature. In Server Manager, add roles and features. Select the Correct Server, and add any features needed to run Hyper-V. You can setup the NIC for the Hyper-V machines here or later in Hyper-V Manager. You can also setup migration if needed. You can skip it for now. Set location of the virtual harddrive and the Machine config files. Restart server when finished.</summary></entry><entry><title type="html">Cisco Ios Cheatsheet</title><link href="http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet.html" rel="alternate" type="text/html" title="Cisco Ios Cheatsheet" /><published>2017-11-28T05:32:00-05:00</published><updated>2017-11-28T05:32:00-05:00</updated><id>http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet</id><content type="html" xml:base="http://localhost:4000/cisco/2017/11/28/Cisco-IOS-Cheatsheet.html">&lt;h2 id=&quot;cisco-ios-cheatsheet&quot;&gt;Cisco IOS Cheatsheet&lt;/h2&gt;
 
 &lt;p&gt;I’ll expand on this as class goes on. Use this as needed.&lt;/p&gt;
 
@@ -998,600 +1235,4 @@ PXE client then downloads the file via TFTP and then runs file
 |         (config)#   | enable secret &amp;lt;passwordOnNextLine&amp;gt;        |
 |---------------------|-------------------------------------------|
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Cisco IOS Cheatsheet</summary></entry><entry><title type="html">Disks And Volumes</title><link href="http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html" rel="alternate" type="text/html" title="Disks And Volumes" /><published>2017-11-20T09:36:00-05:00</published><updated>2017-11-20T09:36:00-05:00</updated><id>http://localhost:4000/server/2017/11/20/Disks-And-Volumes</id><content type="html" xml:base="http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html">&lt;h3 id=&quot;interface-types&quot;&gt;Interface Types&lt;/h3&gt;
-
-&lt;h4 id=&quot;scsi&quot;&gt;SCSI&lt;/h4&gt;
-&lt;p&gt;This storage type is actually more of a protocol and a set of standards than it is a type of physical Device. It’s usually used in server envirnoments with Harddrives chained together. &lt;strong&gt;SCSI drives are useful for their speed and volume.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;sata&quot;&gt;SATA&lt;/h4&gt;
-&lt;p&gt;The S is SATA stands for serial and can transfer fairly quickly. SATA includes the physical SATA interface and has replaced IDE Drives for the post part. This is the standard in most consumer machines.&lt;/p&gt;
-
-&lt;h4 id=&quot;usb&quot;&gt;USB&lt;/h4&gt;
-&lt;p&gt;USB refers to drives that connect via the USB port on a computer. USB comes in 2.0 and 3.0. The 3.0 type is a faster type but both 3.0 devices and ports work fine with the respective 2.0 counterparts.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;volumes-partitions-and-partition-styles&quot;&gt;Volumes, Partitions, and Partition Styles.&lt;/h3&gt;
-
-&lt;p&gt;Volumes and Partitions often get confused. It’s important to note that a disk needs at least one partition and that partitions can be empty non-initialized sections. You can give these partitions structure, and these structures fall into different categories as well. More on that later. Volumes are partitions that have a file structure setup, often it’s an operating system or a simple storage device.&lt;/p&gt;
-
-&lt;p&gt;Here is a visual to give you a better idea. 
-&lt;img src=&quot;/assets/img/servergifs/vol/1.png&quot; alt=&quot;Disk Management&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice that Disk 0 has multiple partitions all set up in unique ways. Then there is a &lt;strong&gt;NTFS&lt;/strong&gt; file system setup as the bootable disk.&lt;/p&gt;
-
-&lt;p&gt;The organizational system and style of the partition can come in different flavors as well. Two major flavors are&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;GPT&lt;/strong&gt; GUID partition table&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;MBR&lt;/strong&gt; Master Boot Record&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;why-gpt-over-mbr&quot;&gt;Why GPT over MBR?&lt;/h4&gt;
-&lt;p&gt;What you need to know is that &lt;strong&gt;MBR&lt;/strong&gt; is a much older system and the way that the partitions and tables are setup may be less efficient. MBR also has a limit of 2 TB of space that it can recognize per each of it’s max 4 partitions. The bootloader in the MBR isn’t smart enough to handle much more than a classic BIOS system. So use with EFI isn’t possible. Also, without getting into too much detail. The usused space between the partition table + bootloader and the 1st partition is much smaller. Due to the way it’s organizes within it’s sectors, there is no need to leave gaps between the elements.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;disk-maintenance&quot;&gt;Disk Maintenance&lt;/h3&gt;
-
-&lt;h4 id=&quot;disk-management&quot;&gt;Disk Management&lt;/h4&gt;
-&lt;p&gt;Working with storage devices to create partitions and volumes can be done with various tools. On Server 2016, the native application is &lt;strong&gt;Disk Management&lt;/strong&gt; as pictured above.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;To get to Disk Management, you have a few options&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Search for it in the start menu&lt;/li&gt;
-  &lt;li&gt;Find it in Administrative tools&lt;/li&gt;
-  &lt;li&gt;run &lt;code&gt;diskmgmt.mcs&lt;/code&gt; in the run window or command line&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;using-powershell&quot;&gt;Using Powershell.&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/vol/3.png&quot; alt=&quot;PowerShell Example&quot; /&gt;&lt;br /&gt;
-You can also use some commands in powershell to handle your Disks, partitions, and volumes. Here are some basic starting points. These commandlets have their own set of possible options and arugments that make them useful. Use &lt;code&gt;man CommandName &lt;/code&gt; or &lt;code&gt; help CommandName &lt;/code&gt; to learn more.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-Disk
-Initialize-Disk
-Get-Partition
-Get-Volume
-Format-Volume
-Set-StorageSetting
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;trusty-diskpart&quot;&gt;Trusty DiskPart&lt;/h4&gt;
-
-&lt;p&gt;For many years, the goto for disk maintenance is DiskPart. Similar to using powershell, DiskPart is a command like tool for handling storage. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/2.png&quot; alt=&quot;DiskPart Example&quot; /&gt;&lt;br /&gt;
-Here are some commands. Use &lt;code&gt;Diskpart /? &lt;/code&gt; to get a better idea of how to use DiskPart.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Diskpart list disk
-select disk &amp;lt;number&amp;gt;
-clean
-create partition primary
-select partition &amp;lt;number&amp;gt;
-active
-assign letter=&amp;lt;letter&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;file-systems&quot;&gt;File Systems&lt;/h3&gt;
-
-&lt;p&gt;The file system handles how the data is organized without a volume. It’s role is to isolate particular parts of data so that it understand where one thing starts and another begins. It’s what gives storage devices the ability to name files and have directories. Each system is very unique and has it’s own benefits.&lt;/p&gt;
-
-&lt;p&gt;Here is a list of types:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;FAT&lt;/li&gt;
-  &lt;li&gt;exFAT&lt;/li&gt;
-  &lt;li&gt;NTFS&lt;/li&gt;
-  &lt;li&gt;ISO&lt;/li&gt;
-  &lt;li&gt;HFS&lt;/li&gt;
-  &lt;li&gt;ext&lt;/li&gt;
-  &lt;li&gt;VMFS&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Some of these types include the ability to journal or to record the intentions of changes before the changes occur. Such that if the actual changes fail, the journal still exists and can often be quicker at bringing back to a working state. Also, some systems alow for versioning of files or allowing for copies of a file at different stages of it’s existance. This works by keeping up with the ‘deltas’ of a file as it changes such that files can easily be reverted back in case of failure or emergency.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;creating-vhds&quot;&gt;Creating VHDs&lt;/h3&gt;
-
-&lt;p&gt;Aside from formating physical disks, adding partitions to flash drives, and naming your drives cool names, you can use a system like Disk Manager to create Virtual Disks for the use in Virtual Machines or for containing and isolating files.&lt;/p&gt;
-
-&lt;h4 id=&quot;virtual-disks-vhds-and-vhdx&quot;&gt;Virtual Disks VHDs and VHDX&lt;/h4&gt;
-&lt;p&gt;We can easily simulate a physical harddrive in the virtual space within a harddrive. In other words, you can make harddrives that sit on your harddrive and can be moved and copied in the same way you would copy a text file. These harddrives are called VHDs or VHDXs.&lt;/p&gt;
-
-&lt;p&gt;You can create Virtual Disks in three ways:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Disk Management&lt;/li&gt;
-  &lt;li&gt;Using Hyper-V Manager&lt;/li&gt;
-  &lt;li&gt;Powershell command line.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;making-a-vhd-using-disk-management&quot;&gt;Making a VHD using Disk Management&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Open Disk Management by searching for it in the start menu&lt;/li&gt;
-  &lt;li&gt;In the top menu choose &lt;em&gt;Action&lt;/em&gt; and then &lt;em&gt;Create New Virtual Disk&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;Set the disk’s name, size, and location. You can choose between a traditional VHD or a VHDX. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/4.png&quot; alt=&quot;Creating a New VHD&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You’ll notice that you have a new drive in Disk Management but it’s showing up black instead of blue. It will be Not Initialized, Unallocated, and Offline.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/5.png&quot; alt=&quot;New VHD in Disk Managment&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Right click in the grey box that has Disk 1 (or whatever number) and Initialize the Disk. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/6.png&quot; alt=&quot;Init New VHD&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Set the partition style you’d like to use for this disk.&lt;/li&gt;
-  &lt;li&gt;now Right click into the white rectangle space beside that and create a new volume.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/7.png&quot; alt=&quot;New Volume&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;you will then be prompted to decide the file system type and the name of the volume. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/8.png&quot; alt=&quot;Finishing New Volume Wizard&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Click finish.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Interface Types</summary></entry><entry><title type="html">Disks And Volumes</title><link href="http://localhost:4000/2017/11/20/Disks-And-Volumes.html" rel="alternate" type="text/html" title="Disks And Volumes" /><published>2017-11-20T00:00:00-05:00</published><updated>2017-11-20T00:00:00-05:00</updated><id>http://localhost:4000/2017/11/20/Disks-And-Volumes</id><content type="html" xml:base="http://localhost:4000/2017/11/20/Disks-And-Volumes.html">&lt;h3 id=&quot;interface-types&quot;&gt;Interface Types&lt;/h3&gt;
-
-&lt;h4 id=&quot;scsi&quot;&gt;SCSI&lt;/h4&gt;
-&lt;p&gt;This storage type is actually more of a protocol and a set of standards than it is a type of physical Device. It’s usually used in server envirnoments with Harddrives chained together. &lt;strong&gt;SCSI drives are useful for their speed and volume.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;sata&quot;&gt;SATA&lt;/h4&gt;
-&lt;p&gt;The S is SATA stands for serial and can transfer fairly quickly. SATA includes the physical SATA interface and has replaced IDE Drives for the post part. This is the standard in most consumer machines.&lt;/p&gt;
-
-&lt;h4 id=&quot;usb&quot;&gt;USB&lt;/h4&gt;
-&lt;p&gt;USB refers to drives that connect via the USB port on a computer. USB comes in 2.0 and 3.0. The 3.0 type is a faster type but both 3.0 devices and ports work fine with the respective 2.0 counterparts.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;volumes-partitions-and-partition-styles&quot;&gt;Volumes, Partitions, and Partition Styles.&lt;/h3&gt;
-
-&lt;p&gt;Volumes and Partitions often get confused. It’s important to note that a disk needs at least one partition and that partitions can be empty non-initialized sections. You can give these partitions structure, and these structures fall into different categories as well. More on that later. Volumes are partitions that have a file structure setup, often it’s an operating system or a simple storage device.&lt;/p&gt;
-
-&lt;p&gt;Here is a visual to give you a better idea. 
-&lt;img src=&quot;/assets/img/servergifs/vol/1.png&quot; alt=&quot;Disk Management&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice that Disk 0 has multiple partitions all set up in unique ways. Then there is a &lt;strong&gt;NTFS&lt;/strong&gt; file system setup as the bootable disk.&lt;/p&gt;
-
-&lt;p&gt;The organizational system and style of the partition can come in different flavors as well. Two major flavors are&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;GPT&lt;/strong&gt; GUID partition table&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;MBR&lt;/strong&gt; Master Boot Record&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;why-gpt-over-mbr&quot;&gt;Why GPT over MBR?&lt;/h4&gt;
-&lt;p&gt;What you need to know is that &lt;strong&gt;MBR&lt;/strong&gt; is a much older system and the way that the partitions and tables are setup may be less efficient. MBR also has a limit of 2 TB of space that it can recognize per each of it’s max 4 partitions. The bootloader in the MBR isn’t smart enough to handle much more than a classic BIOS system. So use with EFI isn’t possible. Also, without getting into too much detail. The usused space between the partition table + bootloader and the 1st partition is much smaller. Due to the way it’s organizes within it’s sectors, there is no need to leave gaps between the elements.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;disk-maintenance&quot;&gt;Disk Maintenance&lt;/h3&gt;
-
-&lt;h4 id=&quot;disk-management&quot;&gt;Disk Management&lt;/h4&gt;
-&lt;p&gt;Working with storage devices to create partitions and volumes can be done with various tools. On Server 2016, the native application is &lt;strong&gt;Disk Management&lt;/strong&gt; as pictured above.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;To get to Disk Management, you have a few options&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Search for it in the start menu&lt;/li&gt;
-  &lt;li&gt;Find it in Administrative tools&lt;/li&gt;
-  &lt;li&gt;run &lt;code&gt;diskmgmt.mcs&lt;/code&gt; in the run window or command line&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;using-powershell&quot;&gt;Using Powershell.&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/vol/3.png&quot; alt=&quot;PowerShell Example&quot; /&gt;
-You can also use some commands in powershell to handle your Disks, partitions, and volumes. Here are some basic starting points. These commandlets have their own set of possible options and arugments that make them useful. Use &lt;code&gt;man CommandName &lt;/code&gt; or &lt;code&gt; help CommandName &lt;/code&gt; to learn more.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-Disk
-Initialize-Disk
-Get-Partition
-Get-Volume
-Format-Volume
-Set-StorageSetting
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;trusty-diskpart&quot;&gt;Trusty DiskPart&lt;/h4&gt;
-
-&lt;p&gt;For many years, the goto for disk maintenance is DiskPart. Similar to using powershell, DiskPart is a command like tool for handling storage. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/vol/2.png&quot; alt=&quot;DiskPart Example&quot; /&gt;&lt;br /&gt;
-Here are some commands. Use &lt;code&gt;Diskpart /? &lt;/code&gt; to get a better idea of how to use DiskPart.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Diskpart list disk
-select disk &amp;lt;number&amp;gt;
-clean
-create partition primary
-select partition &amp;lt;number&amp;gt;
-active
-assign letter=&amp;lt;letter&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;file-systems&quot;&gt;File Systems&lt;/h3&gt;
-
-&lt;p&gt;The file system handles how the data is organized without a volume. It’s role is to isolate particular parts of data so that it understand where one thing starts and another begins. It’s what gives storage devices the ability to name files and have directories. Each system is very unique and has it’s own benefits.&lt;/p&gt;
-
-&lt;p&gt;Here is a list of types:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;FAT&lt;/li&gt;
-  &lt;li&gt;exFAT&lt;/li&gt;
-  &lt;li&gt;NTFS&lt;/li&gt;
-  &lt;li&gt;ISO&lt;/li&gt;
-  &lt;li&gt;HFS&lt;/li&gt;
-  &lt;li&gt;ext&lt;/li&gt;
-  &lt;li&gt;VMFS&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Some of these types include the ability to journal or to record the intentions of changes before the changes occur. Such that if the actual changes fail, the journal still exists and can often be quicker at bringing back to a working state. Also, some systems alow for versioning of files or allowing for copies of a file at different stages of it’s existance. This works by keeping up with the ‘deltas’ of a file as it changes such that files can easily be reverted back in case of failure or emergency.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;creating-vhds&quot;&gt;Creating VHDs&lt;/h3&gt;
-
-&lt;p&gt;Aside from formating physical disks, adding partitions to flash drives, and naming your drives cool names, you can use a system like Disk Manager to create Virtual Disks for the use in Virtual Machines or for containing and isolating files.&lt;/p&gt;
-
-&lt;h4 id=&quot;virtual-disks-vhds-and-vhdx&quot;&gt;Virtual Disks VHDs and VHDX&lt;/h4&gt;
-&lt;p&gt;We can easily simulate a physical harddrive in the virtual space within a harddrive. In other words, you can make harddrives that sit on your harddrive and can be moved and copied in the same way you would copy a text file. These harddrives are called VHDs or VHDXs.&lt;/p&gt;
-
-&lt;p&gt;You can create Virtual Disks in three ways:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Disk Management&lt;/li&gt;
-  &lt;li&gt;Using Hyper-V Manager&lt;/li&gt;
-  &lt;li&gt;Powershell command line.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;making-a-vhd-using-disk-management&quot;&gt;Making a VHD using Disk Management&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Open Disk Management by searching for it in the start menu&lt;/li&gt;
-  &lt;li&gt;In the top menu choose &lt;em&gt;Action&lt;/em&gt; and then &lt;em&gt;Create New Virtual Disk&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;Set the disk’s name, size, and location. You can choose between a traditional VHD or a VHDX. 
-&lt;img src=&quot;/assets/img/servergifs/vol/4.png&quot; alt=&quot;Creating a New VHD&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You’ll notice that you have a new drive in Disk Management but it’s showing up black instead of blue. It will be Not Initialized, Unallocated, and Offline.
-&lt;img src=&quot;/assets/img/servergifs/vol/5.png&quot; alt=&quot;New VHD in Disk Managment&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Right click in the grey box that has Disk 1 (or whatever number) and Initialize the Disk. 
-&lt;img src=&quot;/assets/img/servergifs/vol/6.png&quot; alt=&quot;Init New VHD&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Set the partition style you’d like to use for this disk.&lt;/li&gt;
-  &lt;li&gt;now Right click into the white rectangle space beside that and create a new volume.
-&lt;img src=&quot;/assets/img/servergifs/vol/7.png&quot; alt=&quot;New Volume&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;you will then be prompted to decide the file system type and the name of the volume. 
-&lt;img src=&quot;/assets/img/servergifs/vol/8.png&quot; alt=&quot;Finishing New Volume Wizard&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Click finish.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Interface Types</summary></entry><entry><title type="html">Nano Server Overview And Install</title><link href="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html" rel="alternate" type="text/html" title="Nano Server Overview And Install" /><published>2017-11-03T10:36:00-04:00</published><updated>2017-11-03T10:36:00-04:00</updated><id>http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install</id><content type="html" xml:base="http://localhost:4000/server/2017/11/03/Nano-Server-Overview-and-Install.html">&lt;p&gt;&lt;em&gt;You can find more information about Windows Server 2016 and Server Core in a previous post&lt;/em&gt; 
-&lt;a href=&quot;https://hiimzackjones.github.io/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;amp;-Server-Core.html&quot;&gt;… This previous post to be exact.&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;overview-of-nano-server&quot;&gt;Overview of Nano Server&lt;/h2&gt;
-
-&lt;p&gt;Nano Server is a unique way to install a server machine with a lightweight footprint that allows for remote management similar to Core, but is even more lightweight than Core. Nano Server works well with cloud based development and running “born-in-the-cloud” containers or applications. It’s a headless install, meaning it’s a server without a monitor and keyboard and peripherals. It’s specifically meant to be logged into to manage.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-benefits-of-lightweight&quot;&gt;The Benefits of Lightweight&lt;/h2&gt;
-&lt;p&gt;The purpose of Nano is to be light weight and it’s base footprint is a remarkable 460 megabytes. The small footprint allows for better security, quick install times, fast restarting, less resource use, etc. Windows Server 2016 is typically much heavier than it needs to be for running things like micro-services, ‘cloud-native’ applications, containers, etc. Nano is sufficient for services like DNS, small web server (IIS), and being a storage host for a Scale-Out File Server.&lt;/p&gt;
-
-&lt;h2 id=&quot;nano-server-for-developers&quot;&gt;Nano Server for Developers&lt;/h2&gt;
-
-&lt;p&gt;Nano comes Cloud-ready as an application and development platform.&lt;/p&gt;
-
-&lt;p&gt;Developing on Nano allows you to have a single ‘machine’ for that particular app, minimizing any dependencies or libraries on that particular box. When using something like a Windows desktop machine, often a developer will be working on multiple projects, all with a multitude of frameworks dependencies, and APIs as well as all of the extra clutter the machine naturally has. Packaging on Nano is simple and clean using Nano’s Windows Server App installer (WSA) and it’s built in package management system similar to apt-get or npm. Using Nano Server for development allows you to configure the machine with specific intentions - be it deployment, development, testing, or production. In theory, multiple Nano Servers can be setup, one for each particular stage in your development process or workflow. Additionally, security can be a major concern for developers, and as mentioned above, Nano is inherently secure due to it’s minimal footprint. Additionally, frameworks like Node.js can also be easily installed and ran on top of Nano.&lt;/p&gt;
-
-&lt;h2 id=&quot;ways-nano-server-can-be-ran&quot;&gt;Ways Nano Server Can Be Ran.&lt;/h2&gt;
-&lt;p&gt;Nano Server is headless, but can be ran as OS in multiple ways inlcuding through a VM, Hyper-V containers, or on physical hardware as Host OS. It can also be accessed remotely.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-nano-server-image&quot;&gt;The Nano Server Image&lt;/h2&gt;
-&lt;p&gt;A unique feature of Nano server is the the need to inject roles and features as you build the OS image for whatever use case you may need. In other words, if you are planning to use Nano server as a DNS server only, there would be no need for the OS to have SoFS services and features as part of the OS image. Each time a Nano Server machine is created, the image should be built for that machines needs.&lt;/p&gt;
-
-&lt;h2 id=&quot;installing-nano&quot;&gt;Installing Nano&lt;/h2&gt;
-
-&lt;p&gt;In this example we will be installing our Nano Server as a VM on Hyper-V with an image setup for webserver IIS feature included. Nano Server is installed using the NanoServerImageGenerator scripts  imported as a module in PowerShell. The NanoServerImageGenerator scripts can be found on the Windows Server 2016 installation media.&lt;/p&gt;
-
-&lt;p&gt;To setup for the creation of the Nano image, create a directory somewhere on the server. For example in Documents create a folder called Nano. Paste the scripts into that folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano1.gif&quot; alt=&quot;Nano1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next run Powershell as admin and import the module. Move to the directory that the scripts are in and run the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Import-Module ./NanoServerImageGenerator.psm1 -Verbose
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The Verbose option allows you to see the progress as the module is setup. This switch is optional.&lt;/p&gt;
-
-&lt;p&gt;Once the module is imported, you will run a script to create a new nano server image. Depending on what type of image you’d like to create, some of your options made be different than the example.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;The MediaPath in this example refers back to the installation disk on drive D. The BasePath is for setting a temp location for configuration files. The target path is where the image file will be created. In this case, we will use the extension of .vhdx for our virtual machine. We should also set the Deployment type as Guest since it will be a guest machine on Hyper-V.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-NanoServerImage -Edition Standard -MediaPath D:\ -BasePath C:\Nano -TargetPath C:\Nano\NanoServer1.vhdx - DeploymentType Guest -ComputerName My-Nano-Server -storage -Package Microsoft-NanoServer-IIS-Package
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;It will then prompt you for a password. PowerShell will then show progress in the top of the window with a green status bar.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano3.gif&quot; alt=&quot;Nano3&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once this is complete, you will now have a virtual disk that is ready to be brought into Hyper-V and booted up. I’ll have another post for creating virtual machines on Hyper-V. Here is a quick outline of the process.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;To make use of Nano Server, you will want it to have a network setup. Create a Virtual Switch in Hyper-V.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Create a new Virtual Machine in Hyper-V by clicking New and then Virtual Machine in the Actions bar of Hyper-V.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Set up the new machine with a name and desired settings. Note: In most cases you will want to set up this machine as a generation 2 machine.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Instead of creating a new virtual disk, use an existing disk and choose the image that we just created.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Start your machine.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano4.png&quot; alt=&quot;Nano4&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is the starting point of the Nano Server’s console. You will want to set up the machine as Administrator first. Login using the user-name Administrator and the password you set earlier when you were creating the image. You will not need to connect it to a domain at this time. (We haven’t set that up yet)&lt;/p&gt;
-
-&lt;p&gt;Go ahead and set up the network settings similar to how you would set up a typical machine in the interface’s properties and then IPv4.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano5.png&quot; alt=&quot;Nano5&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To do this, select Networking and then select the interface. From there you will see the settings details for that interface. Hit F11 to change the settings for IPv4.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano6.png&quot; alt=&quot;Nano6&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Toggle DHCP off by pressing F4. You now can enter in your IP address, default gateway, subnet mask, etc. Tab between lines and when you finish press enter.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano7.png&quot; alt=&quot;Nano7&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;exit by pressing ESC.&lt;/p&gt;
-
-&lt;p&gt;Confirm that your settings were saved back in the interface’s menu.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano8.png&quot; alt=&quot;Nano8&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Before using Nano Server, you may want to look through the firewall settings and enable any of the services you plan to use. Some settings I will be choosing for this will be all of the various file sharing features.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is one of the most unique features for Nano. Essentially nothing is allowed. And you will have to cut on the specific features you know you’ll use. This is part of it’s lightweight nature and security.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano9.png&quot; alt=&quot;Nano9&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;With file sharing setup on your Nano Server, you should be able to access it by going directly to the IP address in an explorer window.&lt;/p&gt;
-
-&lt;p&gt;Next you will want to join the Nano Server to the domain. There are different ways to add it to the domain. In this case I will do an offline domain join.&lt;/p&gt;
-
-&lt;p&gt;Create the odjblob file configure script with this PowerShell command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;djoin.exe /provision /domain nlblab.com /machine MachineName /save odjblob
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Open PowerShell as admin and run this line to allow your domain controller to do a remote connection to the nano server. This line edits your security configuration. This adds the IP to the trusted hosts list.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set-Item WSMan:\localhost\Client\TrustedHosts &quot;192.168.1.170&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Use the IP address you setup for your Nano Server in place of 192.186.1.170&lt;/p&gt;
-
-&lt;p&gt;enter in Y to confirm and press enter.&lt;/p&gt;
-
-&lt;p&gt;enter these lines to open a PowerShell session. You don’t have to create an alias for the IP but it makes it easier.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ip=&quot;192.168.1.170&quot;
-Enter-PSSession -ComputerName $ip -Credential $ip\Administrator
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Copy the odjblob file that was created with the djoin.exe line earlier from your domain controller over to your NanoServer machine in explorer.&lt;/p&gt;
-
-&lt;p&gt;Finally use this line to add the NanoServer to the domain&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;djoin /requestodj /loadfile C:\odjblob /windowspath C:\windows /localos
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Press enter and once you see &lt;em&gt;The operation completed successfully&lt;/em&gt; then you will need to restart.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt; shutdown -r -t 0 &lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;You will see the connection being lost and then you should be able to reconnect to the machine.&lt;/p&gt;
-
-&lt;p&gt;From here you should be able to use the domain in the Nano Server login.&lt;/p&gt;
-
-&lt;p&gt;That’s it. That’s installing Nano Server and adding it to a domain.&lt;/p&gt;
-
-&lt;p&gt;If you’d like to test this machine you can create a HTML page, or MD page and place it on the root directory of the Nano Server. Then from a browser you can use the IP address of the name or the machine to open up the page. Simple!&lt;/p&gt;
-
-&lt;p&gt;Cheers, 
-Zack Jones&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Additional images will be added soon&lt;/em&gt;&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">You can find more information about Windows Server 2016 and Server Core in a previous post … This previous post to be exact.</summary></entry><entry><title type="html">Nano Server Overview And Install</title><link href="http://localhost:4000/2017/11/03/Nano-Server-Overview-and-Install.html" rel="alternate" type="text/html" title="Nano Server Overview And Install" /><published>2017-11-03T00:00:00-04:00</published><updated>2017-11-03T00:00:00-04:00</updated><id>http://localhost:4000/2017/11/03/Nano-Server-Overview-and-Install</id><content type="html" xml:base="http://localhost:4000/2017/11/03/Nano-Server-Overview-and-Install.html">&lt;p&gt;&lt;em&gt;You can find more information about Windows Server 2016 and Server Core in a previous post&lt;/em&gt; 
-&lt;a href=&quot;https://hiimzackjones.github.io/server/2017/10/06/Installing-and-setting-up-Windows-Server-2016-&amp;amp;-Server-Core.html&quot;&gt;… This previous post to be exact.&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;overview-of-nano-server&quot;&gt;Overview of Nano Server&lt;/h2&gt;
-
-&lt;p&gt;Nano Server is a unique way to install a server machine with a lightweight footprint that allows for remote management similar to Core, but is even more lightweight than Core. Nano Server works well with cloud based development and running “born-in-the-cloud” containers or applications. It’s a headless install, meaning it’s a server without a monitor and keyboard and peripherals. It’s specifically meant to be logged into to manage.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-benefits-of-lightweight&quot;&gt;The Benefits of Lightweight&lt;/h2&gt;
-&lt;p&gt;The purpose of Nano is to be light weight and it’s base footprint is a remarkable 460 megabytes. The small footprint allows for better security, quick install times, fast restarting, less resource use, etc. Windows Server 2016 is typically much heavier than it needs to be for running things like micro-services, ‘cloud-native’ applications, containers, etc. Nano is sufficient for services like DNS, small web server (IIS), and being a storage host for a Scale-Out File Server.&lt;/p&gt;
-
-&lt;h2 id=&quot;nano-server-for-developers&quot;&gt;Nano Server for Developers&lt;/h2&gt;
-
-&lt;p&gt;Nano comes Cloud-ready as an application and development platform.&lt;/p&gt;
-
-&lt;p&gt;Developing on Nano allows you to have a single ‘machine’ for that particular app, minimizing any dependencies or libraries on that particular box. When using something like a Windows desktop machine, often a developer will be working on multiple projects, all with a multitude of frameworks dependencies, and APIs as well as all of the extra clutter the machine naturally has. Packaging on Nano is simple and clean using Nano’s Windows Server App installer (WSA) and it’s built in package management system similar to apt-get or npm. Using Nano Server for development allows you to configure the machine with specific intentions - be it deployment, development, testing, or production. In theory, multiple Nano Servers can be setup, one for each particular stage in your development process or workflow. Additionally, security can be a major concern for developers, and as mentioned above, Nano is inherently secure due to it’s minimal footprint. Additionally, frameworks like Node.js can also be easily installed and ran on top of Nano.&lt;/p&gt;
-
-&lt;h2 id=&quot;ways-nano-server-can-be-ran&quot;&gt;Ways Nano Server Can Be Ran.&lt;/h2&gt;
-&lt;p&gt;Nano Server is headless, but can be ran as OS in multiple ways inlcuding through a VM, Hyper-V containers, or on physical hardware as Host OS. It can also be accessed remotely.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-nano-server-image&quot;&gt;The Nano Server Image&lt;/h2&gt;
-&lt;p&gt;A unique feature of Nano server is the the need to inject roles and features as you build the OS image for whatever use case you may need. In other words, if you are planning to use Nano server as a DNS server only, there would be no need for the OS to have SoFS services and features as part of the OS image. Each time a Nano Server machine is created, the image should be built for that machines needs.&lt;/p&gt;
-
-&lt;h2 id=&quot;installing-nano&quot;&gt;Installing Nano&lt;/h2&gt;
-
-&lt;p&gt;In this example we will be installing our Nano Server as a VM on Hyper-V with an image setup for webserver IIS feature included. Nano Server is installed using the NanoServerImageGenerator scripts  imported as a module in PowerShell. The NanoServerImageGenerator scripts can be found on the Windows Server 2016 installation media.&lt;/p&gt;
-
-&lt;p&gt;To setup for the creation of the Nano image, create a directory somewhere on the server. For example in Documents create a folder called Nano. Paste the scripts into that folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano1.gif&quot; alt=&quot;Nano1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next run Powershell as admin and import the module. Move to the directory that the scripts are in and run the following command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Import-Module ./NanoServerImageGenerator.psm1 -Verbose
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The Verbose option allows you to see the progress as the module is setup. This switch is optional.&lt;/p&gt;
-
-&lt;p&gt;Once the module is imported, you will run a script to create a new nano server image. Depending on what type of image you’d like to create, some of your options made be different than the example.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;The MediaPath in this example refers back to the installation disk on drive D. The BasePath is for setting a temp location for configuration files. The target path is where the image file will be created. In this case, we will use the extension of .vhdx for our virtual machine. We should also set the Deployment type as Guest since it will be a guest machine on Hyper-V.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-NanoServerImage -Edition Standard -MediaPath D:\ -BasePath C:\Nano -TargetPath C:\Nano\NanoServer1.vhdx - DeploymentType Guest -ComputerName My-Nano-Server -storage -Package Microsoft-NanoServer-IIS-Package
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;It will then prompt you for a password. PowerShell will then show progress in the top of the window with a green status bar.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano3.gif&quot; alt=&quot;Nano3&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once this is complete, you will now have a virtual disk that is ready to be brought into Hyper-V and booted up. I’ll have another post for creating virtual machines on Hyper-V. Here is a quick outline of the process.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;To make use of Nano Server, you will want it to have a network setup. Create a Virtual Switch in Hyper-V.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Create a new Virtual Machine in Hyper-V by clicking New and then Virtual Machine in the Actions bar of Hyper-V.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Set up the new machine with a name and desired settings. Note: In most cases you will want to set up this machine as a generation 2 machine.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Instead of creating a new virtual disk, use an existing disk and choose the image that we just created.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Start your machine.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano4.png&quot; alt=&quot;Nano4&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is the starting point of the Nano Server’s console. You will want to set up the machine as Administrator first. Login using the user-name Administrator and the password you set earlier when you were creating the image. You will not need to connect it to a domain at this time. (We haven’t set that up yet)&lt;/p&gt;
-
-&lt;p&gt;Go ahead and set up the network settings similar to how you would set up a typical machine in the interface’s properties and then IPv4.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano5.png&quot; alt=&quot;Nano5&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To do this, select Networking and then select the interface. From there you will see the settings details for that interface. Hit F11 to change the settings for IPv4.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano6.png&quot; alt=&quot;Nano6&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Toggle DHCP off by pressing F4. You now can enter in your IP address, default gateway, subnet mask, etc. Tab between lines and when you finish press enter.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano7.png&quot; alt=&quot;Nano7&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;exit by pressing ESC.&lt;/p&gt;
-
-&lt;p&gt;Confirm that your settings were saved back in the interface’s menu.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano8.png&quot; alt=&quot;Nano8&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Before using Nano Server, you may want to look through the firewall settings and enable any of the services you plan to use. Some settings I will be choosing for this will be all of the various file sharing features.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is one of the most unique features for Nano. Essentially nothing is allowed. And you will have to cut on the specific features you know you’ll use. This is part of it’s lightweight nature and security.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/nano/nano9.png&quot; alt=&quot;Nano9&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;With file sharing setup on your Nano Server, you should be able to access it by going directly to the IP address in an explorer window.&lt;/p&gt;
-
-&lt;p&gt;Next you will want to join the Nano Server to the domain. There are different ways to add it to the domain. In this case I will do an offline domain join.&lt;/p&gt;
-
-&lt;p&gt;Create the odjblob file configure script with this PowerShell command.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;djoin.exe /provision /domain nlblab.com /machine MachineName /save odjblob
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Open PowerShell as admin and run this line to allow your domain controller to do a remote connection to the nano server. This line edits your security configuration. This adds the IP to the trusted hosts list.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set-Item WSMan:\localhost\Client\TrustedHosts &quot;192.168.1.170&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Use the IP address you setup for your Nano Server in place of 192.186.1.170&lt;/p&gt;
-
-&lt;p&gt;enter in Y to confirm and press enter.&lt;/p&gt;
-
-&lt;p&gt;enter these lines to open a PowerShell session. You don’t have to create an alias for the IP but it makes it easier.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ip=&quot;192.168.1.170&quot;
-Enter-PSSession -ComputerName $ip -Credential $ip\Administrator
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Copy the odjblob file that was created with the djoin.exe line earlier from your domain controller over to your NanoServer machine in explorer.&lt;/p&gt;
-
-&lt;p&gt;Finally use this line to add the NanoServer to the domain&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;djoin /requestodj /loadfile C:\odjblob /windowspath C:\windows /localos
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Press enter and once you see &lt;em&gt;The operation completed successfully&lt;/em&gt; then you will need to restart.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt; shutdown -r -t 0 &lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;You will see the connection being lost and then you should be able to reconnect to the machine.&lt;/p&gt;
-
-&lt;p&gt;From here you should be able to use the domain in the Nano Server login.&lt;/p&gt;
-
-&lt;p&gt;That’s it. That’s installing Nano Server and adding it to a domain.&lt;/p&gt;
-
-&lt;p&gt;If you’d like to test this machine you can create a HTML page, or MD page and place it on the root directory of the Nano Server. Then from a browser you can use the IP address of the name or the machine to open up the page. Simple!&lt;/p&gt;
-
-&lt;p&gt;Cheers, 
-Zack Jones&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Additional images will be added soon&lt;/em&gt;&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">You can find more information about Windows Server 2016 and Server Core in a previous post … This previous post to be exact.</summary></entry><entry><title type="html">The Find Command And Nesting Bash Commands</title><link href="http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html" rel="alternate" type="text/html" title="The Find Command And Nesting Bash Commands" /><published>2017-10-31T23:34:00-04:00</published><updated>2017-10-31T23:34:00-04:00</updated><id>http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands</id><content type="html" xml:base="http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html">&lt;p&gt;I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool.&lt;/p&gt;
-
-&lt;p&gt;Basically there was a file named ‘flag’ hidden deep within some directories and each directory had multiple files. If I wanted to find the file using basic commands I could have simply just used cd and ls and manually looked through each directory. But that could take forever. So I looked around and find a Linux command that would look within the directory tree for any files with the keyword I told it to look for. It was such a useful command that I decided to write a quick post on it.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;I started by making the directories and fake files as well as the flag file. I put all of this in a directory called tree. Coincidentally I use a command called tree to go ahead and show how the files are layed out before we test out the find command.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/Find/1.gif&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I made the ‘branches’ pretty deep. If the output of tree was confusing, here is what it looks like. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/Find/2.png&quot; alt=&quot;2&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So the find command is really easy. Use &lt;code&gt;man find&lt;/code&gt; to read about it. in this case I used &lt;code&gt;find [directory to start from] -name [keyword to look for in name]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;I knew that it was at least in Documents/tree and it had the name ‘flag’ in it.&lt;/p&gt;
-
-&lt;p&gt;Notice that it does the same sort of printing out that a command like pwd does. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/Find/3.gif&quot; alt=&quot;3&quot; /&gt;&lt;br /&gt;
-Okay so we found it. But we need to cat out the contents. So we could use cat and copy and paste. Or cd into it by copying and pasting. I did that here. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/Find/4.gif&quot; alt=&quot;4&quot; /&gt;&lt;br /&gt;
-So doing this challenge in a few lines is cool and all but sometimes it feels inefficient to have to leave the keyboard to copy and paste.  &lt;br /&gt;
-This is one of those moments where you can really take advantage of the shell.&lt;br /&gt;
-&lt;img src=&quot;/assets/img/Find/5.gif&quot; alt=&quot;5&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Here I did the two commands I did in the first example but I sort of nested a command within another. In the &lt;code&gt; cat flag &lt;/code&gt; command, I replace flag with the first line. But I use a special syntax to tell &lt;code&gt;cat&lt;/code&gt; to do things in a certain order. Notice &lt;code&gt; $() &lt;/code&gt; &lt;br /&gt;
-It’s basically like this-&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;command2 $(Command1)&lt;/code&gt;  &lt;br /&gt;
-Where Command1 is the first command the shell executes, then the output of that command is used as the argument for Command2. That’s a basic way to explain it.&lt;/p&gt;
-
-&lt;p&gt;Well. That’s all I have. Use find to find stuff and use $() to ‘nest’ a command in the place of another command’s argument.&lt;/p&gt;
-
-&lt;p&gt;Cheers, 
-Zack Jones.&lt;/p&gt;</content><author><name>Zachary Jones</name></author><summary type="html">I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Zachary Jones</name></author><summary type="html">Cisco IOS Cheatsheet</summary></entry></feed>
