@@ -11,7 +11,7 @@ Hyper-V settings can be adjusted for each VM and will in essence adjust the aspe
 
 ### Hardware Options
 
-![Hyper V Settings](assets/img/servergifs/hypervSet/1.png)
+![Hyper V Settings](/assets/img/servergifs/hypervSet/1.png)
 
 Hyper-V settings feels similar to Device Manager and can be used to: 
 - Set which harddrive VHD to use and adjust VHD settings
