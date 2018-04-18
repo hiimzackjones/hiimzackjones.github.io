@@ -24,7 +24,7 @@ USB refers to drives that connect via the USB port on a computer. USB comes in 2
 Volumes and Partitions often get confused. It's important to note that a disk needs at least one partition and that partitions can be empty non-initialized sections. You can give these partitions structure, and these structures fall into different categories as well. More on that later. Volumes are partitions that have a file structure setup, often it's an operating system or a simple storage device. 
 
 Here is a visual to give you a better idea. 
-![Disk Management](assets/img/vol/1.png)
+![Disk Management](assets/img/servergifs/vol/1.png)
 
 Notice that Disk 0 has multiple partitions all set up in unique ways. Then there is a **NTFS** file system setup as the bootable disk. 
 
@@ -50,7 +50,7 @@ Working with storage devices to create partitions and volumes can be done with v
 
 #### Using Powershell. 
 
-![PowerShell Example](assets/img/vol/3.png)
+![PowerShell Example](assets/img/servergifs/vol/3.png)
 You can also use some commands in powershell to handle your Disks, partitions, and volumes. Here are some basic starting points. These commandlets have their own set of possible options and arugments that make them useful. Use <code>man CommandName </code> or <code> help CommandName </code> to learn more.  
 
 
@@ -67,7 +67,7 @@ Set-StorageSetting
 #### Trusty DiskPart
 
 For many years, the goto for disk maintenance is DiskPart. Similar to using powershell, DiskPart is a command like tool for handling storage.   
-![DiskPart Example](assets/img/vol/2.png)  
+![DiskPart Example](assets/img/servergifs/vol/2.png)  
 Here are some commands. Use <code>Diskpart /? </code> to get a better idea of how to use DiskPart. 
 
 ```
@@ -117,18 +117,18 @@ You can create Virtual Disks in three ways:
 - Open Disk Management by searching for it in the start menu
 - In the top menu choose *Action* and then *Create New Virtual Disk*
 - Set the disk's name, size, and location. You can choose between a traditional VHD or a VHDX. 
-![Creating a New VHD](assets/img/vol/4.png)
+![Creating a New VHD](assets/img/servergifs/vol/4.png)
 
 You'll notice that you have a new drive in Disk Management but it's showing up black instead of blue. It will be Not Initialized, Unallocated, and Offline.
-![New VHD in Disk Managment](assets/img/vol/5.png) 
+![New VHD in Disk Managment](assets/img/servergifs/vol/5.png) 
 
 - Right click in the grey box that has Disk 1 (or whatever number) and Initialize the Disk. 
-![Init New VHD](assets/img/vol/6.png)
+![Init New VHD](assets/img/servergifs/vol/6.png)
 - Set the partition style you'd like to use for this disk. 
 - now Right click into the white rectangle space beside that and create a new volume.
-![New Volume](assets/img/vol/7.png) 
+![New Volume](assets/img/servergifs/vol/7.png) 
 - you will then be prompted to decide the file system type and the name of the volume. 
-![Finishing New Volume Wizard](assets/img/vol/8.png)
+![Finishing New Volume Wizard](assets/img/servergifs/vol/8.png)
 - Click finish. 
 
 
