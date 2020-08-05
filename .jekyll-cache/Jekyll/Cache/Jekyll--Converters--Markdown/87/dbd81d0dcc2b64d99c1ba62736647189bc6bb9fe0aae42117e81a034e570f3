@@ -1,0 +1,175 @@
+I"�,<h3 id="software-defined-storage--storage-pools">Software Defined Storage &amp; Storage Pools</h3>
+<p>Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.</p>
+
+<p>Storage pools are a type of software defined storage system that takes multiple physical devices and creates a single Pool resource to create virtual ‘logical’ volumes from. Imagine having 3 harddrives 2 GB a piece. Then you collect their storage capabilities together to then create something like 2 VHDs with 3GB of space each. This is <em>sort of</em> how Storage Pools work.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+|--------------------------|--------------------------|
+|                          |                          |
+|          3GB             |          3GB             | ----- Logical Volumes
+|                          |                          |
+|--------------------------|--------------------------|
+|-----------------------------------------------------|
+|                                                     |
+|                         6GB                         | ----- Volume Pool
+|                                                     |
+|-----------------------------------------------------|
+|-----------------|-----------------|-----------------|
+|                 |                 |                 |
+|       2GB       |       2GB       |       2GB       | ----- Physical Volumes
+|                 |                 |                 |
+|-----------------|-----------------|-----------------|
+
+
+
+</code></pre></div></div>
+
+<p>There are ways to arrange the pool’s resources such that instead of just adding up all the space, you use some of the space as a redudant system to create a failsafe. Pools can allow for a drive to completely fail and the data saved onto that logical volume still be accessible.</p>
+
+<blockquote>
+  <p>Note: this look familiar if you’ve used LVM before. Same concepts. It’s all software defined storage.</p>
+</blockquote>
+
+<h3 id="adding-the-feature">Adding the Feature</h3>
+
+<p>As done before, make sure that the File and Storage Services feature is installed from the Server Manager &gt; Manage &gt; Add Roles and Features.</p>
+
+<h3 id="configuring-storage-pools-and-storage-spaces">Configuring Storage Pools and Storage Spaces</h3>
+<ul>
+  <li>In Server Manager head to File and Storage Services<br />
+<img src="/assets/img/servergifs/storagespaces/2.png" alt="Go to file and storage services" /></li>
+  <li>Select the Storage Pools option from the left menu<br />
+<img src="/assets/img/servergifs/storagespaces/3.png" alt="Go to Storage pools" /></li>
+  <li>In the top right corner select TASKS and then New Storage Pool<br />
+<img src="/assets/img/servergifs/storagespaces/4.png" alt="go to tasks and new storage pool" /></li>
+  <li>Now give this new pool a name and select which group of disks you’d like to use.
+<img src="/assets/img/servergifs/storagespaces/5.png" alt="name it" /></li>
+  <li>Now you should be able to add the disk you’d like to use in this pool. You have options for allocation for setting up hot swaps if needed. <br />
+<img src="/assets/img/servergifs/storagespaces/6.png" alt="add physical disks (you need three for RAID5)" /></li>
+  <li>Review the summary and click create<br />
+<img src="/assets/img/servergifs/storagespaces/7.png" alt="confirm" /></li>
+</ul>
+
+<h3 id="creating-volumes-in-the-pool">Creating volumes in the pool</h3>
+
+<p>Now that your physical drives are being used in a pool, you’ll need to create logical volumes or virtual drives to be able to utilize the storage.</p>
+
+<h3 id="creating-a-virtual-disk-in-the-pool">Creating a Virtual Disk in the Pool</h3>
+<p>So now you can see that you have a new storage pool but under it there is a section for Virtual Disks, and it’s empty.</p>
+<ul>
+  <li>Click Tasks and click create new virtual disk. Or you can click the <em>New Virtual Disk Wizard</em> link within the virtual disk section. 
+<img src="/assets/img/servergifs/storagespaces/8.png" alt="New Virtual Disk Wizard Link" /></li>
+  <li>It will then ask you to select the pool that you’d like to use. 
+<img src="/assets/img/servergifs/storagespaces/10.png" alt="Selecting a pool" /></li>
+  <li>This next section is the layout section. Choose between:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Simple - no fail safe, allows for the most space usage
+Mirror - Drive is mirror onto other drives so if a failure happens, it can be found on another drive. *(this comes in a two way or three way flavor. Allowing for two drives to fail)*
+Parity - Works against single drive failures. 
+</code></pre></div>    </div>
+    <p><img src="/assets/img/servergifs/storagespaces/11.png" alt="Selecting Layout" /></p>
+  </li>
+  <li>Select if you’d like to thin provision or a typical fixed provision. 
+<img src="/assets/img/servergifs/storagespaces/12.png" alt="Privisioning Type setup" /></li>
+  <li>set the drive’s size.</li>
+</ul>
+
+<p><img src="/assets/img/servergifs/storagespaces/13.png" alt="Selecting Size" /></p>
+<ul>
+  <li>Now just review your options before you finish. <br />
+<img src="/assets/img/servergifs/storagespaces/14.png" alt="Confirm options" /></li>
+  <li>The Wizard will now create your virtual disk and you should be able to find it in the Server Manager under the File and Storage Manager. <br />
+<img src="/assets/img/servergifs/storagespaces/15.png" alt="New Virtual Disk in Manager" /></li>
+</ul>
+
+<h2 id="iscsi-storage">iSCSI Storage</h2>
+<p>With iSCSI you will have the iSCSI disk, target, and initiator. This can be very confusing at first. Let’s clear that up.</p>
+
+<p><strong>Disk</strong> - The disk does not mean that it’s a physical iSCSI disk. What we are talking about is a VHD that is setup to communication using iSCSI<br />
+<strong>Target</strong> - The target is esentailly the iSCSI server. It will be where machines communicate to access the iSCSI resource.<br />
+<strong>Initiator</strong> - these are the machines on the network that ‘initiate’ a connection to the <em>Target</em> to get access to the iSCSI Drive.</p>
+
+<h3 id="creating-a-iscsi-virtual-disk">Creating a iSCSI Virtual Disk</h3>
+
+<blockquote>
+  <p>I’ll be skipping the iSCSI Role installation. The specific option you will want is the <strong><em>iSCSI Services</em></strong> with the <strong><em>iSCSI Target Server</em></strong> selection</p>
+</blockquote>
+
+<ul>
+  <li>In the iSCSI section of the File and Storage Services Server Manager interface. Click <em>TASKS</em> and create a new iSCSI Virtual Disk</li>
+  <li>Select the volume you’d like to use.</li>
+  <li>Give it a name</li>
+  <li>Select the size and the space allocation type.</li>
+  <li>You’ll now start making the Target. Click New iSCSI target</li>
+  <li>Give it a name. You can use the <em>lon</em> naming convention to help keep things organized.</li>
+  <li>You will now add the iniatiator. Remember the initiator is the machine that will access this drive. You can add it by it’s name on the domain or by it’s IP address. 
+<img src="/assets/img/servergifs/storagespaces/16.png" alt="Setting up Initator" /></li>
+</ul>
+
+<blockquote>
+  <p>Note: The iniatiator will actually have to iniate the connection. This is just setting up who can be iniatiators.</p>
+</blockquote>
+
+<ul>
+  <li>You can setup CHAP to authenticate. This is a good security measure but doesn’t have to be setup for it to work. In the lab, you can skip this.</li>
+  <li>Review your setup and complete.</li>
+</ul>
+
+<p>You’ll see that the iSCSI section of the File and Storage Services will show that it clears the disk and then shows who is connected to it. For now it shouldn’t be connected to anyone.</p>
+
+<h3 id="iscsi-initiator">iSCSI Initiator</h3>
+<p>On another machine that you’d like to access the iSCSI drive from. You will use the iSCSI Initiator application to make this connection. You can find this in Tools within the Server Manager or you can search for it in the start bar on other Windows machines.</p>
+
+<ul>
+  <li>For your target, enter in either the host name with the domain, or use it’s IP address to search for that machine under quick connect.</li>
+  <li>If you setup the Initiator in the previous section. You should see <em>Login Succeeded.</em> in the Progress Report section.</li>
+</ul>
+
+<blockquote>
+  <p>Note: before accessing the iSCSI drive, you will have to bring it online in Disk Management. It will not have allocated space and it will not be initialized as a disk. Set up this disk like a typical disk and give it a new volume before you can access it. <em>See my post on volumes to see more on how to do this</em></p>
+</blockquote>
+
+<p>You’re done!</p>
+
+<h3 id="giving-your-iscsi-isns-domain-set-and-zone">Giving your iSCSI iSNS Domain set and zone.</h3>
+
+<blockquote>
+  <p>You can setup an iSNS server to give your iSCSI targets a domain name on your network. iSNS creates nodes with targets, disks, and initiators. You can give them zones and sets within the Domain called Discovery Domains. I won’t cover this now but it can be pretty useful.</p>
+</blockquote>
+
+<h2 id="storage-replica">Storage Replica</h2>
+<p>Storage Replica is a feature that allows two servers create a complete block level copy over SMB between two drives. AKA a image quality copy over the network. It doesn’t use a snapshot type technology, but constantly sends data over. This is good for disastery recovery and for log backups, databases, etc.</p>
+
+<blockquote>
+  <p>This is not drive sharing. This is creating a copy of a drive from one drive to another.</p>
+</blockquote>
+
+<h3 id="add-the-feature-first">Add the feature first</h3>
+<ul>
+  <li>In Add Roles and Features. Find and add Storage Relica.</li>
+  <li>On the server you are creating a replica with. Do the same process.</li>
+  <li>reboot both machines.</li>
+</ul>
+
+<h3 id="configuring-in-powershell">Configuring in Powershell</h3>
+<p>There aren’t any GUI options for Storage Replica. You’ll have to do this in powershell.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New-SRPartnership -SourceComputerName &lt;Name&gt; -SourceRGNName &lt;Name&gt; Source RG -sourceVolumeName &lt;Drive Letter&gt; -SourceLogVolumeName &lt;Letter for replica&gt; DestinationRG -DestinationVolume &lt;Drive Letter&gt; DestinationLogVolume &lt;Drive Letter&gt;
+</code></pre></div></div>
+
+<p>SRPartnership is the relationship between two machines with Storage Replica running. This command creates that relationship.</p>
+
+<blockquote>
+  <p>Note: if you use computer names in this, you will need to make sure your DNS is working. Otherwise you can use IP addresses</p>
+</blockquote>
+
+<p>Run the commanlet and wait for it to complete with an output of the summary.</p>
+
+<p>To check to see if your Storage Replica is working you can run this Powershell command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(Get-SRGroup).Replicas | Select-Object Numofbyesremaining
+</code></pre></div></div>
+<p>It will show how many bytes are left as it copies itself over.</p>
+
+<blockquote>
+  <p>Storage Replicas are great in combination with Failover to allow for a strong redudant system.</p>
+</blockquote>
+:ET

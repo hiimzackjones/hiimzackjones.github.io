@@ -336,46 +336,7 @@ Use $() to nest a command within a command. For example <code> Dothis $(ToTheOut
 http://hiimzackjones.com/networking/2017/09/20/IP-Addresses-Subnets-And-Binary-Part-1.html 
 
 http://hiimzackjones.com/networking/2017/09/26/IP-Addresses-Subnets-And-Binary-Part-2.html
-### Routing
 
-### DNS
-
-### DHCP
-
-
-## Networking Commands
-- apt-get net-tools
-- ping
-- ifconfig
-- netstat
-- traceroute
-- mtr
-
-
----
-
-# SSH, Telnet, and RDP
-## Telnet & SSH
-## RDP
-
----
-
-# Virtual Machines
-## Installing VirtualBox and a VM
-
----
-
-# Using Linux as a Developer
-# Vim
-# Bash Scripts
-# Git
-# Python
-# Node.js
-
----
-
-# Intro to Kali
-- What is pen testing?
 
 
 

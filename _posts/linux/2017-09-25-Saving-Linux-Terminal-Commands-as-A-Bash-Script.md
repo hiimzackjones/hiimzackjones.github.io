@@ -5,7 +5,9 @@ date: 2017-09-26 23:08:00 -0400
 categories: Linux 
 ---
 
-This is my first Linux post and we are going straight for the fun stuff. See, many people will say that the first experience with programming should be C or JavaScript or HTML or something like that. I say the first thing you should try is just typical Bash scripts. Why? Because you've already learned some of it probably. From the top.   
+This is my first Linux post and we are going straight for the fun stuff. See, many people will say that the first experience with programming should be C or JavaScript or HTML or something like that. I say the first thing you should try is just typical Bash scripts. Why? Because you've already learned some of it probably. 
+
+###From the top.   
 
 Go ahead and open up a terminal in Linux. If you don't have linux available, you can do some of this with an emulator like [The one found here](https://www.tutorialspoint.com/unix_terminal_online.php)  
 You can also install something called Gitbash to give you some experience with using a linux like shell. [Here is a link for that](https://git-for-windows.github.io/)  

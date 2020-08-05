@@ -10,36 +10,36 @@ categories: Blog
 
 
 <iframe src="https://giphy.com/embed/CQhvppGGlxgA0" width="480" height="328" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-###### Note: I had planned on calling this website "The Notebook" but I'm not a Ryan G fan and I wouldn't want anyone to get their hopes up.
+#### Note: I had planned on calling this website "The Notebook" but I'm not a Ryan G fan and I wouldn't want anyone to get their hopes up.
 
-Anyway, In efforts to fully grasp my inner nerd and technologist tendencies, I made a site. This site is made with Jekyll and is hosted on Github.io. I write all my posts using Markdown and I use VIM as my editor. That in combination with a few others because I desperately need the spell check. Whoops.
+Anyway, In efforts to fully grasp my inner nerd and technologist tendencies, I made a site. This site is made with Jekyll and is hosted on Github.io. I write all my posts using Markdown and I use VIM as my editor. 
 
 
 ## Where is the juice?
-If you are here you are most likely here for the good stuff. The notes, the exercises, something other than me. So I'll spare you the memes and gifs. Ok no. I might sprinkle them here and there. But I'll make sure to focus on the meat and potatoes for you guys.
+If you are here you are most likely here for the nerdy stuff. The notes, the exercises, something other than me. So I'll spare you the memes and gifs. Okay, I'm lying... There will be plenty of memes. But I'll make sure to focus on the meat and potatoes for you guys.
 
 ## Meat and Potatoes starts here.
 This is how it goes.
 
 My intentions are to organize notes for classes by their subject. So far the subjects contain:
-- Linux & Unix
-- Cisco
-- Windows Server 2016
+- [Linux](/Linux/)
+- [Networking](/networking)
+- [Cisco](/Cisco)
+- [Windows Server 2016](/Server)
 
-These are only the class subjects. Because I'm overly nerdy and I worked a bit to put this website together, I'll also be using it to make posts for these topics as well:
+Also as I move towards my OSCP you'll see plenty of that stuff too. So in the [InfoSec section](/InfoSec) you'll find:
 - Kali Tools
 - CTFs
 - General Networking
-- some other junk
+- Pentesting 
 
-I haven't finished working out the details on directories and things on the site, so for now it's just going to be a single feed on the main page. Sorryyyyy. If you're looking for a post with a particular topic just use the good ole Find feature <code> CTRL + F </code>.
 
 ## What else?
-Check with me on Twitter [@hiimzackjones](https://twitter.com/hiimzackjones) to keep up with when I post. Because this is a blog, you can also subscribe to it as an RSS. If you actually want to follow this and want to be notified of posts as they come out. Just email me - [zack@projectwosho.com](mailto:zack@projectwosho.com)
+Check with me on Twitter [@Mehhsecurity](https://twitter.com/mehhsecurity) to keep up with when I post. Because this is a blog, you can also subscribe to it as an RSS. 
 
 Okay. Fingers crossed this won't be the only post for the rest of eternity.
 
-<iframe src="https://giphy.com/embed/3o7aDgIertSIznWEJW" width="480" height="240" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<iframe src="https://giphy.com/embed/llKJGxQ1ESmac" width="480" height="361" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 
 Cheers,

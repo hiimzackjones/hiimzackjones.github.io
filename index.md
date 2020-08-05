@@ -6,16 +6,18 @@ layout: home
 ---
 <html><p></p></html>
 
-# Hello Friend.
-Fancy seeing you here. I've been learning how to do stuff and writing it all down. You can read it if you like. 
+# Hey hi hello.
+I've been publishing my notes, writeups, and blogs here since 2017. It's all very nerdy stuff but if you're interested take a look around. There are plenty of posts on Networking, Linux, and Cybersecurity in here. If you're looking for writeups, head over to the InfoSec section. 
+
+If you want to read my first post about what this site is about [here is your link](/blog/2017/09/15/HelloWorld.html) bub.
 
 # Links
-Here are some links to get in touch with me further. 
+Also here are all my socials. 
 
-[Twitter @hiimzackjones](http://twitter.com/hiimzackjones)    
-[My Youtube Channel](https://www.youtube.com/channel/UCSiBNrMJ1vSA2iY9Bw2ncmw)  
-[My Github](https://github.com/hiimzackjones)  
-[Twitch Live feed (Networking/Programming/Pentesting)](https://www.twitch.tv/hiimzackjones)  
+[Twitter](http://twitter.com/mehhsecurity)    
+[Youtube](https://www.youtube.com/channel/UC5V_W68Ex0NGEQI7RN_VXjg)  
+[Github](https://github.com/github)  
+[Twitch](https://www.twitch.tv/hiimzackjones)  
 
   
     

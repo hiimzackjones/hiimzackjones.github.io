@@ -1,0 +1,52 @@
+I"�
+<p>One of the main reasons you might want to setup a Windows Server is the File Permissions. It allows you to control who can see, edit, or use various machines or files.</p>
+
+<h3 id="seeing-the-individual-users-and-groups">Seeing the individual users and groups</h3>
+<ul>
+  <li>Go to Server Manager</li>
+  <li>Tools</li>
+  <li>Active Directory Users and Computers
+<img src="/assets/img/servergifs/permissions/1.png" alt="Active Directory Users and Computers" /></li>
+  <li>From here notice it has an inventory organized on the left by Computers, Domain Controllers, Users, etc. You can manage these permissions by individual computers, the users that login, or even group computers together, which is useful when the envirnoment has different divisions or departments
+<img src="/assets/img/servergifs/permissions/2.png" alt="Users list" /></li>
+  <li>You can create a couple test users for this walkthrough or apply settings to any existing user/groups if you’d like.</li>
+</ul>
+
+<h3 id="setting-permissions-based-off-of-groups">Setting permissions based off of groups</h3>
+
+<p>In Windows explorer, you can take any folder and open it’s properties to change who you can share the folder with. To do this:</p>
+
+<ul>
+  <li>right click the folder</li>
+  <li>click properties</li>
+  <li>go to the sharing tab</li>
+  <li>click the <em>share…</em> button to open up the file sharing to add or remove permissions. 
+<img src="/assets/img/servergifs/permissions/3.png" alt="File sharing permissions on a folder" /></li>
+  <li>From here you can start typing the group and add it. Or you can change the permissions between a combination of <em>Read, Write, Modify, Execute, or Owner</em> using the drop down.</li>
+</ul>
+
+<p>Once you’ve created a shared Directory, the folders within that directory can also be manged using the Security tab.<br />
+<img src="/assets/img/servergifs/permissions/4.png" alt="Permissions and Security" /></p>
+
+<p>Notice there are both, individual users (Administrator) and groups. You can adjust settings on an individual level or for the whole group.</p>
+
+<blockquote>
+  <p>Ownership can also be adjusted. Administators are able to move ownership of files from user to user or group to group. This is useful when shifting systems to new employees.</p>
+</blockquote>
+
+<blockquote>
+  <p>Also, Permission changes are not applied until a user logs off and logs back on.</p>
+</blockquote>
+
+<h3 id="accessing-shared-files">Accessing shared files.</h3>
+<p>In windows explorer you will need to use the universal naming convention to access these directories. For example
+<code class="language-plaintext highlighter-rouge">\\SVR1/SharedFolder</code><br />
+Type this in the path and press enter to see the files.</p>
+
+<p>Done and Done!</p>
+
+<p>-Cheers,</p>
+
+<p>Zack</p>
+
+:ET

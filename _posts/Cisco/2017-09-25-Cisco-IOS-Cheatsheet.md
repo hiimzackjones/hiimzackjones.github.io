@@ -7,8 +7,6 @@ categories: Cisco
 ## Cisco IOS Cheatsheet
 
 
-I'll expand on this as class goes on. Use this as needed. 
-
 #### Moving from user EXEC mode to privildged EXEC mode and into configure mode.  
 
 ```                                      

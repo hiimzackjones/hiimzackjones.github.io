@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Active Directory, Domains, And Domain Controllers | Hi</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Active Directory, Domains, And Domain Controllers" />
+<meta name="author" content="Zack Jones" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="in progress, this post will have screenshots soon" />
+<meta property="og:description" content="in progress, this post will have screenshots soon" />
+<link rel="canonical" href="http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html" />
+<meta property="og:url" content="http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html" />
+<meta property="og:site_name" content="Hi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-11T22:54:00-04:00" />
+<script type="application/ld+json">
+{"datePublished":"2017-10-11T22:54:00-04:00","@type":"BlogPosting","description":"in progress, this post will have screenshots soon","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html"},"url":"http://localhost:4000/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html","author":{"@type":"Person","name":"Zack Jones"},"headline":"Active Directory, Domains, And Domain Controllers","dateModified":"2017-10-11T22:54:00-04:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106768649-1');
+</script>
+
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Active Directory, Domains, And Domain Controllers</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-10-11T22:54:00-04:00" itemprop="datePublished">Oct 11, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><em>in progress, this post will have screenshots soon</em></p>
+
+<h1 id="active-directory-domains-and-domain-controllers">Active Directory, Domains, and Domain Controllers</h1>
+
+<p>These three topics can seem to be almost the same thing, and for that I’m dedicating a whole post to them. I’m going to make this quick.</p>
+
+<hr />
+
+<p>##Some quick background vocab.</p>
+
+<h3 id="enterprise-environment">Enterprise Environment</h3>
+<p>The computer systems infrastructure of a particular corporation, business, or organization that is often made up of servers and hosts and other end devices such as printers. Most enterprise environments are designed to give the organization a safe system for maintaining preparatory data storage and working together, while also having the ability to have various layers and segmentation. That’s a good enough definition for now.</p>
+
+<h3 id="hostnames">Hostnames</h3>
+<p>Hostnames are made up of the machine name as well as the Domain name. For example Finance1.sweetbusiness.com would be a full host name. That host name relates directory to an IP address of a machine. 
+A good example of a hostname that happens often would be something like <strong>ftp.business.com</strong>, which would be an example for an FTP server host address.</p>
+
+<h3 id="domains">Domains</h3>
+<p>Domains are what make using a server in an enterprise or campus setting vital. Essentially the domain is the overarching group of -</p>
+
+<ul>
+  <li>machines</li>
+  <li>services those machines use</li>
+  <li>
+    <p>and user accounts</p>
+  </li>
+  <li>that belong to central database. Domains allow for organization between the users, as well as separate organization between the computers, and then security parameters to be applied to those groups to allow and disallow particular machines and users from files, services, etc. Domains are for the security of the company or organization, but also allow for an Admin to organize different offices, branches, and user roles using sub domains and additional domains to a Forest(See below).</li>
+</ul>
+
+<h3 id="domain-controller">Domain Controller</h3>
+<p>A Domain Controller is a machine that handles those accounts and machines. The Domain Controller is the Administrative hub for the complete Domain.</p>
+
+<h3 id="active-directory">Active Directory</h3>
+<p>Active Directory is the Windows version of a Domain Controllers management software. Active Directory is not a domain controller, but what a domain controller uses to handle and manage the domain. These terms are sometimes use interchangeably but don’t always mean the same thing.</p>
+
+<blockquote>
+  <p>Users accounts can be Local or Domain
+You’ve seen local users. Local users are your typical log in, log out, pick another person, put in a password, “oh look my stuff is here instead of that other guy’s” thing. Domain users are the same… sort if. Domain users belong to the server, as part of the Domain, and can be logged into with different machines. The login password can be changed by the Administrator running the domain, and loads of other settings and permissions can be adjusted.</p>
+</blockquote>
+
+<h3 id="trees">Trees</h3>
+<p>Similar to file structure trees, Active Directory Trees are the collection of all the domains that may be in a group. Sometimes organized in a hierarchical way.</p>
+
+<h3 id="forests">Forests</h3>
+<p>A forest is the top level of Active Directory. (aka the top level of a Domain) It holds all the Domain Controllers, including lower level domains of a root domain.</p>
+
+<hr />
+
+<h2 id="setting-up-a-domain">Setting up a domain</h2>
+
+<p>Setting up a domain starts with adding the features needed, i.e the Active Directory Domain Services (ADDS) and then promoting your main server to be a domain controller, aka the Root Domain Controller. From there you may be creating a new forest if needed and then creating the domain itself. Here we go.</p>
+
+<h3 id="adding-active-directory-domain-services-feature">Adding Active Directory Domain Services Feature</h3>
+
+<ul>
+  <li>
+    <p>First click on the Add Roles and Features tab in the Server Manager Dashboard.</p>
+  </li>
+  <li>
+    <p>Press Next until you get to the Server Pool section. Here you will pick the Server you’d like to use as a Domain Controller, i.e. add this feature to. You may have multiple servers depending on your setup, make sure to pick the correct one.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Protip: Make sure to name your servers using a naming convention that helps you know something about that server. Giving them arbitrary names will make tasks like this a pain. Picking the location, or Roles/features/services as part of the name will help you in the long run!</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Press Next.</p>
+  </li>
+  <li>
+    <p>Check off the Active Directory Domain Services Feature, go ahead and ‘add features’</p>
+  </li>
+  <li>
+    <p>Next</p>
+  </li>
+  <li>
+    <p>Leave Defaults</p>
+  </li>
+  <li>
+    <p>Install.</p>
+  </li>
+</ul>
+
+<h3 id="promoting-a-server-to-domain-controller">Promoting a Server to Domain Controller</h3>
+
+<p>Now that you’ve added the feature’s we are going to start the process of actually making the server a Domain Controller.</p>
+
+<ul>
+  <li>
+    <p>In the Add Roles and Features Wizard find the option that says ‘Promote this server to a domain controller’. It will open the Active Directory Domain Services Configuration Wizard.</p>
+  </li>
+  <li>
+    <p>Assuming that we are setting up a Domain from scratch, there should not be any other Domain Controllers setup. This means there won’t be a Forest setup. The forest exists only after a Root Domain Controller exists. Choose Add a new forest and give that forest a name.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>naming convention for this is often domainbranch.local or domainbranch.internal. Something like the companyname.local works fine.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Press Next. And give it some time.</p>
+  </li>
+  <li>
+    <p>The next screen will ask the functional level. Functional level will be based off of the oldest server OS that you will be running. If you plan to run Server 2012, make sure to set it to 2012. <strong>Do not use the lowest because it seems easier, please use the highest available for your planned domain and network</strong></p>
+  </li>
+  <li>
+    <p>Give it a password for admin login.</p>
+  </li>
+  <li>
+    <p>Press Next</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>You will get a DNS delegation error. It’s okay.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Press Next and wait.</p>
+  </li>
+  <li>
+    <p>Set the netbios name and press next. You can leave it as default.</p>
+  </li>
+  <li>
+    <p>Press Next until Prerequisites. Wait for it to check. Then press close and install. You’ll need to restart the machine after this to wrap up the Domain Controller setup.</p>
+  </li>
+  <li>
+    <p>Next time you login, you can log in using the admin domain account instead of the local. Use the domain name we created earlier and administrator as the login.</p>
+  </li>
+  <li>
+    <p>To test this out you can open up Active Directory Users and Computers and under Domain Controllers you should see your server.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="making-a-new-domain-user-group-or-organizational-unit">Making a new Domain User, group, or Organizational Unit.</h2>
+
+<p>Each of these are technically Organizational Units and for the most part will be created in the same way. In the example below, I explain creating a User, but creating other OUs work the same way.</p>
+
+<p>The method I explain will be using the GUI. You can also do this through the CLI in PowerShell as well.</p>
+
+<p>In the start menu, you can:</p>
+<ul>
+  <li>
+    <p>open up <em>Active Directory Users and Computers</em> from the administrative tools tile.</p>
+  </li>
+  <li>
+    <p>Find it in the applications list in start menu.</p>
+  </li>
+  <li>
+    <p>find it in the the Tools drop-down of the Server Manager interface.</p>
+  </li>
+</ul>
+
+<p>You will see in your local Domain a list of Organizational units. Here you can create groups and users and organize them.</p>
+
+<p>To make a user, make sure the group you’d like to add th user to is selected. Then use the Add A New User from the top menu. It will be the icon of a person’s head. You can also right click &gt; New &gt; New User.</p>
+
+<p><em>New Object - User</em> window will appear. Fill out the information as needed included the name and description and the Logon name. Press next. Now add a password to that user’s account. You can change some of the settings for the password here including expiration, allowing the user to change the password, and first time logon password change. Press next. Review the new user’s settings and press finish.</p>
+
+<p>When making a group that you plan to use as part of the local domain, make sure you choose that option in the <em>New Object - Group</em> menu.</p>
+
+<p>Cheers, <br />
+Zack Jones.</p>
+
+
+  </div><a class="u-url" href="/server/2017/10/11/Active-Directory,-Domains,-and-Domain-Controllers.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Hi</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
