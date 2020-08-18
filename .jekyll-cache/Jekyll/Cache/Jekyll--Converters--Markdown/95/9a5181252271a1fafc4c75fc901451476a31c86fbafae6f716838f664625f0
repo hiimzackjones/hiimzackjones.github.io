@@ -1,0 +1,143 @@
+I"n"<h2 id="how-it-works">How it works</h2>
+<p>Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is <strong>PXE boot</strong> enabled.</p>
+
+<p>Esentially the boot images will be stored on some storage device on the network. The WDS server will respond to the DHCP server when a machine is starting to PXE boot. Letting it know that it’s able to help with an installation over the network. The machine PXE booting will then give the user a list of bootable OSs sitting on the WDS and from there it’s almost identical to a typical installation.</p>
+
+<h4 id="the-dhcp-handles-the-request">The DHCP handles the request</h4>
+<p>The DHCP plays a huge part in making WDS work. Here is how the client requests for the install.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PXE client sents a UDP broadcast for a DHCP DISCOVER on port 67
+DHCP server replies directly with the IP address of the WDS Server on port 68 
+PXE client then reqests the name of the boot file from DHCP
+WDS server sends a DHCP ACK with the boot file name
+PXE client requests for that file
+PXE client then downloads the file via TFTP and then runs file
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note: Active directory isn’t completely necessary to make this happen. The server needs to have the role installed and needs to be an admin on some domain. Otherwise any machine should be able to request WDS to help it out. You can set WDS to only talk to machines that have be prestaged, have machines request to be prestaged, or just have any machine chat with the WDS without worrying about it.</p>
+</blockquote>
+
+<p>Okay let’s get to it. Before we install make sure you have these guys:</p>
+
+<h3 id="requirements">Requirements</h3>
+<ul>
+  <li><strong>DHCP Server</strong> (Router or Server)</li>
+  <li><strong>Active Directory Domain Services</strong> on a Sever setup as Administrator on that domain.</li>
+  <li><strong>DNS server</strong> to point machines to the server for the PXE boot.</li>
+  <li><strong>OS install .iso</strong> and files</li>
+  <li>Server has <strong>NTFS system</strong> to store the bootable images. (in paticular, something other than the HD holding the Server. WDS will slow your server down to a crawl otherwise)</li>
+</ul>
+
+<h3 id="installing-the-wds-server-role">Installing the WDS Server Role</h3>
+<p>Like any other server role, you have to install it. Just in case you’ve missed the other posts on that. Here ya go:</p>
+
+<p><strong>To install the WDS server role:</strong></p>
+<ul>
+  <li>In Server Manager go to the Manage option in the toolbar</li>
+  <li>Add roles and features</li>
+  <li>Hit next to pass the first prompt</li>
+  <li>Select the server you’d like to add the Role</li>
+  <li>then find the WDS option and check it off.</li>
+  <li>hit next until you get to the end and allow it to install and restart if needed.</li>
+  <li>Check to make sure your WDS role is on the side bar of Server Manager. If it’s there. You’re good to go!</li>
+</ul>
+
+<p><img src="/assets/img/servergifs/wds/1.PNG" alt="Server Manager" /></p>
+
+<h2 id="configuring-wds">Configuring WDS</h2>
+
+<p>Alright. Now that you’ve installed the feature. You’re going to have to set some of it up. Remember when I mentioned using a seperate storage device? Or who gets to talk with WDS? This is that part. Here ya go:</p>
+
+<p>When you open the WDS section, it will show the Servers and the Events for this role. Use this if you have multiple servers handling WDS or you’d like to see how a deployment went.</p>
+
+<p>For now we want to make sure this server is configured.</p>
+<ul>
+  <li>Right click the server you’re adding WDS to and in the drop down menu select Windows Deployment Services. <br />
+<img src="/assets/img/servergifs/wds/5.png" alt="Opening WDS Management Console" /><br />
+<em>You can also find Windows Deployment Services by searching it in the Start menu.</em></li>
+</ul>
+
+<p><img src="/assets/img/servergifs/wds/2.PNG" alt="WDS" /></p>
+<ul>
+  <li>Find the server you are installing on. It should be in the left side inventory section.</li>
+  <li>If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured.</li>
+  <li>Right click the server and select configure server.</li>
+</ul>
+
+<p><em>Set up with these options:</em></p>
+<ul>
+  <li>Integrated with Active Directory
+<img src="/assets/img/servergifs/wds/8.png" alt="Configuring WDS Active Directory or Standalone" /></li>
+  <li>default Installation Folder Location <em>or to your specific needs</em></li>
+</ul>
+
+<blockquote>
+  <p>Note-1: if this server is also the DHCP, the additional options for Proxy DHCP Server will be given as well. Just check both sections off. 
+<img src="/assets/img/servergifs/wds/6.png" alt="Configuring WDS DHCP Prompt" /></p>
+</blockquote>
+
+<blockquote>
+  <p>Note-2: It’s important to know that in a lab envirnoment the locaiton of the install folder doesn’t matter. But almost always, you would want this drive to be somewhere seperate so it doesn’t use up resources on your Server machine<br />
+<img src="/assets/img/servergifs/wds/9.png" alt="Selecting Volume for WDS Images Warning" /></p>
+  <ul>
+    <li>Set the <strong>PXE Server Initial Settings</strong> as needed. For the lab, <em>Respond to all client computers</em> should be fine. This is just setting the parameters for what computers can use this feature to install. 
+<img src="/assets/img/servergifs/wds/10.png" alt="PXE Respond to prompt" /></li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>Note: You can set it up so that only computer you have prestaged can get installs. This is most likely the more secure option but requires more planning and work as an admin.</p>
+</blockquote>
+
+<p>It will begin configuring the WDS. You can click finish if you’re done. If you’d like to start adding images to use with WDS, you can check off <em>Add images to the server now</em>. Otherwise adding images can be found under the server’s drop down in Windows Deployment Services. 
+<img src="/assets/img/servergifs/wds/3.png" alt="WDS after config" /></p>
+
+<h2 id="adding-images-to-wds-server">Adding Images to WDS Server</h2>
+
+<p>To use WDS with an install, you need to make <strong>both</strong> a boot image and a install image. This is where your install .iso comes in play. Depending on which Windows or Windows Sever install you’re looking to deploy. Load up the disk or flash drive to the server.</p>
+
+<p><em>boot.wim</em> - found inside the .iso under Sources
+<em>install.wim</em> - also found inside the .iso under Sources.</p>
+
+<h4 id="adding-the-boot-image">Adding the Boot Image:</h4>
+<ul>
+  <li>Go to Server Manager</li>
+  <li>go to tools and then find Windows Deployement Services in the dropdown list.</li>
+  <li>Right click Boot Images and click Add Boot Image
+<img src="/assets/img/servergifs/wds/4.png" alt="adding image file" /></li>
+  <li>Find the <em>boot.wim</em> file. Click Open</li>
+  <li>Next until finished.<br />
+<strong>Do yourself a favor and name the image something specific to that OS, when PXE lists the options, this Image name is what it will show you</strong> 
+<img src="/assets/img/servergifs/wds/7.png" alt="Naming the imagine file" /></li>
+</ul>
+
+<h4 id="adding-the-install-image">Adding the Install Image:</h4>
+<ul>
+  <li>Go to server Manager</li>
+  <li>go to tools and then find Windows Deployement Services in the dropdown list.</li>
+  <li>Right click Install Images and click Add Install</li>
+  <li>It will make you create a group image. Name this image something descriptive. example: <em>Windows Server 2016 64 bit</em>
+<img src="/assets/img/servergifs/wds/11.png" alt="Images summary" /></li>
+  <li>Find the install.wim file. Click Open</li>
+  <li>Check off the OS images that you’d like to include if there are more than one.</li>
+  <li>Next until finished.</li>
+  <li>wait for the Image Wizard to complete.</li>
+</ul>
+
+<blockquote>
+  <p>Note: you can also create capture images on machines that have been updated, configured, and have paticular programs installed. This is covered in a later post.</p>
+</blockquote>
+
+<h2 id="using-wds-to-install">Using WDS to install</h2>
+
+<p>Now all you have to do is boot up the machine and make sure the PXE boot is enabled. <strong>It’s important that the machine or VM is set to Legacy booting.</strong> Make sure the machine is on the network and it should handle the rest. Follow your typical install steps and you’re done and done!</p>
+
+<p><img src="/assets/img/servergifs/wds/12.png" alt="Install working fine" /></p>
+
+<p>There you go.</p>
+
+<p>Cheers,</p>
+
+<p>Zack</p>
+
+:ET

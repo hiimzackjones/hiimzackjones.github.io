@@ -1,0 +1,26 @@
+I"n<h3 id="installing-the-failover-feature">Installing the Failover Feature</h3>
+<p>To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select <em>Failover Clustering</em></p>
+
+<h3 id="validate-cluster-configuration">Validate Cluster Configuration</h3>
+<ul>
+  <li>Go to Failover Clustering in the tools of Server Manager,</li>
+  <li>on the right side there will be a Actions panel where you can select <em>Validate Configuration</em></li>
+  <li>Add the names of the servers in the text boxes and continue</li>
+  <li>then <strong>Run all Tests</strong></li>
+</ul>
+
+<p>This will check to make sure the inventory, the stroage, the system configs, and Hyper-V is setup and ready for Clustering. Errors will show up in the <strong>Failover Cluster Report</strong><br />
+If there are any issues, use the report to help you sovle them before moving forward.</p>
+
+<h3 id="creating-a-cluster">Creating a Cluster</h3>
+<ul>
+  <li>In the same actions pane, click create new cluster</li>
+  <li>select the first server and cluster and add</li>
+  <li>Name the cluster and type the IP address of the Cluster that we set up previously.</li>
+  <li>Finish</li>
+</ul>
+
+<p>Your cluster should show up in the Cluster’s tool section of the Server Manager.</p>
+
+<h3 id="adding-a-shared-drive-to-the-cluster-iscsi">Adding a shared Drive to the Cluster (iSCSI)</h3>
+:ET

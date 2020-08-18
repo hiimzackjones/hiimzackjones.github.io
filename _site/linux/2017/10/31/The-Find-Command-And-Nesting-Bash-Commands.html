@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The Find Command And Nesting Bash Commands | Hi</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="The Find Command And Nesting Bash Commands" />
+<meta name="author" content="Zack Jones" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool." />
+<meta property="og:description" content="I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool." />
+<link rel="canonical" href="http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html" />
+<meta property="og:url" content="http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html" />
+<meta property="og:site_name" content="Hi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-31T23:34:00-04:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html","headline":"The Find Command And Nesting Bash Commands","dateModified":"2017-10-31T23:34:00-04:00","datePublished":"2017-10-31T23:34:00-04:00","author":{"@type":"Person","name":"Zack Jones"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html"},"description":"I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106768649-1');
+</script>
+
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Find Command And Nesting Bash Commands</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-10-31T23:34:00-04:00" itemprop="datePublished">Oct 31, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I learned this trick the other day working on a Capture the flag challenge. If you don’t know what a Capture the flag is, do a quick google. It’s pretty cool.</p>
+
+<p>Basically there was a file named ‘flag’ hidden deep within some directories and each directory had multiple files. If I wanted to find the file using basic commands I could have simply just used cd and ls and manually looked through each directory. But that could take forever. So I looked around and find a Linux command that would look within the directory tree for any files with the keyword I told it to look for. It was such a useful command that I decided to write a quick post on it.</p>
+
+<hr />
+<p>I started by making the directories and fake files as well as the flag file. I put all of this in a directory called tree. Coincidentally I use a command called tree to go ahead and show how the files are layed out before we test out the find command.<br />
+<img src="/assets/img/Find/1.gif" alt="1" /></p>
+
+<p>I made the ‘branches’ pretty deep. If the output of tree was confusing, here is what it looks like. <br />
+<img src="/assets/img/Find/2.png" alt="2" /></p>
+
+<p>So the find command is really easy. Use <code>man find</code> to read about it. in this case I used <code>find [directory to start from] -name [keyword to look for in name]</code></p>
+
+<p>I knew that it was at least in Documents/tree and it had the name ‘flag’ in it.</p>
+
+<p>Notice that it does the same sort of printing out that a command like pwd does. <br />
+<img src="/assets/img/Find/3.gif" alt="3" /><br />
+Okay so we found it. But we need to cat out the contents. So we could use cat and copy and paste. Or cd into it by copying and pasting. I did that here. <br />
+<img src="/assets/img/Find/4.gif" alt="4" /><br />
+So doing this challenge in a few lines is cool and all but sometimes it feels inefficient to have to leave the keyboard to copy and paste.  <br />
+This is one of those moments where you can really take advantage of the shell.<br />
+<img src="/assets/img/Find/5.gif" alt="5" /></p>
+
+<p>Here I did the two commands I did in the first example but I sort of nested a command within another. In the <code> cat flag </code> command, I replace flag with the first line. But I use a special syntax to tell <code>cat</code> to do things in a certain order. Notice <code> $() </code> <br />
+It’s basically like this-</p>
+
+<p><code>command2 $(Command1)</code>  <br />
+Where Command1 is the first command the shell executes, then the output of that command is used as the argument for Command2. That’s a basic way to explain it.</p>
+
+<p>Well. That’s all I have. Use find to find stuff and use $() to ‘nest’ a command in the place of another command’s argument.</p>
+
+<p>Cheers, 
+Zack Jones.</p>
+
+
+  </div><a class="u-url" href="/linux/2017/10/31/The-Find-Command-And-Nesting-Bash-Commands.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Hi</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

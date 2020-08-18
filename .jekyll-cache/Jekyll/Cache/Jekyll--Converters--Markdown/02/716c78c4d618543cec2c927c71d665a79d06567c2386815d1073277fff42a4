@@ -1,0 +1,3 @@
+I".<h2 id="how-it-works">How it works</h2>
+<p>Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is <strong>PXE boot</strong> enabled.</p>
+:ET

@@ -1,0 +1,312 @@
+I"�@<p>So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</p>
+
+<p>Wut.</p>
+
+<p>I’ve made a few python scripts before and I’ve never seen pyc. Google time.</p>
+
+<p>Oh. Well. This is usually where I stop. I usually skip compiled stuff, and a pyc is a compiled python program.</p>
+
+<p>Luckily there are tools to undo the ugly compiled mess. I’m on a Mac so I used brew to install uncompyle6. Again I googled for a bit.</p>
+
+<p>uncompyle6 is simple. Put in a pyc and out comes code.</p>
+
+<p>This is what my terminal spits out</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ uncompyle6 PYTHON2.pyc
+# uncompyle6 version 3.1.1
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.10 (default, Jul 15 2017, 17:16:57)
+# [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)]
+# Embedded file name: NCL-2015-Python2.py
+# Compiled at: 2015-11-12 17:43:01
+import sys
+
+def main():
+    if len(sys.argv) != 2:
+        print 'Invalid args'
+        return
+    password = sys.argv[1]
+    counter = 0
+    vals = list('tfzbwlyzljylawhzzdvyk')
+    if len(password) != len(vals):
+        print 'incorrect'
+        return
+    while counter &lt; len(password):
+        x = ord(password[counter]) + 7
+        if x &gt; ord('z'):
+            x -= 26
+        if chr(x) != vals[counter]:
+            print 'incorrect'
+            return
+        counter += 1
+
+    print 'correct'
+
+
+if __name__ == '__main__':
+    main()
+# okay decompiling PYTHON2.pyc
+</code></pre></div></div>
+
+<p>Ugh. I should have put that into a file or something. Run it again but do it better!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ uncompyle6 PYTHON2.pyc &gt; thisisthecode.py
+</code></pre></div></div>
+
+<p>Head over to sublime text and browse on over to find this beautiful python code that I can actually work with.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">'Invalid args'</span>
+        <span class="k">return</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s">'tfzbwlyzljylawhzzdvyk'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">'incorrect'</span>
+        <span class="k">return</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">password</span><span class="p">[</span><span class="n">counter</span><span class="p">])</span> <span class="o">+</span> <span class="mi">7</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'z'</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">-=</span> <span class="mi">26</span>
+        <span class="k">if</span> <span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="n">vals</span><span class="p">[</span><span class="n">counter</span><span class="p">]:</span>
+            <span class="k">print</span> <span class="s">'incorrect'</span>
+            <span class="k">return</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">print</span> <span class="s">'correct'</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Okay okay. Let’s try to figure this sucker out. Diving in section by section.</p>
+
+<pre><code class="language-pyhton">vals = list('tfzbwlyzljylawhzzdvyk')
+</code></pre>
+<p>turns tfzbwlyzljylawhzzdvyk into a list of each letter. so vals[2], the third item in the vals list is z. For example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+</code></pre></div></div>
+<p>if your password isn’t the length of the vals list then no go.</p>
+
+<p>Checking the length of val</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>len('tfzbwlyzljylawhzzdvyk')
+&gt;&gt;&gt;21
+</code></pre></div></div>
+<p>So the password is 21 characters.</p>
+
+<p>If you’ve got that far then it runs a while loop.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">):</span>
+</code></pre></div></div>
+<p>Starting at the first position, do stuff until we get to the end. Okay simple. So far we are just setting up the parameters of the length of the password and telling the code to check each character until we get to the end. Nothing really important yet.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">password</span><span class="p">[</span><span class="n">counter</span><span class="p">])</span> <span class="o">+</span> <span class="mi">7</span>
+</code></pre></div></div>
+<p>This is interesting. It looks at the current letter and makes the ord and adds 7 to it. And then sets it to a variable called X. So basically, make the letters into numbers and move them up 7.</p>
+<blockquote>
+  <p>this is where you can imagine and assume that this letters to numbers thing is going to at some point be undone. Go ahead and imagine that. Good. Got it? For example, a password of ‘aaa’ would ord into something like ‘111’ and then we add 7 to make it ‘888’ and then back to letters ‘hhh’. Hmm. Whatever that’s weird.</p>
+</blockquote>
+
+<p>Moving on.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'z'</span><span class="p">):</span>
+	<span class="n">x</span> <span class="o">-=</span> <span class="mi">26</span>
+</code></pre></div></div>
+<p>Basically if we get to z, go back to a. <br />
+This is here so that after the letter z we loop back to a.</p>
+
+<p>This next part is the part that matters most.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="n">vals</span><span class="p">[</span><span class="n">counter</span><span class="p">]:</span>
+</code></pre></div></div>
+
+<p>So far we have done a lot with shifting things back and forth. So at first glance, this looks confusing, but it basically says, letter for letter, our manipulated password (the plus 7 ord stuff) needs to equal the string in val. Or at least that is what it looks like.</p>
+
+<p>Of course I wrote a test code. I commented some things in the code, but most importantly, before the last if, and before the if statement that loops things back, I print both the vals[counter] and the chr(x)</p>
+
+<p>I then comment out the last if completely so it doesn’t stop running.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">'Invalid args'</span>
+        <span class="k">return</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">#counts the length                         
+</span>    <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s">'tfzbwlyzljylawhzzdvyk'</span><span class="p">)</span> <span class="c1">#list() converts a string into a list made up of the letters
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span> <span class="c1">#password must be 21 characters
+</span>        <span class="k">print</span> <span class="s">'length of the password must be 21 letters'</span>
+        <span class="k">return</span>
+    <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">):</span> <span class="c1">#moving through the letters
+</span>        <span class="n">x</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">password</span><span class="p">[</span><span class="n">counter</span><span class="p">])</span> <span class="o">+</span> <span class="mi">7</span> <span class="c1">#add 7 to the ord of the letter
+</span>        <span class="c1"># this is our test code here
+</span>        <span class="k">print</span> <span class="n">vals</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span>
+        <span class="k">print</span> <span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1">#Back to normal code
+</span>        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'z'</span><span class="p">):</span> <span class="c1"># when the ord hits lowercase z, move x back
+</span>            <span class="n">x</span> <span class="o">-=</span> <span class="mi">26</span>
+        <span class="c1">#if chr(x) != vals[counter]: #if the current letter does not equal the counter
+</span>           <span class="c1"># print 'counter has to equal the thing'
+</span>
+           <span class="c1"># return
+</span>        
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>Then I run it.</p>
+
+<p><code>
+$ python PYTHON2-test.py aaaaaaaaaaaaaaaaaaaaa
+t
+h
+f
+h
+z
+h
+b
+h
+w
+h
+l
+h
+y
+h
+z
+h
+l
+h
+j
+h
+y
+h
+l
+h
+a
+h
+w
+h
+h
+h
+z
+h
+z
+h
+d
+h
+v
+h
+y
+h
+k
+h
+</code></p>
+
+<p>so. Remember it’s doing a single character print of the vals[counter] then chr(x) and repeating. so every odd character is vals[counter] and every even is chr(x). So split it up and line them side by side and see what we get.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>t h
+f h
+z h
+b h
+w h
+l h
+y h
+z h
+l h
+j h
+y h
+l h
+a h
+w h
+h h
+z h
+z h
+d h
+v h
+y h
+k h
+</code></pre></div></div>
+
+<p>Weirdddd. It worked just like we thought it maybe would. And remember we are printed these two lines of letters because they have to match.</p>
+
+<p>Weeelllll.</p>
+
+<p>Then maybe we can flip the code?</p>
+<blockquote>
+  <p>I know we could do this with pencil and paper but why not try to use this code that is already in front of us?</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">password</span><span class="p">[</span><span class="n">counter</span><span class="p">])</span> <span class="o">+</span> <span class="mi">7</span>
+</code></pre></div></div>
+<p>change it to</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">password</span><span class="p">[</span><span class="n">counter</span><span class="p">])</span> <span class="o">-</span> <span class="mi">7</span>
+</code></pre></div></div>
+
+<p>and of course we have to flip</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'z'</span><span class="p">):</span> 
+            <span class="n">x</span> <span class="o">-=</span> <span class="mi">26</span>
+</code></pre></div></div>
+<p>to</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="mi">26</span>
+</code></pre></div></div>
+
+<p>Remember, this is there so that if the counter goes past z, make it start back at a.</p>
+
+<p>so the oppsite would be: if it subtracts below a, push it back up to z.
+And while we are here let’s delete the code we put in the print their string. No need.</p>
+
+<p>Now let’s put in their string as the input and see what comes out.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m
+_
+s
+[
+p
+e
+r
+s
+e
+c
+r
+e
+Z
+p
+a
+s
+s
+]
+o
+r
+d
+</code></pre></div></div>
+<p>Eh. it’s not quite looping back the way we want it to. <br />
+But wait. let’s look at it for a second. <br />
+<code>m_s[persecreZpass]ord</code><br />
+So. Maybe I’m not the best with Python and I messed something up   somewhere. But. It’s clear that the password is something in like likes of:<br />
+ <code>mysupersecretpassword</code></p>
+
+<p>Let’s try it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python PYTHON2.py mysupersecretpassword
+correct
+</code></pre></div></div>
+
+<p>lolll.</p>
+
+<p>Okay done.</p>
+
+<p>-Cheers</p>
+
+<p>Zack.</p>
+
+:ET

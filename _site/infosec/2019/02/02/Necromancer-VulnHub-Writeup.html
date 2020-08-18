@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Necromancer VulnHub Class Exercise | Hi</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Necromancer VulnHub Class Exercise" />
+<meta name="author" content="Zack Jones" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019." />
+<meta property="og:description" content="Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019." />
+<link rel="canonical" href="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" />
+<meta property="og:url" content="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" />
+<meta property="og:site_name" content="Hi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-02-02T08:16:00-05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html","headline":"Necromancer VulnHub Class Exercise","dateModified":"2019-02-02T08:16:00-05:00","datePublished":"2019-02-02T08:16:00-05:00","author":{"@type":"Person","name":"Zack Jones"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html"},"description":"Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106768649-1');
+</script>
+
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Necromancer VulnHub Class Exercise</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-02-02T08:16:00-05:00" itemprop="datePublished">Feb 2, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="necromancer-notes">Necromancer Notes</h2>
+<h5 id="made-for-intro-for-cyber-security-class-taught-spring-2019">Made for Intro for Cyber Security Class taught Spring 2019.</h5>
+
+<p>Necromancer is a CTF that can be downloaded and ran on a virtual environment such as VirtualBox, VMWare, Hyper-V.  <a href="https://www.vulnhub.com/entry/the-necromancer-1,154/">https://www.vulnhub.com/entry/the-necromancer-1,154/</a></p>
+
+<p>To assist with our walk through of this CTF, we will be using this reference video - <a href="https://www.youtube.com/watch?v=ULRZcsjkvSA">JackkTutorials - Necromancer</a></p>
+
+<p>The video does not complete the CTF but we will follow through the steps to complete as much as he completes in the video. Try to follow along with his steps.</p>
+
+<p>Following the hacking methodology as discussed, you will want to start with some recon.</p>
+
+<h3 id="passive-recon">Passive Recon</h3>
+<p>Jackk looks at the website for clues, looks at the virtual machine’s screen for information. Also gathers information about his machine and the network. Finds all IP addresses on the network in order to find the machine. Eliminates other machines one by one.</p>
+
+<p><strong>Website information</strong>
+<img src="/assets/img/Walkthroughs/Necromancer/Website-Recon.png" alt="Website Recon" /><br />
+<strong>Machine DHCP</strong><br />
+<img src="/assets/img/Walkthroughs/Necromancer/Machine_DHCP_Screen.png" alt="Machine DHCP" /></p>
+
+<p><strong>To eliminate the IP addresses</strong><br />
+He uses route to find gateway, looks in log files to find DHCP, looks in ifconfig for himself. Last IP is the machine.</p>
+
+<h4 id="commands-used">Commands used</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig  //checking Linux interface information. Similar to Windows ipconfig
+route -n  //checking what your machine's gateway. 
+</code></pre></div></div>
+<p><strong>Using Route to find the gateway</strong><br />
+<img src="/assets/img/Walkthroughs/Necromancer/route.png" alt="route" /><br />
+<strong>Using ifconfig to find your own IP</strong><br />
+<img src="/assets/img/Walkthroughs/Necromancer/ifconfig.png" alt="ifconfig" /></p>
+
+<h3 id="active-recon">Active Recon</h3>
+<p>First <code>nmap</code> the network to get an idea of what machines are on the network and help find the machine you’re looking to hack. Then nmap scan on the IP address of the victim machine. Look for ports that could be vulnerable.</p>
+
+<h4 id="scanning-whole-network-for-all-machines-that-are-up">Scanning whole network for all machines that are up</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -sP 192.168.1.*
+</code></pre></div></div>
+<p>Note the use of a wildcard in the IP to cover all possible addresses in the 192.168.1 network.<br />
+The -sP scan means just pinging machines. Note: Some machines may not respond to ICMP packets depending on how the machine is setup.</p>
+
+<h4 id="scanning-a-single-machine-for-tcp-ports-that-are-open-simple">Scanning a single machine for tcp ports that are open (simple)</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap 192.168.1.22
+</code></pre></div></div>
+
+<p>Ports that are vulnerable are things like http, https, ftp, telnet, smb, and plenty others. Other ports are important as well. Getting an idea of what the machine is running is key to understanding what you are working with.</p>
+
+<p>He fails to find a port that is open using a typical TCP nmap scan. He decided to run another scan, but tells nmap to check for UDP instead of TCP. With UDP you want to limit the ports.</p>
+
+<h4 id="udp-nmap-scan">UDP nmap Scan</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -sU 1-1000 192.168.1.22   //does a udp scan on ports 1 through 1000
+</code></pre></div></div>
+<h4 id="udp-port-found">UDP Port found.</h4>
+<p>Scans find a port open. He finds a UDP port that is open called doom on port 666.</p>
+
+<p>To connect to a computer you must have a socket. And to have a socket all you need is the IP address and an open port that is willing to communicate.</p>
+
+<p>With UDP sometimes you can just simply connect to it with a tool called netcat. From there you will see the raw data being transferred. If it’s encrypted you will not be able to read it. To try and connect to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc -u 192.168.110.22 666
+</code></pre></div></div>
+
+<p>It successfully connects to the port and the necromancer machine then sends plaintext data to him that says <code>Time is running out. You gasp for air!"</code></p>
+
+<p>To see if anything else is happening on the machine while the UDP port is connected. You can open wireshark and let it run for a bit to find that the Necromancer machine actually attempts to connect to his machine on TCP port 4444. Note: The TCP port seems to only want to connect once you’ve connected to the UDP port.</p>
+
+<p>You can also listen for connections the same way we did before for TCP connections. But in this case it’s listening for any machine on the port. The command looks like this.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc -lvp 4444  /// listens for any incoming connections on port 4444
+</code></pre></div></div>
+
+<p>It connects successfully and it spits out a string of random characters. This was encoded and needed to be decoded.</p>
+
+<p>The decoded message left a clue that said <code>Chant the string of flag1 -u666</code> it also gives him the first flag which is jumbled letters and numbers.</p>
+
+<p>When you find jumbled letters and numbers, it may be good practice to test to see if it is encoded or encrypted and possibly useful information.</p>
+
+<h3 id="to-check-a-string-for-encoding-or-hashingencryption">To check a string for encoding or hashing/encryption</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hashid [the string you are testing]
+</code></pre></div></div>
+<p>Hashid is a tool that checks for signatures or clues of certain hashes. it isn’t always accurate but it can help when you’re not sure.</p>
+
+<p>HashID shows that the string is an MD5 hash and he uses an online MD5 hash decrypt tool. The flag decrypted ends up being <code>opensesame</code></p>
+
+<p>Now he connects to UDP port 666 while sending <code>opensesame</code> to the other machine using echo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo opensesame | nc -u 192.168.100.140 666
+</code></pre></div></div>
+<p>By using echo and piping it into the netcat connection, we send it the string <code>opensesame</code></p>
+
+<p>Once he makes this new connection it gives him another clue along with a second flag. This clue lets him know that 666 is closed and “A formation that looks like 80”</p>
+
+<p>Port 80 is generally used for HTTP. HTTPS, which is encrypted is usually on 443. If a computer has port 80 open, you can go to it’s ip address on your machine to look at whatever webpage(s) it is hosting.</p>
+
+<p>He nmap scans the machine again to make sure port 80 is open.</p>
+
+<p>He goes to the website.</p>
+
+<p>The first thing he does to recon the site is to look at the source code to see if there are more clues or to see if it is wordpress, etc.</p>
+
+<p>He notices that the only thing on the page that may have something worth looking into is the picture so he checks the picture for stenography.</p>
+
+<p>Stego isn’t typically used in the real world, but is a good skill to understand and know how to work with as a Cyber Security professional.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip pileoffeathers.jpg   //attempt to unzip a file to find other files within it. Files can be hidden inside of other files. 
+</code></pre></div></div>
+
+<p>Once he unzips the picture, a pileoffeathers.txt is then pulled from the image and saved onto his machine.</p>
+
+<p>The text file has another Base64 hash inside of it. It decodes to give another flag and a clue to his next step “/amagicbridgeappearsatthechasm” and the flag decodes to a number.</p>
+
+<p>He visits the directory from the hidden file to find another page.</p>
+
+<h4 id="video-ends-here">Video ends here.</h4>
+
+<p>We can assume that the <code>/amagicbridgeappearsatthechasm</code> is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.</p>
+
+
+  </div><a class="u-url" href="/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Hi</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

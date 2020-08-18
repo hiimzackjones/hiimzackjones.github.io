@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Disks And Volumes | Hi</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Disks And Volumes" />
+<meta name="author" content="Zack Jones" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Interface Types" />
+<meta property="og:description" content="Interface Types" />
+<link rel="canonical" href="http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html" />
+<meta property="og:url" content="http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html" />
+<meta property="og:site_name" content="Hi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-11-20T09:36:00-05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html","headline":"Disks And Volumes","dateModified":"2017-11-20T09:36:00-05:00","datePublished":"2017-11-20T09:36:00-05:00","author":{"@type":"Person","name":"Zack Jones"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/server/2017/11/20/Disks-And-Volumes.html"},"description":"Interface Types","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106768649-1');
+</script>
+
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Disks And Volumes</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-11-20T09:36:00-05:00" itemprop="datePublished">Nov 20, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="interface-types">Interface Types</h3>
+
+<h4 id="scsi">SCSI</h4>
+<p>This storage type is actually more of a protocol and a set of standards than it is a type of physical Device. It’s usually used in server envirnoments with Harddrives chained together. <strong>SCSI drives are useful for their speed and volume.</strong></p>
+
+<h4 id="sata">SATA</h4>
+<p>The S is SATA stands for serial and can transfer fairly quickly. SATA includes the physical SATA interface and has replaced IDE Drives for the post part. This is the standard in most consumer machines.</p>
+
+<h4 id="usb">USB</h4>
+<p>USB refers to drives that connect via the USB port on a computer. USB comes in 2.0 and 3.0. The 3.0 type is a faster type but both 3.0 devices and ports work fine with the respective 2.0 counterparts.</p>
+
+<hr />
+
+<h3 id="volumes-partitions-and-partition-styles">Volumes, Partitions, and Partition Styles.</h3>
+
+<p>Volumes and Partitions often get confused. It’s important to note that a disk needs at least one partition and that partitions can be empty non-initialized sections. You can give these partitions structure, and these structures fall into different categories as well. More on that later. Volumes are partitions that have a file structure setup, often it’s an operating system or a simple storage device.</p>
+
+<p>Here is a visual to give you a better idea. 
+<img src="/assets/img/servergifs/vol/1.png" alt="Disk Management" /></p>
+
+<p>Notice that Disk 0 has multiple partitions all set up in unique ways. Then there is a <strong>NTFS</strong> file system setup as the bootable disk.</p>
+
+<p>The organizational system and style of the partition can come in different flavors as well. Two major flavors are</p>
+<ul>
+  <li><strong>GPT</strong> GUID partition table</li>
+  <li><strong>MBR</strong> Master Boot Record</li>
+</ul>
+
+<h4 id="why-gpt-over-mbr">Why GPT over MBR?</h4>
+<p>What you need to know is that <strong>MBR</strong> is a much older system and the way that the partitions and tables are setup may be less efficient. MBR also has a limit of 2 TB of space that it can recognize per each of it’s max 4 partitions. The bootloader in the MBR isn’t smart enough to handle much more than a classic BIOS system. So use with EFI isn’t possible. Also, without getting into too much detail. The usused space between the partition table + bootloader and the 1st partition is much smaller. Due to the way it’s organizes within it’s sectors, there is no need to leave gaps between the elements.</p>
+
+<hr />
+
+<h3 id="disk-maintenance">Disk Maintenance</h3>
+
+<h4 id="disk-management">Disk Management</h4>
+<p>Working with storage devices to create partitions and volumes can be done with various tools. On Server 2016, the native application is <strong>Disk Management</strong> as pictured above.</p>
+
+<p><strong>To get to Disk Management, you have a few options</strong></p>
+<ol>
+  <li>Search for it in the start menu</li>
+  <li>Find it in Administrative tools</li>
+  <li>run <code>diskmgmt.mcs</code> in the run window or command line</li>
+</ol>
+
+<h4 id="using-powershell">Using Powershell.</h4>
+
+<p><img src="/assets/img/servergifs/vol/3.png" alt="PowerShell Example" /><br />
+You can also use some commands in powershell to handle your Disks, partitions, and volumes. Here are some basic starting points. These commandlets have their own set of possible options and arugments that make them useful. Use <code>man CommandName </code> or <code> help CommandName </code> to learn more.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get-Disk
+Initialize-Disk
+Get-Partition
+Get-Volume
+Format-Volume
+Set-StorageSetting
+
+</code></pre></div></div>
+
+<h4 id="trusty-diskpart">Trusty DiskPart</h4>
+
+<p>For many years, the goto for disk maintenance is DiskPart. Similar to using powershell, DiskPart is a command like tool for handling storage. <br />
+<img src="/assets/img/servergifs/vol/2.png" alt="DiskPart Example" /><br />
+Here are some commands. Use <code>Diskpart /? </code> to get a better idea of how to use DiskPart.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Diskpart list disk
+select disk &lt;number&gt;
+clean
+create partition primary
+select partition &lt;number&gt;
+active
+assign letter=&lt;letter&gt;
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="file-systems">File Systems</h3>
+
+<p>The file system handles how the data is organized without a volume. It’s role is to isolate particular parts of data so that it understand where one thing starts and another begins. It’s what gives storage devices the ability to name files and have directories. Each system is very unique and has it’s own benefits.</p>
+
+<p>Here is a list of types:</p>
+<ul>
+  <li>FAT</li>
+  <li>exFAT</li>
+  <li>NTFS</li>
+  <li>ISO</li>
+  <li>HFS</li>
+  <li>ext</li>
+  <li>VMFS</li>
+</ul>
+
+<blockquote>
+  <p>Note: Some of these types include the ability to journal or to record the intentions of changes before the changes occur. Such that if the actual changes fail, the journal still exists and can often be quicker at bringing back to a working state. Also, some systems alow for versioning of files or allowing for copies of a file at different stages of it’s existance. This works by keeping up with the ‘deltas’ of a file as it changes such that files can easily be reverted back in case of failure or emergency.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="creating-vhds">Creating VHDs</h3>
+
+<p>Aside from formating physical disks, adding partitions to flash drives, and naming your drives cool names, you can use a system like Disk Manager to create Virtual Disks for the use in Virtual Machines or for containing and isolating files.</p>
+
+<h4 id="virtual-disks-vhds-and-vhdx">Virtual Disks VHDs and VHDX</h4>
+<p>We can easily simulate a physical harddrive in the virtual space within a harddrive. In other words, you can make harddrives that sit on your harddrive and can be moved and copied in the same way you would copy a text file. These harddrives are called VHDs or VHDXs.</p>
+
+<p>You can create Virtual Disks in three ways:</p>
+<ul>
+  <li>Disk Management</li>
+  <li>Using Hyper-V Manager</li>
+  <li>Powershell command line.</li>
+</ul>
+
+<h4 id="making-a-vhd-using-disk-management">Making a VHD using Disk Management</h4>
+<ul>
+  <li>Open Disk Management by searching for it in the start menu</li>
+  <li>In the top menu choose <em>Action</em> and then <em>Create New Virtual Disk</em></li>
+  <li>Set the disk’s name, size, and location. You can choose between a traditional VHD or a VHDX. <br />
+<img src="/assets/img/servergifs/vol/4.png" alt="Creating a New VHD" /></li>
+</ul>
+
+<p>You’ll notice that you have a new drive in Disk Management but it’s showing up black instead of blue. It will be Not Initialized, Unallocated, and Offline.<br />
+<img src="/assets/img/servergifs/vol/5.PNG" alt="New VHD in Disk Managment" /></p>
+
+<ul>
+  <li>Right click in the grey box that has Disk 1 (or whatever number) and Initialize the Disk. <br />
+<img src="/assets/img/servergifs/vol/6.PNG" alt="Init New VHD" /></li>
+  <li>Set the partition style you’d like to use for this disk.</li>
+  <li>now Right click into the white rectangle space beside that and create a new volume.<br />
+<img src="/assets/img/servergifs/vol/7.PNG" alt="New Volume" /></li>
+  <li>you will then be prompted to decide the file system type and the name of the volume. <br />
+<img src="/assets/img/servergifs/vol/8.PNG" alt="Finishing New Volume Wizard" /></li>
+  <li>Click finish.</li>
+</ul>
+
+
+  </div><a class="u-url" href="/server/2017/11/20/Disks-And-Volumes.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Hi</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

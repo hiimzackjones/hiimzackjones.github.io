@@ -1,0 +1,32 @@
+I"Ê<p>Before you can Implement Network Load Balancing, here are some prerequisites:</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li>All hosts in the cluster must be on the same subnet</li>
+  <li>All adapters in cluster must be setup as either <em>multicast</em> or <em>unicast</em> but not a mixture of both</li>
+  <li><em>if unicast</em> the NIC used to handle client-to-cluster traffic must support changing its MAC address</li>
+  <li>IPs must be static on the nodes.</li>
+</ul>
+
+<h3 id="installing-nlb-nodes">Installing NLB Nodes</h3>
+<p>Like most other features. You must install this from Server Manager, add roles and features.</p>
+
+<p>Select <em>Network Load Balancing</em> from the features section.</p>
+
+<h3 id="creating-a-nlb-cluster">Creating a NLB Cluster</h3>
+
+<p>Under the Netowkr Load Blancing Manger</p>
+<ul>
+  <li>Right click the cluster and click New Cluster</li>
+  <li>Set the host as your current server</li>
+  <li>Select the interface for this specific cluster</li>
+  <li>find the IP address in the Dedicated IP address section and hit next</li>
+  <li>Add an IP address that is shared by all clusters and it will add the IP to the adapters</li>
+  <li>add the IP address for the NLB Cluster</li>
+  <li>On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.</li>
+  <li>Set any applicable port rules</li>
+  <li>Now just add hosts to this cluster as needed.</li>
+</ul>
+
+:ET

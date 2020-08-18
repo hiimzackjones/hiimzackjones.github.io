@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Saving Linux Terminal Commands As A Bash Script | Hi</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Saving Linux Terminal Commands As A Bash Script" />
+<meta name="author" content="Zack Jones" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is my first Linux post and we are going straight for the fun stuff. See, many people will say that the first experience with programming should be C or JavaScript or HTML or something like that. I say the first thing you should try is just typical Bash scripts. Why? Because you’ve already learned some of it probably." />
+<meta property="og:description" content="This is my first Linux post and we are going straight for the fun stuff. See, many people will say that the first experience with programming should be C or JavaScript or HTML or something like that. I say the first thing you should try is just typical Bash scripts. Why? Because you’ve already learned some of it probably." />
+<link rel="canonical" href="http://localhost:4000/linux/2017/09/26/Saving-Linux-Terminal-Commands-as-A-Bash-Script.html" />
+<meta property="og:url" content="http://localhost:4000/linux/2017/09/26/Saving-Linux-Terminal-Commands-as-A-Bash-Script.html" />
+<meta property="og:site_name" content="Hi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-09-26T23:08:00-04:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/linux/2017/09/26/Saving-Linux-Terminal-Commands-as-A-Bash-Script.html","headline":"Saving Linux Terminal Commands As A Bash Script","dateModified":"2017-09-26T23:08:00-04:00","datePublished":"2017-09-26T23:08:00-04:00","author":{"@type":"Person","name":"Zack Jones"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/linux/2017/09/26/Saving-Linux-Terminal-Commands-as-A-Bash-Script.html"},"description":"This is my first Linux post and we are going straight for the fun stuff. See, many people will say that the first experience with programming should be C or JavaScript or HTML or something like that. I say the first thing you should try is just typical Bash scripts. Why? Because you’ve already learned some of it probably.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106768649-1');
+</script>
+
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Saving Linux Terminal Commands As A Bash Script</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2017-09-26T23:08:00-04:00" itemprop="datePublished">Sep 26, 2017
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This is my first Linux post and we are going straight for the fun stuff. See, many people will say that the first experience with programming should be C or JavaScript or HTML or something like that. I say the first thing you should try is just typical Bash scripts. Why? Because you’ve already learned some of it probably.</p>
+
+<p>###From the top.</p>
+
+<p>Go ahead and open up a terminal in Linux. If you don’t have linux available, you can do some of this with an emulator like <a href="https://www.tutorialspoint.com/unix_terminal_online.php">The one found here</a><br />
+You can also install something called Gitbash to give you some experience with using a linux like shell. <a href="https://git-for-windows.github.io/">Here is a link for that</a><br />
+If you get gitbash, install it to run in Gitbash window only, and make it run Checkout as is run as is. You’ll see those options as the program installs.</p>
+
+<p>Before we get into writing the actual script, let’s test some commands out. You should have a prompt that looks something like</p>
+
+<p><code>SuperSweetComputer:~ MyName$</code></p>
+
+<p>It really could be anything depending on out it’s setup. There is actually a way to fully customize your prompt. So don’t worry too much with what it says, as long as it ends with a $. In a terminal $ means it’s ready for you to enter something into the command line. So let’s enter some junk.</p>
+
+<iframe src="https://giphy.com/embed/3o6wroo3oOYgTIvjIA" width="480" height="358" frameborder="0" class="giphy-embed" allowfullscreen=""></iframe>
+
+<p>Let’s do a quick warm up to test it out. Run these commands in order. See what the terminal says back to you.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:~ Me$ ls  
+Computer:~ Me$ touch testing.txt  
+Computer:~ Me$ ls
+Computer:~ Me$ mkdir Folder 
+Computer:~ Me$ mv testing.txt Folder  
+Computer:~ Me$ ls -l  
+Computer:~ Me$ cd Folder 
+Computer:Folder Me$ echo "That's my purse!" &gt; testing.txt  
+Computer:Folder Me$ cat testing.txt  
+</code></pre></div></div>
+
+<p>Okay cool. Terminal warm ups are good for you if you’re nervous about using terminal, or you’re working on your typing skills. It also is a good way to slowly get used to some of the commands and the options they offer. For example, you might have learned what the <code>cat</code> command does just by doing the warm up.</p>
+
+<p>What you just did was Make a folder called Folder with a file named testing.txt with the text “That’s my purse!” in it. And you did it line by line.</p>
+
+<p>But let’s imagine it was something bigger, and more relevant and important. Like deploying some sort of sys admin application, or changing some networking config, or finding and stealing various hashes from someone else’s computer. In any of these cases, you wouldn’t want to have to type it out line by line.</p>
+
+<iframe src="https://giphy.com/embed/R459x856IfF6w" width="480" height="289" frameborder="0" class="giphy-embed" allowfullscreen=""></iframe>
+
+<p>Let’s do something similar to what we just did, but let’s set up a bash script for it.</p>
+
+<p>Let’s start by going back to the home directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Folder Me$ cd ~
+</code></pre></div></div>
+<p>Note I used the magic squigglely. Aka the tilda, Aka the home symbol. It automatically takes you back home. <br />
+Let’s check to make sure I’m not lying.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:~ Me$ pwd
+</code></pre></div></div>
+<p>The command pwd will tell us the current working directory. It should be your home directory. If you’re using an emulator it might show something like <code>/home/cg/root/</code> or <code> c/Users/Me </code>
+You can do the same go home trick by just using cd by itself. FYI.</p>
+
+<p>Okay. Let’s make a directory for us to play in.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:~ Me$ mkdir Playing
+</code></pre></div></div>
+<p>and let’s get into it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:~ Me$ cd Playing
+</code></pre></div></div>
+
+<p>Okay. Now let’s make the file we are going to put our script into.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ touch FirstScript.sh
+</code></pre></div></div>
+
+<p>There are a few ways to start putting our script into this .sh file. Let’s go full professional here and use vim. If you’re using the website emulator, this is the end of the line for you. If you’re using Gitbash you’ve already got vim. If you’re on a linux machine, you may not have vim yet. So let’s get it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ apt-get install vim
+</code></pre></div></div>
+<p>You may have to sudo that mess.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ sudo apt-get install vim
+</code></pre></div></div>
+
+<p>Put in your password if it asks. And let it do it’s thing. It will let you know when it’s done. <br />
+You’ve most likely got a mess on your terminal. Do dis.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ clear
+</code></pre></div></div>
+<p>Clear is a magical command. I use it between like every 2 or 3 commands. Love it. <br />
+Right. So now vim into your script to start editing it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ vim FirstScript.sh 
+</code></pre></div></div>
+
+<p>When you do this, your screen is going to change. You’ve essentially left the bash and went into a terminal ran program called vim. There are multiple text editors like this. Sometimes you will see people use Nano or some other junk. Vim is good. Feel free to read the arguments about which is better on twitter or redit. <br />
+This is what it will look like. <br />
+<img src="/assets/img/vim1.png" alt="Vim" /> 
+or <br />
+<img src="/assets/img/vim2.png" alt="Vim again" /><br />
+Or maybe something else. (Yes that is Mac instead of Linux. Mac uses an almost identical terminal system based off of Unix. It also has the same background and scheme as the website. Um hmm.</p>
+
+<p>Vim has modes in a way. As soon as it opens, you’re in a mode that allows you to move around and look at the file. When you are ready to edit something press the <code> i</code> key. To get back to this mode you can hit the esc key.<br />
+Starting at the top. press the i key to get in and let’s add our first line. This line is going to be key for making this lonely little text file into a super awesome executable bash script.</p>
+
+<p><code> #!/bin/bash </code></p>
+
+<p>Now let’s add some stuff. Try typing this stuff out for practice. Or copy it if you’re a weakling.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#This is how you write a comment. This line will be ignored when ran. It's for leaving yourself and other's notes about the program. </span>
+<span class="c">#Starting Script (this is still a comment. Just so you know where the actual code starts)</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"I'm a sweet script that is about to run all by itself anytime I tell it to What is your name?"</span>
+<span class="nb">read </span>NAME
+<span class="nb">echo</span> <span class="s2">"Cool name </span><span class="nv">$NAME</span><span class="s2">, I'm going to make a folder and a file and then put some stuff in it, I'll let you know when I'm done"</span>
+<span class="nb">mkdir </span>MadeThis
+<span class="nb">cd </span>MadeThis
+<span class="nb">touch </span>MadeThisToo.txt
+<span class="nb">echo</span> <span class="s2">"Look at all the junk I made"</span> <span class="o">&gt;</span> MadeThisToo.txt
+<span class="nb">echo</span> <span class="s2">"Alright dudes, I'm done"</span>
+<span class="c">#Script is done</span>
+</code></pre></div></div>
+<p>You’ll notice that each line you write, is identical to how you’d write it if you were in the terminal running it line by line. Like we did earlier. When this gets executed, that is exactly how it will run it. Line by line. <br />
+Let’s save this. Press ESC to leave the editing mode. Now type <code>:wq</code> and press enter. You just told vim to save the changes and quit. or Write Quit. If you ever need to quit without writing just do <code>:q!</code></p>
+
+<p>Let’s make the terminal print out what we typed to review it real quick.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ cat FirstScript.sh
+</code></pre></div></div>
+
+<p>Cool. Looks good. If you want to edit it just use vim again. i to edit it. make sure to :wq it.</p>
+
+<p>Now. This is a new linux command that we haven’t used yet, but it is pretty important. It comes into play often if you’re writing stuff like this. The file so far doesn’t have the ability to just be executed. We wouldn’t want these scripts just ready to run all willy nilly as soon as we write them right?</p>
+
+<p>Let’s make it work.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ chmod u+x FirstScript.sh 
+</code></pre></div></div>
+
+<p>and let it do work. When it’s done we are ready to execute.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer:Playing Me$ bash FirstScript.sh 
+</code></pre></div></div>
+<p>Yep. How awesome is that?</p>
+
+<p>Let’s break down some of the lines in the  FirstScript.sh</p>
+
+<p>First off you see the <br />
+<code> echo -e </code><br />
+That is where it prompts you to say something to it. Directly after you have the line of <br />
+<code> read NAME </code>  <br />
+Where we read what the input from the user is and save it as a variable called NAME so that we can use it later. We used it in the echo later by<br />
+<code> $NAME </code>  <br />
+Notice we used a $ before NAME to tell it to use what was saved in NAME instead of the word NAME. Basically.  <br />
+That is all there is to it. Try making a few scripts. Seriously. Like maybe something like ifconfig or traceroute or ping saved to a file. Or learn how to use if statements and make a word game or something.</p>
+
+<p>Okay bye. Thanks.</p>
+
+<p>Cheers, <br />
+Zack</p>
+
+<iframe src="https://giphy.com/embed/LRVnPYqM8DLag" width="480" height="269" frameborder="0" class="giphy-embed" allowfullscreen=""></iframe>
+
+
+  </div><a class="u-url" href="/linux/2017/09/26/Saving-Linux-Terminal-Commands-as-A-Bash-Script.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Hi</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
