@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-08T17:59:30-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-07T17:19:35-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
 </subtitle><author><name>Zack Jones</name></author><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
@@ -83,43 +83,21 @@ The scan is quite lengthy so I won’t be posting a screenshot of the whole thin
 &lt;p&gt;At this point we could probably start poking at these CVEs but let’s try to dig in a bit further before attacking the machine.&lt;/p&gt;
 
 &lt;h4 id=&quot;netbios-enumeration&quot;&gt;Netbios enumeration&lt;/h4&gt;
+&lt;p&gt;So with netbios there are a couple ways we can enumerate it. The first way is to run &lt;code&gt;nbtscan&lt;/code&gt; on it to see what services we can see. We are looking for information about it being connected to a domain or a File Server Service.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nbtscan -vh 10.10.10.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After running this we see that it in fact has a File Server Service running as well as a few others listed. This is good information for us. 
+&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/nbtscan.png&quot; alt=&quot;Nbtscan&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;smb-enumeration&quot;&gt;SMB enumeration&lt;/h4&gt;
-&lt;h4 id=&quot;cve-2008-4250&quot;&gt;CVE-2008-4250&lt;/h4&gt;
-&lt;h4 id=&quot;cve-2017-0143&quot;&gt;CVE-2017-0143&lt;/h4&gt;
-&lt;h4 id=&quot;exploitation-and-gaining-access&quot;&gt;Exploitation and Gaining Access&lt;/h4&gt;
-
-&lt;p&gt;Netbios&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nbtscan -v 10.10.10.4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Doing NBT name scan for addresses from 10.10.10.4
-
-NetBIOS Name Table for Host 10.10.10.4:
-
-Name             Service          Type             
-----------------------------------------
-LEGACY           &amp;lt;00&amp;gt;             UNIQUE
-HTB              &amp;lt;00&amp;gt;              GROUP
-LEGACY           &amp;lt;20&amp;gt;             UNIQUE
-HTB              &amp;lt;1e&amp;gt;              GROUP
-HTB              &amp;lt;1d&amp;gt;             UNIQUE
-__MSBROWSE__  &amp;lt;01&amp;gt;              GROUP
-
-Adapter address: 00:50:56:b9:55:3f
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Windows XP
-name: legacy
-smb defaults? - message signing disabled
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;smb&lt;/p&gt;
+&lt;p&gt;Okay so when we ran our big nmap scan we got plenty of information on SMB but let’s just run some SMB specific enumerations real fast just for the heck of it. Let’s start with smbclient.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L \\10.10.10.4\\
 nmap -p 445 --script smb-os-discovery 10.10.10.4 (this happens with the nmap you ran before but could be used to check it)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;cve-2008-4250&quot;&gt;CVE-2008-4250&lt;/h4&gt;
+&lt;h4 id=&quot;cve-2017-0143&quot;&gt;CVE-2017-0143&lt;/h4&gt;
+&lt;h4 id=&quot;exploitation-and-gaining-access&quot;&gt;Exploitation and Gaining Access&lt;/h4&gt;
 
 &lt;p&gt;metasploit scanning enum&lt;/p&gt;
 
