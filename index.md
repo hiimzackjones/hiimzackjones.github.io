@@ -20,7 +20,7 @@ Also here are all my socials.
 
 [Twitter](http://twitter.com/mehhsecurity)    
 [Youtube](https://www.youtube.com/channel/UC5V_W68Ex0NGEQI7RN_VXjg)  
-[Github](https://github.com/github)  
+[Github](https://github.com/hiimzackjones)  
 [Twitch](https://www.twitch.tv/hiimzackjones)  
 
   
