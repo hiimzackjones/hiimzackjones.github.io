@@ -102,13 +102,17 @@ After running this we see that it in fact has a file server service running as w
 Okay so when we ran our big nmap scan we got plenty of information on SMB but let's just run some SMB specific enumerations real fast just for the heck of it. Let's start with smbclient. 
 
 ```
-smbclient -L //10.10.10.4///
+smbclient -L \\\\10.10.10.4\\\
+smbclient -N -L \\\10.10.10.4\\
 
 ```
 smbclient is a small application similar to FTP. It may allow you to view files from the server. It also allows to put files on the server, view files, etc. In some cases you will be able to log in anonymously. 
 
+![smbclient](/assets/img/Walkthroughs/Legacy/smbclient.png)
 
+We aren't getting much from it right now and that's okay. Let's keep poking around. Note that if we didn't already know it was a windows machine, seeing ```NT_STATUS_IO_TIMEOUT``` is a clue that it's windows. Remember NT generally means it's a Windows machine. 
 
+*Note: smbmap is also a great tool for enumearting SMB, in paticular when working with Active Directory or domains.*
 
 Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this. 
 
@@ -117,6 +121,9 @@ nmap -p 445 --script smb-os-discovery 10.10.10.4
 ```
 
 #### CVE-2008-4250
+https://www.cvedetails.com/cve/CVE-2008-4250/
+https://www.exploit-db.com/exploits/7132
+
 #### CVE-2017-0143
 #### Exploitation and Gaining Access
 
@@ -125,7 +132,12 @@ nmap -p 445 --script smb-os-discovery 10.10.10.4
 
 
 
+```
+PAST THIS POINT IS ROUGH NOTES. POST NOT COMPLETED
+```
 
+--- 
+---
 
 
 

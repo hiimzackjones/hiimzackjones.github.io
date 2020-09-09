@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-09T11:16:32-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-09T13:43:54-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
 </subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
@@ -11,7 +11,7 @@
 
 &lt;iframe src=&quot;https://giphy.com/embed/hNJwTYxnfK3te&quot; width=&quot;480&quot; height=&quot;204&quot; frameborder=&quot;0&quot; class=&quot;giphy-embed&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;It wasn’t until a keyboarding class in 9th grade that I began dabbling. See I had mastered typing way before this class, making every 30 minute assignment about 10 minutes long and it was a 45 minute class. So like any other bored chap in 2004, all I wanted to do was watch cartoons to pass the time. Specifically the beautiful internet treasure that is known as Newgrounds.com. Of course a website with bloody and sometimes adult themed games was 100%,no way around it, &lt;strong&gt;blocked&lt;/strong&gt;. The Barracuda filter mocking me each time I tried. So I did some Googling and found this cheeky little site called Hackthissite.org. HackThisSite just happened to have a post on barracuda filters and I quickly learned that it blocked based off of some weird thing called DNS and if I didn’t resolve the names, it wouldn’t get blocked. I went home and had my first round with the command prompt. Typing in that black box was pure magic despite the only thing I typed was a simple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping newgrounds.com&lt;/code&gt;. I was suddenly Neo and the world was just a command line execution away. I cast this new super secret hacker spell and it conquered out a set of numbers. The next day at school I did a little &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://51.79.77.158/&lt;/code&gt; in the browser. This was my very first “We’re in” moment. In my head I was a master hacker.&lt;/p&gt;
+&lt;p&gt;It wasn’t until a keyboarding class in 9th grade that I began dabbling. See I had mastered typing way before this class, making every 30 minute assignment about 10 minutes long and it was a 45 minute class. So like any other bored chap in 2004, all I wanted to do was watch cartoons to pass the time. Specifically the beautiful internet treasure that is known as Newgrounds.com. Of course a website with bloody and sometimes adult themed games was 100% &lt;strong&gt;blocked&lt;/strong&gt;. The Barracuda filter mocking me each time I tried. So I did some Googling and found this cheeky little site called Hackthissite.org. HackThisSite just happened to have a post on barracuda filters and I quickly learned that it blocked based off of some weird thing called DNS and if I didn’t resolve the names, it wouldn’t get blocked. I went home and had my first round with the command prompt. Typing in that black box was pure magic despite the only thing I typed was a simple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping newgrounds.com&lt;/code&gt;. I was suddenly Neo and the world was just a command line execution away. I cast this new super secret hacker spell and it conquered out a set of numbers. The next day at school I did a little &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://51.79.77.158/&lt;/code&gt; in the browser. This was my very first “We’re in” moment. In my head I was a master hacker.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Resume/newgrounds.png&quot; alt=&quot;2004 Newgrounds screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -26,7 +26,7 @@
 &lt;p&gt;You’d think that with my interest being in Cyber Security I’d try to go to school for it, but this is 2007/2008 and back then Cyber Security was different. From what the advisors said, my best bet was Cisco CCNA and that I’d be better off considering engineering or becoming a programmer/developer. It seemed like the skill set and excitement for breaking things would only be useful if I did something legally questionable and hope that the authorities or company find me useful… and I wasn’t really interested in taking that kind of risk. So I went to school for engineering and the fun cyber stuff went on the back burner and became a really niche replacement for video games.&lt;/p&gt;
 
 &lt;h1 id=&quot;hacking-as-a-hobby&quot;&gt;Hacking as A Hobby&lt;/h1&gt;
-&lt;p&gt;For the next few years after deciding that Cyber Security wouldn’t be a field I could get into. I continued to test my skills in any way I could that was…ahem…legal. I found sites like Vulnhub.com, Hackthebox.eu, ctflearn.com, and spent loads of time watching Hak5 and Metasploit minute. I even set up a small lab using a outdated gaming computer I had built during college. If I ran into a machine with a vulnerability I had never seen before, I dug into it and studied it. My goal at this point was just to get proficient enough to be good at CTFs, especially those I had heard about in DefCon YouTube videos.&lt;/p&gt;
+&lt;p&gt;For the next few years after deciding that Cyber Security wouldn’t be a field I could get into. I continued to test my skills in any way I could that was…ahem…legal. I found sites like Vulnhub.com, Hackthebox.eu, ctflearn.com, and spent loads of time watching Hak5 and Metasploit Minute. I even set up a small lab using a outdated gaming computer I had built during college. If I ran into a machine with a vulnerability I had never seen before, I dug into it and studied it. My goal at this point was just to get proficient enough to be good at CTFs, especially those I had heard about in DefCon YouTube videos.&lt;/p&gt;
 
 &lt;h1 id=&quot;the-turnaround&quot;&gt;The Turnaround&lt;/h1&gt;
 &lt;p&gt;Roughly in 2015, a friend told me that the local college had a Cyber Security program backed by the NSA now and it was all over the news that talent in the field was hard to come by and that things had changed. So at 26 I went back to college. I’m a horrible classroom student, and I somehow convinced the Director that I could swing it. I expected to be the underdog in all the classes, assuming my self taught level of knowledge would barely be able to get me past the first semester. Come to find out, I was way ahead of the curve. This was the boost that I needed to really start the professional part of my journey.&lt;/p&gt;
@@ -48,7 +48,7 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
 
 &lt;ul&gt;
   &lt;li&gt;Find a Udemy class designed for OSCP. I have a few I really liked.&lt;/li&gt;
-  &lt;li&gt;Find a professional that will willing to be your mentor. Find more than one. Talk to as many people as you can about their process and to make assessment on your skill set. Having someone watch you work is absolutely the best way to learn how to get better.&lt;/li&gt;
+  &lt;li&gt;Find a professional that will be willing to be your mentor. Find more than one. Talk to as many people as you can about their process and to make assessment on your skill set. Having someone watch you work is absolutely the best way to learn how to get better.&lt;/li&gt;
   &lt;li&gt;Do any and every Easy or Medium HacktheBox.eu box you can. &lt;em&gt;also the question of writeups come up a lot. Always have a writeup ready for reference if you get stuck, but don’t use it as step by step instructions if you can help it&lt;/em&gt;&lt;/li&gt;
   &lt;li&gt;Google how to enumerate each port you find. Make notes.&lt;/li&gt;
   &lt;li&gt;Write what you’ve done. Take the time to do this. Write the most basic version of what your process was like. A few weeks or months later, go back to edit the notes, forcing you to follow them and re-work the box.&lt;/li&gt;
@@ -68,8 +68,7 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
 &lt;/blockquote&gt;
 
 &lt;p&gt;Oversee all infrastructure of technical operations, administer and manage various platforms and accounts. Ensure strategic planning for future technology as well as capacity planning. Troubleshoot technical problems for over 200 users, computer repair, network device repair.
-Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.
-—&lt;/p&gt;
+Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.&lt;/p&gt;
 
 &lt;h1 id=&quot;computer-science-adjunct-instructor&quot;&gt;Computer Science Adjunct Instructor&lt;/h1&gt;
 &lt;h4 id=&quot;danville-community-college---danville-va&quot;&gt;Danville Community College - Danville, VA&lt;/h4&gt;
@@ -77,7 +76,7 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;p&gt;January 2020 to May 2020&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;create-curriculum-and-instruct-classes-in-the-topics-of-intro-to-game-design-with-unreal-engine-4-life-cycles-of-application-development-using-sdlc-assess-and-conduct-classes-both-online-and-in-person-provide-presentations-lectures-and-oversee-technical-hands-on-labs-ensure-a-quality-learning-environment-for-different-learning-styles&quot;&gt;Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.&lt;/h2&gt;
+&lt;p&gt;Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.&lt;/p&gt;
 
 &lt;h1 id=&quot;computer-science-instructor&quot;&gt;Computer Science Instructor&lt;/h1&gt;
 &lt;h4 id=&quot;hargrave-military-academy---danville-va-1&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
@@ -85,7 +84,7 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;p&gt;January 2017 to August 2019&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;create-curriculum-and-instruct-classes-in-the-topics-of-intro-to-computer-science-intro-to-cyber-security-assess-and-conduct-classes-with-a-student-size-of-7-12-provide-presentations-lectures-and-oversee-technical-hands-on-labs-ensure-a-quality-learning-environment-for-different-learning-styles-communicate-with-parents--guardians-on-their-childs-behavior-and-progress&quot;&gt;Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents &amp;amp; guardians on their child’s behavior and progress.&lt;/h2&gt;
+&lt;p&gt;Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents &amp;amp; guardians on their child’s behavior and progress.&lt;/p&gt;
 
 &lt;h1 id=&quot;network-techinstaller&quot;&gt;Network Tech/Installer&lt;/h1&gt;
 &lt;h4 id=&quot;river-city-systems---danville-va&quot;&gt;River City Systems - Danville, VA&lt;/h4&gt;
@@ -93,18 +92,18 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;p&gt;2017 - 2018&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;the-majority-of-this-job-was-installing-networks-inside-of-schools-and-businesses-this-includes-termination-of-lines-length-and-connection-testing-assisting-with-network-specifications-preparation-for-ip-camera-installs-etc&quot;&gt;The majority of this job was installing networks inside of school’s and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.&lt;/h2&gt;
+&lt;p&gt;The majority of this job was installing networks inside of school’s and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.&lt;/p&gt;
 
 &lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
 
-&lt;h1 id=&quot;associates-degree-in-networking&quot;&gt;Associates Degree in Networking&lt;/h1&gt;
-&lt;h4 id=&quot;danville-community-college&quot;&gt;Danville Community College&lt;/h4&gt;
+&lt;h4 id=&quot;associates-degree-in-networking&quot;&gt;Associates Degree in Networking&lt;/h4&gt;
+&lt;p&gt;Danville Community College&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;2017-2019&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&quot;associates-degree-in-science&quot;&gt;Associates Degree in Science&lt;/h1&gt;
-&lt;h4 id=&quot;danville-community-college-1&quot;&gt;Danville Community College&lt;/h4&gt;
+&lt;h4 id=&quot;associates-degree-in-science&quot;&gt;Associates Degree in Science&lt;/h4&gt;
+&lt;p&gt;Danville Community College&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;2011-2014&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;&lt;em&gt;some of this post is still being edited. Posting draft early by request.&lt;/em&gt;&lt;/p&gt;
@@ -203,10 +202,17 @@ The scan is quite lengthy so I won’t be posting a screenshot of the whole thin
 &lt;h4 id=&quot;smb-enumeration&quot;&gt;SMB enumeration&lt;/h4&gt;
 &lt;p&gt;Okay so when we ran our big nmap scan we got plenty of information on SMB but let’s just run some SMB specific enumerations real fast just for the heck of it. Let’s start with smbclient.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L //10.10.10.4///
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L \\\\10.10.10.4\\\
+smbclient -N -L \\\10.10.10.4\\
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;smbclient is a small application similar to FTP. It may allow you to view files from the server. It also allows to put files on the server, view files, etc. In some cases you will be able to log in anonymously.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/smbclient.png&quot; alt=&quot;smbclient&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We aren’t getting much from it right now and that’s okay. Let’s keep poking around. Note that if we didn’t already know it was a windows machine, seeing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NT_STATUS_IO_TIMEOUT&lt;/code&gt; is a clue that it’s windows. Remember NT generally means it’s a Windows machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: smbmap is also a great tool for enumearting SMB, in paticular when working with Active Directory or domains.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this.&lt;/p&gt;
 
@@ -214,8 +220,17 @@ The scan is quite lengthy so I won’t be posting a screenshot of the whole thin
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;cve-2008-4250&quot;&gt;CVE-2008-4250&lt;/h4&gt;
+&lt;p&gt;https://www.cvedetails.com/cve/CVE-2008-4250/
+https://www.exploit-db.com/exploits/7132&lt;/p&gt;
+
 &lt;h4 id=&quot;cve-2017-0143&quot;&gt;CVE-2017-0143&lt;/h4&gt;
 &lt;h4 id=&quot;exploitation-and-gaining-access&quot;&gt;Exploitation and Gaining Access&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PAST THIS POINT IS ROUGH NOTES. POST NOT COMPLETED
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;metasploit scanning enum&lt;/p&gt;
 
