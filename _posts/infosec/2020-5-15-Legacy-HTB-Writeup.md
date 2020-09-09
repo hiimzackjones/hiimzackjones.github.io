@@ -86,11 +86,12 @@ So now we know that this machine has two CVEs marked as vulnerable.
 At this point we could probably start poking at these CVEs but let's try to dig in a bit further before attacking the machine.  
 
 #### Netbios enumeration
-So with netbios there are a couple ways we can enumerate it. The first way is to run <code>nbtscan</code> on it to see what services we can see. We are looking for information about it being connected to a domain or a File Server Service. 
+So with netbios there are a couple ways we can enumerate it. The first way is to run <code>nbtscan</code> on it to see what services we can see. We are looking for information about it being connected to a domain or a some sort of file server service. 
 ```
 nbtscan -vh 10.10.10.4
 ```
-After running this we see that it in fact has a File Server Service running as well as a few others listed. This is good information for us. 
+After running this we see that it in fact has a file server service running as well as a few others listed. This is good information for us.  
+
 ![Nbtscan](/assets/img/Walkthroughs/Legacy/nbtscan.png)
 
 
@@ -99,9 +100,19 @@ After running this we see that it in fact has a File Server Service running as w
 Okay so when we ran our big nmap scan we got plenty of information on SMB but let's just run some SMB specific enumerations real fast just for the heck of it. Let's start with smbclient. 
 
 ```
-smbclient -L \\10.10.10.4\\
-nmap -p 445 --script smb-os-discovery 10.10.10.4 (this happens with the nmap you ran before but could be used to check it)
+smbclient -L //10.10.10.4///
+
 ```
+smbclient is a small application similar to FTP. It may allow you to view files from the server. It also allows to put files on the server, view files, etc. In some cases you will be able to log in anonymously. 
+
+
+
+Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this. 
+
+```
+nmap -p 445 --script smb-os-discovery 10.10.10.4
+```
+
 #### CVE-2008-4250
 #### CVE-2017-0143
 #### Exploitation and Gaining Access

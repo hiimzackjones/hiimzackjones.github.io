@@ -149,18 +149,26 @@ The scan is quite lengthy so I won’t be posting a screenshot of the whole thin
 <p>At this point we could probably start poking at these CVEs but let’s try to dig in a bit further before attacking the machine.</p>
 
 <h4 id="netbios-enumeration">Netbios enumeration</h4>
-<p>So with netbios there are a couple ways we can enumerate it. The first way is to run <code>nbtscan</code> on it to see what services we can see. We are looking for information about it being connected to a domain or a File Server Service.</p>
+<p>So with netbios there are a couple ways we can enumerate it. The first way is to run <code>nbtscan</code> on it to see what services we can see. We are looking for information about it being connected to a domain or a some sort of file server service.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nbtscan -vh 10.10.10.4
 </code></pre></div></div>
-<p>After running this we see that it in fact has a File Server Service running as well as a few others listed. This is good information for us. 
-<img src="/assets/img/Walkthroughs/Legacy/nbtscan.png" alt="Nbtscan" /></p>
+<p>After running this we see that it in fact has a file server service running as well as a few others listed. This is good information for us.</p>
+
+<p><img src="/assets/img/Walkthroughs/Legacy/nbtscan.png" alt="Nbtscan" /></p>
 
 <h4 id="smb-enumeration">SMB enumeration</h4>
 <p>Okay so when we ran our big nmap scan we got plenty of information on SMB but let’s just run some SMB specific enumerations real fast just for the heck of it. Let’s start with smbclient.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient -L \\10.10.10.4\\
-nmap -p 445 --script smb-os-discovery 10.10.10.4 (this happens with the nmap you ran before but could be used to check it)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient -L //10.10.10.4///
+
 </code></pre></div></div>
+<p>smbclient is a small application similar to FTP. It may allow you to view files from the server. It also allows to put files on the server, view files, etc. In some cases you will be able to log in anonymously.</p>
+
+<p>Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -p 445 --script smb-os-discovery 10.10.10.4
+</code></pre></div></div>
+
 <h4 id="cve-2008-4250">CVE-2008-4250</h4>
 <h4 id="cve-2017-0143">CVE-2017-0143</h4>
 <h4 id="exploitation-and-gaining-access">Exploitation and Gaining Access</h4>

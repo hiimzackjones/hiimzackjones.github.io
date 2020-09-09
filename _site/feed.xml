@@ -1,5 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-07T17:19:35-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
-</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-08T21:03:44-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
+&lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;who-i-am&quot;&gt;Who I am&lt;/h1&gt;
+
+&lt;p&gt;Okay so, by now you’ve figured out my name is Zack and I’m 30 and I do cyber security things. Here is the shortest version of the story.&lt;/p&gt;
+
+&lt;h1 id=&quot;highschool&quot;&gt;Highschool&lt;/h1&gt;
+&lt;p&gt;Mesmerized by media’s depiction of ‘hackers’ from movies like The Matrix, Hackers, 007 Goldeneye (Boris’ pen twirl is a must have skill for any hacker), and loads of other movies, hacking seemed to be some sort of high caliber, techno genius level magic trick show and I couldn’t get enough of it. But of course that meant massive intimidation. These people were super heroes in their own way. The best magic trick I could ever do was the coin behind the ear thing.&lt;/p&gt;
+
+&lt;iframe src=&quot;https://giphy.com/embed/hNJwTYxnfK3te&quot; width=&quot;480&quot; height=&quot;204&quot; frameborder=&quot;0&quot; class=&quot;giphy-embed&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;It wasn’t until a keyboarding class in 9th grade that I began dabbling. See I had mastered typing way before this class, making every 30 minute assignment about 10 minutes long and it was a 45 minute class. So like any other bored chap in 2004, all I wanted to do was watch cartoons to pass the time. Specifically the beautiful internet treasure that is known as Newgrounds.com. Of course a website with bloody and sometimes adult themed games was 100%,no way around it, &lt;strong&gt;blocked&lt;/strong&gt;. The Barracuda filter mocking me each time I tried. So I did some googling and found this cheeky little site called Hackthissite.org. HackThisSite just happened to have a post on barracuda filters and I quickly learned that it blocked based off of some weird thing called DNS and if I didn’t resolve the names, it wouldn’t get blocked. I went home and had my first round with the command prompt. Typing in that black box was pure magic despite the only thing I typed was a simple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping newgrounds.com&lt;/code&gt;. I was suddenly Neo and the world was just a command line execution away. I cast this new super secret hacker spell and it conquered out a set of numbers. The next day at school I did a little &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://51.79.77.158/&lt;/code&gt; in the browser. This was my very first “We’re in” moment. In my head I was a master hacker.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Resume/newgrounds.png&quot; alt=&quot;2004 Newgrounds screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was watching as much &lt;em&gt;Salad Fingers&lt;/em&gt; and &lt;em&gt;Weebl and Bob&lt;/em&gt; a 14 year old could fit in during a 45 minute class. But it was the other site, the sneaky one for hackers that really started to consume my mind after this. Geez…there is an actual site called Hack this site. Insane. This site became my only past time. I started posting on the forums daily. I quickly was yelled at by strangers on the internet in posts telling me&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“… freaking script kiddie. learn html, javascript, how computers work before you come in and ask how to hack something…”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Embarrassing but… I’m glad they responded that way. Because that’s exactly what I did next. For the next 6 years or so. Learning Javascript injection, SQL, HTML, how cookies worked, and how to watch non SSL http traffic. This is where I started my deep dive into CTFs and challenges.&lt;/p&gt;
+
+&lt;h1 id=&quot;college&quot;&gt;College&lt;/h1&gt;
+&lt;p&gt;You’d think that with my interest being in Cyber Security I’d try to go to school for it, but this is 2007/2008 and back then Cyber Security was different. From what the advisors said, my best bet was Cisco CCNA and that I’d be better off considering engineering or becoming a programmer/developer. It seemed like the skill set and excitement for breaking things would only be useful if I did something legally questionable and hope that the authorities or company find me useful… and I wasn’t really interested in taking that kind of risk. So I went to school for engineering and the fun cyber stuff went on the back burner and became a really niche replacement for video games.&lt;/p&gt;
+
+&lt;h1 id=&quot;hacking-as-a-hobby&quot;&gt;Hacking as A Hobby&lt;/h1&gt;
+&lt;p&gt;For the next few years after deciding that Cyber Security wouldn’t be a field I could get into. I continued to test my skills in any way I could that was…ahem…legal. I found sites like Vulnhub.com, Hackthebox.eu, ctflearn.com, and spent loads of time watching Hak5 and metasploit minute. I even set up a small lab using a outdated gaming computer I had built during college. If I ran into a machine with a vulnerability I had never seen before, I dug into it and studied it. My goal at this point was just to get profiecient enough to be good at CTFs, especially those I had heard about in DefCon YouTube videos.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-turnaround&quot;&gt;The Turnaround&lt;/h1&gt;
+&lt;p&gt;Roughly in 2015, a friend told me that the local college had a Cyber Security program backed by the NSA now and it was all over the news that talent in the field was hard to come by and that things had changed. So at 26 I went back to college. I’m a horrible classroom student, and I somehow convinced the Director that I could swing it. I expected to be the underdog in all the classes, assuming my self taught level of knowledge would barely be able to get me past the first semester. Come to find out, I was way ahead of the curve. This was the boost that I needed to really start the professional part of my journey.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-professor&quot;&gt;The Professor&lt;/h1&gt;
+&lt;p&gt;I had a Windows Server class my first semester. My advisor told me that he felt I could jump a few classes based off of what the professors were saying and his experience with me in the classroom. So I started the class. I had broken into a few Active Directory boxes before and had studied group policy so I was fairly experienced at the topic. About 4 weeks in the server class professor asked me if I was interested in a networking internship. I told him I had bills and I couldn’t be taking on unpaid work. “Zack, listen to me when I say this”&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;I’m moving and quiting my other job as IT Director and you know more than any CCNA certified applicant I’ve talked to”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Six months later I was hired as the IT Director, and the only IT employee at a private military school with roughly 300 users, 12 managed layer 3 switches, 35 access points, Barracuda web filters, web shaping hardware, 2 extremely outdated Cisco ASA, and a weird combination of Windows Server and Novell. Needless to say my two years spent as IT Director was a learning experience, but just futher fed my desire to keep going. The days the network started acting funny or would drop were my favorite days. Chasing down routing and starring at packets was the most exciting part of my job the few times it happened.&lt;/p&gt;
+
+&lt;h1 id=&quot;teaching-high-school-intro-to-cyber-security&quot;&gt;Teaching High School Intro to Cyber Security&lt;/h1&gt;
+&lt;p&gt;My first year I was asked to teach Introduction to Cyber Security. My class was about 8 kids ranging from 13 to 18. I used a combination of a cirriculium I found suggested by&lt;/p&gt;
+
+&lt;h1 id=&quot;chasing-the-oscp&quot;&gt;Chasing the OSCP&lt;/h1&gt;
+&lt;p&gt;So here we are. This is now. I won’t write a lot about this here. I will most likely blog the whole process from start to finish on a separate post. Here are some of the key notes on how I’ve gone about getting the OSCP. Specifically the preparation before purchasing the labs.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Find a Udemy class designed for OSCP. I have a few I really liked.&lt;/li&gt;
+  &lt;li&gt;Find a professional that will willing to be your mentor. Find more than one. Talk to as many people as you can about their process and to make assessment on your skill set. Having someone watch you work is absolutely the best way to learn how to get better.&lt;/li&gt;
+  &lt;li&gt;Do any and every Easy or Medium HacktheBox.eu box you can. &lt;em&gt;also the question of writeups come up a lot. Always have a writeup ready for reference if you get stuck, but don’t use it as step by step instructions if you can help it&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Google how to enumerate each port you find. Make notes.&lt;/li&gt;
+  &lt;li&gt;Write what you’ve done. Take the time to do this. Write the most basic version of what your process was like. A few weeks or months later, go back to edit the notes, forcing you to follow them and re-work the box.&lt;/li&gt;
+  &lt;li&gt;Publish things and have a professional critique your process.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">A Kind of Resume</title><link href="http://localhost:4000/blog/2020/09/03/Resume.html" rel="alternate" type="text/html" title="A Kind of Resume" /><published>2020-09-03T13:30:00-04:00</published><updated>2020-09-03T13:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Resume</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Resume.html">&lt;h2 id=&quot;bio&quot;&gt;Bio&lt;/h2&gt;
+
+&lt;p&gt;My name is Zack and I have been a Cyber Security hobbyist for the past 15+ years, 4+ years experience working in the IT &amp;amp; Networking field, 2 of those years as an IT Director for a private military school, 1 of those years teaching various Computer Science classes on the high school and collegiate level. My education is a combination of College and self-study with the help of mentorship and coaching. OSCP by 2021.&lt;/p&gt;
+
+&lt;p&gt;Read the long version here &lt;a href=&quot;/blog/2020/09/03/Because-Resumes.html&quot;&gt;Because Resumes Just Aren’t That Good&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;work&quot;&gt;Work&lt;/h2&gt;
+
+&lt;h1 id=&quot;it-director&quot;&gt;IT Director&lt;/h1&gt;
+&lt;h4 id=&quot;hargrave-military-academy---danville-va&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;January 2017 to August 2020&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Oversee all infrastructure of technical operations, administer and manage various platforms and accounts. Ensure strategic planning for future technology as well as capacity planning. Troubleshoot technical problems for over 200 users, computer repair, network device repair.
+Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.
+—&lt;/p&gt;
+
+&lt;h1 id=&quot;computer-science-adjunct-instructor&quot;&gt;Computer Science Adjunct Instructor&lt;/h1&gt;
+&lt;h4 id=&quot;danville-community-college---danville-va&quot;&gt;Danville Community College - Danville, VA&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;January 2020 to May 2020&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;create-curriculum-and-instruct-classes-in-the-topics-of-intro-to-game-design-with-unreal-engine-4-life-cycles-of-application-development-using-sdlc-assess-and-conduct-classes-both-online-and-in-person-provide-presentations-lectures-and-oversee-technical-hands-on-labs-ensure-a-quality-learning-environment-for-different-learning-styles&quot;&gt;Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.&lt;/h2&gt;
+
+&lt;h1 id=&quot;computer-science-instructor&quot;&gt;Computer Science Instructor&lt;/h1&gt;
+&lt;h4 id=&quot;hargrave-military-academy---danville-va-1&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;January 2017 to August 2019&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;create-curriculum-and-instruct-classes-in-the-topics-of-intro-to-computer-science-intro-to-cyber-security-assess-and-conduct-classes-with-a-student-size-of-7-12-provide-presentations-lectures-and-oversee-technical-hands-on-labs-ensure-a-quality-learning-environment-for-different-learning-styles-communicate-with-parents--guardians-on-their-childs-behavior-and-progress&quot;&gt;Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents &amp;amp; guardians on their child’s behavior and progress.&lt;/h2&gt;
+
+&lt;h1 id=&quot;network-techinstaller&quot;&gt;Network Tech/Installer&lt;/h1&gt;
+&lt;h4 id=&quot;river-city-systems---danville-va&quot;&gt;River City Systems - Danville, VA&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2017 - 2018&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;the-majority-of-this-job-was-installing-networks-inside-of-schools-and-businesses-this-includes-termination-of-lines-length-and-connection-testing-assisting-with-network-specifications-preparation-for-ip-camera-installs-etc&quot;&gt;The majority of this job was installing networks inside of school’s and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.&lt;/h2&gt;
+
+&lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
+
+&lt;h1 id=&quot;associates-degree-in-networking&quot;&gt;Associates Degree in Networking&lt;/h1&gt;
+&lt;h4 id=&quot;danville-community-college&quot;&gt;Danville Community College&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2017-2019&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;associates-degree-in-science&quot;&gt;Associates Degree in Science&lt;/h1&gt;
+&lt;h4 id=&quot;danville-community-college-1&quot;&gt;Danville Community College&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2011-2014&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -83,18 +190,26 @@ The scan is quite lengthy so I won’t be posting a screenshot of the whole thin
 &lt;p&gt;At this point we could probably start poking at these CVEs but let’s try to dig in a bit further before attacking the machine.&lt;/p&gt;
 
 &lt;h4 id=&quot;netbios-enumeration&quot;&gt;Netbios enumeration&lt;/h4&gt;
-&lt;p&gt;So with netbios there are a couple ways we can enumerate it. The first way is to run &lt;code&gt;nbtscan&lt;/code&gt; on it to see what services we can see. We are looking for information about it being connected to a domain or a File Server Service.&lt;/p&gt;
+&lt;p&gt;So with netbios there are a couple ways we can enumerate it. The first way is to run &lt;code&gt;nbtscan&lt;/code&gt; on it to see what services we can see. We are looking for information about it being connected to a domain or a some sort of file server service.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nbtscan -vh 10.10.10.4
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;After running this we see that it in fact has a File Server Service running as well as a few others listed. This is good information for us. 
-&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/nbtscan.png&quot; alt=&quot;Nbtscan&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After running this we see that it in fact has a file server service running as well as a few others listed. This is good information for us.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/nbtscan.png&quot; alt=&quot;Nbtscan&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;smb-enumeration&quot;&gt;SMB enumeration&lt;/h4&gt;
 &lt;p&gt;Okay so when we ran our big nmap scan we got plenty of information on SMB but let’s just run some SMB specific enumerations real fast just for the heck of it. Let’s start with smbclient.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L \\10.10.10.4\\
-nmap -p 445 --script smb-os-discovery 10.10.10.4 (this happens with the nmap you ran before but could be used to check it)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L //10.10.10.4///
+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;smbclient is a small application similar to FTP. It may allow you to view files from the server. It also allows to put files on the server, view files, etc. In some cases you will be able to log in anonymously.&lt;/p&gt;
+
+&lt;p&gt;Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -p 445 --script smb-os-discovery 10.10.10.4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h4 id=&quot;cve-2008-4250&quot;&gt;CVE-2008-4250&lt;/h4&gt;
 &lt;h4 id=&quot;cve-2017-0143&quot;&gt;CVE-2017-0143&lt;/h4&gt;
 &lt;h4 id=&quot;exploitation-and-gaining-access&quot;&gt;Exploitation and Gaining Access&lt;/h4&gt;
@@ -1036,317 +1151,4 @@ If there are any issues, use the report to help you sovle them before moving for
   &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
   &lt;li&gt;Set any applicable port rules&lt;/li&gt;
   &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h3 id=&quot;software-defined-storage--storage-pools&quot;&gt;Software Defined Storage &amp;amp; Storage Pools&lt;/h3&gt;
-&lt;p&gt;Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.&lt;/p&gt;
-
-&lt;p&gt;Storage pools are a type of software defined storage system that takes multiple physical devices and creates a single Pool resource to create virtual ‘logical’ volumes from. Imagine having 3 harddrives 2 GB a piece. Then you collect their storage capabilities together to then create something like 2 VHDs with 3GB of space each. This is &lt;em&gt;sort of&lt;/em&gt; how Storage Pools work.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-|--------------------------|--------------------------|
-|                          |                          |
-|          3GB             |          3GB             | ----- Logical Volumes
-|                          |                          |
-|--------------------------|--------------------------|
-|-----------------------------------------------------|
-|                                                     |
-|                         6GB                         | ----- Volume Pool
-|                                                     |
-|-----------------------------------------------------|
-|-----------------|-----------------|-----------------|
-|                 |                 |                 |
-|       2GB       |       2GB       |       2GB       | ----- Physical Volumes
-|                 |                 |                 |
-|-----------------|-----------------|-----------------|
-
-
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;There are ways to arrange the pool’s resources such that instead of just adding up all the space, you use some of the space as a redudant system to create a failsafe. Pools can allow for a drive to completely fail and the data saved onto that logical volume still be accessible.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: this look familiar if you’ve used LVM before. Same concepts. It’s all software defined storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;adding-the-feature&quot;&gt;Adding the Feature&lt;/h3&gt;
-
-&lt;p&gt;As done before, make sure that the File and Storage Services feature is installed from the Server Manager &amp;gt; Manage &amp;gt; Add Roles and Features.&lt;/p&gt;
-
-&lt;h3 id=&quot;configuring-storage-pools-and-storage-spaces&quot;&gt;Configuring Storage Pools and Storage Spaces&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;In Server Manager head to File and Storage Services&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/2.png&quot; alt=&quot;Go to file and storage services&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Select the Storage Pools option from the left menu&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/3.png&quot; alt=&quot;Go to Storage pools&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;In the top right corner select TASKS and then New Storage Pool&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/4.png&quot; alt=&quot;go to tasks and new storage pool&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Now give this new pool a name and select which group of disks you’d like to use.
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/5.png&quot; alt=&quot;name it&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Now you should be able to add the disk you’d like to use in this pool. You have options for allocation for setting up hot swaps if needed. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/6.png&quot; alt=&quot;add physical disks (you need three for RAID5)&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Review the summary and click create&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/7.png&quot; alt=&quot;confirm&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;creating-volumes-in-the-pool&quot;&gt;Creating volumes in the pool&lt;/h3&gt;
-
-&lt;p&gt;Now that your physical drives are being used in a pool, you’ll need to create logical volumes or virtual drives to be able to utilize the storage.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-virtual-disk-in-the-pool&quot;&gt;Creating a Virtual Disk in the Pool&lt;/h3&gt;
-&lt;p&gt;So now you can see that you have a new storage pool but under it there is a section for Virtual Disks, and it’s empty.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Click Tasks and click create new virtual disk. Or you can click the &lt;em&gt;New Virtual Disk Wizard&lt;/em&gt; link within the virtual disk section. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/8.png&quot; alt=&quot;New Virtual Disk Wizard Link&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;It will then ask you to select the pool that you’d like to use. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/10.png&quot; alt=&quot;Selecting a pool&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;This next section is the layout section. Choose between:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Simple - no fail safe, allows for the most space usage
-Mirror - Drive is mirror onto other drives so if a failure happens, it can be found on another drive. *(this comes in a two way or three way flavor. Allowing for two drives to fail)*
-Parity - Works against single drive failures. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/11.png&quot; alt=&quot;Selecting Layout&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Select if you’d like to thin provision or a typical fixed provision. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/12.png&quot; alt=&quot;Privisioning Type setup&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;set the drive’s size.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/13.png&quot; alt=&quot;Selecting Size&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Now just review your options before you finish. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/14.png&quot; alt=&quot;Confirm options&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;The Wizard will now create your virtual disk and you should be able to find it in the Server Manager under the File and Storage Manager. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/15.png&quot; alt=&quot;New Virtual Disk in Manager&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;iscsi-storage&quot;&gt;iSCSI Storage&lt;/h2&gt;
-&lt;p&gt;With iSCSI you will have the iSCSI disk, target, and initiator. This can be very confusing at first. Let’s clear that up.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Disk&lt;/strong&gt; - The disk does not mean that it’s a physical iSCSI disk. What we are talking about is a VHD that is setup to communication using iSCSI&lt;br /&gt;
-&lt;strong&gt;Target&lt;/strong&gt; - The target is esentailly the iSCSI server. It will be where machines communicate to access the iSCSI resource.&lt;br /&gt;
-&lt;strong&gt;Initiator&lt;/strong&gt; - these are the machines on the network that ‘initiate’ a connection to the &lt;em&gt;Target&lt;/em&gt; to get access to the iSCSI Drive.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-iscsi-virtual-disk&quot;&gt;Creating a iSCSI Virtual Disk&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I’ll be skipping the iSCSI Role installation. The specific option you will want is the &lt;strong&gt;&lt;em&gt;iSCSI Services&lt;/em&gt;&lt;/strong&gt; with the &lt;strong&gt;&lt;em&gt;iSCSI Target Server&lt;/em&gt;&lt;/strong&gt; selection&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;In the iSCSI section of the File and Storage Services Server Manager interface. Click &lt;em&gt;TASKS&lt;/em&gt; and create a new iSCSI Virtual Disk&lt;/li&gt;
-  &lt;li&gt;Select the volume you’d like to use.&lt;/li&gt;
-  &lt;li&gt;Give it a name&lt;/li&gt;
-  &lt;li&gt;Select the size and the space allocation type.&lt;/li&gt;
-  &lt;li&gt;You’ll now start making the Target. Click New iSCSI target&lt;/li&gt;
-  &lt;li&gt;Give it a name. You can use the &lt;em&gt;lon&lt;/em&gt; naming convention to help keep things organized.&lt;/li&gt;
-  &lt;li&gt;You will now add the iniatiator. Remember the initiator is the machine that will access this drive. You can add it by it’s name on the domain or by it’s IP address. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/16.png&quot; alt=&quot;Setting up Initator&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: The iniatiator will actually have to iniate the connection. This is just setting up who can be iniatiators.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;You can setup CHAP to authenticate. This is a good security measure but doesn’t have to be setup for it to work. In the lab, you can skip this.&lt;/li&gt;
-  &lt;li&gt;Review your setup and complete.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You’ll see that the iSCSI section of the File and Storage Services will show that it clears the disk and then shows who is connected to it. For now it shouldn’t be connected to anyone.&lt;/p&gt;
-
-&lt;h3 id=&quot;iscsi-initiator&quot;&gt;iSCSI Initiator&lt;/h3&gt;
-&lt;p&gt;On another machine that you’d like to access the iSCSI drive from. You will use the iSCSI Initiator application to make this connection. You can find this in Tools within the Server Manager or you can search for it in the start bar on other Windows machines.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;For your target, enter in either the host name with the domain, or use it’s IP address to search for that machine under quick connect.&lt;/li&gt;
-  &lt;li&gt;If you setup the Initiator in the previous section. You should see &lt;em&gt;Login Succeeded.&lt;/em&gt; in the Progress Report section.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: before accessing the iSCSI drive, you will have to bring it online in Disk Management. It will not have allocated space and it will not be initialized as a disk. Set up this disk like a typical disk and give it a new volume before you can access it. &lt;em&gt;See my post on volumes to see more on how to do this&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;You’re done!&lt;/p&gt;
-
-&lt;h3 id=&quot;giving-your-iscsi-isns-domain-set-and-zone&quot;&gt;Giving your iSCSI iSNS Domain set and zone.&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;You can setup an iSNS server to give your iSCSI targets a domain name on your network. iSNS creates nodes with targets, disks, and initiators. You can give them zones and sets within the Domain called Discovery Domains. I won’t cover this now but it can be pretty useful.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;storage-replica&quot;&gt;Storage Replica&lt;/h2&gt;
-&lt;p&gt;Storage Replica is a feature that allows two servers create a complete block level copy over SMB between two drives. AKA a image quality copy over the network. It doesn’t use a snapshot type technology, but constantly sends data over. This is good for disastery recovery and for log backups, databases, etc.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is not drive sharing. This is creating a copy of a drive from one drive to another.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;add-the-feature-first&quot;&gt;Add the feature first&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;In Add Roles and Features. Find and add Storage Relica.&lt;/li&gt;
-  &lt;li&gt;On the server you are creating a replica with. Do the same process.&lt;/li&gt;
-  &lt;li&gt;reboot both machines.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;configuring-in-powershell&quot;&gt;Configuring in Powershell&lt;/h3&gt;
-&lt;p&gt;There aren’t any GUI options for Storage Replica. You’ll have to do this in powershell.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-SRPartnership -SourceComputerName &amp;lt;Name&amp;gt; -SourceRGNName &amp;lt;Name&amp;gt; Source RG -sourceVolumeName &amp;lt;Drive Letter&amp;gt; -SourceLogVolumeName &amp;lt;Letter for replica&amp;gt; DestinationRG -DestinationVolume &amp;lt;Drive Letter&amp;gt; DestinationLogVolume &amp;lt;Drive Letter&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;SRPartnership is the relationship between two machines with Storage Replica running. This command creates that relationship.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: if you use computer names in this, you will need to make sure your DNS is working. Otherwise you can use IP addresses&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Run the commanlet and wait for it to complete with an output of the summary.&lt;/p&gt;
-
-&lt;p&gt;To check to see if your Storage Replica is working you can run this Powershell command:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(Get-SRGroup).Replicas | Select-Object Numofbyesremaining
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;It will show how many bytes are left as it copies itself over.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Storage Replicas are great in combination with Failover to allow for a strong redudant system.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Software Defined Storage &amp;amp; Storage Pools Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.</summary></entry><entry><title type="html">Implementing Windows Deployment Services</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html" rel="alternate" type="text/html" title="Implementing Windows Deployment Services" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Windows-Deployment-Services.html">&lt;h2 id=&quot;how-it-works&quot;&gt;How it works&lt;/h2&gt;
-&lt;p&gt;Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is &lt;strong&gt;PXE boot&lt;/strong&gt; enabled.&lt;/p&gt;
-
-&lt;p&gt;Esentially the boot images will be stored on some storage device on the network. The WDS server will respond to the DHCP server when a machine is starting to PXE boot. Letting it know that it’s able to help with an installation over the network. The machine PXE booting will then give the user a list of bootable OSs sitting on the WDS and from there it’s almost identical to a typical installation.&lt;/p&gt;
-
-&lt;h4 id=&quot;the-dhcp-handles-the-request&quot;&gt;The DHCP handles the request&lt;/h4&gt;
-&lt;p&gt;The DHCP plays a huge part in making WDS work. Here is how the client requests for the install.&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PXE client sents a UDP broadcast for a DHCP DISCOVER on port 67
-DHCP server replies directly with the IP address of the WDS Server on port 68 
-PXE client then reqests the name of the boot file from DHCP
-WDS server sends a DHCP ACK with the boot file name
-PXE client requests for that file
-PXE client then downloads the file via TFTP and then runs file
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Active directory isn’t completely necessary to make this happen. The server needs to have the role installed and needs to be an admin on some domain. Otherwise any machine should be able to request WDS to help it out. You can set WDS to only talk to machines that have be prestaged, have machines request to be prestaged, or just have any machine chat with the WDS without worrying about it.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Okay let’s get to it. Before we install make sure you have these guys:&lt;/p&gt;
-
-&lt;h3 id=&quot;requirements&quot;&gt;Requirements&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;DHCP Server&lt;/strong&gt; (Router or Server)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Active Directory Domain Services&lt;/strong&gt; on a Sever setup as Administrator on that domain.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;DNS server&lt;/strong&gt; to point machines to the server for the PXE boot.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;OS install .iso&lt;/strong&gt; and files&lt;/li&gt;
-  &lt;li&gt;Server has &lt;strong&gt;NTFS system&lt;/strong&gt; to store the bootable images. (in paticular, something other than the HD holding the Server. WDS will slow your server down to a crawl otherwise)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;installing-the-wds-server-role&quot;&gt;Installing the WDS Server Role&lt;/h3&gt;
-&lt;p&gt;Like any other server role, you have to install it. Just in case you’ve missed the other posts on that. Here ya go:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;To install the WDS server role:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;In Server Manager go to the Manage option in the toolbar&lt;/li&gt;
-  &lt;li&gt;Add roles and features&lt;/li&gt;
-  &lt;li&gt;Hit next to pass the first prompt&lt;/li&gt;
-  &lt;li&gt;Select the server you’d like to add the Role&lt;/li&gt;
-  &lt;li&gt;then find the WDS option and check it off.&lt;/li&gt;
-  &lt;li&gt;hit next until you get to the end and allow it to install and restart if needed.&lt;/li&gt;
-  &lt;li&gt;Check to make sure your WDS role is on the side bar of Server Manager. If it’s there. You’re good to go!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/1.PNG&quot; alt=&quot;Server Manager&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;configuring-wds&quot;&gt;Configuring WDS&lt;/h2&gt;
-
-&lt;p&gt;Alright. Now that you’ve installed the feature. You’re going to have to set some of it up. Remember when I mentioned using a seperate storage device? Or who gets to talk with WDS? This is that part. Here ya go:&lt;/p&gt;
-
-&lt;p&gt;When you open the WDS section, it will show the Servers and the Events for this role. Use this if you have multiple servers handling WDS or you’d like to see how a deployment went.&lt;/p&gt;
-
-&lt;p&gt;For now we want to make sure this server is configured.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Right click the server you’re adding WDS to and in the drop down menu select Windows Deployment Services. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/5.png&quot; alt=&quot;Opening WDS Management Console&quot; /&gt;&lt;br /&gt;
-&lt;em&gt;You can also find Windows Deployment Services by searching it in the Start menu.&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/2.PNG&quot; alt=&quot;WDS&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Find the server you are installing on. It should be in the left side inventory section.&lt;/li&gt;
-  &lt;li&gt;If you have just added WDS as a feature, it should give you a warning page to let you know that it needs to be configured.&lt;/li&gt;
-  &lt;li&gt;Right click the server and select configure server.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;Set up with these options:&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Integrated with Active Directory
-&lt;img src=&quot;/assets/img/servergifs/wds/8.png&quot; alt=&quot;Configuring WDS Active Directory or Standalone&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;default Installation Folder Location &lt;em&gt;or to your specific needs&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note-1: if this server is also the DHCP, the additional options for Proxy DHCP Server will be given as well. Just check both sections off. 
-&lt;img src=&quot;/assets/img/servergifs/wds/6.png&quot; alt=&quot;Configuring WDS DHCP Prompt&quot; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note-2: It’s important to know that in a lab envirnoment the locaiton of the install folder doesn’t matter. But almost always, you would want this drive to be somewhere seperate so it doesn’t use up resources on your Server machine&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/9.png&quot; alt=&quot;Selecting Volume for WDS Images Warning&quot; /&gt;&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Set the &lt;strong&gt;PXE Server Initial Settings&lt;/strong&gt; as needed. For the lab, &lt;em&gt;Respond to all client computers&lt;/em&gt; should be fine. This is just setting the parameters for what computers can use this feature to install. 
-&lt;img src=&quot;/assets/img/servergifs/wds/10.png&quot; alt=&quot;PXE Respond to prompt&quot; /&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: You can set it up so that only computer you have prestaged can get installs. This is most likely the more secure option but requires more planning and work as an admin.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;It will begin configuring the WDS. You can click finish if you’re done. If you’d like to start adding images to use with WDS, you can check off &lt;em&gt;Add images to the server now&lt;/em&gt;. Otherwise adding images can be found under the server’s drop down in Windows Deployment Services. 
-&lt;img src=&quot;/assets/img/servergifs/wds/3.png&quot; alt=&quot;WDS after config&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;adding-images-to-wds-server&quot;&gt;Adding Images to WDS Server&lt;/h2&gt;
-
-&lt;p&gt;To use WDS with an install, you need to make &lt;strong&gt;both&lt;/strong&gt; a boot image and a install image. This is where your install .iso comes in play. Depending on which Windows or Windows Sever install you’re looking to deploy. Load up the disk or flash drive to the server.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;boot.wim&lt;/em&gt; - found inside the .iso under Sources
-&lt;em&gt;install.wim&lt;/em&gt; - also found inside the .iso under Sources.&lt;/p&gt;
-
-&lt;h4 id=&quot;adding-the-boot-image&quot;&gt;Adding the Boot Image:&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Go to Server Manager&lt;/li&gt;
-  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
-  &lt;li&gt;Right click Boot Images and click Add Boot Image
-&lt;img src=&quot;/assets/img/servergifs/wds/4.png&quot; alt=&quot;adding image file&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Find the &lt;em&gt;boot.wim&lt;/em&gt; file. Click Open&lt;/li&gt;
-  &lt;li&gt;Next until finished.&lt;br /&gt;
-&lt;strong&gt;Do yourself a favor and name the image something specific to that OS, when PXE lists the options, this Image name is what it will show you&lt;/strong&gt; 
-&lt;img src=&quot;/assets/img/servergifs/wds/7.png&quot; alt=&quot;Naming the imagine file&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;adding-the-install-image&quot;&gt;Adding the Install Image:&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Go to server Manager&lt;/li&gt;
-  &lt;li&gt;go to tools and then find Windows Deployement Services in the dropdown list.&lt;/li&gt;
-  &lt;li&gt;Right click Install Images and click Add Install&lt;/li&gt;
-  &lt;li&gt;It will make you create a group image. Name this image something descriptive. example: &lt;em&gt;Windows Server 2016 64 bit&lt;/em&gt;
-&lt;img src=&quot;/assets/img/servergifs/wds/11.png&quot; alt=&quot;Images summary&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Find the install.wim file. Click Open&lt;/li&gt;
-  &lt;li&gt;Check off the OS images that you’d like to include if there are more than one.&lt;/li&gt;
-  &lt;li&gt;Next until finished.&lt;/li&gt;
-  &lt;li&gt;wait for the Image Wizard to complete.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: you can also create capture images on machines that have been updated, configured, and have paticular programs installed. This is covered in a later post.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;using-wds-to-install&quot;&gt;Using WDS to install&lt;/h2&gt;
-
-&lt;p&gt;Now all you have to do is boot up the machine and make sure the PXE boot is enabled. &lt;strong&gt;It’s important that the machine or VM is set to Legacy booting.&lt;/strong&gt; Make sure the machine is on the network and it should handle the rest. Follow your typical install steps and you’re done and done!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/wds/12.png&quot; alt=&quot;Install working fine&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There you go.&lt;/p&gt;
-
-&lt;p&gt;Cheers,&lt;/p&gt;
-
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">How it works Windows Deployment Services is a server role that allows an administrator to have install images ready for any machine on the network. It makes for simple installs as long as there is a DHCP server and a machine that is PXE boot enabled.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry></feed>
