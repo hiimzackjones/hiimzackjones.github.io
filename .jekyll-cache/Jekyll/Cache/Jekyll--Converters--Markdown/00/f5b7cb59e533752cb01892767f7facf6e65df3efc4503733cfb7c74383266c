@@ -1,71 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>A Kind of Resume | Hi</title>
-<meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="A Kind of Resume" />
-<meta name="author" content="Zack Jones" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Bio" />
-<meta property="og:description" content="Bio" />
-<link rel="canonical" href="http://localhost:4000/blog/2020/09/03/Resume.html" />
-<meta property="og:url" content="http://localhost:4000/blog/2020/09/03/Resume.html" />
-<meta property="og:site_name" content="Hi" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-09-03T13:30:00-04:00" />
-<script type="application/ld+json">
-{"datePublished":"2020-09-03T13:30:00-04:00","@type":"BlogPosting","description":"Bio","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2020/09/03/Resume.html"},"url":"http://localhost:4000/blog/2020/09/03/Resume.html","author":{"@type":"Person","name":"Zack Jones"},"headline":"A Kind of Resume","dateModified":"2020-09-03T13:30:00-04:00","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
-
-  <!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-106768649-1');
-</script>
-
-
-
-  <body>
-
-    <header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
-      </nav></div>
-</header>
-
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">A Kind of Resume</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2020-09-03T13:30:00-04:00" itemprop="datePublished">Sep 3, 2020
-      </time></p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <h2 id="bio">Bio</h2>
+I"�&<h2 id="bio">Bio</h2>
 
 <p>My name is Zack and I have been a Cyber Security hobbyist for the past 15+ years, 4+ years experience working in the IT &amp; Networking field, 2 of those years as an IT Director for a private military school, 1 of those years teaching various Computer Science classes on the high school and collegiate level. My education is a combination of College and self-study with the help of mentorship and coaching. OSCP by 2021.</p>
 
@@ -82,16 +15,15 @@
 <p>Oversee all infrastructure of technical operations, administer and manage various platforms and accounts. Ensure strategic planning for future technology as well as capacity planning. Troubleshoot technical problems for over 200 users, computer repair, network device repair.
 Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.</p>
 
-<h4 id="highlights">Highlights</h4>
+<h5 id="highlights">Highlights</h5>
 <p>This work was a challenging mix of IT Support for all employees, cadets, and parents, while also being a mix of Network Administrator and even Project Management. Some of the highlights are listed below:</p>
 
 <ul>
   <li>Created extensive proposals for all network changes, upgrades, or new system implementations for financial approvals.</li>
   <li>Created extensive 5 year plans in regards to network development and technology planning.</li>
-  <li>Wrote various onboarding and matriculation scripts for quickly adding mass users to various systems using CSV files.</li>
   <li>Trained Faculty and Staff on Social Engineering tactics and safety training. Including email phishing engagements using Rapid7 tools.</li>
   <li>Switched domain controller from outdated Novell to Active Directory with Windows Server 2016</li>
-  <li>Reconfigured routers and firewall for VLANS and separate external IP addresses for better network segmentation between critical network devices, staff, and cadets.</li>
+  <li>Reconfigured routers and firewall for VLANS and seperate external IP addresses for better network segmentation between critical network devices, staff, and cadets.</li>
   <li>Created group policies for various security groups.</li>
   <li>Switched all DHCP and DNS over to Windows Server 2016.</li>
   <li>Replaced out of date endpoint protection with a stronger Endpoint Security Management System.</li>
@@ -114,7 +46,7 @@ Deployment of security systems, device management systems, patch management. Cre
 
 <p>Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.</p>
 
-<h4 id="highlights-1">Highlights</h4>
+<h5 id="highlights-1">Highlights</h5>
 
 <ul>
   <li>Designed a custom curriculum using Unreal Engine 4 published curriculum and various hands on projects.</li>
@@ -130,7 +62,7 @@ Deployment of security systems, device management systems, patch management. Cre
 
 <p>Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents &amp; guardians on their child’s behavior and progress.</p>
 
-<h4 id="highlights-2">Highlights</h4>
+<h5 id="highlights-2">Highlights</h5>
 
 <ul>
   <li>Used online tools and platforms such as learnctf.com and hackthebox.eu to create a fun and engaging classroom.</li>
@@ -147,7 +79,7 @@ Deployment of security systems, device management systems, patch management. Cre
 
 <p>The majority of this job was installing networks inside of school’s and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.</p>
 
-<h4 id="highlights-3">Highlights</h4>
+<h5 id="highlights-3">Highlights</h5>
 <ul>
   <li>Installed network infrastructure for a large IP camera network installed within a public school.</li>
   <li>Collaborated on network design including VLANS, network segmentation, and VMS systems for IP camera installs.</li>
@@ -164,7 +96,7 @@ connectivity issues, virus removal, backup planning, and administer machine to m
 Educate customers on current malware and viruses as well as other online dangers including - phone
 scams, phishing scams, typo-squatting, malicious attachments, etc.</p>
 
-<h4 id="highlights-4">Highlights</h4>
+<h5 id="highlights-4">Highlights</h5>
 
 <ul>
   <li>Represent OfficeMax in a series of free educational talks for older technology users around computer security, scams, and safe computer usage.</li>
@@ -231,94 +163,4 @@ Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for con
   <li>Coached and Participated in a competing team during National Cyber League - 3 years.</li>
   <li>Additional Vulnhub &amp; HackTheBox.eu CTFs - see infosec section on site.</li>
 </ul>
-
-<h2 id="skills">Skills</h2>
-
-<ul>
-  <li>IT Maintenance</li>
-  <li>Network Support</li>
-  <li>PC &amp; Networking</li>
-  <li>Network Security</li>
-  <li>Network Administration</li>
-  <li>Program Design/Management</li>
-  <li>Editing and Copywriting</li>
-  <li>Public Speaking</li>
-  <li>Team Leadership</li>
-  <li>Building Performance PCs</li>
-  <li>Finding Network/ Machine Bottlenecks</li>
-  <li>Small Electronics Design and Prototyping</li>
-  <li>Physical Computing Device Programming</li>
-  <li>Intermediate Security Penetrating Testing</li>
-  <li>Unix/Linux</li>
-  <li>Kali Linux</li>
-  <li>OpenBSD</li>
-  <li>Windows</li>
-  <li>Mac OS</li>
-  <li>Raspberry Pi</li>
-  <li>Arduino</li>
-  <li>Windows Server 2016</li>
-  <li>Microsoft Nano Server</li>
-  <li>Microsoft Server Core</li>
-  <li>Microsoft Office</li>
-  <li>Cisco IOS</li>
-  <li>Novell</li>
-  <li>Google-Suite</li>
-  <li>Barracuda</li>
-  <li>OSI</li>
-  <li>TCP/IP</li>
-  <li>Metasploit</li>
-  <li>DNS/DHCP</li>
-  <li>Python</li>
-  <li>Bash</li>
-  <li>Javascript</li>
-  <li>VMware ESXi</li>
-  <li>Citrix</li>
-  <li>VirtualBox</li>
-  <li>Hyper-V</li>
-  <li>Active Directory</li>
-  <li>Git/Github</li>
-  <li>Wordpress</li>
-  <li>pfSense</li>
-  <li>Basic Computer Forensics</li>
-  <li>Volatility</li>
-  <li>Forensics ToolKit</li>
-  <li>Wireshark</li>
-  <li>Technical Support</li>
-</ul>
-
-  </div><a class="u-url" href="/blog/2020/09/03/Resume.html" hidden></a>
-</article>
-
-      </div>
-    </main>
-
-    <footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">Hi</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
-      </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
-</p>
-      </div>
-    </div>
-
-  </div>
-
-</footer>
-
-
-  </body>
-
-</html>
+:ET

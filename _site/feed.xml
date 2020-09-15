@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-14T21:19:49-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-15T00:44:46-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
 </subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
@@ -59,7 +59,7 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
 
 &lt;p&gt;Read the long version here &lt;a href=&quot;/blog/2020/09/03/Because-Resumes.html&quot;&gt;Because Resumes Just Aren’t That Good&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;work&quot;&gt;Work&lt;/h2&gt;
+&lt;h2 id=&quot;relevant-it-and-networking-experience&quot;&gt;Relevant IT and Networking Experience&lt;/h2&gt;
 
 &lt;h1 id=&quot;it-director&quot;&gt;IT Director&lt;/h1&gt;
 &lt;h4 id=&quot;hargrave-military-academy---danville-va&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
@@ -70,6 +70,30 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
 &lt;p&gt;Oversee all infrastructure of technical operations, administer and manage various platforms and accounts. Ensure strategic planning for future technology as well as capacity planning. Troubleshoot technical problems for over 200 users, computer repair, network device repair.
 Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.&lt;/p&gt;
 
+&lt;h4 id=&quot;highlights&quot;&gt;Highlights&lt;/h4&gt;
+&lt;p&gt;This work was a challenging mix of IT Support for all employees, cadets, and parents, while also being a mix of Network Administrator and even Project Management. Some of the highlights are listed below:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Created extensive proposals for all network changes, upgrades, or new system implementations for financial approvals.&lt;/li&gt;
+  &lt;li&gt;Created extensive 5 year plans in regards to network development and technology planning.&lt;/li&gt;
+  &lt;li&gt;Wrote various onboarding and matriculation scripts for quickly adding mass users to various systems using CSV files.&lt;/li&gt;
+  &lt;li&gt;Trained Faculty and Staff on Social Engineering tactics and safety training. Including email phishing engagements using Rapid7 tools.&lt;/li&gt;
+  &lt;li&gt;Switched domain controller from outdated Novell to Active Directory with Windows Server 2016&lt;/li&gt;
+  &lt;li&gt;Reconfigured routers and firewall for VLANS and separate external IP addresses for better network segmentation between critical network devices, staff, and cadets.&lt;/li&gt;
+  &lt;li&gt;Created group policies for various security groups.&lt;/li&gt;
+  &lt;li&gt;Switched all DHCP and DNS over to Windows Server 2016.&lt;/li&gt;
+  &lt;li&gt;Replaced out of date endpoint protection with a stronger Endpoint Security Management System.&lt;/li&gt;
+  &lt;li&gt;Updated analog security cameras to IP cameras with redundant VMS.&lt;/li&gt;
+  &lt;li&gt;Updated all systems using LDAP to Radius to separate authentication and authorization and lower traffic overhead. Including Wireless Access through Ruckus ZoneDirector.&lt;/li&gt;
+  &lt;li&gt;Upgraded web filtering from Barracuda to a live view with machine learning based website judgment software with GoGuardian.&lt;/li&gt;
+  &lt;li&gt;Implemented a IT Request ticket system using Asana.&lt;/li&gt;
+  &lt;li&gt;Implemented a BYOD plan that allows for machine management through Google Admin and GoGuardian Fleet.&lt;/li&gt;
+  &lt;li&gt;Replaced all analog phone using Avaya system to a VOIP system. Created VOIP VLANs and adjusted Cisco ASA firewall for VOIP.&lt;/li&gt;
+  &lt;li&gt;Implemented automatic VMWare backups using Veeam.&lt;/li&gt;
+  &lt;li&gt;Implemented a network device monitoring and alerting system using PTRG for all layer 3 switches, routers, and critical network devices.&lt;/li&gt;
+  &lt;li&gt;Fast tracked a remote learning plan in response to COVID-19. Trained all Faculty &amp;amp; Staff and created documentation for parents and cadets.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&quot;computer-science-adjunct-instructor&quot;&gt;Computer Science Adjunct Instructor&lt;/h1&gt;
 &lt;h4 id=&quot;danville-community-college---danville-va&quot;&gt;Danville Community College - Danville, VA&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -77,6 +101,14 @@ Deployment of security systems, device management systems, patch management. Cre
 &lt;/blockquote&gt;
 
 &lt;p&gt;Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.&lt;/p&gt;
+
+&lt;h4 id=&quot;highlights-1&quot;&gt;Highlights&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Designed a custom curriculum using Unreal Engine 4 published curriculum and various hands on projects.&lt;/li&gt;
+  &lt;li&gt;Worked directly with students in a realistic game design studio scenario to design basic 2D animations and menu items.&lt;/li&gt;
+  &lt;li&gt;Ongoing coaching with students regarding finding freelance projects with their current level of expertise.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&quot;computer-science-instructor&quot;&gt;Computer Science Instructor&lt;/h1&gt;
 &lt;h4 id=&quot;hargrave-military-academy---danville-va-1&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
@@ -86,6 +118,15 @@ Deployment of security systems, device management systems, patch management. Cre
 
 &lt;p&gt;Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents &amp;amp; guardians on their child’s behavior and progress.&lt;/p&gt;
 
+&lt;h4 id=&quot;highlights-2&quot;&gt;Highlights&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Used online tools and platforms such as learnctf.com and hackthebox.eu to create a fun and engaging classroom.&lt;/li&gt;
+  &lt;li&gt;Customized class curriculum for individual Cadets based off their project and interests including programming, networking, Wireless hacking, and Web application pentesting.&lt;/li&gt;
+  &lt;li&gt;Created unique assessments based off of real world scenarios using available CTF machines online.&lt;/li&gt;
+  &lt;li&gt;Taught physical computing concepts such as IoT using Arudino and Processing to create devices that interact with the network via APIs.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&quot;network-techinstaller&quot;&gt;Network Tech/Installer&lt;/h1&gt;
 &lt;h4 id=&quot;river-city-systems---danville-va&quot;&gt;River City Systems - Danville, VA&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -93,6 +134,66 @@ Deployment of security systems, device management systems, patch management. Cre
 &lt;/blockquote&gt;
 
 &lt;p&gt;The majority of this job was installing networks inside of school’s and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.&lt;/p&gt;
+
+&lt;h4 id=&quot;highlights-3&quot;&gt;Highlights&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Installed network infrastructure for a large IP camera network installed within a public school.&lt;/li&gt;
+  &lt;li&gt;Collaborated on network design including VLANS, network segmentation, and VMS systems for IP camera installs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;tech-manager-and-service-tech&quot;&gt;Tech Manager and Service Tech&lt;/h1&gt;
+&lt;h4 id=&quot;officemax&quot;&gt;OfficeMax&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2015 - 2017&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Oversee diagnostics and repairs on computers, phones, tablets, and printers. Troubleshoot
+connectivity issues, virus removal, backup planning, and administer machine to machine migrations.
+Educate customers on current malware and viruses as well as other online dangers including - phone
+scams, phishing scams, typo-squatting, malicious attachments, etc.&lt;/p&gt;
+
+&lt;h4 id=&quot;highlights-4&quot;&gt;Highlights&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Represent OfficeMax in a series of free educational talks for older technology users around computer security, scams, and safe computer usage.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;other-professional-experience&quot;&gt;Other Professional Experience&lt;/h2&gt;
+
+&lt;h1 id=&quot;program-design--consulting&quot;&gt;Program Design &amp;amp; Consulting&lt;/h1&gt;
+&lt;h4 id=&quot;mold-x---cashiers-nc&quot;&gt;Mold-X - Cashiers, NC&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2016 to 2017&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Designed and coordinated new management polices with the goal of preparing the company to
+be franchiser ready. Headed brand design including web design and messaging. Created systems
+to streamline and manage leads, work orders, and company assets/supplies. Developed separate
+programs for various offered services to aid in management and to diversify revenue streams.&lt;/p&gt;
+
+&lt;h1 id=&quot;co-founder&quot;&gt;Co-Founder&lt;/h1&gt;
+&lt;h4 id=&quot;project-wosho--asheville-nc&quot;&gt;Project Wosho- Asheville, NC&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2010 to 2014&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Consulted with clients on residential design policies in various cities nationwide. Custom designed local
+policy compliant “Micro homes” for manufacturing. Created 3D models and renders for client’s designs.
+Other responsibilities included: marketing campaign management and design, product design, general
+outreach, lead generation, contract writing, public speaking, online presence, sales management,
+capital bootstrapping and fund raising.&lt;/p&gt;
+
+&lt;h1 id=&quot;curriculum-designlead-management&quot;&gt;CURRICULUM DESIGN/LEAD MANAGEMENT&lt;/h1&gt;
+&lt;h4 id=&quot;bmsole---asheville-nc&quot;&gt;B.M.SOLE - Asheville, NC&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2011 to 2013&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Consulted on the program design and curriculum development for a nine-month academic gap year
+program. Helped develop and maintain systems for measuring progress and effectiveness of various
+alternative education techniques including unschooling, Self Organized Learning, 
+MOOCs, Makerspaces, etc. Aided in lead generation and management using various CRMs including
+Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for conference events.&lt;/p&gt;
 
 &lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
 
@@ -106,7 +207,72 @@ Deployment of security systems, device management systems, patch management. Cre
 &lt;p&gt;Danville Community College&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;2011-2014&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;&lt;em&gt;some of this post is still being edited. Posting draft early by request.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;additional-experience&quot;&gt;Additional Experience&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Coach and competing member of Danville Community College CyberKnights CTF competition team.&lt;/li&gt;
+  &lt;li&gt;Tutored Cisco CCNA and Networking classes&lt;/li&gt;
+  &lt;li&gt;Tutored Linux and OS classes&lt;/li&gt;
+  &lt;li&gt;Participated in various Bsides CTFs including Eversec CTF in 2018 and 2017.&lt;/li&gt;
+  &lt;li&gt;Coached and Participated in a competing team during National Cyber League - 3 years.&lt;/li&gt;
+  &lt;li&gt;Additional Vulnhub &amp;amp; HackTheBox.eu CTFs - see infosec section on site.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;skills&quot;&gt;Skills&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IT Maintenance&lt;/li&gt;
+  &lt;li&gt;Network Support&lt;/li&gt;
+  &lt;li&gt;PC &amp;amp; Networking&lt;/li&gt;
+  &lt;li&gt;Network Security&lt;/li&gt;
+  &lt;li&gt;Network Administration&lt;/li&gt;
+  &lt;li&gt;Program Design/Management&lt;/li&gt;
+  &lt;li&gt;Editing and Copywriting&lt;/li&gt;
+  &lt;li&gt;Public Speaking&lt;/li&gt;
+  &lt;li&gt;Team Leadership&lt;/li&gt;
+  &lt;li&gt;Building Performance PCs&lt;/li&gt;
+  &lt;li&gt;Finding Network/ Machine Bottlenecks&lt;/li&gt;
+  &lt;li&gt;Small Electronics Design and Prototyping&lt;/li&gt;
+  &lt;li&gt;Physical Computing Device Programming&lt;/li&gt;
+  &lt;li&gt;Intermediate Security Penetrating Testing&lt;/li&gt;
+  &lt;li&gt;Unix/Linux&lt;/li&gt;
+  &lt;li&gt;Kali Linux&lt;/li&gt;
+  &lt;li&gt;OpenBSD&lt;/li&gt;
+  &lt;li&gt;Windows&lt;/li&gt;
+  &lt;li&gt;Mac OS&lt;/li&gt;
+  &lt;li&gt;Raspberry Pi&lt;/li&gt;
+  &lt;li&gt;Arduino&lt;/li&gt;
+  &lt;li&gt;Windows Server 2016&lt;/li&gt;
+  &lt;li&gt;Microsoft Nano Server&lt;/li&gt;
+  &lt;li&gt;Microsoft Server Core&lt;/li&gt;
+  &lt;li&gt;Microsoft Office&lt;/li&gt;
+  &lt;li&gt;Cisco IOS&lt;/li&gt;
+  &lt;li&gt;Novell&lt;/li&gt;
+  &lt;li&gt;Google-Suite&lt;/li&gt;
+  &lt;li&gt;Barracuda&lt;/li&gt;
+  &lt;li&gt;OSI&lt;/li&gt;
+  &lt;li&gt;TCP/IP&lt;/li&gt;
+  &lt;li&gt;Metasploit&lt;/li&gt;
+  &lt;li&gt;DNS/DHCP&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Bash&lt;/li&gt;
+  &lt;li&gt;Javascript&lt;/li&gt;
+  &lt;li&gt;VMware ESXi&lt;/li&gt;
+  &lt;li&gt;Citrix&lt;/li&gt;
+  &lt;li&gt;VirtualBox&lt;/li&gt;
+  &lt;li&gt;Hyper-V&lt;/li&gt;
+  &lt;li&gt;Active Directory&lt;/li&gt;
+  &lt;li&gt;Git/Github&lt;/li&gt;
+  &lt;li&gt;Wordpress&lt;/li&gt;
+  &lt;li&gt;pfSense&lt;/li&gt;
+  &lt;li&gt;Basic Computer Forensics&lt;/li&gt;
+  &lt;li&gt;Volatility&lt;/li&gt;
+  &lt;li&gt;Forensics ToolKit&lt;/li&gt;
+  &lt;li&gt;Wireshark&lt;/li&gt;
+  &lt;li&gt;Technical Support&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;&lt;em&gt;some of this post is still being edited. Posting draft early by request.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
