@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-15T00:53:28-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-15T00:58:02-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
 </subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
@@ -59,6 +59,8 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
 
 &lt;p&gt;Read the long version here &lt;a href=&quot;/blog/2020/09/03/Because-Resumes.html&quot;&gt;Because Resumes Just Aren’t That Good&lt;/a&gt;&lt;/p&gt;
 
+&lt;hr /&gt;
+
 &lt;h2 id=&quot;relevant-it-and-networking-experience&quot;&gt;Relevant IT and Networking Experience&lt;/h2&gt;
 
 &lt;h1 id=&quot;it-director&quot;&gt;IT Director&lt;/h1&gt;
@@ -94,6 +96,8 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;li&gt;Fast tracked a remote learning plan in response to COVID-19. Trained all Faculty &amp;amp; Staff and created documentation for parents and cadets.&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;hr /&gt;
+
 &lt;h1 id=&quot;computer-science-adjunct-instructor&quot;&gt;Computer Science Adjunct Instructor&lt;/h1&gt;
 &lt;h4 id=&quot;danville-community-college---danville-va&quot;&gt;Danville Community College - Danville, VA&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -109,6 +113,8 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;li&gt;Worked directly with students in a realistic game design studio scenario to design basic 2D animations and menu items.&lt;/li&gt;
   &lt;li&gt;Ongoing coaching with students regarding finding freelance projects with their current level of expertise.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&quot;computer-science-instructor&quot;&gt;Computer Science Instructor&lt;/h1&gt;
 &lt;h4 id=&quot;hargrave-military-academy---danville-va-1&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
@@ -127,6 +133,8 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;li&gt;Taught physical computing concepts such as IoT using Arudino and Processing to create devices that interact with the network via APIs.&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;hr /&gt;
+
 &lt;h1 id=&quot;network-techinstaller&quot;&gt;Network Tech/Installer&lt;/h1&gt;
 &lt;h4 id=&quot;river-city-systems---danville-va&quot;&gt;River City Systems - Danville, VA&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -140,6 +148,8 @@ Deployment of security systems, device management systems, patch management. Cre
   &lt;li&gt;Installed network infrastructure for a large IP camera network installed within a public school.&lt;/li&gt;
   &lt;li&gt;Collaborated on network design including VLANS, network segmentation, and VMS systems for IP camera installs.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&quot;tech-manager-and-service-tech&quot;&gt;Tech Manager and Service Tech&lt;/h1&gt;
 &lt;h4 id=&quot;officemax&quot;&gt;OfficeMax&lt;/h4&gt;
@@ -159,6 +169,7 @@ scams, phishing scams, typo-squatting, malicious attachments, etc.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;other-professional-experience&quot;&gt;Other Professional Experience&lt;/h2&gt;
+&lt;hr /&gt;
 
 &lt;h1 id=&quot;program-design--consulting&quot;&gt;Program Design &amp;amp; Consulting&lt;/h1&gt;
 &lt;h4 id=&quot;mold-x---cashiers-nc&quot;&gt;Mold-X - Cashiers, NC&lt;/h4&gt;
@@ -170,6 +181,8 @@ scams, phishing scams, typo-squatting, malicious attachments, etc.&lt;/p&gt;
 be franchiser ready. Headed brand design including web design and messaging. Created systems
 to streamline and manage leads, work orders, and company assets/supplies. Developed separate
 programs for various offered services to aid in management and to diversify revenue streams.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h1 id=&quot;co-founder&quot;&gt;Co-Founder&lt;/h1&gt;
 &lt;h4 id=&quot;project-wosho--asheville-nc&quot;&gt;Project Wosho- Asheville, NC&lt;/h4&gt;
@@ -183,6 +196,8 @@ Other responsibilities included: marketing campaign management and design, produ
 outreach, lead generation, contract writing, public speaking, online presence, sales management,
 capital bootstrapping and fund raising.&lt;/p&gt;
 
+&lt;hr /&gt;
+
 &lt;h1 id=&quot;curriculum-design-and-lead-management&quot;&gt;Curriculum Design and Lead Management&lt;/h1&gt;
 &lt;h4 id=&quot;bmsole---asheville-nc&quot;&gt;B.M.SOLE - Asheville, NC&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -194,6 +209,8 @@ program. Helped develop and maintain systems for measuring progress and effectiv
 alternative education techniques including unschooling, Self Organized Learning, 
 MOOCs, Makerspaces, etc. Aided in lead generation and management using various CRMs including
 Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for conference events.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
 
@@ -208,6 +225,8 @@ Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for con
 &lt;blockquote&gt;
   &lt;p&gt;2011-2014&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;hr /&gt;
 
 &lt;h2 id=&quot;additional-experience&quot;&gt;Additional Experience&lt;/h2&gt;
 
