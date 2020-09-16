@@ -5,7 +5,6 @@ date: 2020-05-15 018:00:00 -0400
 categories: InfoSec 
 ---
 
-*some of this post is still being edited. Posting draft early by request.*
 
 The Legacy HTB machine was one of the first HTB machines I ever broke into. It's a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It's a good start for practicing for the OSCP.  
 
