@@ -1,9 +1,10 @@
 ---
-layout: post
-title:  "A Kind of Resume"
-date:   2020-09-03 13:30:00 -0400
-categories: Blog
+layout: resume
+title: Resume
+permalink: /Resume/
 ---
+
+
 
 ## Bio
 
@@ -18,13 +19,13 @@ Read the long version here [Because Resumes Just Aren't That Good](/blog/2020/09
 
 
 # IT Director
-#### Hargrave Military Academy - Danville, VA
+### Hargrave Military Academy - Danville, VA
 > January 2017 to August 2020
 
 Oversee all infrastructure of technical operations, administer and manage various platforms and accounts. Ensure strategic planning for future technology as well as capacity planning. Troubleshoot technical problems for over 200 users, computer repair, network device repair.
 Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.
 
-#### Highlights
+### Highlights
 This work was a challenging mix of IT Support for all employees, cadets, and parents, while also being a mix of Network Administrator and even Project Management. Some of the highlights are listed below:
 
 - Created extensive proposals for all network changes, upgrades, or new system implementations for financial approvals.
@@ -50,12 +51,12 @@ This work was a challenging mix of IT Support for all employees, cadets, and par
 
 
 # Computer Science Adjunct Instructor
-#### Danville Community College - Danville, VA
+### Danville Community College - Danville, VA
 > January 2020 to May 2020
 
 Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.
 
-#### Highlights
+### Highlights
 
 - Designed a custom curriculum using Unreal Engine 4 published curriculum and various hands on projects. 
 - Worked directly with students in a realistic game design studio scenario to design basic 2D animations and menu items. 
@@ -64,12 +65,12 @@ Create curriculum and instruct classes in the topics of: Intro to Game Design wi
 ---
 
 # Computer Science Instructor
-#### Hargrave Military Academy - Danville, VA
+### Hargrave Military Academy - Danville, VA
 > January 2017 to August 2019
 
 Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents & guardians on their child's behavior and progress.
 
-#### Highlights
+### Highlights
 
 - Used online tools and platforms such as learnctf.com and hackthebox.eu to create a fun and engaging classroom. 
 - Customized class curriculum for individual Cadets based off their project and interests including programming, networking, Wireless hacking, and Web application pentesting. 
@@ -79,19 +80,19 @@ Create curriculum and instruct classes in the topics of: Intro to Computer Scien
 ---
 
 # Network Tech/Installer
-#### River City Systems - Danville, VA
+### River City Systems - Danville, VA
 > 2017 - 2018
 
 The majority of this job was installing networks inside of school's and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.
 
-#### Highlights
+### Highlights
 - Installed network infrastructure for a large IP camera network installed within a public school.
 - Collaborated on network design including VLANS, network segmentation, and VMS systems for IP camera installs.  
 
 ---
 
 # Tech Manager and Service Tech
-#### OfficeMax
+### OfficeMax
 > 2015 - 2017
 
 Oversee diagnostics and repairs on computers, phones, tablets, and printers. Troubleshoot
@@ -99,7 +100,7 @@ connectivity issues, virus removal, backup planning, and administer machine to m
 Educate customers on current malware and viruses as well as other online dangers including - phone
 scams, phishing scams, typo-squatting, malicious attachments, etc.
 
-#### Highlights
+### Highlights
 
 - Represent OfficeMax in a series of free educational talks for older technology users around computer security, scams, and safe computer usage. 
 
@@ -109,7 +110,7 @@ scams, phishing scams, typo-squatting, malicious attachments, etc.
 ---
 
 # Program Design & Consulting
-#### Mold-X - Cashiers, NC
+### Mold-X - Cashiers, NC
 > 2016 to 2017
 
 Designed and coordinated new management polices with the goal of preparing the company to
@@ -120,7 +121,7 @@ programs for various offered services to aid in management and to diversify reve
 ---
 
 # Co-Founder
-#### Project Wosho- Asheville, NC
+### Project Wosho- Asheville, NC
 >2010 to 2014
 
 Consulted with clients on residential design policies in various cities nationwide. Custom designed local
@@ -132,7 +133,7 @@ capital bootstrapping and fund raising.
 ---
 
 # Curriculum Design and Lead Management
-#### B.M.SOLE - Asheville, NC
+### B.M.SOLE - Asheville, NC
 > 2011 to 2013
 
 Consulted on the program design and curriculum development for a nine-month academic gap year
@@ -145,12 +146,12 @@ Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for con
 
 ## Education
 
-#### Associates Degree in Networking
+### Associates Degree in Networking
 Danville Community College
 > 2017-2019
 
 
-#### Associates Degree in Science
+### Associates Degree in Science
 Danville Community College
 > 2011-2014
 
@@ -166,54 +167,125 @@ Danville Community College
 - Additional Vulnhub & HackTheBox.eu CTFs - see infosec section on site. 
 
 
+
 ## Skills
 
-- IT Maintenance
-- Network Support
-- PC & Networking
-- Network Security
-- Network Administration
-- Program Design/Management
-- Editing and Copywriting
-- Public Speaking
-- Team Leadership 
-- Building Performance PCs
-- Finding Network/ Machine Bottlenecks
-- Small Electronics Design and Prototyping
-- Physical Computing Device Programming
-- Intermediate Security Penetrating Testing
-- Unix/Linux
-- Kali Linux
-- OpenBSD
-- Windows
-- Mac OS
-- Raspberry Pi
-- Arduino
-- Windows Server 2016
-- Microsoft Nano Server
-- Microsoft Server Core
-- Microsoft Office
-- Cisco IOS
-- Novell
-- Google-Suite
-- Barracuda
-- OSI
-- TCP/IP
-- Metasploit
-- DNS/DHCP
-- Python
-- Bash
-- Javascript
-- VMware ESXi
-- Citrix
-- VirtualBox
-- Hyper-V
-- Active Directory
-- Git/Github
-- Wordpress
-- pfSense
-- Basic Computer Forensics
-- Volatility
-- Forensics ToolKit
-- Wireshark
-- Technical Support
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:0px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:0px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{background-color:white; border-color:inherit;text-align:center;vertical-align:center}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">IT Maintenance</th>
+    <th class="tg-0pky">Network Support</th>
+    <th class="tg-0pky">PC & Networking</th>
+   
+  </tr>
+</thead>
+
+
+<tbody>
+  <tr>
+    <td class="tg-0pky">Network Security</td>
+    <td class="tg-0pky">Network Administration</td>
+    <td class="tg-0pky">Program Design/Management</td>
+ 
+  </tr>
+  <tr>
+    <td class="tg-0pky">Editing and Copywriting</td>
+    <td class="tg-0pky">Public Speaking</td>
+    <td class="tg-0pky">Team Leadership</td>
+
+  </tr>
+  <tr>
+    <td class="tg-0pky">Small Electronics Design and Prototyping</td>
+    <td class="tg-0pky">Physical Computing Device Programming</td>
+    <td class="tg-0pky">Security Penetrating Testing</td>
+   
+  </tr>
+    <tr>
+    <td class="tg-0pky">Unix/Linux</td>
+    <td class="tg-0pky">OpenBSD</td>
+    <td class="tg-0pky">Windows Server 2016</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Microsoft Nano Server</td>
+    <td class="tg-0pky">Microsoft Server Core</td>
+    <td class="tg-0pky">Cisco IOS</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Novell</td>
+    <td class="tg-0pky">Google-Suite & Admin</td>
+    <td class="tg-0pky">Barracuda Web Filter</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">OSI & TCP/IP</td>
+    <td class="tg-0pky">Metasploit</td>
+    <td class="tg-0pky">DNS/DHCP</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Python</td>
+    <td class="tg-0pky">Bash</td>
+    <td class="tg-0pky">Javascript</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">VMware ESXi</td>
+    <td class="tg-0pky">Citrix</td>
+    <td class="tg-0pky">VirtualBox</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Hyper-V</td>
+    <td class="tg-0pky">Active Directory</td>
+    <td class="tg-0pky">Git/Github</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Wordpress</td>
+    <td class="tg-0pky">pfSense</td>
+    <td class="tg-0pky">Volatility</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Forensics ToolKit</td>
+    <td class="tg-0pky">Wireshark</td>
+    <td class="tg-0pky">Mitre ATT&CK Matrix</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky">Network Scanning & Enumeration</td>
+    <td class="tg-0pky">Website Enumeration</td>
+    <td class="tg-0pky">Intermediate Exploit Development</td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+ 
+  </tr>
+    <tr>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+ 
+  </tr>
+</tbody>
+</table>
+
+
+
+
+
+
+     

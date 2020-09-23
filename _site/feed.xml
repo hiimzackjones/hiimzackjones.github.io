@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-21T10:19:12-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hi</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
-</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://hiimzackjones.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://hiimzackjones.github.io/" rel="alternate" type="text/html" /><updated>2020-09-23T14:19:25-04:00</updated><id>http://hiimzackjones.github.io/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;who-i-am&quot;&gt;Who I am&lt;/h1&gt;
@@ -53,245 +53,7 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
   &lt;li&gt;Google how to enumerate each port you find. Make notes.&lt;/li&gt;
   &lt;li&gt;Write what you’ve done. Take the time to do this. Write the most basic version of what your process was like. A few weeks or months later, go back to edit the notes, forcing you to follow them and re-work the box.&lt;/li&gt;
   &lt;li&gt;Publish things and have a professional critique your process.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">A Kind of Resume</title><link href="http://localhost:4000/blog/2020/09/03/Resume.html" rel="alternate" type="text/html" title="A Kind of Resume" /><published>2020-09-03T13:30:00-04:00</published><updated>2020-09-03T13:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Resume</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Resume.html">&lt;h2 id=&quot;bio&quot;&gt;Bio&lt;/h2&gt;
-
-&lt;p&gt;My name is Zack and I have been a Cyber Security hobbyist for the past 15+ years, 4+ years experience working in the IT &amp;amp; Networking field, 2 of those years as an IT Director for a private military school, 1 of those years teaching various Computer Science classes on the high school and collegiate level. My education is a combination of College and self-study with the help of mentorship and coaching. OSCP by 2021.&lt;/p&gt;
-
-&lt;p&gt;Read the long version here &lt;a href=&quot;/blog/2020/09/03/Because-Resumes.html&quot;&gt;Because Resumes Just Aren’t That Good&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;relevant-it-and-networking-experience&quot;&gt;Relevant IT and Networking Experience&lt;/h2&gt;
-
-&lt;h1 id=&quot;it-director&quot;&gt;IT Director&lt;/h1&gt;
-&lt;h4 id=&quot;hargrave-military-academy---danville-va&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;January 2017 to August 2020&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Oversee all infrastructure of technical operations, administer and manage various platforms and accounts. Ensure strategic planning for future technology as well as capacity planning. Troubleshoot technical problems for over 200 users, computer repair, network device repair.
-Deployment of security systems, device management systems, patch management. Create documentation on procedures, use policies, budget, etc.&lt;/p&gt;
-
-&lt;h4 id=&quot;highlights&quot;&gt;Highlights&lt;/h4&gt;
-&lt;p&gt;This work was a challenging mix of IT Support for all employees, cadets, and parents, while also being a mix of Network Administrator and even Project Management. Some of the highlights are listed below:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Created extensive proposals for all network changes, upgrades, or new system implementations for financial approvals.&lt;/li&gt;
-  &lt;li&gt;Created extensive 5 year plans in regards to network development and technology planning.&lt;/li&gt;
-  &lt;li&gt;Wrote various onboarding and matriculation scripts for quickly adding mass users to various systems using CSV files.&lt;/li&gt;
-  &lt;li&gt;Trained Faculty and Staff on Social Engineering tactics and safety training. Including email phishing engagements using Rapid7 tools.&lt;/li&gt;
-  &lt;li&gt;Switched domain controller from outdated Novell to Active Directory with Windows Server 2016&lt;/li&gt;
-  &lt;li&gt;Reconfigured routers and firewall for VLANS and separate external IP addresses for better network segmentation between critical network devices, staff, and cadets.&lt;/li&gt;
-  &lt;li&gt;Created group policies for various security groups.&lt;/li&gt;
-  &lt;li&gt;Switched all DHCP and DNS over to Windows Server 2016.&lt;/li&gt;
-  &lt;li&gt;Replaced out of date endpoint protection with a stronger Endpoint Security Management System.&lt;/li&gt;
-  &lt;li&gt;Updated analog security cameras to IP cameras with redundant VMS.&lt;/li&gt;
-  &lt;li&gt;Updated all systems using LDAP to Radius to separate authentication and authorization and lower traffic overhead. Including Wireless Access through Ruckus ZoneDirector.&lt;/li&gt;
-  &lt;li&gt;Upgraded web filtering from Barracuda to a live view with machine learning based website judgment software with GoGuardian.&lt;/li&gt;
-  &lt;li&gt;Implemented a IT Request ticket system using Asana.&lt;/li&gt;
-  &lt;li&gt;Implemented a BYOD plan that allows for machine management through Google Admin and GoGuardian Fleet.&lt;/li&gt;
-  &lt;li&gt;Replaced all analog phone using Avaya system to a VOIP system. Created VOIP VLANs and adjusted Cisco ASA firewall for VOIP.&lt;/li&gt;
-  &lt;li&gt;Implemented automatic VMWare backups using Veeam.&lt;/li&gt;
-  &lt;li&gt;Implemented a network device monitoring and alerting system using PTRG for all layer 3 switches, routers, and critical network devices.&lt;/li&gt;
-  &lt;li&gt;Fast tracked a remote learning plan in response to COVID-19. Trained all Faculty &amp;amp; Staff and created documentation for parents and cadets.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;computer-science-adjunct-instructor&quot;&gt;Computer Science Adjunct Instructor&lt;/h1&gt;
-&lt;h4 id=&quot;danville-community-college---danville-va&quot;&gt;Danville Community College - Danville, VA&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;January 2020 to May 2020&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Create curriculum and instruct classes in the topics of: Intro to Game Design with Unreal Engine 4, Life-cycles of Application Development using SDLC. Assess and conduct classes both online and in person. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles.&lt;/p&gt;
-
-&lt;h4 id=&quot;highlights-1&quot;&gt;Highlights&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Designed a custom curriculum using Unreal Engine 4 published curriculum and various hands on projects.&lt;/li&gt;
-  &lt;li&gt;Worked directly with students in a realistic game design studio scenario to design basic 2D animations and menu items.&lt;/li&gt;
-  &lt;li&gt;Ongoing coaching with students regarding finding freelance projects with their current level of expertise.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;computer-science-instructor&quot;&gt;Computer Science Instructor&lt;/h1&gt;
-&lt;h4 id=&quot;hargrave-military-academy---danville-va-1&quot;&gt;Hargrave Military Academy - Danville, VA&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;January 2017 to August 2019&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Create curriculum and instruct classes in the topics of: Intro to Computer Science, Intro to Cyber Security. Assess and conduct classes with a student size of 7-12. Provide presentations, lectures, and oversee technical hands on labs. Ensure a quality learning environment for different learning styles. Communicate with parents &amp;amp; guardians on their child’s behavior and progress.&lt;/p&gt;
-
-&lt;h4 id=&quot;highlights-2&quot;&gt;Highlights&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Used online tools and platforms such as learnctf.com and hackthebox.eu to create a fun and engaging classroom.&lt;/li&gt;
-  &lt;li&gt;Customized class curriculum for individual Cadets based off their project and interests including programming, networking, Wireless hacking, and Web application pentesting.&lt;/li&gt;
-  &lt;li&gt;Created unique assessments based off of real world scenarios using available CTF machines online.&lt;/li&gt;
-  &lt;li&gt;Taught physical computing concepts such as IoT using Arudino and Processing to create devices that interact with the network via APIs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;network-techinstaller&quot;&gt;Network Tech/Installer&lt;/h1&gt;
-&lt;h4 id=&quot;river-city-systems---danville-va&quot;&gt;River City Systems - Danville, VA&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2017 - 2018&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The majority of this job was installing networks inside of school’s and businesses. This includes termination of lines, length and connection testing, assisting with network specifications, preparation for IP Camera installs, etc.&lt;/p&gt;
-
-&lt;h4 id=&quot;highlights-3&quot;&gt;Highlights&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Installed network infrastructure for a large IP camera network installed within a public school.&lt;/li&gt;
-  &lt;li&gt;Collaborated on network design including VLANS, network segmentation, and VMS systems for IP camera installs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;tech-manager-and-service-tech&quot;&gt;Tech Manager and Service Tech&lt;/h1&gt;
-&lt;h4 id=&quot;officemax&quot;&gt;OfficeMax&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2015 - 2017&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Oversee diagnostics and repairs on computers, phones, tablets, and printers. Troubleshoot
-connectivity issues, virus removal, backup planning, and administer machine to machine migrations.
-Educate customers on current malware and viruses as well as other online dangers including - phone
-scams, phishing scams, typo-squatting, malicious attachments, etc.&lt;/p&gt;
-
-&lt;h4 id=&quot;highlights-4&quot;&gt;Highlights&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Represent OfficeMax in a series of free educational talks for older technology users around computer security, scams, and safe computer usage.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;other-professional-experience&quot;&gt;Other Professional Experience&lt;/h2&gt;
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;program-design--consulting&quot;&gt;Program Design &amp;amp; Consulting&lt;/h1&gt;
-&lt;h4 id=&quot;mold-x---cashiers-nc&quot;&gt;Mold-X - Cashiers, NC&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2016 to 2017&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Designed and coordinated new management polices with the goal of preparing the company to
-be franchiser ready. Headed brand design including web design and messaging. Created systems
-to streamline and manage leads, work orders, and company assets/supplies. Developed separate
-programs for various offered services to aid in management and to diversify revenue streams.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;co-founder&quot;&gt;Co-Founder&lt;/h1&gt;
-&lt;h4 id=&quot;project-wosho--asheville-nc&quot;&gt;Project Wosho- Asheville, NC&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2010 to 2014&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Consulted with clients on residential design policies in various cities nationwide. Custom designed local
-policy compliant “Micro homes” for manufacturing. Created 3D models and renders for client’s designs.
-Other responsibilities included: marketing campaign management and design, product design, general
-outreach, lead generation, contract writing, public speaking, online presence, sales management,
-capital bootstrapping and fund raising.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;curriculum-design-and-lead-management&quot;&gt;Curriculum Design and Lead Management&lt;/h1&gt;
-&lt;h4 id=&quot;bmsole---asheville-nc&quot;&gt;B.M.SOLE - Asheville, NC&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2011 to 2013&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Consulted on the program design and curriculum development for a nine-month academic gap year
-program. Helped develop and maintain systems for measuring progress and effectiveness of various
-alternative education techniques including unschooling, Self Organized Learning, 
-MOOCs, Makerspaces, etc. Aided in lead generation and management using various CRMs including
-Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for conference events.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;education&quot;&gt;Education&lt;/h2&gt;
-
-&lt;h4 id=&quot;associates-degree-in-networking&quot;&gt;Associates Degree in Networking&lt;/h4&gt;
-&lt;p&gt;Danville Community College&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2017-2019&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;associates-degree-in-science&quot;&gt;Associates Degree in Science&lt;/h4&gt;
-&lt;p&gt;Danville Community College&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2011-2014&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;additional-experience&quot;&gt;Additional Experience&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Coach for Danville Community College CyberKnights CTF competition team. &lt;em&gt;(2017 - Current)&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;Tutored Cisco CCNA and Networking classes&lt;/li&gt;
-  &lt;li&gt;Tutored Linux and OS classes&lt;/li&gt;
-  &lt;li&gt;Participated in various Bsides CTFs including Eversec CTF in 2018 and 2017.&lt;/li&gt;
-  &lt;li&gt;Coached and Participated in a competing team during National Cyber League - 3 years.&lt;/li&gt;
-  &lt;li&gt;Additional Vulnhub &amp;amp; HackTheBox.eu CTFs - see infosec section on site.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;skills&quot;&gt;Skills&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;IT Maintenance&lt;/li&gt;
-  &lt;li&gt;Network Support&lt;/li&gt;
-  &lt;li&gt;PC &amp;amp; Networking&lt;/li&gt;
-  &lt;li&gt;Network Security&lt;/li&gt;
-  &lt;li&gt;Network Administration&lt;/li&gt;
-  &lt;li&gt;Program Design/Management&lt;/li&gt;
-  &lt;li&gt;Editing and Copywriting&lt;/li&gt;
-  &lt;li&gt;Public Speaking&lt;/li&gt;
-  &lt;li&gt;Team Leadership&lt;/li&gt;
-  &lt;li&gt;Building Performance PCs&lt;/li&gt;
-  &lt;li&gt;Finding Network/ Machine Bottlenecks&lt;/li&gt;
-  &lt;li&gt;Small Electronics Design and Prototyping&lt;/li&gt;
-  &lt;li&gt;Physical Computing Device Programming&lt;/li&gt;
-  &lt;li&gt;Intermediate Security Penetrating Testing&lt;/li&gt;
-  &lt;li&gt;Unix/Linux&lt;/li&gt;
-  &lt;li&gt;Kali Linux&lt;/li&gt;
-  &lt;li&gt;OpenBSD&lt;/li&gt;
-  &lt;li&gt;Windows&lt;/li&gt;
-  &lt;li&gt;Mac OS&lt;/li&gt;
-  &lt;li&gt;Raspberry Pi&lt;/li&gt;
-  &lt;li&gt;Arduino&lt;/li&gt;
-  &lt;li&gt;Windows Server 2016&lt;/li&gt;
-  &lt;li&gt;Microsoft Nano Server&lt;/li&gt;
-  &lt;li&gt;Microsoft Server Core&lt;/li&gt;
-  &lt;li&gt;Microsoft Office&lt;/li&gt;
-  &lt;li&gt;Cisco IOS&lt;/li&gt;
-  &lt;li&gt;Novell&lt;/li&gt;
-  &lt;li&gt;Google-Suite&lt;/li&gt;
-  &lt;li&gt;Barracuda&lt;/li&gt;
-  &lt;li&gt;OSI&lt;/li&gt;
-  &lt;li&gt;TCP/IP&lt;/li&gt;
-  &lt;li&gt;Metasploit&lt;/li&gt;
-  &lt;li&gt;DNS/DHCP&lt;/li&gt;
-  &lt;li&gt;Python&lt;/li&gt;
-  &lt;li&gt;Bash&lt;/li&gt;
-  &lt;li&gt;Javascript&lt;/li&gt;
-  &lt;li&gt;VMware ESXi&lt;/li&gt;
-  &lt;li&gt;Citrix&lt;/li&gt;
-  &lt;li&gt;VirtualBox&lt;/li&gt;
-  &lt;li&gt;Hyper-V&lt;/li&gt;
-  &lt;li&gt;Active Directory&lt;/li&gt;
-  &lt;li&gt;Git/Github&lt;/li&gt;
-  &lt;li&gt;Wordpress&lt;/li&gt;
-  &lt;li&gt;pfSense&lt;/li&gt;
-  &lt;li&gt;Basic Computer Forensics&lt;/li&gt;
-  &lt;li&gt;Volatility&lt;/li&gt;
-  &lt;li&gt;Forensics ToolKit&lt;/li&gt;
-  &lt;li&gt;Wireshark&lt;/li&gt;
-  &lt;li&gt;Technical Support&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Bio</summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;h1 id=&quot;lame&quot;&gt;Lame&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;h1 id=&quot;lame&quot;&gt;Lame&lt;/h1&gt;
 
 &lt;p&gt;Linux machine&lt;/p&gt;
 
@@ -562,7 +324,7 @@ whoami
 daemon
 pwd
 /tmp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Lame</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Lame</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -840,7 +602,7 @@ meterpreter &amp;gt;
  Email is &lt;strong&gt;hi.imzackjones@gmail.com&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Cheers, 
-Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
 &lt;h5 id=&quot;made-for-intro-for-cyber-security-class-taught-spring-2019&quot;&gt;Made for Intro for Cyber Security Class taught Spring 2019.&lt;/h5&gt;
 
 &lt;p&gt;Necromancer is a CTF that can be downloaded and ran on a virtual environment such as VirtualBox, VMWare, Hyper-V.  &lt;a href=&quot;https://www.vulnhub.com/entry/the-necromancer-1,154/&quot;&gt;https://www.vulnhub.com/entry/the-necromancer-1,154/&lt;/a&gt;&lt;/p&gt;
@@ -958,7 +720,7 @@ The -sP scan means just pinging machines. Note: Some machines may not respond to
 
 &lt;h4 id=&quot;video-ends-here&quot;&gt;Video ends here.&lt;/h4&gt;
 
-&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
+&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
 
 &lt;p&gt;Wut.&lt;/p&gt;
 
@@ -1267,7 +1029,7 @@ correct
 
 &lt;p&gt;-Cheers&lt;/p&gt;
 
-&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
+&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
 
 &lt;p&gt;This flag is a Python password flag. Figure out what the password should be to satisfy the if statement. Easy.&lt;/p&gt;
 
@@ -1533,7 +1295,7 @@ correct
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
 
 &lt;h3 id=&quot;basic-hyper-v-networking&quot;&gt;Basic Hyper-V Networking&lt;/h3&gt;
 
@@ -1580,7 +1342,7 @@ As you can see, there is a default switch, A switch with a custom name. And then
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hyperVN/4.PNG&quot; alt=&quot;Nic Teaming&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
+&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
 
 &lt;p&gt;Hyper-V settings can be adjusted for each VM and will in essence adjust the aspects of the VM that would usually be physical components.&lt;/p&gt;
 
@@ -1614,7 +1376,7 @@ As you can see, there is a default switch, A switch with a custom name. And then
   &lt;li&gt;Automatic start and stop of VM&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
 &lt;p&gt;To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select &lt;em&gt;Failover Clustering&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;validate-cluster-configuration&quot;&gt;Validate Cluster Configuration&lt;/h3&gt;
@@ -1638,4 +1400,33 @@ If there are any issues, use the report to help you sovle them before moving for
 
 &lt;p&gt;Your cluster should show up in the Cluster’s tool section of the Server Manager.&lt;/p&gt;
 
-&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry></feed>
+&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;p&gt;Before you can Implement Network Load Balancing, here are some prerequisites:&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;All hosts in the cluster must be on the same subnet&lt;/li&gt;
+  &lt;li&gt;All adapters in cluster must be setup as either &lt;em&gt;multicast&lt;/em&gt; or &lt;em&gt;unicast&lt;/em&gt; but not a mixture of both&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;if unicast&lt;/em&gt; the NIC used to handle client-to-cluster traffic must support changing its MAC address&lt;/li&gt;
+  &lt;li&gt;IPs must be static on the nodes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;installing-nlb-nodes&quot;&gt;Installing NLB Nodes&lt;/h3&gt;
+&lt;p&gt;Like most other features. You must install this from Server Manager, add roles and features.&lt;/p&gt;
+
+&lt;p&gt;Select &lt;em&gt;Network Load Balancing&lt;/em&gt; from the features section.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-nlb-cluster&quot;&gt;Creating a NLB Cluster&lt;/h3&gt;
+
+&lt;p&gt;Under the Netowkr Load Blancing Manger&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Right click the cluster and click New Cluster&lt;/li&gt;
+  &lt;li&gt;Set the host as your current server&lt;/li&gt;
+  &lt;li&gt;Select the interface for this specific cluster&lt;/li&gt;
+  &lt;li&gt;find the IP address in the Dedicated IP address section and hit next&lt;/li&gt;
+  &lt;li&gt;Add an IP address that is shared by all clusters and it will add the IP to the adapters&lt;/li&gt;
+  &lt;li&gt;add the IP address for the NLB Cluster&lt;/li&gt;
+  &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
+  &lt;li&gt;Set any applicable port rules&lt;/li&gt;
+  &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry></feed>
