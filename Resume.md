@@ -109,19 +109,16 @@ scams, phishing scams, typo-squatting, malicious attachments, etc.
 ## Other Professional Experience
 ---
 
-# Program Design & Consulting
-### Mold-X - Cashiers, NC
+### Program Design & Consulting - Mold-X - Cashiers, NC
 > 2016 to 2017
 
 
-# Co-Founder
-### Project Wosho- Asheville, NC
+### Co-Founder -  Project Wosho- Asheville, NC
 >2010 to 2014
 
 
 
-# Curriculum Design and Lead Management
-### B.M.SOLE - Asheville, NC
+### Curriculum Design and Lead Management - B.M.SOLE - Asheville, NC
 > 2011 to 2013
 
 
