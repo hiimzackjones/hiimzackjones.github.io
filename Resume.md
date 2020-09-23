@@ -4,7 +4,8 @@ title: Resume
 permalink: /Resume/
 ---
 
-
+# Zack Jones
+[Email](hi.imzackjones@gmail.com) [Twitter](https://twitter.com/mehhsecurity) [Github](https://github.com/hiimzackjones) [Twitch](https://twitch.tv/mehhsecurity)
 
 ## Bio
 
