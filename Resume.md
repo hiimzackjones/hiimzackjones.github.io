@@ -4,10 +4,9 @@ title: Resume
 permalink: /Resume/
 ---
 
-# Zack Jones
 [Email](hi.imzackjones@gmail.com) [Twitter](https://twitter.com/mehhsecurity) [Github](https://github.com/hiimzackjones) [Twitch](https://twitch.tv/mehhsecurity)
 
-## Bio
+# Bio
 
 
 My name is Zack and I have been a Cyber Security hobbyist for the past 15+ years, 4+ years experience working in the IT & Networking field, 2 of those years as an IT Director for a private military school, 1 of those years teaching various Computer Science classes on the high school and collegiate level. My education is a combination of College and self-study with the help of mentorship and coaching. OSCP by 2021. 
