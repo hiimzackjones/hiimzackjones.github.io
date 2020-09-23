@@ -1,6 +1,6 @@
 ---
 layout: resume
-title: Resume
+title: Zack Jones - Resume
 permalink: /Resume/
 ---
 
