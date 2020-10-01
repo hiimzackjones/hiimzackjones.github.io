@@ -1,4 +1,4 @@
-I"jA<p>The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</p>
+I"�C<p>The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</p>
 
 <p><img src="/assets/img/Walkthroughs/Legacy/Website_shot.png" alt="Website Screenshot" /></p>
 
@@ -100,9 +100,17 @@ smbclient -N -L \\\10.10.10.4\\
 
 <p><img src="/assets/img/Walkthroughs/Legacy/smbclient.png" alt="smbclient" /></p>
 
-<p>We aren’t getting much from it right now and that’s okay. Let’s keep poking around.</p>
+<p><strong>EDIT</strong></p>
 
-<p><em>Note: smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.</em></p>
+<blockquote>
+  <p>Alright so. When I wrote this post I didn’t realize what this error was coming from. After doing some research I realized that my .conf file that handles smb client was configured to run a newer version of SMB. So, if you run into this, I have a quick writeup on how to fix it <a href="/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html">here</a></p>
+
+  <p><img src="/assets/img/Walkthroughs/Legacy/smbclientupdated.png" alt="SMBclientUpdated" /></p>
+
+  <p>After changing the conf file. This is what it looked like. To be expected. Invalid parameter means it doesn’t like a blank password.</p>
+</blockquote>
+
+<p><strong>Note:</strong> <em>smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.</em></p>
 
 <p>Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this.</p>
 

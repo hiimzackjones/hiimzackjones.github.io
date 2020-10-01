@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Smbclient Giving Weird Errors - A Fix. | Zack Jones</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Smbclient Giving Weird Errors - A Fix." />
+<meta name="author" content="Zack Jones" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error." />
+<meta property="og:description" content="So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error." />
+<link rel="canonical" href="http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html" />
+<meta property="og:url" content="http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html" />
+<meta property="og:site_name" content="Zack Jones" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-30T18:55:00-04:00" />
+<script type="application/ld+json">
+{"datePublished":"2020-09-30T18:55:00-04:00","@type":"BlogPosting","description":"So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.","mainEntityOfPage":{"@type":"WebPage","@id":"http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html"},"url":"http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html","author":{"@type":"Person","name":"Zack Jones"},"headline":"Smbclient Giving Weird Errors - A Fix.","dateModified":"2020-09-30T18:55:00-04:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://hiimzackjones.github.io/feed.xml" title="Zack Jones" /></head>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106768649-1');
+</script>
+
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Zack Jones</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/feed/">Feed</a><a class="page-link" href="/Resume/">Resume</a><a class="page-link" href="/Blog/">Blog</a><a class="page-link" href="/Cisco/">Cisco</a><a class="page-link" href="/InfoSec/">InfoSec</a><a class="page-link" href="/Linux/">Linux</a><a class="page-link" href="/networking/">Networking</a><a class="page-link" href="/Server/">Server</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Smbclient Giving Weird Errors - A Fix.</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-09-30T18:55:00-04:00" itemprop="datePublished">Sep 30, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.</p>
+
+<p><img src="/assets/img/Walkthroughs/Lame/smbclient.png" alt="smbclient error" /></p>
+
+<p><img src="/assets/img/Walkthroughs/Legacy/smbclient.png" alt="smbclient error 2" /></p>
+
+<p>After doing some research, I found out that it was because smbclient was trying to use a higher version of Samba. So I’m writing this quick post as a reminder to myself how to fix it but hopefully it will help some of you guys out as well.</p>
+
+<p>First find the Samba conf file. It’s almost always in /etc/samba/smb.conf. I ran a quick find just in case.</p>
+
+<p><img src="/assets/img/Linux/SambaConfPost/SambaVersionFind.png" alt="Finding Samba Conf file" /></p>
+
+<p>Then I hopped onto the conf and added NT1 as the lowest accepted version.</p>
+
+<p>I added this to the Global section of the file -</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>min protocol = NT1
+</code></pre></div></div>
+<p><img src="/assets/img/Linux/SambaConfPost/SambaConfEdit.png" alt="SMB Conf Edit" /></p>
+
+<p><strong>Note:</strong>This is a good time to mention that you most likely want to have your SMB version as high as possible on machines you’d like to protect from SMB vulnerabilities. This works fine for a pentesting machine, but any other machine maybe should be set to highest possible. Here are some options for setting it. Here are some more options for setting the version.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>min protocol = SMB2
+min protocol = SMB3
+client min protocol = SMB2
+max protocol = SMB2
+protocol = SMB3
+</code></pre></div></div>
+<p>Notice you can set it to a specific SMB version, lowest version, highest version, and the same settings for client side.</p>
+
+<p>Okay lets go back and test to see what happens.<br />
+<em>But first</em> - make sure to reset your smb service.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart smbd.service
+or 
+sudo systemctl restart smb.service
+</code></pre></div></div>
+<p><em>when I restart the service it still didn’t work correctly. So I restarted the machine to make sure the correct service was restarted and it worked!</em></p>
+
+<p><img src="/assets/img/Linux/SambaConfPost/SMBFixed.png" alt="Imagine of it working goes here" /></p>
+
+<p>Okay there ya go. Hope this helps if you’re getting similar NT errors while poking at CTFs or even pentesting!</p>
+
+<p>Cheers, 
+Zack.</p>
+
+
+  </div><a class="u-url" href="/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html" hidden></a>
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Zack Jones</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Zack Jones</li><li><a class="u-email" href="mailto:hi.imzackjones@gmail.com">hi.imzackjones@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/hiimzackjones"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">hiimzackjones</span></a></li><li><a href="https://www.twitter.com/mehhsecurity"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mehhsecurity</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A very Mehh Networking and Cybersecurity online notebook and blog.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

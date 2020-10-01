@@ -109,9 +109,17 @@ smbclient is a small application similar to FTP. It may allow you to view files 
 
 ![smbclient](/assets/img/Walkthroughs/Legacy/smbclient.png)
 
-We aren't getting much from it right now and that's okay. Let's keep poking around.
+**EDIT**  
 
-*Note: smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.*
+>Alright so. When I wrote this post I didn't realize what this error was coming from. After doing some research I realized that my .conf file that handles smb client was configured to run a newer version of SMB. So, if you run into this, I have a quick writeup on how to fix it [here](/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html)  
+>
+>![SMBclientUpdated](/assets/img/Walkthroughs/Legacy/smbclientupdated.png)  
+>
+>After changing the conf file. This is what it looked like. To be expected. Invalid parameter means it doesn't like a blank password. 
+
+
+
+**Note:** *smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.*
 
 Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this. 
 

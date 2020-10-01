@@ -12,15 +12,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP." />
 <meta property="og:description" content="The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP." />
-<link rel="canonical" href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" />
-<meta property="og:url" content="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" />
+<link rel="canonical" href="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html" />
+<meta property="og:url" content="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html" />
 <meta property="og:site_name" content="Zack Jones" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-05-15T18:00:00-04:00" />
 <script type="application/ld+json">
-{"datePublished":"2020-05-15T18:00:00-04:00","@type":"BlogPosting","description":"The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html"},"url":"http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html","author":{"@type":"Person","name":"Zack Jones"},"headline":"Legacy HTB Writeup","dateModified":"2020-05-15T18:00:00-04:00","@context":"https://schema.org"}</script>
+{"datePublished":"2020-05-15T18:00:00-04:00","@type":"BlogPosting","description":"The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.","mainEntityOfPage":{"@type":"WebPage","@id":"http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html"},"url":"http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html","author":{"@type":"Person","name":"Zack Jones"},"headline":"Legacy HTB Writeup","dateModified":"2020-05-15T18:00:00-04:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Zack Jones" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://hiimzackjones.github.io/feed.xml" title="Zack Jones" /></head>
 
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106768649-1"></script>
@@ -167,9 +167,17 @@ smbclient -N -L \\\10.10.10.4\\
 
 <p><img src="/assets/img/Walkthroughs/Legacy/smbclient.png" alt="smbclient" /></p>
 
-<p>We aren’t getting much from it right now and that’s okay. Let’s keep poking around.</p>
+<p><strong>EDIT</strong></p>
 
-<p><em>Note: smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.</em></p>
+<blockquote>
+  <p>Alright so. When I wrote this post I didn’t realize what this error was coming from. After doing some research I realized that my .conf file that handles smb client was configured to run a newer version of SMB. So, if you run into this, I have a quick writeup on how to fix it <a href="/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html">here</a></p>
+
+  <p><img src="/assets/img/Walkthroughs/Legacy/smbclientupdated.png" alt="SMBclientUpdated" /></p>
+
+  <p>After changing the conf file. This is what it looked like. To be expected. Invalid parameter means it doesn’t like a blank password.</p>
+</blockquote>
+
+<p><strong>Note:</strong> <em>smbmap is also a great tool for enumerating SMB, in paticular when working with Active Directory or domains.</em></p>
 
 <p>Another way to enumerate SMB is to use nmap with the SMB script. We have already done this in the big nmap scan we did previously, but if you wanted to run it again it would look like this.</p>
 
