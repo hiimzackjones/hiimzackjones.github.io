@@ -1,0 +1,307 @@
+ 
+Running all scans on 10.10.10.40
+
+Host is likely running Windows
+
+
+
+---------------------Starting Nmap Quick Scan---------------------
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-14 16:58 EDT
+Warning: 10.10.10.40 giving up on port because retransmission cap hit (1).
+Nmap scan report for 10.10.10.40
+Host is up (0.12s latency).
+Not shown: 911 closed ports, 80 filtered ports
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 3.82 seconds
+
+
+
+---------------------Starting Nmap Basic Scan---------------------
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-14 16:58 EDT
+Nmap scan report for 10.10.10.40
+Host is up (0.13s latency).
+
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+49152/tcp open  msrpc        Microsoft Windows RPC
+49153/tcp open  msrpc        Microsoft Windows RPC
+49154/tcp open  msrpc        Microsoft Windows RPC
+49155/tcp open  msrpc        Microsoft Windows RPC
+49156/tcp open  msrpc        Microsoft Windows RPC
+49157/tcp open  msrpc        Microsoft Windows RPC
+Service Info: Host: HARIS-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -15m31s, deviation: 34m36s, median: 4m26s
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: haris-PC
+|   NetBIOS computer name: HARIS-PC\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2020-10-14T22:03:47+01:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-10-14T21:03:46
+|_  start_date: 2020-10-14T21:01:23
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 72.31 seconds
+
+
+
+----------------------Starting Nmap UDP Scan----------------------
+
+You requested a scan type which requires root privileges.
+QUITTING!
+
+
+
+---------------------Starting Nmap Full Scan----------------------
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-14 16:59 EDT
+Initiating Parallel DNS resolution of 1 host. at 16:59
+Completed Parallel DNS resolution of 1 host. at 16:59, 0.01s elapsed
+Initiating Connect Scan at 16:59
+Scanning 10.10.10.40 [65535 ports]
+Discovered open port 135/tcp on 10.10.10.40
+Discovered open port 139/tcp on 10.10.10.40
+Discovered open port 445/tcp on 10.10.10.40
+Warning: 10.10.10.40 giving up on port because retransmission cap hit (1).
+Discovered open port 49152/tcp on 10.10.10.40
+Connect Scan Timing: About 7.63% done; ETC: 17:06 (0:06:15 remaining)
+Connect Scan Timing: About 16.55% done; ETC: 17:06 (0:05:53 remaining)
+Connect Scan Timing: About 25.89% done; ETC: 17:06 (0:05:29 remaining)
+Connect Scan Timing: About 32.18% done; ETC: 17:06 (0:05:06 remaining)
+Connect Scan Timing: About 39.34% done; ETC: 17:06 (0:04:30 remaining)
+Discovered open port 49153/tcp on 10.10.10.40
+Discovered open port 49154/tcp on 10.10.10.40
+Connect Scan Timing: About 46.83% done; ETC: 17:06 (0:03:53 remaining)
+Connect Scan Timing: About 54.21% done; ETC: 17:06 (0:03:18 remaining)
+Connect Scan Timing: About 60.60% done; ETC: 17:06 (0:02:52 remaining)
+Connect Scan Timing: About 67.06% done; ETC: 17:06 (0:02:25 remaining)
+Discovered open port 49157/tcp on 10.10.10.40
+Discovered open port 49156/tcp on 10.10.10.40
+Connect Scan Timing: About 75.03% done; ETC: 17:06 (0:01:48 remaining)
+Connect Scan Timing: About 82.18% done; ETC: 17:06 (0:01:17 remaining)
+Connect Scan Timing: About 89.09% done; ETC: 17:06 (0:00:47 remaining)
+Completed Connect Scan at 17:07, 463.58s elapsed (65535 total ports)
+Nmap scan report for 10.10.10.40
+Host is up (0.11s latency).
+Not shown: 62270 closed ports, 3257 filtered ports
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 463.66 seconds
+
+
+No new ports
+
+
+
+
+---------------------Starting Nmap Vulns Scan---------------------
+
+Running CVE scan on basic ports
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-14 17:07 EDT
+Nmap scan report for 10.10.10.40
+Host is up (0.12s latency).
+
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Microsoft Windows 7 - 10 microsoft-ds (workgroup: WORKGROUP)
+49152/tcp open  msrpc        Microsoft Windows RPC
+49153/tcp open  msrpc        Microsoft Windows RPC
+49154/tcp open  msrpc        Microsoft Windows RPC
+49155/tcp open  msrpc        Microsoft Windows RPC
+49156/tcp open  msrpc        Microsoft Windows RPC
+49157/tcp open  msrpc        Microsoft Windows RPC
+Service Info: Host: HARIS-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 65.18 seconds
+
+
+Running Vuln scan on basic ports
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-14 17:08 EDT
+Pre-scan script results:
+| broadcast-avahi-dos: 
+|   Discovered hosts:
+|     224.0.0.251
+|   After NULL UDP avahi packet DoS (CVE-2011-1002).
+|_  Hosts are all up (not vulnerable).
+Nmap scan report for 10.10.10.40
+Host is up (0.11s latency).
+
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds Microsoft Windows 7 - 10 microsoft-ds (workgroup: WORKGROUP)
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+49152/tcp open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+49153/tcp open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+49154/tcp open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+49155/tcp open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+49156/tcp open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+49157/tcp open  msrpc        Microsoft Windows RPC
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+Service Info: Host: HARIS-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_OBJECT_NAME_NOT_FOUND
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 112.16 seconds
+
+
+
+---------------------Recon Recommendations----------------------
+
+
+SMB Recon:
+
+smbmap -H 10.10.10.40 | tee recon/smbmap_10.10.10.40.txt
+smbclient -L "//10.10.10.40/" -U "guest"% | tee recon/smbclient_10.10.10.40.txt
+nmap -Pn -p445 --script vuln -oN recon/SMB_vulns_10.10.10.40.txt 10.10.10.40
+
+
+
+
+
+Which commands would you like to run?                                                             
+All (Default), nmap, smbclient, smbmap, Skip <!>
+
+Running Default in (1) s:  
+
+
+---------------------Running Recon Commands----------------------
+
+
+Starting smbmap scan
+
+[+] IP: 10.10.10.40:445 Name: 10.10.10.40                                       
+                                
+Finished smbmap scan
+
+=========================
+
+Starting smbclient scan
+
+do_connect: Connection to 10.10.10.40 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        ADMIN$          Disk      Remote Admin
+        C$              Disk      Default share
+        IPC$            IPC       Remote IPC
+        Share           Disk      
+        Users           Disk      
+Reconnecting with SMB1 for workgroup listing.
+Unable to connect with SMB1 -- no workgroup available
+
+Finished smbclient scan
+
+=========================
+
+Starting nmap scan
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-14 17:10 EDT
+Pre-scan script results:
+| broadcast-avahi-dos: 
+|   Discovered hosts:
+|     224.0.0.251
+|   After NULL UDP avahi packet DoS (CVE-2011-1002).
+|_  Hosts are all up (not vulnerable).
+Nmap scan report for 10.10.10.40
+Host is up (0.13s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_OBJECT_NAME_NOT_FOUND
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+
+Nmap done: 1 IP address (1 host up) scanned in 50.96 seconds
+
+Finished nmap scan
+
+=========================
+
+
+
+---------------------Finished all Nmap scans---------------------
+
+
+Completed in 13 minute(s) and 22 second(s)
+

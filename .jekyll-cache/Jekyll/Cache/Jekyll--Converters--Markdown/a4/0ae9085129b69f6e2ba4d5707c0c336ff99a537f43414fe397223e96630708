@@ -1,0 +1,70 @@
+I"�<h1 id="blue">Blue</h1>
+<p><img src="/assets/img/Walkthroughs/Blue/Blue.png" alt="blue" /></p>
+
+<p>Hi Hello again. This box is going to be a quick one but a really important one to knock out if you’re looking to learn for the OSCP. You can probably guess what vulnerability we are going to be poking at with this one, but I won’t spoil early. :)</p>
+
+<h2 id="enumeration">Enumeration</h2>
+
+<p>Usually I post about both nmap and nmapautomator but this round we are going to try a new tool that I’ve heard loads of good things about. This tool has just a massive amount of stuff it does for you and organizes the outputs for you in a file structure that is nifty so. Let’s try that out.</p>
+
+<h2 id="autorecon">AutoRecon</h2>
+
+<p>First, let’s get an understanding of how this bad boy works. Head over to it’s github at <a href=""></a> and <a href="https://github.com/Tib3rius/AutoRecon/blob/master/README.md">look at the source.</a> Or not… I’m going to quickly tell you either way.</p>
+
+<p>Now before you go download it and start using it on pentesting engagements, please know that <strong>it can be noisey</strong>. It has been designed for CTFs and OSCP like certification stuff.</p>
+
+<p>Also, it’s basically a script that runs other tools that you most likely would want to run anyway. Here is the list:</p>
+
+<ul>
+  <li>curl</li>
+  <li>enum4linux</li>
+  <li>gobuster</li>
+  <li>nbtscan</li>
+  <li>nikto</li>
+  <li>nmap</li>
+  <li>onesixtyone</li>
+  <li>oscanner</li>
+  <li>smbclient</li>
+  <li>smbmap</li>
+  <li>smtp-user-enum</li>
+  <li>snmpwalk</li>
+  <li>sslscan</li>
+  <li>svwar</li>
+  <li>tnscmd10g</li>
+  <li>whatweb</li>
+  <li>wkhtmltoimage</li>
+</ul>
+
+<p>You can imagine how this works. It runs a handful of nmap scans, and based off of what it sees in the scans, it starts using other tools as needed to continue the enumeration. So for example, it sees that port 80 or 443 is open. Then it might run something like dirbuster and nikto against it automatically. This sort of handles the repetitive steps that you do for every machine anyway and gets you right into investigating how to get in, or maybe where to look for further enumeration.</p>
+
+<p>Now, because it does so much, you can imagine how much data there is to look through. Here is a quick look at the files I got from running it against Blue.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/AutoReconFiles.png" alt="AutoRecon" /></p>
+
+<p>In there you’ve got a list of the commands it ran to get the results, the results of a basic nmap scan, smbclient, enum4linux, etc.</p>
+<blockquote>
+  <p>Note: Notice it sets up structure for the rest of your pentest. You have directories to place other notes moving forward. Pretty freaking cool stuff.</p>
+</blockquote>
+
+<p>So this is what we got to work with for breaking into this bad boy.</p>
+
+<h2 id="nmap">Nmap</h2>
+<p>This output is from an nmap scan that goes something like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -VV --reason -Pn -A --osscan-guess --version-all -p- 10.10.10.40
+</code></pre></div></div>
+<p><img src="/assets/img/Walkthroughs/Blue/FullTCPNmapAR.png" alt="AR Nmap" /></p>
+
+<p>This is the second half to that.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/FullTCPNmapAR2.png" alt="AR Nmap" /></p>
+
+<p>This was some output for the SMBMap it ran. If we didn’t know it was Windows, we sure as heck do now. Lol. Look at all those files we get to see. Kind of silly tbh.<br />
+<img src="/assets/img/Walkthroughs/Blue/SMBMap.png" alt="" /></p>
+
+<p>The SMBClient seems way less fruitful after seeing the SMBMap results. But here they are.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/SMBClient.png" alt="" /></p>
+
+<p>There was plenty more but this is the stuff that matters so far. If you’re really curious <a href="/assets/img/Walkthroughs/Blue/AutoRecon/10.10.10.40">Here is the complete set of files I got from the AutoRecon</a></p>
+
+:ET

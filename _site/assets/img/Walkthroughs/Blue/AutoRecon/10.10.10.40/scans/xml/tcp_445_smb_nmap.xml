@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Wed Oct 14 18:49:10 2020 as: nmap -vv -&#45;reason -Pn -sV -p 445 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -&#45;script-args=unsafe=1 -oN /home/mehh/Scripts/AutoRecon/src/autorecon/results/10.10.10.40/scans/tcp_445_smb_nmap.txt -oX /home/mehh/Scripts/AutoRecon/src/autorecon/results/10.10.10.40/scans/xml/tcp_445_smb_nmap.xml 10.10.10.40 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -sV -p 445 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -&#45;script-args=unsafe=1 -oN /home/mehh/Scripts/AutoRecon/src/autorecon/results/10.10.10.40/scans/tcp_445_smb_nmap.txt -oX /home/mehh/Scripts/AutoRecon/src/autorecon/results/10.10.10.40/scans/xml/tcp_445_smb_nmap.xml 10.10.10.40" start="1602715750" startstr="Wed Oct 14 18:49:10 2020" version="7.80" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="445"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1602715750"/>
+<taskend task="NSE" time="1602715750"/>
+<taskbegin task="NSE" time="1602715750"/>
+<taskend task="NSE" time="1602715750"/>
+<taskbegin task="NSE" time="1602715750"/>
+<taskend task="NSE" time="1602715750"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1602715750"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1602715751"/>
+<taskbegin task="SYN Stealth Scan" time="1602715751"/>
+<taskend task="SYN Stealth Scan" time="1602715751" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1602715751"/>
+<taskend task="Service scan" time="1602715757" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1602715757"/>
+<taskprogress task="NSE" time="1602715788" percent="91.43" remaining="3" etc="1602715791"/>
+<taskprogress task="NSE" time="1602715818" percent="97.14" remaining="2" etc="1602715820"/>
+<taskprogress task="NSE" time="1602715848" percent="97.14" remaining="3" etc="1602715851"/>
+<taskend task="NSE" time="1602715859"/>
+<taskbegin task="NSE" time="1602715859"/>

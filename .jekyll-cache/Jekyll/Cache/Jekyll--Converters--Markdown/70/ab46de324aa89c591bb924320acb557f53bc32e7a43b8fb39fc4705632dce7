@@ -1,0 +1,166 @@
+I"D'<p><img src="/assets/img/Walkthroughs/Blue/Blue.png" alt="blue" /></p>
+
+<p>Hi Hello again. This box is going to be a quick one but a really important one to knock out if you’re looking to learn for the OSCP. You can probably guess what vulnerability we are going to be poking at with this one, but I won’t spoil early. :)</p>
+
+<h2 id="enumeration">Enumeration</h2>
+
+<p>Usually I post about both nmap and nmapautomator but this round we are going to try a new tool that I’ve heard loads of good things about. This tool has just a massive amount of stuff it does for you and organizes the outputs for you in a file structure that is nifty so. Let’s try that out.</p>
+
+<h2 id="autorecon">AutoRecon</h2>
+
+<p><img src="/assets/img/Walkthroughs/Blue/AutoReconScreenshot.png" alt="AutoReconScreen" /></p>
+
+<p>First, let’s get an understanding of how this bad boy works. Head over to it’s Github at <a href=""></a> and <a href="https://github.com/Tib3rius/AutoRecon/blob/master/README.md">look at the source.</a> Or not… I’m going to quickly tell you either way.</p>
+
+<p>Now before you go download it and start using it on pentesting engagements, please know that <strong>it can be noisy</strong>. It has been designed for CTFs and OSCP like certification stuff.</p>
+
+<p>Also, it’s basically a script that runs other tools that you most likely would want to run anyway. Here is the list:</p>
+
+<ul>
+  <li>curl</li>
+  <li>enum4linux</li>
+  <li>gobuster</li>
+  <li>nbtscan</li>
+  <li>nikto</li>
+  <li>nmap</li>
+  <li>onesixtyone</li>
+  <li>oscanner</li>
+  <li>smbclient</li>
+  <li>smbmap</li>
+  <li>smtp-user-enum</li>
+  <li>snmpwalk</li>
+  <li>sslscan</li>
+  <li>svwar</li>
+  <li>tnscmd10g</li>
+  <li>whatweb</li>
+  <li>wkhtmltoimage</li>
+</ul>
+
+<p>You can imagine how this works. It runs a handful of nmap scans, and based off of what it sees in the scans, it starts using other tools as needed to continue the enumeration. So for example, it sees that port 80 or 443 is open. Then it might run something like dirbuster and nikto against it automatically. This sort of handles the repetitive steps that you do for every machine anyway and gets you right into investigating how to get in, or maybe where to look for further enumeration.</p>
+
+<p>Now, because it does so much, you can imagine how much data there is to look through. Here is a quick look at the files I got from running it against Blue.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/AutoReconFiles.png" alt="AutoRecon" /></p>
+
+<p>In there you’ve got a list of the commands it ran to get the results, the results of a basic nmap scan, smbclient, enum4linux, etc.</p>
+<blockquote>
+  <p>Note: Notice it sets up structure for the rest of your pentest. You have directories to place other notes moving forward. Pretty freaking cool stuff.</p>
+</blockquote>
+
+<p>So this is what we got to work with for breaking into this bad boy.</p>
+
+<h2 id="nmap">Nmap</h2>
+<p>This output is from an nmap scan that goes something like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -VV --reason -Pn -A --osscan-guess --version-all -p- 10.10.10.40
+</code></pre></div></div>
+<p><img src="/assets/img/Walkthroughs/Blue/FullTCPNmapAR.png" alt="AR Nmap" /></p>
+
+<p>This is the second half to that.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/FullTCPNmapAR2.png" alt="AR Nmap" /></p>
+
+<p>So what we know is:</p>
+<ul>
+  <li>Windows 7 Professional 7601 Service Pack 1</li>
+  <li>Name - haris-PC</li>
+  <li>SMB message signing default message signing disabled <em>woooo!</em></li>
+  <li>Ports 139 and 445 <em>oh buddy this looks like smb again</em></li>
+</ul>
+
+<h2 id="smb">SMB</h2>
+
+<p>This was some output for the SMBMap it ran. If we didn’t know it was Windows, we sure as heck do now. Lol. Look at all those files we get to see. Kind of silly tbh.<br />
+<img src="/assets/img/Walkthroughs/Blue/SMBMap.png" alt="" /></p>
+
+<p>The SMBClient seems way less fruitful after seeing the SMBMap results. But here they are.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/SMBClient.png" alt="" /></p>
+
+<p>From this we can tell that:</p>
+<ul>
+  <li>SMB is wide open it seems.</li>
+  <li>Big confirm on Windows 7 based off of the files we see in the SMB</li>
+</ul>
+
+<h2 id="everything-else">Everything else</h2>
+
+<p>There was plenty more but this is the stuff that matters so far. If you’re really curious <a href="/assets/img/Walkthroughs/Blue/AutoRecon/10.10.10.40">Here is the complete set of files I got from the AutoRecon</a></p>
+<blockquote>
+  <p>yes I know it’s not safe to include files like this, but… the site is purely static and the entire file structure is listed on my github. So. I’m prettty confident that means it’s gucci.</p>
+</blockquote>
+
+<h2 id="nmapautomator">nmapAutomator</h2>
+<p>Okayyyy okayy. Calm down. I know I lied. But It’s important to know what you get with each type of automatic scan and what you don’t. And what I didn’t see in AutoRecon was a list of CVEs. I had ran nmapAutomator when breaking into this machine and just happen to have the results saved. So let’s take a look at what we got from the nmapAutomator.</p>
+
+<p>Almost everything was the same, but I noticed this little tasty note in the nmap vuln scan.</p>
+
+<p><img src="/assets/img/Walkthrough/Blue/nmapAutomatorSMBVuln.png" alt="SMB Vuln" /></p>
+
+<p>The takeaway from that screenshot is:</p>
+<ul>
+  <li>SMB MS17-010 Vulnerable</li>
+  <li>CVE-2017-0143 is the CVE for it.</li>
+  <li>Resource section url says “wannacrypt attack” in the url. <em>freakingg bet</em></li>
+</ul>
+
+<h2 id="investigating-cves">Investigating CVEs</h2>
+
+<p>Now we absolutely have enough information to start firing off some hacker magic EternalBlue pew pew. But before we do. Let’s back up. Let’s imagine all you did was a simple nmap and you know it has SMB and it’s Windows 7.</p>
+<blockquote>
+  <p>The first time I broke into this box I didn’t have nmapAutomator or any other special fancy stuff and all I knew was SMB Windows 7 Pro. So let’s just time travel back to that guy.</p>
+</blockquote>
+
+<p>A simple Google search can help on this. I’m taking time to write this part out because you’re going to run into machines that lack information. Not every vulnerability or CVE is just gonna happily announce itself. Learn to take small chunks of what you know to dig further. So….</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/WindowsSearch.png" alt="Windows 7 Google" /></p>
+
+<p>You already see the first hit is for MS17-010. You also see a Priv Esc for CVE-2019-1132 that would maybe work on this machine as well. The third link is another exploit for EternalBlue. At this point you have enough information to know where to start. Without those big scans, you still have the ability to figure this out. What would the next step be? <strong>Read about the exploits</strong> not <strong>fire lasers</strong>. Make sure the exploit makes sense for what you’re using. Doing some reading you’ll find that…</p>
+
+<ul>
+  <li>EternalBlue does remote code execution.</li>
+  <li>valid for machines running SMBv1</li>
+  <li>Works for Windows Vista, Windows 7, and Windows Server 2008 (most versions of these)</li>
+  <li>Also works on Windows 8, 10, Server 2012 and 2016 if left not updated. But mainly the previously mentioned due to Windows not updating those machines anymore.</li>
+  <li>It has many CVEs. Basically CVE-2017-0143 to CVE-2017-0148</li>
+</ul>
+
+<p>And with that, your brain should go <em>Are we Windows 7…yep…Are we SMBv1….yep</em> and now is when you start to figure out how to fire it off. Head over to Metasploit.</p>
+
+<h2 id="firing-the-lasers-exploitation">Firing the lasers (Exploitation)</h2>
+
+<p>Okay. I’m only going to show the Metasploit exploit for this for now. I might add the manual later. You guys remember how this goes?</p>
+
+<p>Wait wait, before you Metasploit anything let’s just check Searchsploit to see what she says is up.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/SearchSploit.png" alt="Searchsploit" /></p>
+
+<p>Wow okay, loads of good stuff there to go from. You could easily read through your options there and figure out how to manually fire this bad boy off. Just remember to read the source code and figure out exactly how to use it first. Oh and what it might do to the machine. <strong><em>Hint: EternalBlue breaks things sometimes</em></strong></p>
+
+<p>Okay let’s see what Metasploit has for us…</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/MetaSearch.png" alt="SearchingMetasploit" /></p>
+
+<p>Oh heck. It has a EternalBlue scanner??? Well dang, let’s try that puppy out yeah?</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/MetasploitScan.png" alt="scanning with Metasploit module" /><br />
+Okay cool. It confirms what we already sort of know. But mainly, it’s good to know this is here.</p>
+
+<p>Let’s use this one. The other’s seem specific to different things and this is the most generic.</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/MetasploitOptions.png" alt="SettingOptions" /></p>
+
+<p>Make sure you check what your IP is. For some reason it defaults to my wlan adapter soo. Check this.</p>
+
+<p>Alrighty then. Fire this mug off. But know that this exploit is super delicate. It has taken me 3-4 tries before it works in the past. With HTB feel free to at this point just reset the machine if you’re having problems.</p>
+<blockquote>
+  <p>the first time I ran this months ago it worked great. While writing this post, I tried it 4 times and it didn’t. So. That’s a thing.</p>
+</blockquote>
+
+<p><img src="/assets/img/Walkthroughs/Blue/" alt="Firing away" /></p>
+
+<p>heheheh. Very nice. We are in. And not only that but we are already max priv. The computer is your oyster and you can open it with swords… Wait is that how that saying goes? Shakespeare would hate that I made this joke…</p>
+
+<p>Let’s take a look around this machine real fast like…</p>
+
+<p><img src="/assets/img/Walkthroughs/Blue/" alt="LookingAround" /></p>
+:ET
