@@ -45,14 +45,17 @@ looks right locally.
    at https://mehhspace.com once the run finishes and DNS is live.
 
 ## First-run setup (only needed once, if the remote isn't configured yet)
-- Create the repo and set the remote:
+GitHub user: **hiimzackjones**. Repo: **mehhspace**.
+- Create the repo and push (from the repo root, `gh` must be authenticated):
   ```bash
-  gh repo create mehhspace --public --source=. --remote=origin --push
+  gh repo create hiimzackjones/mehhspace --public --source=. --remote=origin --push
   ```
-  (or `git remote add origin git@github.com:<user>/mehhspace.git` then push).
+  (or `git remote add origin git@github.com:hiimzackjones/mehhspace.git` then `git push -u origin main`).
 - In the repo: **Settings → Pages → Source: GitHub Actions**.
 - Add the custom domain `mehhspace.com` under Settings → Pages (the `public/CNAME`
   file already pins it across deploys).
-- GoDaddy DNS: A records → GitHub Pages IPs (185.199.108–111.153) for the apex, and
-  a `CNAME` for `www` → `<user>.github.io`. HTTPS is issued automatically once DNS
-  resolves.
+- GoDaddy DNS for `mehhspace.com`:
+  - Apex `@` — four **A** records → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+  - `www` — **CNAME** → `hiimzackjones.github.io`
+  - HTTPS (Let's Encrypt) is issued automatically once DNS resolves; tick
+    "Enforce HTTPS" in Pages settings after it goes green.
