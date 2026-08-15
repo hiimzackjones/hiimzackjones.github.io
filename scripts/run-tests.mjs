@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow } from './mehhspace-update.mjs';
+import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks } from './mehhspace-update.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const sample = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'sample-notion.json'), 'utf8'));
@@ -101,6 +101,72 @@ test('transform handles the raw SQL shape end-to-end (dry run)', () => {
     'blog/setting-up-this-whole-pipeline.md',
     'fun/learning-to-actually-finish-a-song.md',
   ].sort(), 'draft blog excluded, published page rows routed');
+});
+
+test('normalizeBlocks separates Notion blank-line-free paragraphs', () => {
+  // Exactly the shape the CLI reported: no blank lines between blocks.
+  const notion = [
+    'First paragraph here.',
+    'Second paragraph, wrongly merged today.',
+    '# A heading',
+    'Body under the heading.',
+  ].join('\n');
+  const md = normalizeBlocks(notion);
+  assert.equal(md, [
+    'First paragraph here.',
+    '',
+    'Second paragraph, wrongly merged today.',
+    '',
+    '# A heading',
+    '',
+    'Body under the heading.',
+    '',
+  ].join('\n'));
+});
+
+test('normalizeBlocks keeps list items and code fences contiguous', () => {
+  const src = [
+    'Intro line.',
+    '- one',
+    '- two',
+    '- three',
+    'After the list.',
+    '```',
+    'code line 1',
+    '',
+    'code line 2',
+    '```',
+    'Trailing paragraph.',
+  ].join('\n');
+  const md = normalizeBlocks(src);
+  // list items stay together (no blank injected between them)
+  assert.match(md, /- one\n- two\n- three/);
+  // a blank precedes the list (para → list) and follows it (list → para)
+  assert.match(md, /Intro line\.\n\n- one/);
+  assert.match(md, /- three\n\nAfter the list\./);
+  // the blank line INSIDE the fence is preserved verbatim
+  assert.match(md, /```\ncode line 1\n\ncode line 2\n```/);
+  // blank line after the closed fence
+  assert.match(md, /```\n\nTrailing paragraph\./);
+});
+
+test('buildMarkdown excerpt is the first paragraph only (not merged)', () => {
+  const row = { tag: 'Blog', title: 'X', date: '2026-08-13',
+    content: 'Para one is the real excerpt.\nPara two should not leak in.' };
+  const md = buildMarkdown(row);
+  assert.match(md, /excerpt: "Para one is the real excerpt\."/);
+  assert.match(md, /Para one is the real excerpt\.\n\nPara two should not leak in\./);
+});
+
+test('transform empty-resume guard skips instead of clobbering', () => {
+  const plan = transform({
+    rows: [
+      { tag: 'Mood', status: 'Published', content: 'ok' },
+      { tag: 'Resume', status: 'Published', content: 'just a stray sentence, no ## sections' },
+    ],
+  }, { dryRun: true });
+  assert.equal(plan.resume, false);
+  assert.equal(plan.resumeSkipped, true);
 });
 
 console.log(`\n${pass} passed, ${fail} failed`);

@@ -7,32 +7,30 @@
       "title": "Senior Software Engineer — Company Name",
       "meta": "2023 — Present · Location",
       "bullets": [
-        "Placeholder bullet describing scope and impact of a major project.",
-        "Placeholder bullet with a specific, measurable outcome.",
-        "Placeholder bullet about ownership or cross-team work."
+        "Bullet describing scope and impact.",
+        "Bullet with a measurable outcome."
       ]
     },
     {
       "title": "Software Engineer — Previous Company",
       "meta": "2020 — 2023 · Location",
       "bullets": [
-        "Placeholder bullet describing a system built or maintained.",
-        "Placeholder bullet about a technical challenge solved."
+        "Bullet describing a system built."
       ]
     }
   ],
   "skills": [
     {
       "label": "Languages",
-      "value": "TypeScript, Python, Go, whatever the problem calls for"
+      "value": "TypeScript, Python, Go"
     },
     {
       "label": "Infra",
-      "value": "Docker, Cloudflare, GitHub Actions, home lab experiments"
+      "value": "Docker, Cloudflare, GitHub Actions"
     },
     {
       "label": "Other",
-      "value": "Astro, Notion API, reverse engineering as a hobby"
+      "value": "Astro, Notion API"
     }
   ],
   "education": [

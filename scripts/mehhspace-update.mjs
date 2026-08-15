@@ -112,6 +112,65 @@ export function deriveExcerpt(md, max = 200) {
   return flat.length > max ? flat.slice(0, max - 1).trimEnd() + '…' : flat;
 }
 
+/**
+ * Notion returns page-body markdown with NO blank lines between blocks, so
+ * consecutive paragraph blocks collapse into one <p>. Re-insert the blank lines
+ * that block-level separation requires — WITHOUT splitting list items, code
+ * fences, tables, or blockquotes (which are meant to stay contiguous).
+ */
+export function normalizeBlocks(md) {
+  const src = String(md).replace(/\r\n?/g, '\n').split('\n');
+  const fenceRe = /^\s*(```|~~~)/;
+  const classify = (line) => {
+    if (/^\s*$/.test(line)) return 'blank';
+    if (/^#{1,6}\s/.test(line)) return 'heading';
+    if (/^\s*([-*+]\s+|\d+[.)]\s+)/.test(line)) return 'list';
+    if (/^\s*>/.test(line)) return 'quote';
+    if (/^\s*\|/.test(line)) return 'table';
+    return 'paragraph';
+  };
+  const out = [];
+  let inFence = false;
+  let prev = null; // type of last emitted non-blank line
+  const lastIsBlank = () => out.length === 0 || out[out.length - 1].trim() === '';
+
+  for (const line of src) {
+    if (fenceRe.test(line)) {
+      if (!inFence) {
+        if (!lastIsBlank()) out.push('');
+        out.push(line);
+        inFence = true;
+        prev = 'fence';
+      } else {
+        out.push(line);
+        inFence = false;
+        prev = 'closedFence';
+      }
+      continue;
+    }
+    if (inFence) { out.push(line); continue; }
+
+    const type = classify(line);
+    if (type === 'blank') { if (!lastIsBlank()) out.push(''); continue; }
+
+    let needBlank = false;
+    if (!lastIsBlank() && prev) {
+      if (type === 'heading' || prev === 'heading' || prev === 'closedFence') needBlank = true;
+      else if (type === 'list' && prev !== 'list') needBlank = true;
+      else if (type !== 'list' && prev === 'list') needBlank = true;
+      else if (type === 'quote' && prev !== 'quote') needBlank = true;
+      else if (type !== 'quote' && prev === 'quote') needBlank = true;
+      else if (type === 'table' && prev !== 'table') needBlank = true;
+      else if (type !== 'table' && prev === 'table') needBlank = true;
+      else if (type === 'paragraph' && prev === 'paragraph') needBlank = true;
+    }
+    if (needBlank) out.push('');
+    out.push(line);
+    prev = type;
+  }
+  return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+}
+
 /** Quote a scalar for YAML frontmatter. */
 function yamlString(v) {
   return `"${String(v).replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
@@ -125,10 +184,10 @@ export function buildMarkdown(row) {
   const iso = date && !isNaN(date) ? date.toISOString().slice(0, 10) : new Date(0).toISOString().slice(0, 10);
   fm.push(`date: ${iso}`);
   if (row.category) fm.push(`category: ${yamlString(row.category)}`);
-  const excerpt = row.excerpt || deriveExcerpt(row.content ?? '');
+  const body = normalizeBlocks(row.content ?? '');
+  const excerpt = row.excerpt || deriveExcerpt(body);
   if (excerpt) fm.push(`excerpt: ${yamlString(excerpt)}`);
-  const body = String(row.content ?? '').trim();
-  return `---\n${fm.join('\n')}\n---\n\n${body}\n`;
+  return `---\n${fm.join('\n')}\n---\n\n${body.trim()}\n`;
 }
 
 /**
@@ -240,8 +299,16 @@ export function transform(input, { dryRun = false } = {}) {
   if (resumeRow) {
     const existing = existsSync(join(DATA_DIR, 'resume.json'))
       ? JSON.parse(readFileSync(join(DATA_DIR, 'resume.json'), 'utf8')) : {};
-    resume = parseResume(resumeRow.content ?? '', { pdf: resumeRow.pdf ?? existing.pdf });
-    plan.resume = true;
+    const parsed = parseResume(resumeRow.content ?? '', { pdf: resumeRow.pdf ?? existing.pdf });
+    // Empty-resume guard: a malformed/empty body must not clobber a good resume.json.
+    const looksEmpty = !parsed.headline && parsed.experience.length === 0
+      && parsed.skills.length === 0 && parsed.education.length === 0;
+    if (looksEmpty) {
+      plan.resumeSkipped = true;
+    } else {
+      resume = parsed;
+      plan.resume = true;
+    }
   }
 
   // --- content collections (blog / lab / fun) ---
@@ -285,7 +352,7 @@ function main() {
   console.log(`MehhSpace ${label}:`);
   console.log(`  profile.json fields: ${plan.profile.length ? plan.profile.join(', ') : '(none)'}`);
   console.log(`  projects: ${plan.projects}`);
-  console.log(`  resume: ${plan.resume ? 'yes' : 'no'}`);
+  console.log(`  resume: ${plan.resume ? 'yes' : plan.resumeSkipped ? 'SKIPPED (empty/malformed body — kept existing resume.json)' : 'no'}`);
   console.log(`  pages: ${plan.pages.length ? plan.pages.join(', ') : '(none)'}`);
 }
 

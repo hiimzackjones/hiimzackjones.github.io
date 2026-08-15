@@ -2,23 +2,23 @@
   "featuredCount": 4,
   "items": [
     {
-      "title": "project one",
-      "slug": "#",
+      "title": "Project One",
+      "slug": "project-one",
       "image": "https://placehold.co/95x95/1D4ED8/FFFFFF?text=1"
     },
     {
-      "title": "project two",
-      "slug": "#",
+      "title": "Project Two",
+      "slug": "project-two",
       "image": "https://placehold.co/95x95/60A5FA/FFFFFF?text=2"
     },
     {
-      "title": "this site",
-      "slug": "#",
+      "title": "This Site",
+      "slug": "this-site",
       "image": "https://placehold.co/95x95/1E40AF/FFFFFF?text=3"
     },
     {
-      "title": "project four",
-      "slug": "#",
+      "title": "Project Four",
+      "slug": "project-four",
       "image": "https://placehold.co/95x95/ED0707/FFFFFF?text=4"
     }
   ]
