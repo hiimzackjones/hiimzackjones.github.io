@@ -2,7 +2,7 @@
   "name": "Zack",
   "online": true,
   "profilePic": "/profile-pic.gif",
-  "mood": "shipping the pipeline",
+  "mood": "Piggy dippin in the piggy pond.",
   "url": "http://www.mehhspace.com",
   "contact": {
     "sendMessage": "#",
@@ -11,19 +11,19 @@
     "linkedin": "https://www.linkedin.com/"
   },
   "interests": {
-    "General": "Reverse engineering, retro web design, home labs, self-hosting, mechanical keyboards",
-    "Music": "whatever's loud enough to code to",
-    "Movies": "anything with a good heist or a bad hacker montage",
-    "Television": "mostly technical talks and documentaries at this point",
-    "Books": "RFCs I'll never finish, old sci-fi",
-    "Heroes": "whoever wrote docs that actually explained the \"why\""
+    "General": "Too much, will update soon.",
+    "Music": "I have so many. coming soon.",
+    "Movies": "The Bee Movie",
+    "Television": "ehheheheh. long list and spoiler… yes coming soon like the rest. heugheh.",
+    "Books": "I’ll list some books soon.",
+    "Heroes": "Man, I’ll do this tonight."
   },
   "details": {
-    "Status": "Building",
+    "Status": "Weekend, probs Lucio Memeing on OW.",
     "Here For": "Networking, sharing projects, nostalgia",
-    "Occupation": "Software Engineer",
+    "Occupation": "Hacker, Senior Sales Engineer",
     "Stack": "Astro, Notion API, Cloudflare, Docker, whatever breaks this week"
   },
-  "about": "hey, i'm zack. this page is part resume, part hacker notebook, part just... me. everything here gets published straight from Notion — no commits required — so it should actually stay updated, unlike most sites styled like this one.",
-  "whoMeet": "people who build weird things, argue about home networking gear, or also think 2005 web design deserved better."
+  "about": "hey, I'm Mehh, or uh Zack … . I made this page to be part resume, part hacker notebook, part just a place for me to put my “me” stuff.",
+  "whoMeet": "You probs."
 }

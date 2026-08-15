@@ -42,27 +42,15 @@ the markdown from the returned `<content>` block.
 Singletons and `Project` rows already carry their value in the `Content` column —
 no second fetch.
 
-## Step 2b — Profile picture (only when the `Profile_Pic` row has a file)
+## Step 2b — Profile picture: skip it
 
-The `Profile_Pic` row's `File` column comes back as a **file ID / JSON array**, not
-a usable URL. To get a downloadable link, fetch that row's page by its `url` with
-the Notion page-fetch tool — the attachment appears as an `https://…` link (usually
-`prod-files-secure.s3…`).
+The picture is **not** part of this pull. It's a plain committed asset at
+`public/profile-pic.gif`, changed by dropping a new file at that path — Notion
+uploads can't be reached (their MCP refs are opaque `file://`, no bytes).
 
-Put that URL on the row under a **`File`** key in the contract JSON:
-
-```json
-{ "Name": "Profile Picture", "Tag": "Profile_Pic", "Status": "Published",
-  "File": "https://prod-files-secure.s3.us-west-2.amazonaws.com/…/photo.png?X-Amz-…" }
-```
-
-The transform downloads it to `public/profile-pic.<ext>` and points
-`profile.json` → `profilePic` at that local path. **Do not put the Notion URL into
-profile.json directly** — those links are presigned and expire in about an hour,
-so the picture would work at publish time and 403 by the next day.
-
-If the row has no attachment, pass `"File": ""` (or omit it). The existing picture
-is then preserved — an empty value never clears it.
+So: pass the `Profile_Pic` row straight through with no `File` key, or leave it out
+of the contract entirely. Either way the existing picture is preserved — the
+transform never clears it on an empty value. Don't go hunting for an attachment URL.
 
 ## Step 3 — Assemble the contract JSON
 
@@ -93,7 +81,7 @@ Field/routing notes the transform relies on:
   → value from `Content`. Mapped into `src/data/profile.json`. `Details_HereFor` →
   the "Here For" row. profile.json fields NOT in Notion (contact links, online flag)
   are preserved on merge.
-- **`Profile_Pic`** → downloaded from `File` to `public/profile-pic.<ext>`; see Step 2b.
+- **`Profile_Pic`** → ignored; the picture is a local asset. See Step 2b.
 - **`Project`** → `Name`+`Slug` (+ `Order`, optional `image`) → `src/data/projects.json`.
 - **`Blog`/`Lab`/`Fun`** → `src/content/<coll>/<slug>.md` with frontmatter
   (title, date, category, excerpt-if-derivable). `Fun` keeps its `Category`.

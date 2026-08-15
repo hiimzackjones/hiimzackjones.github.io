@@ -42,7 +42,7 @@ looks right locally.
    gh run list --workflow=deploy.yml --limit 1
    ```
    Report the run URL so the deploy can be watched. GitHub Pages serves the result
-   at https://hiimzackjones.github.io/ (and at https://mehhspace.com once DNS is cut over).
+   at https://mehhspace.com (and at https://hiimzackjones.github.io/).
 
 ## Where this deploys
 Repo: **hiimzackjones/hiimzackjones.github.io** — the GitHub *user site*, so it serves
@@ -52,13 +52,5 @@ already points here; `main` is the default branch and the deploy trigger.
 The old 2020 Jekyll blog still lives on the **`master`** branch of the same repo —
 untouched, and the reason nothing was lost in the swap. Don't delete that branch.
 
-## Remaining one-time step: DNS cutover for mehhspace.com
-Not done yet — `mehhspace.com` still resolves to GoDaddy parking. To finish:
-- Restore the CNAME pin: recreate `public/CNAME` containing `mehhspace.com`, then set
-  the custom domain under **Settings → Pages**. (It was removed deliberately: while
-  present, GitHub 301s the root URL to the still-parked apex.)
-- GoDaddy DNS for `mehhspace.com`:
-  - Apex `@` — four **A** records → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-  - `www` — **CNAME** → `hiimzackjones.github.io`
-  - HTTPS (Let's Encrypt) is issued automatically once DNS resolves; tick
-    "Enforce HTTPS" in Pages settings after it goes green.
+DNS, the custom domain and HTTPS are all done — see `DEPLOY.md`. `public/CNAME`
+pins `mehhspace.com` across deploys; leave it in place.

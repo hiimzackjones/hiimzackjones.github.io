@@ -1,42 +1,26 @@
 {
-  "headline": "Zack — Software Engineer",
-  "tagline": "Building systems, breaking them on purpose, and occasionally writing about it.",
+  "headline": "A place to write a short headline.",
+  "tagline": "Write a tagline here. For now - a work in progress.",
   "pdf": "/zack-resume.pdf",
   "experience": [
     {
-      "title": "Senior Software Engineer — Company Name",
-      "meta": "2023 — Present · Location",
-      "bullets": [
-        "Bullet describing scope and impact.",
-        "Bullet with a measurable outcome."
-      ]
-    },
-    {
-      "title": "Software Engineer — Previous Company",
+      "title": "Job Title — Previous Company",
       "meta": "2020 — 2023 · Location",
       "bullets": [
-        "Bullet describing a system built."
+        "Bullet describing."
       ]
     }
   ],
   "skills": [
     {
-      "label": "Languages",
-      "value": "TypeScript, Python, Go"
-    },
-    {
-      "label": "Infra",
-      "value": "Docker, Cloudflare, GitHub Actions"
-    },
-    {
-      "label": "Other",
-      "value": "Astro, Notion API"
+      "label": "Skill 1",
+      "value": "Skill"
     }
   ],
   "education": [
     {
       "title": "Degree, Major — University Name",
-      "meta": "Graduated 20XX"
+      "meta": ""
     }
   ]
 }
