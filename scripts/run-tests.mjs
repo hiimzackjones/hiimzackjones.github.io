@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks } from './mehhspace-update.mjs';
+import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks, materializeProfilePic } from './mehhspace-update.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const sample = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'sample-notion.json'), 'utf8'));
@@ -168,6 +168,39 @@ test('transform empty-resume guard skips instead of clobbering', () => {
   assert.equal(plan.resume, false);
   assert.equal(plan.resumeSkipped, true);
 });
+
+test('normalizeRow picks up the Notion File column', () => {
+  assert.equal(normalizeRow({ Tag: 'Profile_Pic', File: 'https://x/y.png' }).fileUrl, 'https://x/y.png');
+  assert.equal(normalizeRow({ tag: 'Profile_Pic', fileUrl: 'https://a/b.jpg' }).fileUrl, 'https://a/b.jpg');
+});
+
+test('Profile_Pic maps to profile.profilePic', () => {
+  const plan = transform({
+    rows: [{ tag: 'Profile_Pic', status: 'Published', content: '/profile-pic.png' }],
+  }, { dryRun: true });
+  assert.deepEqual(plan.profile, ['Profile_Pic']);
+});
+
+test('an empty Profile_Pic does not clear the existing picture', () => {
+  // The row is permanent but its File is empty on every publish that isn't a
+  // photo change — this guard is what stops those runs from blanking the pic.
+  const plan = transform({
+    rows: [
+      { tag: 'Mood', status: 'Published', content: 'ok' },
+      { tag: 'Profile_Pic', status: 'Published', content: '' },
+    ],
+  }, { dryRun: true });
+  assert.deepEqual(plan.profile, ['Mood']);
+});
+
+await (async () => {
+  const name = 'materializeProfilePic leaves rows alone when no file is attached';
+  try {
+    const input = { rows: [{ tag: 'Profile_Pic', status: 'Published', File: '' }] };
+    assert.equal(await materializeProfilePic(input, { dryRun: true }), null);
+    pass++; console.log(`  ✓ ${name}`);
+  } catch (err) { fail++; console.error(`  ✗ ${name}\n    ${err.message}`); }
+})();
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

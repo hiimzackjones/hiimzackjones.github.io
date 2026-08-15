@@ -66,7 +66,16 @@ export const SINGLETON_MAP = {
   About_Me: ['about'],
   Who_Meet: ['whoMeet'],
   Mood: ['mood'],
+  Profile_Pic: ['profilePic'],
 };
+
+/**
+ * Singletons that must never be cleared by an empty Notion value.
+ * Profile_Pic is the case that matters: the row exists permanently, but its File
+ * property is empty except on the runs where the photo is actually changed.
+ * Without this guard every ordinary publish would blank out the picture.
+ */
+const PRESERVE_IF_EMPTY = new Set(['Profile_Pic']);
 
 const PAGE_COLLECTIONS = { Blog: 'blog', Lab: 'lab', Fun: 'fun' };
 
@@ -89,6 +98,7 @@ export function normalizeRow(r) {
     image: pick('image', 'Image'),
     pdf: pick('pdf', 'Resume PDF', 'ResumePDF'),
     excerpt: pick('excerpt', 'Excerpt'),
+    fileUrl: pick('fileUrl', 'File', 'file'),
   };
 }
 
@@ -271,7 +281,9 @@ export function transform(input, { dryRun = false } = {}) {
   for (const row of rows) {
     const target = SINGLETON_MAP[row.tag];
     if (!target) continue;
-    setPath(profile, target, (row.content ?? '').trim());
+    const value = (row.content ?? '').trim();
+    if (!value && PRESERVE_IF_EMPTY.has(row.tag)) continue; // keep what's already there
+    setPath(profile, target, value);
     plan.profile.push(row.tag);
   }
 
@@ -340,14 +352,77 @@ export function transform(input, { dryRun = false } = {}) {
   return plan;
 }
 
+const PIC_BASENAME = 'profile-pic';
+const ALLOWED_PIC_EXT = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif']);
+
+/** Map a Content-Type back to a file extension, for URLs that carry no usable suffix. */
+function extFromContentType(ct = '') {
+  const t = ct.split(';')[0].trim().toLowerCase();
+  return { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/gif': 'gif',
+    'image/webp': 'webp', 'image/avif': 'avif' }[t];
+}
+
+/**
+ * Download the Profile_Pic row's attachment into public/ and rewrite the row's
+ * content to the resulting site-absolute path.
+ *
+ * Why download rather than link: Notion serves attachments from presigned S3 URLs
+ * that expire in roughly an hour, so storing the Notion URL would give a picture
+ * that works right after publishing and 403s by the next morning.
+ *
+ * Failure here is deliberately non-fatal — a broken photo must not block a
+ * content publish, so we warn and leave the existing picture in place.
+ */
+export async function materializeProfilePic(input, { dryRun = false } = {}) {
+  const raw = (input.rows ?? []).find((r) => normalizeRow(r).tag === 'Profile_Pic');
+  if (!raw) return null;
+  const row = normalizeRow(raw);
+  const src = row.fileUrl;
+  if (!src) return null;
+
+  // An explicit http(s) URL in Content is passed through untouched — it needs no hosting.
+  if (!/^https?:\/\//i.test(src)) return null;
+
+  let ext = (new URL(src).pathname.split('.').pop() || '').toLowerCase();
+  if (dryRun) return { src, path: `/${PIC_BASENAME}.${ALLOWED_PIC_EXT.has(ext) ? ext : 'png'}`, dryRun: true };
+
+  try {
+    const res = await fetch(src);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!ALLOWED_PIC_EXT.has(ext)) ext = extFromContentType(res.headers.get('content-type')) ?? 'png';
+    const bytes = Buffer.from(await res.arrayBuffer());
+    if (!bytes.length) throw new Error('empty response body');
+
+    const publicDir = join(ROOT, 'public');
+    if (!existsSync(publicDir)) mkdirSync(publicDir, { recursive: true });
+    // Drop older extensions so switching png→jpg can't leave two files behind.
+    for (const f of readdirSync(publicDir)) {
+      if (f.startsWith(`${PIC_BASENAME}.`)) unlinkSync(join(publicDir, f));
+    }
+    const outPath = join(publicDir, `${PIC_BASENAME}.${ext}`);
+    writeFileSync(outPath, bytes);
+    raw.Content = `/${PIC_BASENAME}.${ext}`;
+    raw.body = undefined;
+    return { src, path: `/${PIC_BASENAME}.${ext}`, bytes: bytes.length };
+  } catch (err) {
+    console.warn(`  ! profile picture download failed (${err.message}) — keeping the existing one`);
+    raw.Content = '';
+    return { error: err.message };
+  }
+}
+
 // --- CLI entry ---
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const fileArg = args.find((a) => !a.startsWith('--'));
   const raw = fileArg ? readFileSync(fileArg, 'utf8') : readFileSync(0, 'utf8');
   const input = JSON.parse(raw);
+  const pic = await materializeProfilePic(input, { dryRun });
   const plan = transform(input, { dryRun });
+  if (pic?.path) {
+    console.log(`MehhSpace profile picture: ${pic.path}${pic.bytes ? ` (${Math.round(pic.bytes / 1024)} KB)` : ''}`);
+  }
   const label = dryRun ? 'DRY RUN — would update' : 'Updated';
   console.log(`MehhSpace ${label}:`);
   console.log(`  profile.json fields: ${plan.profile.length ? plan.profile.join(', ') : '(none)'}`);
@@ -357,6 +432,5 @@ function main() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  try { main(); }
-  catch (err) { console.error(`MehhSpaceUpdate failed: ${err.message}`); process.exit(1); }
+  main().catch((err) => { console.error(`MehhSpaceUpdate failed: ${err.message}`); process.exit(1); });
 }

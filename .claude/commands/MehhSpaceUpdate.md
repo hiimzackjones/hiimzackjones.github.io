@@ -20,7 +20,7 @@ the deterministic transform (`scripts/mehhspace-update.mjs`) which rewrites the 
 Run this **exact** query via the Notion MCP SQL query tool (verified working live):
 
 ```sql
-SELECT "Name", "Tag", "Content", "Slug", "Category", "Status", "Order", "date:Date:start", url
+SELECT "Name", "Tag", "Content", "Slug", "Category", "Status", "Order", "date:Date:start", "File", url
 FROM "collection://cd6f8147-f900-45f2-9f4f-0d3e6a0862b6"
 WHERE "Status" = ?
 ORDER BY "Tag" ASC, "Order" ASC
@@ -28,7 +28,8 @@ ORDER BY "Tag" ASC, "Order" ASC
 params: `["Published"]`
 
 This returns every publishable row across all tags in one pass, with routing
-metadata. Expect ~21 rows (14 singletons + 4 Projects + 1 Blog + 1 Fun + 1 Resume).
+metadata. Expect ~22 rows (14 singletons + Profile_Pic + 4 Projects + 1 Blog +
+1 Fun + 1 Resume).
 
 ## Step 2 — Fetch page bodies (second pass, page tags only)
 
@@ -40,6 +41,28 @@ the markdown from the returned `<content>` block.
 
 Singletons and `Project` rows already carry their value in the `Content` column —
 no second fetch.
+
+## Step 2b — Profile picture (only when the `Profile_Pic` row has a file)
+
+The `Profile_Pic` row's `File` column comes back as a **file ID / JSON array**, not
+a usable URL. To get a downloadable link, fetch that row's page by its `url` with
+the Notion page-fetch tool — the attachment appears as an `https://…` link (usually
+`prod-files-secure.s3…`).
+
+Put that URL on the row under a **`File`** key in the contract JSON:
+
+```json
+{ "Name": "Profile Picture", "Tag": "Profile_Pic", "Status": "Published",
+  "File": "https://prod-files-secure.s3.us-west-2.amazonaws.com/…/photo.png?X-Amz-…" }
+```
+
+The transform downloads it to `public/profile-pic.<ext>` and points
+`profile.json` → `profilePic` at that local path. **Do not put the Notion URL into
+profile.json directly** — those links are presigned and expire in about an hour,
+so the picture would work at publish time and 403 by the next day.
+
+If the row has no attachment, pass `"File": ""` (or omit it). The existing picture
+is then preserved — an empty value never clears it.
 
 ## Step 3 — Assemble the contract JSON
 
@@ -68,8 +91,9 @@ fetched markdown under a **`body`** key.
 Field/routing notes the transform relies on:
 - **Singletons** (`Mood`, `URL_Box`, `About_Me`, `Who_Meet`, `Interest_*`, `Details_*`)
   → value from `Content`. Mapped into `src/data/profile.json`. `Details_HereFor` →
-  the "Here For" row. profile.json fields NOT in Notion (profile photo, contact
-  links, online flag) are preserved on merge.
+  the "Here For" row. profile.json fields NOT in Notion (contact links, online flag)
+  are preserved on merge.
+- **`Profile_Pic`** → downloaded from `File` to `public/profile-pic.<ext>`; see Step 2b.
 - **`Project`** → `Name`+`Slug` (+ `Order`, optional `image`) → `src/data/projects.json`.
 - **`Blog`/`Lab`/`Fun`** → `src/content/<coll>/<slug>.md` with frontmatter
   (title, date, category, excerpt-if-derivable). `Fun` keeps its `Category`.
