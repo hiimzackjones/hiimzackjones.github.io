@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SideProfile from '../../components/SideProfile.astro';
+import { byNewest, timeAgo } from '../../utils/date';
+
+const posts = (await getCollection('fun', ({ data }) => !data.draft)).sort(byNewest);
+
+// Group by category, preserving first-seen order.
+const groups = new Map<string, typeof posts>();
+for (const post of posts) {
+  const cat = post.data.category;
+  if (!groups.has(cat)) groups.set(cat, []);
+  groups.get(cat)!.push(post);
+}
+const categories = [...groups.entries()];
+---
+<BaseLayout title="Zack's Fun Stuff | mehhspace" active="fun">
+  <div class="row profile">
+
+    <!-- LEFT COLUMN -->
+    <div class="col w-30 left">
+      <SideProfile>
+        <div class="url-info">
+          <p><b>View my:</b></p>
+          <p><a href="/">Profile</a> | <a href="/blog">Blog</a> | <a href="/lab">Lab</a></p>
+        </div>
+      </SideProfile>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col right">
+      <div class="fun-intro">
+        <h2>Fun Stuff</h2>
+        <p>The non-professional corner. Music, writing, cars, whatever else doesn't belong on a resume.
+        Pick a tag below or just scroll.</p>
+      </div>
+
+      <div class="category-grid">
+        {categories.map(([cat, items]) => (
+          <a class="category-tag" href={`#${cat.toLowerCase()}`}>{cat} <span class="count">({items.length})</span></a>
+        ))}
+      </div>
+
+      {categories.map(([cat, items]) => (
+        <div class="fun-section" id={cat.toLowerCase()}>
+          <div class="heading">
+            <h4>{cat}</h4>
+            <span class="tag-label">{items.length} post{items.length === 1 ? '' : 's'}</span>
+          </div>
+          <div class="inner">
+            <div class="fun-entries">
+              {items.map((post) => (
+                <div class="entry">
+                  <h3 class="title"><a href={`/fun/${post.id}`}>{post.data.title}</a></h3>
+                  <p class="meta">{timeAgo(post.data.date)}</p>
+                  {post.data.excerpt && <p class="excerpt">{post.data.excerpt}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

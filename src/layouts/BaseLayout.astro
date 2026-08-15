@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  active?: 'home' | 'blog' | 'lab' | 'resume' | 'fun';
+  searchLabel?: string;
+}
+const { title, active, searchLabel } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+</head>
+<body>
+  <div class="container">
+    <Nav active={active} searchLabel={searchLabel} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</body>
+</html>

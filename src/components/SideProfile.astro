@@ -1,0 +1,24 @@
+---
+import profile from '../data/profile.json';
+interface Props {
+  showViewFullProfile?: boolean;
+}
+const { showViewFullProfile = true } = Astro.props;
+---
+<h1>{profile.name}</h1>
+<div class="general-about">
+  <div class="profile-pic">
+    <img src={profile.profilePic} alt={`${profile.name}'s profile picture`} />
+  </div>
+  <div class="details below">
+    {profile.online && <p class="online">● ONLINE!</p>}
+  </div>
+</div>
+
+<slot />
+
+{showViewFullProfile && (
+  <div class="url-info view-full-profile">
+    <p><a href="/"><b>View Full Profile</b></a></p>
+  </div>
+)}

@@ -1,0 +1,30 @@
+---
+interface Props {
+  active?: 'home' | 'blog' | 'lab' | 'resume' | 'fun';
+  searchLabel?: string;
+}
+const { active, searchLabel = 'Search:' } = Astro.props;
+const links = [
+  { key: 'home', label: 'Home', href: '/' },
+  { key: 'blog', label: 'Blog', href: '/blog' },
+  { key: 'lab', label: 'Lab', href: '/lab' },
+  { key: 'resume', label: 'Resume', href: '/resume' },
+  { key: 'fun', label: 'Fun', href: '/fun' },
+];
+---
+<nav>
+  <div class="top">
+    <div class="left"><a href="/" class="logo">mehhspace</a></div>
+    <div class="center">
+      <form>
+        {searchLabel} <input type="text" name="q"> <input type="submit" value="Go">
+      </form>
+    </div>
+    <div class="right"><a href="/">Help</a></div>
+  </div>
+  <ul class="links">
+    {links.map((l) => (
+      <li class={active === l.key ? 'active' : undefined}><a href={l.href}>{l.label}</a></li>
+    ))}
+  </ul>
+</nav>

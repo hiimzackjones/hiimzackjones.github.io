@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SideProfile from '../../components/SideProfile.astro';
+import { byNewest, timeAgo } from '../../utils/date';
+
+// Lab has no content yet (intentional per the build plan). This page renders
+// an empty-state until Lab-tagged rows are published from Notion.
+const posts = (await getCollection('lab', ({ data }) => !data.draft)).sort(byNewest);
+---
+<BaseLayout title="Zack's Lab | mehhspace" active="lab">
+  <div class="row profile">
+
+    <!-- LEFT COLUMN -->
+    <div class="col w-30 left">
+      <SideProfile>
+        <div class="url-info">
+          <p><b>View my:</b></p>
+          <p><a href="/">Profile</a> | <a href="/blog">Blog</a> | <a href="/resume">Resume</a></p>
+        </div>
+      </SideProfile>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col right">
+      <div class="fun-intro">
+        <h2>Lab</h2>
+        <p>Hacker projects and experiments. This section is still under construction.</p>
+      </div>
+
+      {posts.length === 0 ? (
+        <div class="blog-entries">
+          <div class="entry"><div class="inner"><p>Nothing here yet — check back soon.</p></div></div>
+        </div>
+      ) : (
+        <div class="blog-entries">
+          {posts.map((post) => (
+            <div class="entry">
+              <p class="publish-date">{timeAgo(post.data.date)}</p>
+              <div class="inner">
+                <h3 class="title"><a href={`/lab/${post.id}`}>{post.data.title}</a></h3>
+                {post.data.excerpt && <p>{post.data.excerpt}</p>}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

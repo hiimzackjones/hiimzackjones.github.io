@@ -1,0 +1,19 @@
+{
+  "_comment": "Mirrors the EXACT rows the build plan's SQL returns (capitalized columns, date:Date:start, Content=null for page rows) PLUS a `body` attached to page rows by the CLI's second-pass page fetch. Used to prove normalizeRow handles the real Notion shape.",
+  "rows": [
+    { "Name": "Mood", "Tag": "Mood", "Content": "currently debugging life", "Slug": null, "Category": null, "Status": "Published", "Order": null, "date:Date:start": null, "url": "https://notion.so/mood" },
+    { "Name": "Music", "Tag": "Interest_Music", "Content": "whatever's loud enough to code to", "Slug": null, "Category": null, "Status": "Published", "Order": null, "date:Date:start": null, "url": "https://notion.so/music" },
+    { "Name": "project one", "Tag": "Project", "Content": "a blurb", "Slug": "#", "Category": null, "Status": "Published", "Order": 1, "date:Date:start": null, "url": "https://notion.so/p1" },
+
+    { "Name": "Setting up this whole pipeline", "Tag": "Blog", "Content": null, "Slug": "setting-up-this-whole-pipeline", "Category": null, "Status": "Published", "Order": null, "date:Date:start": "2026-08-13", "url": "https://notion.so/blogpost",
+      "body": "For a while this site lived on GitHub Pages the old way.\n\n# How it actually works\n\nEvery editable piece lives as a row in Notion." },
+
+    { "Name": "Learning to actually finish a song", "Tag": "Fun", "Content": null, "Slug": "learning-to-actually-finish-a-song", "Category": "Music", "Status": "Published", "Order": null, "date:Date:start": "2026-08-12", "url": "https://notion.so/funpost",
+      "body": "I finished a song for once.\n\n# What got it over the line\n\nA made-up deadline." },
+
+    { "Name": "Resume", "Tag": "Resume", "Content": null, "Slug": "resume", "Category": null, "Status": "Published", "Order": null, "date:Date:start": null, "url": "https://notion.so/resume",
+      "body": "## Headline\nZack — Software Engineer\n\n## Tagline\nBuilds things.\n\n## Experience\n### Senior Software Engineer — Company\n2023 — Present · Remote\n- Did a thing.\n\n## Skills\n- Languages: TypeScript, Python\n\n## Education\n### BS, CS — University\nGraduated 20XX" },
+
+    { "Name": "Hidden draft", "Tag": "Blog", "Content": null, "Slug": "hidden", "Category": null, "Status": "Draft", "Order": null, "date:Date:start": "2026-08-01", "url": "https://notion.so/hidden", "body": "secret" }
+  ]
+}

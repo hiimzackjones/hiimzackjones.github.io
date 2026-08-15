@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SideProfile from '../../components/SideProfile.astro';
+import { byNewest, timeAgo } from '../../utils/date';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(byNewest);
+---
+<BaseLayout title="Zack's Blog | mehhspace" active="blog" searchLabel="Search Blog Entries:">
+  <div class="row profile">
+
+    <!-- LEFT COLUMN -->
+    <div class="col w-30 left">
+      <SideProfile>
+        <div class="mood">
+          <p><b>View my: <a href="/">Profile</a> | <a href="/lab">Lab</a> | <a href="/resume">Resume</a></b></p>
+        </div>
+        <div class="url-info">
+          <p><b>Blog URL:</b></p>
+          <p>https://mehhspace.com/blog</p>
+        </div>
+      </SideProfile>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col right">
+      <div class="blog-preview">
+        <h2>Zack's Blog Entries</h2>
+        <a href="/rss.xml" class="rss-right" title="RSS Feed">RSS</a>
+        <h4>[<a href="/rss.xml">Subscribe to this Blog</a>]</h4>
+
+        <div class="blog-entries">
+          {posts.map((post) => (
+            <div class="entry">
+              <p class="publish-date">{timeAgo(post.data.date)}</p>
+              <div class="inner">
+                <h3 class="title"><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+                {post.data.category && (
+                  <p class="category">Category: <a href={`/blog/${post.id}`}>{post.data.category}</a></p>
+                )}
+                <p>{post.data.excerpt} <a href={`/blog/${post.id}`}>» Continue Reading</a></p>
+                <p><a href={`/blog/${post.id}`}>» View Blog Entry</a></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="pagination"></div>
+    </div>
+  </div>
+</BaseLayout>

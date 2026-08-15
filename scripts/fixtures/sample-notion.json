@@ -1,0 +1,29 @@
+{
+  "rows": [
+    { "tag": "Mood", "status": "Published", "content": "currently debugging life" },
+    { "tag": "URL_Box", "status": "Published", "content": "http://www.mehhspace.com" },
+    { "tag": "About_Me", "status": "Published", "content": "hey, i'm zack. this page is part resume, part hacker notebook, part just... me. everything here gets published straight from Notion — no commits required — so it should actually stay updated, unlike most sites styled like this one." },
+    { "tag": "Who_Meet", "status": "Published", "content": "people who build weird things, argue about home networking gear, or also think 2005 web design deserved better." },
+    { "tag": "Interest_General", "status": "Published", "content": "Reverse engineering, retro web design, home labs, self-hosting, mechanical keyboards" },
+    { "tag": "Interest_Music", "status": "Published", "content": "whatever's loud enough to code to" },
+    { "tag": "Interest_Movies", "status": "Published", "content": "anything with a good heist or a bad hacker montage" },
+    { "tag": "Interest_Television", "status": "Published", "content": "mostly technical talks and documentaries at this point" },
+    { "tag": "Interest_Books", "status": "Published", "content": "RFCs I'll never finish, old sci-fi" },
+    { "tag": "Interest_Heroes", "status": "Published", "content": "whoever wrote docs that actually explained the \"why\"" },
+    { "tag": "Details_Status", "status": "Published", "content": "Building" },
+    { "tag": "Details_HereFor", "status": "Published", "content": "Networking, sharing projects, nostalgia" },
+    { "tag": "Details_Occupation", "status": "Published", "content": "Software Engineer" },
+    { "tag": "Details_Stack", "status": "Published", "content": "Astro, Notion API, Cloudflare, Docker, whatever breaks this week" },
+
+    { "tag": "Project", "status": "Published", "order": 1, "title": "project one", "slug": "#" },
+    { "tag": "Project", "status": "Published", "order": 2, "title": "project two", "slug": "#" },
+    { "tag": "Project", "status": "Published", "order": 3, "title": "this site", "slug": "#" },
+    { "tag": "Project", "status": "Published", "order": 4, "title": "project four", "slug": "#" },
+
+    { "tag": "Blog", "status": "Published", "title": "Setting up this whole pipeline", "slug": "setting-up-this-whole-pipeline", "date": "2026-08-13", "category": "Web, Notion, Meta", "content": "For a while this site lived on GitHub Pages the old way — write a post, commit it, push, wait for the build. Fine for code. Miserable for a blog you actually want to update.\n\nSo the whole thing got rebuilt around one idea: publishing should mean editing a database, not touching git.\n\n# How it actually works\n\nEvery editable piece of this site lives as a row in a single Notion database, tagged by what it is.\n\n# Why this over the old way\n\nNo commits for a typo fix. Notion is just... where I already write things down." },
+
+    { "tag": "Fun", "status": "Published", "title": "Learning to actually finish a song", "slug": "learning-to-actually-finish-a-song", "date": "2026-08-12", "category": "Music", "content": "I have a folder called \"songs\" with eleven half-finished tracks in it. This is the first one I actually finished.\n\n# What actually got it over the line\n\nA deadline I made up and told exactly one person about." },
+
+    { "tag": "Resume", "status": "Published", "pdf": "/zack-resume.pdf", "content": "## Headline\nZack — Software Engineer\n\n## Tagline\nBuilding systems, breaking them on purpose, and occasionally writing about it.\n\n## Experience\n### Senior Software Engineer — Company Name\n2023 — Present · Location\n- Placeholder bullet describing scope and impact of a major project.\n- Placeholder bullet with a specific, measurable outcome.\n- Placeholder bullet about ownership or cross-team work.\n\n### Software Engineer — Previous Company\n2020 — 2023 · Location\n- Placeholder bullet describing a system built or maintained.\n- Placeholder bullet about a technical challenge solved.\n\n## Skills\n- Languages: TypeScript, Python, Go, whatever the problem calls for\n- Infra: Docker, Cloudflare, GitHub Actions, home lab experiments\n- Other: Astro, Notion API, reverse engineering as a hobby\n\n## Education\n### Degree, Major — University Name\nGraduated 20XX" }
+  ]
+}

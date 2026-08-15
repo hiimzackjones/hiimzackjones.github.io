@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SideProfile from '../components/SideProfile.astro';
+import resume from '../data/resume.json';
+---
+<BaseLayout title="Zack's Resume | mehhspace" active="resume">
+  <div class="row profile">
+
+    <!-- LEFT COLUMN -->
+    <div class="col w-30 left">
+      <SideProfile>
+        <div class="url-info">
+          <p><b>View my:</b></p>
+          <p><a href="/">Profile</a> | <a href="/blog">Blog</a> | <a href="/lab">Lab</a></p>
+        </div>
+      </SideProfile>
+
+      <div class="table-section">
+        <div class="heading"><h4>Quick Contact</h4></div>
+        <div class="inner">
+          <p>Reach me directly if you'd rather skip the form.</p>
+          <a href="mailto:hi@mehhspace.com">Email</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+          <a href="https://github.com/">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col right">
+      <div class="resume-header">
+        <h2>{resume.headline}</h2>
+        <p>{resume.tagline}</p>
+      </div>
+
+      <div class="download-row"><a href={resume.pdf}>↓ Download PDF Resume</a></div>
+
+      <div class="resume-section">
+        <div class="heading"><h4>Experience</h4></div>
+        <div class="inner">
+          {resume.experience.map((job) => (
+            <div class="job">
+              <p class="job-title">{job.title}</p>
+              <p class="job-meta">{job.meta}</p>
+              <ul>
+                {job.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="heading"><h4>Skills</h4></div>
+        <div class="inner">
+          <table class="skills-table">
+            <tbody>
+              {resume.skills.map((s) => (
+                <tr><td>{s.label}</td><td>{s.value}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="heading"><h4>Education</h4></div>
+        <div class="inner">
+          {resume.education.map((e) => (
+            <div class="job">
+              <p class="job-title">{e.title}</p>
+              <p class="job-meta">{e.meta}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

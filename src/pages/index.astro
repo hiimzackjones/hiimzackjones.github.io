@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import profile from '../data/profile.json';
+import projects from '../data/projects.json';
+import { byNewest } from '../utils/date';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(byNewest);
+const latest = posts.slice(0, 3);
+const interests = Object.entries(profile.interests);
+const details = Object.entries(profile.details);
+---
+<BaseLayout title="Zack's Profile | mehhspace" active="home">
+  <div class="row profile">
+
+    <!-- LEFT COLUMN -->
+    <div class="col w-40 left">
+      <h1>{profile.name}</h1>
+
+      <div class="general-about">
+        <div class="profile-pic">
+          <img src={profile.profilePic} alt={`${profile.name}'s profile picture`} />
+        </div>
+        <div class="details">
+          {profile.online && <p class="online">● ONLINE!</p>}
+        </div>
+      </div>
+
+      <div class="mood">
+        <p><b>Mood:</b> {profile.mood}</p>
+        <p><b>View my: <a href="/blog">Blog</a> | <a href="/lab">Lab</a> | <a href="/resume">Resume</a></b></p>
+      </div>
+
+      <div class="contact">
+        <div class="heading"><h4>Contacting {profile.name}</h4></div>
+        <div class="inner">
+          <div class="f-row">
+            <div class="f-col"><a href={profile.contact.sendMessage}>Send Message</a></div>
+            <div class="f-col"><a href={profile.contact.email}>Email</a></div>
+          </div>
+          <div class="f-row">
+            <div class="f-col"><a href={profile.contact.github}>GitHub</a></div>
+            <div class="f-col"><a href={profile.contact.linkedin}>LinkedIn</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="url-info">
+        <p><b>mehhspace URL:</b></p>
+        <p>{profile.url}</p>
+      </div>
+
+      <div class="table-section">
+        <div class="heading"><h4>{profile.name}'s Interests</h4></div>
+        <div class="inner">
+          <table class="details-table">
+            <tbody>
+              {interests.map(([label, value]) => (
+                <tr><td>{label}</td><td><p>{value}</p></td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="table-section">
+        <div class="heading"><h4>{profile.name}'s Details</h4></div>
+        <div class="inner">
+          <table class="details-table">
+            <tbody>
+              {details.map(([label, value]) => (
+                <tr><td>{label}</td><td>{value}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col right">
+      <div class="blog-preview">
+        <h4>{profile.name}'s Latest Blog Entries [<a href="/blog">View Blog</a>]</h4>
+        {latest.map((post) => (
+          <p>{post.data.title} (<a href={`/blog/${post.id}`}>view more</a>)</p>
+        ))}
+      </div>
+
+      <div class="blurbs">
+        <div class="heading"><h4>{profile.name}'s Blurbs</h4></div>
+        <div class="inner">
+          <div class="section">
+            <h4>About me:</h4>
+            <p>{profile.about}</p>
+          </div>
+          <div class="section">
+            <h4>Who I'd like to meet:</h4>
+            <p>{profile.whoMeet}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="friends">
+        <div class="heading">
+          <h4>{profile.name}'s Project Space</h4>
+          <a class="more" href="/lab">[view all]</a>
+        </div>
+        <div class="inner">
+          <p><b>{profile.name} has <span class="count">{projects.featuredCount}</span> featured projects.</b></p>
+          <div class="friends-grid">
+            {projects.items.map((project) => (
+              <div class="person">
+                <a href={project.slug}><p>{project.title}</p></a>
+                <a href={project.slug}><img src={project.image} alt={project.title} /></a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

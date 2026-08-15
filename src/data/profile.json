@@ -1,0 +1,29 @@
+{
+  "name": "Zack",
+  "online": true,
+  "profilePic": "https://placehold.co/160x160/1D4ED8/FFFFFF?text=zack",
+  "mood": "currently debugging life",
+  "url": "http://www.mehhspace.com",
+  "contact": {
+    "sendMessage": "#",
+    "email": "mailto:hi@mehhspace.com",
+    "github": "https://github.com/",
+    "linkedin": "https://www.linkedin.com/"
+  },
+  "interests": {
+    "General": "Reverse engineering, retro web design, home labs, self-hosting, mechanical keyboards",
+    "Music": "whatever's loud enough to code to",
+    "Movies": "anything with a good heist or a bad hacker montage",
+    "Television": "mostly technical talks and documentaries at this point",
+    "Books": "RFCs I'll never finish, old sci-fi",
+    "Heroes": "whoever wrote docs that actually explained the \"why\""
+  },
+  "details": {
+    "Status": "Building",
+    "Here For": "Networking, sharing projects, nostalgia",
+    "Occupation": "Software Engineer",
+    "Stack": "Astro, Notion API, Cloudflare, Docker, whatever breaks this week"
+  },
+  "about": "hey, i'm zack. this page is part resume, part hacker notebook, part just... me. everything here gets published straight from Notion — no commits required — so it should actually stay updated, unlike most sites styled like this one.",
+  "whoMeet": "people who build weird things, argue about home networking gear, or also think 2005 web design deserved better."
+}

@@ -1,0 +1,51 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import profile from '../data/profile.json';
+import { timeAgo } from '../utils/date';
+
+interface Props {
+  title: string;
+  pageTitle: string;
+  date: Date;
+  category?: string;
+  categoryHref?: string;
+  backLabel: string;
+  backHref: string;
+  active?: 'home' | 'blog' | 'lab' | 'resume' | 'fun';
+  searchLabel?: string;
+}
+const { title, pageTitle, date, category, categoryHref = '#', backLabel, backHref, active, searchLabel } = Astro.props;
+const postPic = profile.profilePic.replace('160x160', '100x100');
+---
+<BaseLayout title={pageTitle} active={active} searchLabel={searchLabel}>
+  <div class="row article blog-entry">
+
+    <!-- LEFT: author sidebar -->
+    <div class="col w-20 left">
+      <div class="edit-info">
+        <div class="profile-pic">
+          <img src={postPic} alt={`${profile.name}'s profile picture`} />
+        </div>
+        <div class="author-details">
+          <h4>Published by <a href="/">{profile.name}</a></h4>
+          <p class="publish-date">published {timeAgo(date)}</p>
+          {category && (
+            <p class="category"><b>Category:</b> <a href={categoryHref}>{category}</a></p>
+          )}
+          <p class="links">
+            <a href={backHref}>{backLabel}</a><br />
+            <a href="/">View Profile</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: article body -->
+    <div class="col right">
+      <h1 class="title">{title}</h1>
+      <div class="content">
+        <slot />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
