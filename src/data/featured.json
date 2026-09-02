@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "title": "Setting up this whole pipeline",
+      "href": "/blog/setting-up-this-whole-pipeline",
+      "external": false,
+      "image": "https://placehold.co/95x95/1D4ED8/FFFFFF?text=1"
+    },
+    {
+      "title": "Blog Format Test Blog",
+      "href": "/blog/blogtest",
+      "external": false,
+      "image": "https://placehold.co/95x95/60A5FA/FFFFFF?text=2"
+    },
+    {
+      "title": "Music Test Post.",
+      "href": "/personal/music-test-post",
+      "external": false,
+      "image": "https://placehold.co/95x95/1E40AF/FFFFFF?text=3"
+    },
+    {
+      "title": "SpaceHey",
+      "href": "https://spacehey.com",
+      "external": true,
+      "image": "/featured/spacehey.png"
+    }
+  ]
+}

@@ -3,13 +3,19 @@
   "rows": [
     { "Name": "Mood", "Tag": "Mood", "Content": "currently debugging life", "Slug": null, "Category": null, "Status": "Published", "Order": null, "date:Date:start": null, "url": "https://notion.so/mood" },
     { "Name": "Music", "Tag": "Interest_Music", "Content": "whatever's loud enough to code to", "Slug": null, "Category": null, "Status": "Published", "Order": null, "date:Date:start": null, "url": "https://notion.so/music" },
+    { "Name": "LinkedIn", "Tag": "Contact", "Content": "https://www.linkedin.com/in/example", "Slug": null, "Category": null, "Status": "Published", "Order": 2, "date:Date:start": null, "url": "https://notion.so/contact-linkedin" },
+    { "Name": "Email", "Tag": "Contact", "Content": "mailto:hi@mehhspace.com", "Slug": null, "Category": null, "Status": "Published", "Order": 1, "date:Date:start": null, "url": "https://notion.so/contact-email" },
+
     { "Name": "project one", "Tag": "Project", "Content": "a blurb", "Slug": "#", "Category": null, "Status": "Published", "Order": 1, "date:Date:start": null, "url": "https://notion.so/p1" },
 
     { "Name": "Setting up this whole pipeline", "Tag": "Blog", "Content": null, "Slug": "setting-up-this-whole-pipeline", "Category": null, "Status": "Published", "Order": null, "date:Date:start": "2026-08-13", "url": "https://notion.so/blogpost",
       "body": "For a while this site lived on GitHub Pages the old way.\n\n# How it actually works\n\nEvery editable piece lives as a row in Notion." },
 
-    { "Name": "Learning to actually finish a song", "Tag": "Fun", "Content": null, "Slug": "learning-to-actually-finish-a-song", "Category": "Music", "Status": "Published", "Order": null, "date:Date:start": "2026-08-12", "url": "https://notion.so/funpost",
+    { "Name": "Learning to actually finish a song", "Tag": "Personal", "Content": null, "Slug": "learning-to-actually-finish-a-song", "Category": "Music", "Status": "Published", "Order": null, "date:Date:start": "2026-08-12", "url": "https://notion.so/funpost",
       "body": "I finished a song for once.\n\n# What got it over the line\n\nA made-up deadline." },
+
+    { "Name": "Week 1 - subnetting", "Tag": "Classes", "Content": null, "Slug": "week-1-subnetting", "Category": "Networks", "Status": "Published", "Order": null, "date:Date:start": "2026-08-14", "url": "https://notion.so/classnote",
+      "body": "Notes from the first week.\n\n# CIDR\n\nA /24 is 256 addresses." },
 
     { "Name": "Resume", "Tag": "Resume", "Content": null, "Slug": "resume", "Category": null, "Status": "Published", "Order": null, "date:Date:start": null, "url": "https://notion.so/resume",
       "body": "## Headline\nZack — Software Engineer\n\n## Tagline\nBuilds things.\n\n## Experience\n### Senior Software Engineer — Company\n2023 — Present · Remote\n- Did a thing.\n\n## Skills\n- Languages: TypeScript, Python\n\n## Education\n### BS, CS — University\nGraduated 20XX" },

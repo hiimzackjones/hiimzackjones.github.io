@@ -12,12 +12,26 @@ const blog = defineCollection({
   }),
 });
 
-const fun = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/fun' }),
+const personal = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/personal' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
     category: z.string(),
+    excerpt: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+// Classes group by category (the class name) like Personal does, but the
+// category is optional here — a Classes row with no Category still builds and
+// lands in an "Unsorted" group rather than failing the whole site.
+const classes = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/classes' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    category: z.string().optional(),
     excerpt: z.string().optional(),
     draft: z.boolean().default(false),
   }),
@@ -34,4 +48,4 @@ const lab = defineCollection({
   }),
 });
 
-export const collections = { blog, fun, lab };
+export const collections = { blog, personal, classes, lab };

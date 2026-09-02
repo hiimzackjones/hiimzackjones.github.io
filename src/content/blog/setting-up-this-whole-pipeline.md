@@ -1,12 +1,19 @@
 ---
 title: "Setting up this whole pipeline"
 date: 2026-08-13
-excerpt: "💡 Claude wrote this blog. I figured I’d leave him a little section"
+excerpt: "Claude wrote this blog. I figured I'd leave him a little section"
 ---
 
-# How this site’s content system actually works
+# How this site's content system actually works
 
-> 💡 Claude wrote this blog. I figured I’d leave him a little section
+<aside class="callout callout--gray">
+<span class="callout-icon" aria-hidden="true">💡</span>
+<div class="callout-body">
+
+Claude wrote this blog. I figured I'd leave him a little section
+
+</div>
+</aside>
 
 Every editable piece of this site — from the Interests table in the sidebar down to individual blog posts like this one — lives as a row in a single Notion database, tagged by what it is. Some tags are singletons (there's exactly one `Mood` row). Some are repeatable (each project is its own `Project` row). And some, like this post, are full pages tagged `Blog`, written in markdown right inside Notion.
 

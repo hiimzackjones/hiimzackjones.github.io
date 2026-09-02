@@ -104,7 +104,7 @@ footer .links li:not(:last-child)::after { content: " | "; color: black; }
 .w-40 .general-about .profile-pic img { max-width: 160px; max-height: 160px; }
 .w-40 .general-about .details { display: block; }
 .w-40 .general-about .details p { margin: 10px 0; }
-/* Blog/resume/fun (narrow sidebar) centers the picture. */
+/* Blog/resume/personal (narrow sidebar) centers the picture. */
 .w-30 .general-about .profile-pic { display: block; margin: 0 auto 8px; width: 140px; }
 .w-30 .general-about .profile-pic img { max-width: 140px; max-height: 140px; display: block; margin: 0 auto; }
 .general-about .details.below { width: 100%; text-align: center; }
@@ -184,7 +184,13 @@ table.details-table { width: 100%; }
   font-size: 100%;
   text-align: center;
 }
-.friends .person img:not(.icon) { max-width: 95px; max-height: 95px; display: block; margin: 0 auto; }
+/* Fixed square + cover: og:images are usually 1200x630, and letting one letterbox
+   would break the grid's rhythm. */
+.friends .person img:not(.icon) {
+  width: 95px; height: 95px; object-fit: cover;
+  display: block; margin: 0 auto; background: var(--even-lighter-blue);
+}
+.friends .person .ext { font-size: 0.8em; vertical-align: super; margin-left: 2px; }
 .count { color: #D32626; }
 
 /* ---- Blog preview / index ---- */
@@ -209,7 +215,7 @@ table.details-table { width: 100%; }
 
 .icon { display: inline-block; height: 1.4em; width: 1.4em; vertical-align: -0.3em; margin: 0 .05em 0 .1em; }
 
-/* ---- Article (blog post / fun post) ---- */
+/* ---- Article (blog post / personal post / class note) ---- */
 .edit-info .profile-pic { display: block; margin: 0 0 8px; width: 100px; }
 .edit-info .profile-pic img { max-width: 100px; max-height: 100px; display: block; }
 .author-details h4 { margin: 0 0 6px; font-size: 0.9em; }
@@ -223,7 +229,67 @@ table.details-table { width: 100%; }
 .content h1 { font-size: 1.2em; margin: 16px 0 8px; }
 .content h2 { font-size: 1.1em; margin: 14px 0 6px; }
 .content ul { margin: 0 0 10px; }
-.content code { background: var(--lightest-blue); padding: 0 3px; }
+
+/* ---- Code blocks (every post section: blog, lab, personal, classes) ----
+   Notion's /code block arrives as a ``` fence, which Shiki renders as
+   <pre class="astro-code" data-language="…"><code><span class="line">…
+   Token colors come from src/styles/code-theme.mjs; the box is styled here.
+   Scoped to .content, which is the shared article wrapper in ArticleLayout,
+   so one rule set covers all four collections. */
+.content pre {
+  margin: 0 0 14px;
+  padding: 0;
+  border: 2px solid var(--lighter-blue);
+  background: #fff;
+  /* The <pre> scrolls (Astro puts tabindex="0" here so it is keyboard
+     scrollable); the language bar below is sticky so it survives the scroll. */
+  overflow-x: auto;
+}
+
+/* Language bar, same orange treatment as the .heading bars on the resume
+   and the category indexes. */
+.content pre[data-language]::before {
+  content: attr(data-language);
+  display: block;
+  position: sticky;
+  left: 0;
+  background: var(--light-orange);
+  color: var(--dark-orange);
+  border-bottom: 2px solid var(--lighter-blue);
+  padding: 2px 7px;
+  font-family: verdana, arial, sans-serif;
+  font-size: 0.7em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+/* No language picked in Notion — plain box, no bar. */
+.content pre[data-language="plaintext"]::before,
+.content pre[data-language="plain"]::before,
+.content pre[data-language="text"]::before,
+.content pre[data-language="txt"]::before { content: none; }
+
+.content pre > code {
+  display: block;
+  padding: 8px 10px;
+  background: none;
+  border: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: max(0.8em, 12px);
+  line-height: 1.45;
+  tab-size: 2;
+  -moz-tab-size: 2;
+}
+.content pre > code .line { display: block; min-height: 1.45em; }
+
+/* Inline `code` — a small chip in the same palette. */
+.content code {
+  background: var(--lightest-blue);
+  border: 1px solid var(--even-lighter-blue);
+  padding: 0 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: max(0.85em, 11px);
+}
 
 /* ---- Resume ---- */
 .resume-header h2 { font-size: 1.2em; margin: 0 0 4px; color: var(--darker-blue); }
@@ -238,6 +304,10 @@ table.details-table { width: 100%; }
 .job .job-meta { font-size: 0.85em; color: #666; margin: 2px 0 6px; }
 .job ul { margin: 4px 0 0; padding-left: 18px; }
 .job li { margin-bottom: 3px; font-size: 0.95em; }
+/* Italic in a resume bullet reads as a lighter, de-emphasized note
+   (e.g. the "Additional Experience" NDA line). Author it by italicizing
+   the line in Notion. */
+.resume-section .inner em { font-style: italic; color: #888; }
 .skills-table { width: 100%; }
 .skills-table td:first-child {
   background: var(--even-lighter-blue);
@@ -251,9 +321,9 @@ table.details-table { width: 100%; }
 .download-row { text-align: right; margin: 0 0 10px; }
 .download-row a { font-weight: bold; }
 
-/* ---- Fun index ---- */
-.fun-intro h2 { font-size: 1.2em; margin: 0 0 6px; color: var(--darker-blue); }
-.fun-intro p { margin: 0 0 16px; color: #444; }
+/* ---- Category-grouped index (personal, classes) ---- */
+.page-intro h2 { font-size: 1.2em; margin: 0 0 6px; color: var(--darker-blue); }
+.page-intro p { margin: 0 0 16px; color: #444; }
 .category-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
 .category-tag {
   border: 2px solid var(--lighter-blue);
@@ -265,14 +335,222 @@ table.details-table { width: 100%; }
 }
 .category-tag:hover { background: var(--even-lighter-blue); text-decoration: none; }
 .category-tag .count { color: #666; font-weight: normal; font-size: 0.85em; }
-.fun-section { margin-bottom: 20px; }
-.fun-section .heading { background: var(--light-orange); color: var(--dark-orange); padding: 2px 7px; }
-.fun-section .heading h4 { margin: 0; display: inline-block; }
-.fun-section .heading .tag-label { float: right; font-size: 0.8em; font-weight: normal; }
-.fun-section .inner { padding: 8px 7px; }
-.fun-entries .entry { background: var(--even-lighter-blue); padding: 8px 10px; margin: 0 0 10px 0; }
-.fun-entries .entry:last-child { margin-bottom: 0; }
-.fun-entries .entry .title { margin: 0 0 4px; font-size: 1.05em; }
-.fun-entries .entry .title a { color: inherit; }
-.fun-entries .entry .meta { font-size: 0.75em; color: #555; margin: 0 0 6px; }
-.fun-entries .entry p.excerpt { margin: 0; }
+.cat-section { margin-bottom: 20px; }
+.cat-section .heading { background: var(--light-orange); color: var(--dark-orange); padding: 2px 7px; }
+.cat-section .heading h4 { margin: 0; display: inline-block; }
+.cat-section .heading .tag-label { float: right; font-size: 0.8em; font-weight: normal; }
+.cat-section .inner { padding: 8px 7px; }
+.cat-entries .entry { background: var(--even-lighter-blue); padding: 8px 10px; margin: 0 0 10px 0; }
+.cat-entries .entry:last-child { margin-bottom: 0; }
+.cat-entries .entry .title { margin: 0 0 4px; font-size: 1.05em; }
+.cat-entries .entry .title a { color: inherit; }
+.cat-entries .entry .meta { font-size: 0.75em; color: #555; margin: 0 0 6px; }
+.cat-entries .entry p.excerpt { margin: 0; }
+
+/* ===================================================================
+   Notion block types inside a post
+   -------------------------------------------------------------------
+   scripts/mehhspace-update.mjs converts Notion's XML-ish block tags into
+   the markup styled below. Everything stays on the SpaceHey grammar:
+   2px flat borders, blocky fills, no rounding, no shadows.
+   =================================================================== */
+
+/* ---- Quote ----
+   Notion's /quote. Previously indistinguishable from a paragraph — the mark
+   and rule are what make it read as a quotation rather than an aside. */
+.content blockquote {
+  margin: 0 0 14px;
+  padding: 8px 12px 8px 34px;
+  border-left: 6px solid var(--lighter-blue);
+  background: var(--lightest-blue);
+  color: #333;
+  font-style: italic;
+  position: relative;
+}
+.content blockquote::before {
+  content: "\201C";           /* a real opening curly quote */
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: normal;
+  font-size: 2.1em;
+  line-height: 1;
+  color: var(--lighter-blue);
+}
+.content blockquote p { margin: 0 0 8px; }
+.content blockquote p:last-child { margin-bottom: 0; }
+.content blockquote cite { font-style: normal; font-size: 0.85em; color: #666; }
+
+/* ---- Callout ----
+   Notion's /callout, carrying its icon and its colour. Each hue sets two
+   custom properties and the shared rule below does the rest, so adding a
+   colour is one line rather than a new block. */
+.content .callout {
+  --callout-bg: var(--lightest-blue);
+  --callout-border: var(--lighter-blue);
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 2px solid var(--callout-border);
+  background: var(--callout-bg);
+}
+.content .callout-icon { flex: 0 0 auto; font-size: 1.1em; line-height: 1.35; }
+.content .callout-body { flex: 1 1 auto; min-width: 0; }
+.content .callout-body > :first-child { margin-top: 0; }
+.content .callout-body > :last-child { margin-bottom: 0; }
+.content .callout-body p { margin: 0 0 8px; }
+
+.content .callout--default { --callout-bg: var(--lightest-blue); --callout-border: var(--lighter-blue); }
+.content .callout--gray    { --callout-bg: #f1f1f1; --callout-border: var(--dark-gray); }
+.content .callout--brown   { --callout-bg: #f3ece5; --callout-border: #a1774f; }
+.content .callout--orange  { --callout-bg: var(--even-lighter-orange); --callout-border: #e08c2b; }
+.content .callout--yellow  { --callout-bg: #fdf3d0; --callout-border: #dcb320; }
+.content .callout--green   { --callout-bg: #e2f3e5; --callout-border: #3f9a52; }
+.content .callout--blue    { --callout-bg: var(--lightest-blue); --callout-border: var(--lighter-blue); }
+.content .callout--purple  { --callout-bg: #efe7f7; --callout-border: #8a5cc4; }
+.content .callout--pink    { --callout-bg: #fbe6f0; --callout-border: #d5559a; }
+.content .callout--red     { --callout-bg: #fbe3e3; --callout-border: var(--dark-orange); }
+
+/* ---- Bookmark card ----
+   A standalone link, filled in from the destination's own og: tags. The
+   whole card is the anchor, so the hover state belongs on the box. */
+.content .bookmark {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 0 0 14px;
+  border: 2px solid var(--lighter-blue);
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+}
+.content .bookmark:hover {
+  background: var(--lightest-blue);
+  border-color: var(--darker-blue);
+  text-decoration: none;
+  color: inherit;
+}
+.content .bookmark-info {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 9px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.content .bookmark-title {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: var(--darker-blue);
+  /* Two lines, then ellipsis — a long <title> must not stretch the card. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.content .bookmark-desc {
+  font-size: 0.78em;
+  color: #555;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.content .bookmark-host {
+  font-size: 0.72em;
+  color: #777;
+  margin-top: auto;
+  padding-top: 2px;
+  word-break: break-all;
+}
+.content .bookmark-thumb {
+  flex: 0 0 108px;
+  width: 108px;
+  object-fit: cover;
+  border-left: 2px solid var(--lighter-blue);
+  background: var(--light-gray);
+  align-self: stretch;
+}
+@media (max-width: 520px) {
+  .content .bookmark-thumb { flex-basis: 72px; width: 72px; }
+}
+
+/* ---- Toggle / toggle heading ----
+   Notion's collapsible blocks. <details> already collapses on its own; this
+   just gives the summary the site's clickable-bar look. */
+.content details.toggle {
+  margin: 0 0 14px;
+  border: 2px solid var(--lighter-blue);
+  background: #fff;
+}
+.content details.toggle > summary {
+  background: var(--even-lighter-blue);
+  color: var(--logo-blue);
+  padding: 5px 9px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+.content details.toggle > summary::-webkit-details-marker { display: none; }
+.content details.toggle > summary::before {
+  content: "\25B6";           /* right-pointing triangle; rotates when open */
+  display: inline-block;
+  margin-right: 7px;
+  font-size: 0.75em;
+  transition: transform 0.12s ease;
+}
+.content details.toggle[open] > summary::before { transform: rotate(90deg); }
+.content details.toggle > summary:hover { background: var(--lighter-blue); color: #fff; }
+.content details.toggle > :not(summary) { margin-left: 9px; margin-right: 9px; }
+.content details.toggle > :not(summary):first-of-type { margin-top: 9px; }
+.content details.toggle > :last-child { margin-bottom: 9px; }
+/* Toggle headings keep the weight of the heading level they came from. */
+.content details.toggle--h1 > summary { font-size: 1.2em; }
+.content details.toggle--h2 > summary { font-size: 1.1em; }
+.content details.toggle--h3 > summary { font-size: 1em; }
+
+/* ---- Divider ---- */
+.content hr {
+  border: 0;
+  border-top: 2px solid var(--lighter-blue);
+  margin: 16px 0;
+}
+
+/* ---- Table ----
+   Notion returns tables as plain HTML, so they arrive already shaped; they
+   only ever needed the site's palette put on them. */
+.content table {
+  width: 100%;
+  margin: 0 0 14px;
+  border: 2px solid var(--lighter-blue);
+  font-size: 0.85em;
+}
+.content table td, .content table th {
+  border: 1px solid var(--even-lighter-blue);
+  padding: 5px 7px;
+  vertical-align: top;
+  text-align: left;
+}
+.content table th, .content table tr:first-child td strong {
+  background: var(--even-lighter-blue);
+  color: var(--logo-blue);
+}
+.content table th { font-weight: bold; }
+
+/* ---- Inline rich text ---- */
+.content u { text-decoration: underline; }
+.content del { color: #777; }
+.content .nc--gray   { color: var(--darker-gray); }
+.content .nc--brown  { color: #8a5a30; }
+.content .nc--orange { color: #c2650d; }
+.content .nc--yellow { color: #a6820a; }
+.content .nc--green  { color: #2f7a40; }
+.content .nc--blue   { color: var(--darker-blue); }
+.content .nc--purple { color: #6d3fa8; }
+.content .nc--pink   { color: #b8397e; }
+.content .nc--red    { color: var(--dark-orange); }

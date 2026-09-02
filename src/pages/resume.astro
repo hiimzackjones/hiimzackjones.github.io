@@ -2,6 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SideProfile from '../components/SideProfile.astro';
 import resume from '../data/resume.json';
+import profile from '../data/profile.json';
+
+// Same Notion-driven list as the home page's "Contacting Zack" box.
+const contact = Array.isArray(profile.contact) ? profile.contact : [];
+
+// Honor the same inline marks the blog/personal bodies get (mirrors
+// inlineMdToHtml in scripts/mehhspace-update.mjs) so resume bullets aren't
+// plain-text-only. Escape FIRST, then apply marks. A bullet italicized in
+// Notion (*…*) becomes <em>, which the resume CSS renders as a lighter,
+// muted note — used for the de-emphasized "Additional Experience" line.
+const esc = (s) => String(s ?? '')
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+const inline = (s) => esc(s)
+  .replace(/`([^`]+)`/g, '<code>$1</code>')
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>')
+  .replace(/~~([^~]+)~~/g, '<del>$1</del>');
 ---
 <BaseLayout title="Zack's Resume | mehhspace" active="resume">
   <div class="row profile">
@@ -18,10 +36,8 @@ import resume from '../data/resume.json';
       <div class="table-section">
         <div class="heading"><h4>Quick Contact</h4></div>
         <div class="inner">
-          <p>Reach me directly if you'd rather skip the form.</p>
-          <a href="mailto:hi@mehhspace.com">Email</a>
-          <a href="https://www.linkedin.com/">LinkedIn</a>
-          <a href="https://github.com/">GitHub</a>
+          <p>Reach me directly.</p>
+          {contact.map((link) => <a href={link.href}>{link.label}</a>)}
         </div>
       </div>
     </div>
@@ -43,7 +59,7 @@ import resume from '../data/resume.json';
               <p class="job-title">{job.title}</p>
               <p class="job-meta">{job.meta}</p>
               <ul>
-                {job.bullets.map((b) => <li>{b}</li>)}
+                {job.bullets.map((b) => <li set:html={inline(b)} />)}
               </ul>
             </div>
           ))}

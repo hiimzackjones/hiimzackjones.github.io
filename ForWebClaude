@@ -1,0 +1,283 @@
+# ForWebClaude — Capability-Parity Spec
+
+**Audience:** the WebClaude agent (a browser-based Claude Code work-alike).
+**Author:** Claude Code, running on Zack's Kali box, inside the MehhSpace repo.
+**Goal:** tell you (WebClaude) everything you need to reproduce the capabilities I
+have from the Claude Code CLI — especially **running MCP servers** — so that a
+project which "only works in Claude Code" also works from WebClaude.
+
+This is written for the concrete MehhSpace case, but the framework in §1–§4 and §7
+is **project-agnostic on purpose.** The whole point is that after you self-update,
+you shouldn't hit this wall again on the next project.
+
+> How to use this file: read §1 for the mental model, apply the checklist in §2,
+> wire MCPs per §3, solve viewing per §4, then use §5 as a worked example and §6 as
+> the concrete to-do for MehhSpace. §7 is the future-proofing convention — adopt it.
+
+---
+
+## 1. The core idea — why a project feels "Claude Code only"
+
+A Claude Code project has **no magic**. Its capabilities are just the union of a few
+layers. A project feels "CLI-only" when WebClaude is missing one or more of them —
+almost never all of them. Reproduce the layers and the gap closes.
+
+The layers:
+
+| Layer | What it is | Where it lives |
+|---|---|---|
+| **Execution host** | the machine that actually runs Bash / reads / writes files | must be the box that holds the repo + creds |
+| **Toolchain** | `node`, `npm`, `git`, `gh`, `lsof`, etc. on that host | system packages |
+| **Auth / credentials** | git push rights, API tokens, gh/ssh keys | host config (`~/.config/gh`, ssh agent, env) |
+| **Slash-commands** | `.claude/commands/*.md` — a description, `allowed-tools`, and a prose procedure | in the repo |
+| **Skills** | `.claude/skills/*` — reusable capability bundles | in the repo / user dir |
+| **MCP servers** | external tool providers (Notion, Gmail, Drive…) exposed as `mcp__<server>__*` tools | agent config, not the repo |
+| **Network reachability** | being able to *view* a local dev server from a browser | LAN / tunnel |
+
+**Key realization:** the slash-commands and skills already travel *with the repo*.
+If WebClaude loads `.claude/commands/` and runs on the right host, it inherits those
+for free. The two layers that usually don't travel with the repo — and that you must
+provision — are **MCP servers** and **network reachability (viewing)**. Everything
+else is "is my Bash executing on the box that has the repo + auth?"
+
+---
+
+## 2. Agnostic capability-parity checklist
+
+Run this against ANY project to see what's missing. For each row: does WebClaude
+satisfy it? If not, that's your work item.
+
+1. **Same execution host.** Does WebClaude's Bash/Read/Write operate on the machine
+   that holds the repo and its credentials — not an ephemeral sandbox with an empty
+   clone? If it's a fresh sandbox, you must clone the repo, install deps, and
+   provision auth before anything else. (Instead of SSH means: you want the host to
+   *be* Zack's box, or a persistent one that mirrors it.)
+2. **Toolchain present.** `node`, `npm`, `git`, `gh`, plus anything the project's
+   commands invoke. Detect from each command's `allowed-tools` front-matter.
+3. **Git push auth.** Can it push to the repo's remote? (SSH key in agent, or a `gh`
+   token with `repo` scope, or a credential helper.)
+4. **Command discovery.** Does WebClaude load `.claude/commands/*.md` and expose them
+   as runnable slash-commands with their declared `allowed-tools`?
+5. **Skills discovery.** Same for `.claude/skills/` if the project uses them.
+6. **MCP servers configured + authenticated.** For every `mcp__<server>__*` tool a
+   command relies on — see §3.
+7. **Viewing local servers.** If a command starts a dev/preview server, can Zack
+   reach it from the browser? — see §4.
+8. **Secrets / env.** Any `.env` or exported vars the build needs (none for MehhSpace,
+   but check per project).
+
+If rows 1–5 and 8 pass, the project runs headlessly. Rows 6 and 7 are the two that
+this MehhSpace exercise is really about.
+
+---
+
+## 3. Running MCP servers (the layer you're missing)
+
+An **MCP server** is an external process/service that exposes tools to the agent.
+Once connected, its tools appear namespaced as `mcp__<server>__<tool>` and are called
+exactly like built-in tools. Two kinds:
+
+- **Remote / hosted (HTTP or SSE):** the server is a URL; auth is usually OAuth. This
+  is what **Notion** is — a hosted server at Notion's endpoint, authorized once via an
+  OAuth consent screen, then it stays connected for the account.
+- **Local / stdio:** the server is a command WebClaude launches locally (e.g.
+  `npx some-mcp-server`), talking over stdio, with config passed via `env`/`args`.
+
+### The config contract (map onto whatever mechanism WebClaude uses)
+
+Claude Code's reference shape is an `mcpServers` map — remote example:
+
+```jsonc
+{
+  "mcpServers": {
+    "notion": {
+      "type": "http",            // hosted, streamable-HTTP transport
+      "url": "https://mcp.notion.com/mcp"
+      // OAuth: first connect opens a consent screen; authorize as the Notion
+      // account that owns the target workspace, then the token persists.
+    }
+  }
+}
+```
+
+stdio example (shape only):
+
+```jsonc
+{
+  "mcpServers": {
+    "example": {
+      "command": "npx",
+      "args": ["-y", "@some/mcp-server"],
+      "env": { "API_KEY": "…" }
+    }
+  }
+}
+```
+
+**You (WebClaude) may not use this exact file format — that's fine.** The point is the
+*contract*: a server has (a) an identity/name, (b) a transport (URL or command), (c)
+auth (OAuth handshake or a token/env), and (d) a resulting set of `mcp__name__*` tools.
+Reproduce that contract in your own config system.
+
+### The OAuth wrinkle (important for headless/browser use)
+
+Hosted servers like Notion need an **interactive OAuth consent** the first time. In a
+browser context that's actually *easier* than SSH — you can complete the consent in a
+tab. But note: **the auth is tied to the account and the agent's credential store,
+not to the repo.** So it's a one-time setup per WebClaude environment, and if
+WebClaude runs in ephemeral sandboxes the token must be persisted somewhere durable or
+re-consented each session. Prefer a persistent WebClaude host so the connection sticks.
+
+### Verifying a server is live
+
+Before running a command that depends on an MCP, confirm the tools exist. Symptoms of
+a dropped/absent server: the `mcp__<server>__*` tools aren't listed, or a search for
+them returns nothing. In this very session the Notion server connected and dropped
+several times — so **check liveness at command start** and fail loudly with "Notion
+MCP not connected — connect it and retry" rather than half-running a publish.
+
+### Notion, specifically
+
+- MehhSpace's `/MehhSpaceUpdate` was authored against a server it names
+  `plugin:Notion:notion` (Notion's hosted MCP, `mcp.notion.com`), authenticated as
+  **Zachary Jones**.
+- WebClaude currently exposes a *different but equivalent* Notion connector
+  (`claude.ai Notion`, tools `mcp__claude_ai_Notion__*`). Either works — see §5 for how
+  to map the command onto whichever one you have. The two tools the command needs are
+  **"query a data source"** and **"fetch a page's body"**; every Notion MCP provides
+  both under some name (e.g. `notion-query-data-sources` + `notion-fetch`).
+
+---
+
+## 4. Viewing a local dev server from the browser
+
+This is the ONE thing a browser client genuinely changes versus an SSH terminal: you
+can't point a browser at the execution host's `localhost`. Solutions, best first:
+
+1. **Bind to the LAN + hit the LAN IP.** MehhSpace's dev script is already
+   `astro dev --host`, so it binds to `0.0.0.0` and is reachable at
+   `http://<host-lan-ip>:4321`. If WebClaude and the browser share the LAN, done.
+2. **Tunnel.** `cloudflared tunnel`, `tailscale`, or an SSH reverse tunnel to expose
+   `4321` on a URL the browser can reach. Best when off-LAN.
+3. **Skip viewing.** Preview is a convenience. `Update → Push` ships fine without ever
+   eyeballing localhost; GitHub's deploy is the real check. Treat Serve as optional.
+
+Whatever you pick, report the reachable URL back to Zack instead of a bare
+`localhost:4321`, which is meaningless from a browser on another machine.
+
+---
+
+## 5. Worked example — MehhSpace
+
+### Reference host snapshot (what I verified on Zack's box)
+
+```
+node  v22.23.2      npm 10.9.8      git 2.47.3      gh 2.46.0
+gh:   logged in as hiimzackjones, scopes [gist, read:org, repo], git protocol ssh
+repo: https://github.com/hiimzackjones/hiimzackjones.github.io  (GitHub user site)
+push: git push --dry-run origin main  → OK
+```
+
+So on this host, the **machine/toolchain/auth layers (checklist rows 1–3) are already
+satisfied.** If WebClaude runs here, Push works today with zero setup.
+
+### The three commands and what each needs
+
+| Command | Tools it declares | Extra dependency | Runs headless? |
+|---|---|---|---|
+| `/MehhSpacePush` | `Bash(git/npm/gh)` | git push auth (have it) | ✅ yes, as-is |
+| `/MehhSpaceServe` | `Bash(npm/lsof/kill/curl/ip/hostname/rm)` | a way to *view* :4321 (§4) | ✅ runs; viewing per §4 |
+| `/MehhSpaceUpdate` | `Bash(node/npm)`, `Read`, `Write` | **a Notion MCP** (§3) | ⚠️ needs Notion connected |
+
+`/MehhSpaceUpdate` is the only one with a hard MCP dependency. Its flow:
+1. Query all `Status = Published` rows from the Notion data source (one SQL-style call).
+2. For body-backed tags (`Blog`, `Lab`, `Personal`, `Classes`, `Resume`, `About_Me`)
+   the query returns `Content: null` — fetch each page's body/blocks individually and
+   take the markdown from the returned content.
+3. Hand the rows to the deterministic transform `scripts/mehhspace-update.mjs`, which
+   rewrites `src/data/*.json` and `src/content/**/*.md`. (This half is pure local
+   `node` + `Write` — no Notion — and is unit-tested via `node scripts/run-tests.mjs`.)
+
+### Notion coordinates for this repo
+
+```
+Database title : MehhSpace Content
+Page ID (dashed): 7b044117-0f64-44ef-a387-4479b6932b73
+Data source ID : cd6f8147-f900-45f2-9f4f-0d3e6a0862b6   (the query target)
+Query (verified working):
+  SELECT "Name","Tag","Content","Slug","Category","Status","Order",
+         "Featured","Image","date:Date:start","File", url
+  FROM "collection://cd6f8147-f900-45f2-9f4f-0d3e6a0862b6"
+  WHERE "Status" = ?            -- params: ["Published"]
+  ORDER BY "Tag" ASC, "Order" ASC
+```
+
+### Mapping the command onto WebClaude's Notion connector
+
+If you have `mcp__claude_ai_Notion__*` instead of `plugin:Notion:notion`:
+- **Step 1 query** → use the data-source query tool (`notion-query-data-sources` or
+  equivalent) against data source `cd6f8147-…`. If it doesn't accept the exact SQL,
+  reproduce the semantics: filter `Status = Published`, sort by `Tag` then `Order`.
+- **Step 2 body fetch** → use the page-fetch tool (`notion-fetch` or equivalent) on
+  each body-backed row's page id/url; take the markdown from the returned content.
+- Everything downstream (the transform, the writes, the build, the push) is identical
+  and host-local.
+
+### MehhSpace parity checklist (do these and it fully works from WebClaude)
+
+- [ ] WebClaude's Bash/Read/Write run on the box holding this repo (or a clone with
+      deps installed + push auth).
+- [ ] WebClaude loads `.claude/commands/*.md` and exposes the three slash-commands.
+- [ ] A Notion MCP is connected + authorized for Zack's workspace (§3).
+- [ ] Either the command uses `plugin:Notion:notion`, or you've mapped it to your
+      Notion connector's query + fetch tools (above).
+- [ ] A viewing path for `:4321` exists, or Serve is treated as optional (§4).
+- [ ] Sanity: `node scripts/run-tests.mjs` passes; `npm run build` is green.
+
+---
+
+## 6. WebClaude self-update — the concrete ask
+
+When Zack drops this file into the WebClaude project and asks you to update yourself:
+
+1. **Adopt the §2 checklist** as a standing pre-flight you run when entering any repo
+   that has a `.claude/commands/` dir — detect required tools + MCP servers from the
+   command front-matter and report gaps up front.
+2. **Wire a Notion MCP** into your config (§3): prefer the same hosted
+   `mcp.notion.com` server the command names, or record that your `claude.ai Notion`
+   connector is the substitute and apply the §5 mapping.
+3. **Solve viewing** (§4): pick LAN-IP or a tunnel as your default for
+   `--host` dev servers, and always surface the reachable URL.
+4. **Persist auth** so MCP OAuth + gh/ssh survive across sessions (avoid ephemeral
+   sandboxes for these projects, or snapshot the credential store).
+5. **Adopt §7** so future projects self-describe their needs.
+
+After that, MehhSpace's `Update → Serve → Push` loop runs from WebClaude identically
+to the CLI.
+
+---
+
+## 7. The agnostic future-proofing convention
+
+So no project is ever "CLI-only" again: have every project carry a small **capability
+manifest** — this file is the prototype. Standardize it as, say,
+`.claude/capabilities.md` (or keep the `ForWebClaude` name), declaring:
+
+```
+- host requirements: toolchain (node/npm/…), OS packages
+- auth: what push/API creds are needed and their scopes
+- mcp servers: name, transport (url/command), auth method, which tools are used
+- view targets: any local server ports + how to reach them
+- commands/skills: what .claude/ provides and each one's dependencies
+```
+
+Then WebClaude's entry routine is mechanical: **read the manifest → diff against
+current capabilities → provision the missing pieces (or report what only a human can
+grant, like an OAuth consent) → proceed.** That turns "can I run this here?" from a
+per-project surprise into a one-glance check, and keeps CLI and WebClaude at parity by
+construction.
+
+---
+
+*Snapshot facts in §5 were verified live on Zack's host on 2026-08-22. If the repo,
+remote, Notion IDs, or toolchain change, re-verify before trusting them.*

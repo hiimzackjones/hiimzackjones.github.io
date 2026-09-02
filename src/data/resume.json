@@ -1,26 +1,107 @@
 {
-  "headline": "A place to write a short headline.",
-  "tagline": "Write a tagline here. For now - a work in progress.",
+  "headline": "Hi I'm Zack Jones - Security Sales Engineer & Offensive Security Specialist",
+  "tagline": "15+ years in cybersecurity mainly in Offensive Security, with a couple years in Incident Response, Lately as a Senior Sales Engineer.",
   "pdf": "/zack-resume.pdf",
   "experience": [
     {
-      "title": "Job Title — Previous Company",
-      "meta": "2020 — 2023 · Location",
+      "title": "Senior Sales Engineer & Team Lead - Rapid7",
+      "meta": "September 2022 - Present · Remote · Asheville, NC",
       "bullets": [
-        "Bullet describing."
+        "Partner with account executives and commercial customers across the pre-sales cycle, uncovering security and technical requirements and consulting on Rapid7 solutions mapped to each stakeholder's environment and use cases.",
+        "Own technical evaluations end to end, scoping and running hands-on Proof of Concept engagements that prove solution fit against customer requirements and drive the technical win.",
+        "Collaborate with customers during onboarding to build out their Rapid7 instances, co-developing workflows and reports that get their teams to value faster.",
+        "Mentor and enable fellow sales engineers as team lead, developing playbooks and training that raise technical consistency and ramp new hires faster.",
+        "Contribute to the security community through hands-on enablement, producing demo videos and webinars and delivering live product demonstrations at industry events including Black Hat."
+      ]
+    },
+    {
+      "title": "Lead Penetration Tester -  Airiam",
+      "meta": "January 2020 - September 2022 · Remote · Atlanta, GA",
+      "bullets": [
+        "Delivered vulnerability & risk assessments, internal/external penetration tests, and OSINT/operational assessments.",
+        "Built workflows, tooling, documentation, and reporting for engagements; mentored junior testers on enumeration and recon.",
+        "Helped design the pen-test team's roles, policies, training, and certification program for new offerings.",
+        "Uncovered a previously-exploited, unnoticed vulnerability in a client's production web application."
+      ]
+    },
+    {
+      "title": "Incident Response Specialist - MePush",
+      "meta": "January 2020 - September 2022 · Remote · Atlanta, GA",
+      "bullets": [
+        "Responded to active threats and ransomware, coordinating on-site and remote teams through mitigation and recovery.",
+        "Ran forensic investigations and worked alongside government agencies and cyber insurance to identify threats.",
+        "Rebuilt infrastructure (servers, segmentation, Active Directory GPOs) and closed the initial access vector.",
+        "Handled a ransomware incident as a two-person team - 2k machines, 20 servers, minimal docs - resolved in 10 days.",
+        "Built fast-turnaround scripts (decryption, AD domain-join troubleshooting, forensic collection) used across IR teams."
+      ]
+    },
+    {
+      "title": "Computer Science Adjunct Instructor - Danville Community College",
+      "meta": "January 2020 - May 2020 · Danville, VA",
+      "bullets": [
+        "Created curriculum and taught Intro to Game Design (Unreal Engine 4) and SDLC application development.",
+        "Ran a realistic game-design-studio scenario for 2D animation and menu work, plus freelance-readiness coaching."
+      ]
+    },
+    {
+      "title": "Computer Science Instructor - Hargrave Military Academy",
+      "meta": "January 2017 - August 2019 · Danville, VA",
+      "bullets": [
+        "Created curriculum and taught Intro to Computer Science and Intro to Cyber Security to classes of 7 - 12 cadets.",
+        "Built engaging, CTF-driven classes ([learnctf.com](http://learnctf.com), Hack The Box), customized to each cadet's interests.",
+        "Taught physical computing / IoT with Arduino and Processing, building network-connected devices via APIs."
+      ]
+    },
+    {
+      "title": "Network Tech / Installer - River City Systems",
+      "meta": "2017 - 2018 · Danville, VA",
+      "bullets": [
+        "Installed network infrastructure in schools and businesses: line termination, connection/length testing, IP-camera prep.",
+        "Collaborated on VLANs, segmentation, and VMS design for a large public-school IP-camera deployment."
+      ]
+    },
+    {
+      "title": "Additional Experience",
+      "meta": "",
+      "bullets": [
+        "*Not listed above: contractual penetration testing and security assessments for various vendors, MSSPs, and clients. Engagements under NDA.*"
       ]
     }
   ],
   "skills": [
     {
-      "label": "Skill 1",
-      "value": "Skill"
+      "label": "Offensive Security",
+      "value": "Penetration testing, vulnerability & risk assessments, OSINT, exploitation"
+    },
+    {
+      "label": "Incident Response",
+      "value": "Ransomware recovery, digital forensics, threat identification, IOC analysis"
+    },
+    {
+      "label": "Networking & Infra",
+      "value": "VLANs, segmentation, Active Directory, IP camera / VMS systems"
+    },
+    {
+      "label": "Automation",
+      "value": "Custom scripting for decryption, forensics, and AD troubleshooting"
+    },
+    {
+      "label": "Teaching & Enablement",
+      "value": "Curriculum design, CTF coaching, technical mentorship"
     }
   ],
   "education": [
     {
-      "title": "Degree, Major — University Name",
-      "meta": ""
+      "title": "CEH Bootcamp - NexGenT",
+      "meta": "2022 · with Adonis Baybayan"
+    },
+    {
+      "title": "Associate's Degree, Networking - Danville Community College",
+      "meta": "2017 - 2019"
+    },
+    {
+      "title": "Associate's Degree, Science - Danville Community College",
+      "meta": "2011 - 2014"
     }
   ]
 }

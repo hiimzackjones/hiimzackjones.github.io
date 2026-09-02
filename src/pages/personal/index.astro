@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SideProfile from '../../components/SideProfile.astro';
 import { byNewest, timeAgo } from '../../utils/date';
 
-const posts = (await getCollection('fun', ({ data }) => !data.draft)).sort(byNewest);
+const posts = (await getCollection('personal', ({ data }) => !data.draft)).sort(byNewest);
 
 // Group by category, preserving first-seen order.
 const groups = new Map<string, typeof posts>();
@@ -15,7 +15,7 @@ for (const post of posts) {
 }
 const categories = [...groups.entries()];
 ---
-<BaseLayout title="Zack's Fun Stuff | mehhspace" active="fun">
+<BaseLayout title="Zack's Personal Stuff | mehhspace" active="personal">
   <div class="row profile">
 
     <!-- LEFT COLUMN -->
@@ -30,8 +30,8 @@ const categories = [...groups.entries()];
 
     <!-- RIGHT COLUMN -->
     <div class="col right">
-      <div class="fun-intro">
-        <h2>Fun Stuff</h2>
+      <div class="page-intro">
+        <h2>Personal</h2>
         <p>The non-professional corner. Music, writing, cars, whatever else doesn't belong on a resume.
         Pick a tag below or just scroll.</p>
       </div>
@@ -43,16 +43,16 @@ const categories = [...groups.entries()];
       </div>
 
       {categories.map(([cat, items]) => (
-        <div class="fun-section" id={cat.toLowerCase()}>
+        <div class="cat-section" id={cat.toLowerCase()}>
           <div class="heading">
             <h4>{cat}</h4>
             <span class="tag-label">{items.length} post{items.length === 1 ? '' : 's'}</span>
           </div>
           <div class="inner">
-            <div class="fun-entries">
+            <div class="cat-entries">
               {items.map((post) => (
                 <div class="entry">
-                  <h3 class="title"><a href={`/fun/${post.id}`}>{post.data.title}</a></h3>
+                  <h3 class="title"><a href={`/personal/${post.id}`}>{post.data.title}</a></h3>
                   <p class="meta">{timeAgo(post.data.date)}</p>
                   {post.data.excerpt && <p class="excerpt">{post.data.excerpt}</p>}
                 </div>

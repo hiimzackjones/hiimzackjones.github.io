@@ -2,13 +2,31 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import profile from '../data/profile.json';
-import projects from '../data/projects.json';
+import featured from '../data/featured.json';
 import { byNewest } from '../utils/date';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(byNewest);
 const latest = posts.slice(0, 3);
 const interests = Object.entries(profile.interests);
+// Contact links come from Notion (Tag=Contact) as an ordered array; render them
+// two-per-row like the original SpaceHey box, padding the last row so the fixed
+// table layout keeps both columns the same width on an odd count.
+const contact = Array.isArray(profile.contact) ? profile.contact : [];
+// "Top Stuff" — own posts, projects, and outbound links, all from Notion.
+const featuredItems = featured.items ?? [];
+const featuredHeading = profile.featured?.heading || `${profile.name}'s Top Stuff`;
+const featuredViewAll = profile.featured?.viewAll || '';
+const contactRows = Array.from({ length: Math.ceil(contact.length / 2) }, (_, i) =>
+  contact.slice(i * 2, i * 2 + 2)
+);
 const details = Object.entries(profile.details);
+// About me comes from the Notion page BODY rather than a single-line property,
+// so it can arrive as several paragraphs — split them out instead of letting
+// HTML collapse the blank lines into one run-on blurb.
+const aboutParas = String(profile.about ?? '')
+  .split(/\n{2,}/)
+  .map((p) => p.trim())
+  .filter(Boolean);
 ---
 <BaseLayout title="Zack's Profile | mehhspace" active="home">
   <div class="row profile">
@@ -34,14 +52,14 @@ const details = Object.entries(profile.details);
       <div class="contact">
         <div class="heading"><h4>Contacting {profile.name}</h4></div>
         <div class="inner">
-          <div class="f-row">
-            <div class="f-col"><a href={profile.contact.sendMessage}>Send Message</a></div>
-            <div class="f-col"><a href={profile.contact.email}>Email</a></div>
-          </div>
-          <div class="f-row">
-            <div class="f-col"><a href={profile.contact.github}>GitHub</a></div>
-            <div class="f-col"><a href={profile.contact.linkedin}>LinkedIn</a></div>
-          </div>
+          {contactRows.map((pair) => (
+            <div class="f-row">
+              {pair.map((link) => (
+                <div class="f-col"><a href={link.href}>{link.label}</a></div>
+              ))}
+              {pair.length === 1 && <div class="f-col" />}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -91,7 +109,7 @@ const details = Object.entries(profile.details);
         <div class="inner">
           <div class="section">
             <h4>About me:</h4>
-            <p>{profile.about}</p>
+            {aboutParas.map((para) => <p>{para}</p>)}
           </div>
           <div class="section">
             <h4>Who I'd like to meet:</h4>
@@ -102,18 +120,25 @@ const details = Object.entries(profile.details);
 
       <div class="friends">
         <div class="heading">
-          <h4>{profile.name}'s Project Space</h4>
-          <a class="more" href="/lab">[view all]</a>
+          <h4>{featuredHeading}</h4>
+          {featuredViewAll && <a class="more" href={featuredViewAll}>[view all]</a>}
         </div>
         <div class="inner">
-          <p><b>{profile.name} has <span class="count">{projects.featuredCount}</span> featured projects.</b></p>
+          <p><b>{profile.name} has <span class="count">{featuredItems.length}</span> things featured.</b></p>
           <div class="friends-grid">
-            {projects.items.map((project) => (
-              <div class="person">
-                <a href={project.slug}><p>{project.title}</p></a>
-                <a href={project.slug}><img src={project.image} alt={project.title} /></a>
-              </div>
-            ))}
+            {featuredItems.map((item) => {
+              // Outbound tiles open in a new tab and get the little arrow, so it's
+              // obvious which squares leave mehhspace.
+              const out = item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+              return (
+                <div class="person">
+                  <a href={item.href} {...out}>
+                    <p>{item.title}{item.external && <span class="ext">↗</span>}</p>
+                  </a>
+                  <a href={item.href} {...out}><img src={item.image} alt={item.title} /></a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -3,22 +3,23 @@ import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('fun', ({ data }) => !data.draft);
+  const posts = await getCollection('classes', ({ data }) => !data.draft);
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const category = post.data.category;
 ---
 <ArticleLayout
   title={post.data.title}
-  pageTitle={`${post.data.title} - Zack's Fun | mehhspace`}
+  pageTitle={`${post.data.title} - Zack's Classes | mehhspace`}
   date={post.data.date}
-  category={post.data.category}
-  categoryHref={`/fun#${post.data.category.toLowerCase()}`}
-  backLabel="View Fun"
-  backHref="/fun"
-  active="fun"
+  category={category}
+  categoryHref={category ? `/classes#${category.toLowerCase()}` : '/classes'}
+  backLabel="View Classes"
+  backHref="/classes"
+  active="classes"
 >
   <Content />
 </ArticleLayout>

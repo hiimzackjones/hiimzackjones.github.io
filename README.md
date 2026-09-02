@@ -13,16 +13,22 @@ Notion "MehhSpace Content" DB
   scripts/mehhspace-update.mjs   ← deterministic transform (unit-tested)
         │  writes
         ▼
-  src/data/*.json  +  src/content/{blog,fun,lab}/*.md
+  src/data/*.json  +  src/content/{blog,lab,personal,classes}/*.md
         │  /MehhSpacePush  →  git push main
         ▼
   .github/workflows/deploy.yml (withastro/action) → GitHub Pages
 ```
 
 - **Singleton fields** (Mood, Interests, Details, About, URL) → `src/data/profile.json`
+- **Contact** rows (one per link — `Name` = label, `Content` = href, `Order` sorts)
+  → the `contact` array in `profile.json`, rendered as the "Contacting Zack" box
+- **Any row with the `Featured` checkbox** → `src/data/featured.json`, the "Top Stuff"
+  box — own posts, projects, and outbound `Link` rows mixed together. Tile art is
+  auto-discovered (post's first image, or the site's `og:image`) and cached in
+  `public/featured/`
 - **Projects** → `src/data/projects.json`
 - **Resume** (strict markdown format) → parsed into `src/data/resume.json`
-- **Blog / Lab / Fun posts** → markdown files in `src/content/<collection>/`
+- **Blog / Lab / Personal / Classes posts** → markdown files in `src/content/<collection>/`
 
 ## Local development
 
@@ -43,6 +49,9 @@ Notion MCP + git live):
   transform to regenerate site data/content. Does not push.
 - **`/MehhSpacePush`** — sanity-builds, commits, and pushes to `main`, triggering the
   GitHub Pages deploy.
+- **`/MehhSpaceServe`** — serves the site on localhost:4321 to check it before
+  pushing. Hot-reloads, so it pairs with `/MehhSpaceUpdate`; `/MehhSpaceServe build`
+  previews the real production output, and `/MehhSpaceServe stop` shuts it down.
 
 The transform is split out into `scripts/mehhspace-update.mjs` so it can be tested
 offline against fixtures without Notion:

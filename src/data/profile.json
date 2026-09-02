@@ -4,26 +4,46 @@
   "profilePic": "/profile-pic.gif",
   "mood": "Piggy dippin in the piggy pond.",
   "url": "http://www.mehhspace.com",
-  "contact": {
-    "sendMessage": "#",
-    "email": "mailto:hi@mehhspace.com",
-    "github": "https://github.com/",
-    "linkedin": "https://www.linkedin.com/"
-  },
+  "contact": [
+    {
+      "label": "Email",
+      "href": "mailto:hi.imzackjones@gmail.com"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/hiimzackjones"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/mehhsecurity/"
+    },
+    {
+      "label": "TikTok",
+      "href": "https://www.tiktok.com/@mehhsecurity"
+    },
+    {
+      "label": "Spacehey",
+      "href": "https://spacehey.com/mehhsecurity"
+    }
+  ],
   "interests": {
-    "General": "Too much, will update soon.",
-    "Music": "I have so many. coming soon.",
-    "Movies": "The Bee Movie",
-    "Television": "ehheheheh. long list and spoiler… yes coming soon like the rest. heugheh.",
-    "Books": "I’ll list some books soon.",
-    "Heroes": "Man, I’ll do this tonight."
+    "General": "90s JDM, Subarus, Final Fantasy, OW, DND, writing, writing music, teenage engineering stuff, gunpla, hackery, talking to people about stuff.",
+    "Music": "Frightened Rabbit, Porter Robinson, Motion City Soundtrack, Bo Burnham if he counts. And anyone that makes music using Teenage Engineering stuff cause that is super cool.",
+    "Movies": "Dune, Starwars stuff (even the new stuff), anything Christopher Nolan, Back to The Future, and the 90s Power Ranger ranks pretty high up there.",
+    "Television": "Right now watching Ted Lasso. But Ozark is way up there.",
+    "Books": "I love all hard Scifi, or Scifi in general. Things on my shelf are Three Body Problem, Dune, anything Andy Weir. Also love House of Leaves and started Dungeon Crawler Carl.",
+    "Heroes": "Adam Savage. Ted Lasso. Scott Hutchison."
   },
   "details": {
     "Status": "Weekend, probs Lucio Memeing on OW.",
     "Here For": "Networking, sharing projects, nostalgia",
     "Occupation": "Hacker, Senior Sales Engineer",
-    "Stack": "Astro, Notion API, Cloudflare, Docker, whatever breaks this week"
+    "Stack": "My personal life stack? I don’t really know how to answer this. Building this with claude on a kali box installed on a 2011 Macbook pro. Bit of python, javascript, and trying to at some point learn Assembly."
   },
-  "about": "hey, I'm Mehh, or uh Zack … . I made this page to be part resume, part hacker notebook, part just a place for me to put my “me” stuff.",
-  "whoMeet": "You probs."
+  "about": "hey, I'm Mehh and/or Zack … . I made this page to be part resume, part hacker notebook, part just a place for me to put my \"me\" stuff. \nA couple things to highlight, I've been teaching Cyber Security 1 on 1 for some time now and I'll be moving any content I've made for that over into classes, FYI it will be provided in both English and Ukrainian. So feel free to check that out. \nAnd I also, whenever I have free time dabble in creative writing projects, music, and other stuff that can be found in Personal. \nOkay have fun.",
+  "whoMeet": "Cybersecurity homies, creative writing homies, I dunno, if you’re a human that does cool stuff hmu.",
+  "featured": {
+    "heading": "Zack's Top Stuff",
+    "viewAll": ""
+  }
 }

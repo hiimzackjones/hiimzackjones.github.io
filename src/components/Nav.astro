@@ -1,6 +1,6 @@
 ---
 interface Props {
-  active?: 'home' | 'blog' | 'lab' | 'resume' | 'fun';
+  active?: 'home' | 'blog' | 'lab' | 'classes' | 'resume' | 'personal';
   searchLabel?: string;
 }
 const { active, searchLabel = 'Search:' } = Astro.props;
@@ -9,7 +9,8 @@ const links = [
   { key: 'blog', label: 'Blog', href: '/blog' },
   { key: 'lab', label: 'Lab', href: '/lab' },
   { key: 'resume', label: 'Resume', href: '/resume' },
-  { key: 'fun', label: 'Fun', href: '/fun' },
+  { key: 'classes', label: 'Classes', href: '/classes' },
+  { key: 'personal', label: 'Personal', href: '/personal' },
 ];
 ---
 <nav>

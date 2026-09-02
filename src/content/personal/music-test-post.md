@@ -7,9 +7,9 @@ excerpt: "Paragraph Test."
 
 # Heading 1 Test
 
-Paragraph Test.
+Paragraph Test. 
 
-**Bold** Test.
+**Bold** Test. 
 
 ```javascript
 code test
