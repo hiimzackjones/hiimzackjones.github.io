@@ -45,5 +45,11 @@
   "featured": {
     "heading": "Zack's Top Stuff",
     "viewAll": ""
+  },
+  "pageIntros": {
+    "blog": "",
+    "lab": "Hacker projects and experiments. This section is still under construction.",
+    "classes": "Coursework, certs, and whatever I'm studying at the moment. Notes are grouped by class — pick one below or just scroll.",
+    "personal": "The non-professional corner. Music, writing, cars, whatever else doesn't belong on a resume. Pick a tag below or just scroll."
   }
 }

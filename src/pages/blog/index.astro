@@ -3,8 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SideProfile from '../../components/SideProfile.astro';
 import { byNewest, timeAgo } from '../../utils/date';
+import profile from '../../data/profile.json';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(byNewest);
+
+// Optional intro line, Notion-editable via the `Blog_Intro` singleton. Blank by
+// default — the paragraph is omitted entirely until a blurb is published.
+const intro = (profile.pageIntros?.blog ?? '').trim();
 ---
 <BaseLayout title="Zack's Blog | mehhspace" active="blog" searchLabel="Search Blog Entries:">
   <div class="row profile">
@@ -28,6 +33,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(byNe
         <h2>Zack's Blog Entries</h2>
         <a href="/rss.xml" class="rss-right" title="RSS Feed">RSS</a>
         <h4>[<a href="/rss.xml">Subscribe to this Blog</a>]</h4>
+        {intro && <p class="page-intro">{intro}</p>}
 
         <div class="blog-entries">
           {posts.map((post) => (

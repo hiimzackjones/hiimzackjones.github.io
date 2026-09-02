@@ -28,8 +28,8 @@ ORDER BY "Tag" ASC, "Order" ASC
 params: `["Published"]`
 
 This returns every publishable row across all tags in one pass, with routing
-metadata. Expect ~30 rows (16 singletons + Profile_Pic + 5 Contact + 1 Link +
-4 Projects + 1 Blog + 1 Personal + 1 Resume).
+metadata. Expect ~34 rows (16 singletons + 4 `*_Intro` singletons + Profile_Pic +
+5 Contact + 1 Link + 4 Projects + 1 Blog + 1 Personal + 1 Resume).
 
 ## Step 2 — Fetch page bodies (second pass, body-backed tags only)
 
@@ -121,11 +121,19 @@ list), attach the fetched `<content>` **unmodified** under a **`body`** key.
 ```
 
 Field/routing notes the transform relies on:
-- **Singletons** (`Mood`, `URL_Box`, `Who_Meet`, `Interest_*`, `Details_*`)
+- **Singletons** (`Mood`, `URL_Box`, `Who_Meet`, `Interest_*`, `Details_*`,
+  `Blog_Intro`, `Lab_Intro`, `Classes_Intro`, `Personal_Intro`)
   → value from `Content`. **`About_Me` is the exception — its value comes from the
   page body** (see Step 2); everything else about it routes the same. Mapped into `src/data/profile.json`. `Details_HereFor` →
   the "Here For" row. profile.json fields NOT in Notion (`name`, the `online` flag)
   are preserved on merge.
+  - **`*_Intro`** (`Blog_Intro`, `Lab_Intro`, `Classes_Intro`, `Personal_Intro`) →
+    the top-of-page blurb under each section header, written to
+    `profile.json → pageIntros.{blog,lab,classes,personal}` and read by the matching
+    `src/pages/<section>/index.astro`. Guarded by `PRESERVE_IF_EMPTY`, so a blank
+    Notion cell keeps the existing blurb rather than wiping it. `Blog_Intro` is blank
+    by default — its paragraph is omitted entirely until you publish a value; the
+    other three fall back to their original hardcoded copy if the field is missing.
 - **`Contact`** → one row per link in the "Contacting Zack" box (and the resume's
   Quick Contact): `Name` is the visible label, **`Content` is the href**, `Order`
   sorts them. `Content` takes anything an `<a href>` accepts — `https://…`,

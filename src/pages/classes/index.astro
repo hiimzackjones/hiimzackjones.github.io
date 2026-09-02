@@ -3,8 +3,14 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SideProfile from '../../components/SideProfile.astro';
 import { byNewest, timeAgo } from '../../utils/date';
+import profile from '../../data/profile.json';
 
 const posts = (await getCollection('classes', ({ data }) => !data.draft)).sort(byNewest);
+
+// Intro blurb is Notion-editable via the `Classes_Intro` singleton; the string
+// below is the fallback if that field is ever missing.
+const intro = (profile.pageIntros?.classes ?? '').trim()
+  || "Coursework, certs, and whatever I'm studying at the moment. Notes are grouped by class — pick one below or just scroll.";
 
 // Group by category — for Classes the category IS the class name. Rows that
 // never got one still render, under a catch-all group.
@@ -33,8 +39,7 @@ const categories = [...groups.entries()];
     <div class="col right">
       <div class="page-intro">
         <h2>Classes</h2>
-        <p>Coursework, certs, and whatever I'm studying at the moment. Notes are grouped by class —
-        pick one below or just scroll.</p>
+        <p>{intro}</p>
       </div>
 
       {posts.length === 0 ? (

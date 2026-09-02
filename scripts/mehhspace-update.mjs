@@ -70,6 +70,10 @@ export const SINGLETON_MAP = {
   Profile_Pic: ['profilePic'],
   Featured_Heading: ['featured', 'heading'],
   Featured_ViewAll: ['featured', 'viewAll'],
+  Blog_Intro: ['pageIntros', 'blog'],
+  Lab_Intro: ['pageIntros', 'lab'],
+  Classes_Intro: ['pageIntros', 'classes'],
+  Personal_Intro: ['pageIntros', 'personal'],
 };
 
 /**
@@ -83,8 +87,15 @@ export const SINGLETON_MAP = {
  * comes back in the one bulk SQL call is all-or-nothing with the rest of the
  * pull, but a single page fetch can fail on its own — and without this guard
  * that one failure would silently blank the About me blurb.
+ *
+ * The *_Intro singletons (the top-of-page blurbs for Blog/Lab/Classes/Personal)
+ * are guarded too: an intentionally-blank Notion cell should keep the existing
+ * blurb rather than wipe the section header to nothing.
  */
-const PRESERVE_IF_EMPTY = new Set(['Profile_Pic', 'Featured_Heading', 'Featured_ViewAll', 'About_Me']);
+const PRESERVE_IF_EMPTY = new Set([
+  'Profile_Pic', 'Featured_Heading', 'Featured_ViewAll', 'About_Me',
+  'Blog_Intro', 'Lab_Intro', 'Classes_Intro', 'Personal_Intro',
+]);
 
 const PAGE_COLLECTIONS = { Blog: 'blog', Lab: 'lab', Personal: 'personal', Classes: 'classes' };
 

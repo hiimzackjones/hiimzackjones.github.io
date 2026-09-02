@@ -3,8 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SideProfile from '../../components/SideProfile.astro';
 import { byNewest, timeAgo } from '../../utils/date';
+import profile from '../../data/profile.json';
 
 const posts = (await getCollection('personal', ({ data }) => !data.draft)).sort(byNewest);
+
+// Intro blurb is Notion-editable via the `Personal_Intro` singleton; fallback below.
+const intro = (profile.pageIntros?.personal ?? '').trim()
+  || "The non-professional corner. Music, writing, cars, whatever else doesn't belong on a resume. Pick a tag below or just scroll.";
 
 // Group by category, preserving first-seen order.
 const groups = new Map<string, typeof posts>();
@@ -32,8 +37,7 @@ const categories = [...groups.entries()];
     <div class="col right">
       <div class="page-intro">
         <h2>Personal</h2>
-        <p>The non-professional corner. Music, writing, cars, whatever else doesn't belong on a resume.
-        Pick a tag below or just scroll.</p>
+        <p>{intro}</p>
       </div>
 
       <div class="category-grid">

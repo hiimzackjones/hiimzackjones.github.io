@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks, materializeProfilePic, contactLinks,
+import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks, materializeProfilePic, contactLinks, SINGLETON_MAP,
   featuredHref, featuredItems, truthyCheckbox, isExternal, firstMarkdownImage, pickImageFromHtml,
   notionToMarkdown, notionColorSuffix, shikiLang, splitAttrList, linkOnlyHref, pickMetaFromHtml,
   bookmarkCard, escapeHtml } from './mehhspace-update.mjs';
@@ -70,6 +70,33 @@ test('transform dry-run reports the full plan', () => {
     'blog/setting-up-this-whole-pipeline.md',
     'personal/learning-to-actually-finish-a-song.md',
   ].sort());
+});
+
+test('page-intro singletons map into profile.pageIntros', () => {
+  const tags = ['Blog_Intro', 'Lab_Intro', 'Classes_Intro', 'Personal_Intro'];
+  for (const t of tags) {
+    assert.ok(SINGLETON_MAP[t], `${t} present in SINGLETON_MAP`);
+    assert.equal(SINGLETON_MAP[t][0], 'pageIntros', `${t} routes into pageIntros`);
+  }
+  // A populated intro row is applied.
+  const plan = transform({
+    rows: [
+      { tag: 'Mood', status: 'Published', content: 'ok' },
+      { tag: 'Classes_Intro', status: 'Published', content: 'New classes blurb' },
+      { tag: 'Blog_Intro', status: 'Published', content: 'New blog blurb' },
+    ],
+  }, { dryRun: true });
+  assert.ok(plan.profile.includes('Classes_Intro'), 'populated Classes_Intro mapped');
+  assert.ok(plan.profile.includes('Blog_Intro'), 'populated Blog_Intro mapped');
+
+  // A blank intro row is preserved (skipped), never blanking the existing blurb.
+  const guarded = transform({
+    rows: [
+      { tag: 'Mood', status: 'Published', content: 'ok' },
+      { tag: 'Lab_Intro', status: 'Published', content: '' },
+    ],
+  }, { dryRun: true });
+  assert.ok(!guarded.profile.includes('Lab_Intro'), 'blank Lab_Intro skipped, existing kept');
 });
 
 test('transform refuses an empty fetch', () => {

@@ -3,10 +3,15 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SideProfile from '../../components/SideProfile.astro';
 import { byNewest, timeAgo } from '../../utils/date';
+import profile from '../../data/profile.json';
 
 // Lab has no content yet (intentional per the build plan). This page renders
 // an empty-state until Lab-tagged rows are published from Notion.
 const posts = (await getCollection('lab', ({ data }) => !data.draft)).sort(byNewest);
+
+// Intro blurb is Notion-editable via the `Lab_Intro` singleton; fallback below.
+const intro = (profile.pageIntros?.lab ?? '').trim()
+  || 'Hacker projects and experiments. This section is still under construction.';
 ---
 <BaseLayout title="Zack's Lab | mehhspace" active="lab">
   <div class="row profile">
@@ -25,7 +30,7 @@ const posts = (await getCollection('lab', ({ data }) => !data.draft)).sort(byNew
     <div class="col right">
       <div class="page-intro">
         <h2>Lab</h2>
-        <p>Hacker projects and experiments. This section is still under construction.</p>
+        <p>{intro}</p>
       </div>
 
       {posts.length === 0 ? (
