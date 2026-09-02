@@ -872,6 +872,7 @@ export async function materializeProfilePic(input, { dryRun = false } = {}) {
  */
 
 const FEATURED_DIR_NAME = 'featured';
+const BODY_MEDIA_DIR_NAME = 'media';
 const FETCH_TIMEOUT_MS = 8000;
 // Some sites 403 an unadorned fetch; a plain desktop UA is enough for most.
 const UA = 'Mozilla/5.0 (compatible; MehhSpaceBot/1.0; +https://mehhspace.com)';
@@ -948,6 +949,75 @@ function existingTile(basename, publicDir, dirName = FEATURED_DIR_NAME) {
   if (!existsSync(dir)) return null;
   const hit = readdirSync(dir).find((f) => f.startsWith(`${basename}.`));
   return hit ? `/${dirName}/${hit}` : null;
+}
+
+/**
+ * Download every remote image embedded in a page body into public/media/<slug>/
+ * and rewrite the markdown to that local path.
+ *
+ * Why: an image dragged into a Notion page is served from a presigned S3 URL that
+ * expires in minutes and is re-signed on every fetch, so passing it through would
+ * publish a link that is already dead by the time the site deploys. Any other
+ * remote host rots the same way, more slowly. Same philosophy as the tile and
+ * bookmark passes: fetch once at publish time, keep the bytes in the repo.
+ *
+ * Runs after materializeBookmarks (so it sees finished body markdown) and before
+ * the tile pass (so a post's first image is already a local path). Rewrites
+ * `raw.body` in place; every failure is non-fatal and leaves that one URL as-is.
+ */
+export async function materializeBodyImages(input, { dryRun = false } = {}) {
+  const report = [];
+  const publicDir = join(ROOT, 'public');
+  const IMG = /!\[([^\]]*)\]\((https?:\/\/[^)\s]+)\)/g;
+
+  for (const raw of input.rows ?? []) {
+    const row = normalizeRow(raw);
+    if (!PAGE_COLLECTIONS[row.tag] || row.status !== 'Published') continue;
+    let md = row.content ?? '';
+    const matches = md ? [...md.matchAll(IMG)] : [];
+    if (!matches.length) continue;
+
+    const slug = slugify(row.slug ?? row.title ?? 'post') || 'post';
+    const dirName = `${BODY_MEDIA_DIR_NAME}/${slug}`;
+    const kept = new Set();
+    let index = 0;
+    let allOk = true;
+
+    for (const [whole, alt, src] of matches) {
+      index += 1;
+      const basename = String(index).padStart(2, '0');
+      if (dryRun) {
+        report.push({ post: row.title, src, path: `(would download to /${dirName}/${basename}.<ext>)`, dryRun: true });
+        continue;
+      }
+      try {
+        const { path, bytes } = await downloadTile(src, basename, publicDir, dirName);
+        md = md.replace(whole, `![${alt}](${path})`);
+        kept.add(path.split('/').pop());
+        report.push({ post: row.title, src, path, bytes });
+      } catch (err) {
+        allOk = false;
+        console.warn(`  ! "${row.title}": body image ${index} could not be downloaded (${err.message}) — left the remote URL in place`);
+      }
+    }
+
+    // Prune images a previous run left behind that this post no longer uses — but
+    // only when every download succeeded, so a partial failure can never delete a
+    // file the published markdown still points at.
+    if (!dryRun && allOk) {
+      const dir = join(publicDir, dirName);
+      if (existsSync(dir)) for (const f of readdirSync(dir)) {
+        if (!kept.has(f)) unlinkSync(join(dir, f));
+      }
+    }
+
+    if (!dryRun) {
+      raw.body = md;
+      raw.Content = undefined;
+      raw.content = undefined;
+    }
+  }
+  return report;
 }
 
 /**
@@ -1233,6 +1303,9 @@ async function main() {
   // Bookmarks first: it rewrites each page body to finished markdown, which the
   // tile pass then scans for a post's first image.
   const bookmarks = await materializeBookmarks(input, { dryRun });
+  // Localize body images before the tile pass, so a post's first image is a local
+  // path the tile pass can adopt without a second download.
+  const bodyImages = await materializeBodyImages(input, { dryRun });
   const tiles = await materializeFeaturedImages(input, { dryRun });
   const plan = transform(input, { dryRun });
   if (pic?.path) {
@@ -1253,6 +1326,13 @@ async function main() {
     for (const b of bookmarks) {
       const detail = b.title ? `"${b.title}"${b.image ? ` + thumbnail` : ' (no thumbnail)'}` : 'bare card (site unreadable)';
       console.log(`    · ${b.post}: ${b.href} → ${detail}`);
+    }
+  }
+  if (bodyImages.length) {
+    console.log(`  body images: ${bodyImages.length}`);
+    for (const im of bodyImages) {
+      const detail = im.dryRun ? im.path : `${im.path}${im.bytes ? ` (${Math.round(im.bytes / 1024)} KB)` : ''}`;
+      console.log(`    · ${im.post}: ${detail}`);
     }
   }
   console.log(`  resume: ${plan.resume ? 'yes' : plan.resumeSkipped ? 'SKIPPED (empty/malformed body — kept existing resume.json)' : 'no'}`);

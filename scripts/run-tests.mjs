@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks, materializeProfilePic, contactLinks, SINGLETON_MAP,
+import { parseResume, buildMarkdown, deriveExcerpt, slugify, transform, normalizeRow, normalizeBlocks, materializeProfilePic, materializeBodyImages, contactLinks, SINGLETON_MAP,
   featuredHref, featuredItems, truthyCheckbox, isExternal, firstMarkdownImage, pickImageFromHtml,
   notionToMarkdown, notionColorSuffix, shikiLang, splitAttrList, linkOnlyHref, pickMetaFromHtml,
   bookmarkCard, escapeHtml } from './mehhspace-update.mjs';
@@ -16,10 +16,8 @@ const sample = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'sample-notio
 const rawSql = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'sample-raw-sql.json'), 'utf8'));
 
 let pass = 0, fail = 0;
-function test(name, fn) {
-  try { fn(); pass++; console.log(`  ✓ ${name}`); }
-  catch (err) { fail++; console.error(`  ✗ ${name}\n    ${err.message}`); }
-}
+const tests = [];
+function test(name, fn) { tests.push({ name, fn }); }
 
 test('slugify normalizes titles', () => {
   assert.equal(slugify("Zack's Cool Post!"), 'zacks-cool-post');
@@ -97,6 +95,23 @@ test('page-intro singletons map into profile.pageIntros', () => {
     ],
   }, { dryRun: true });
   assert.ok(!guarded.profile.includes('Lab_Intro'), 'blank Lab_Intro skipped, existing kept');
+});
+
+test('materializeBodyImages targets remote body images, ignores local ones', async () => {
+  const input = {
+    rows: [
+      { tag: 'Blog', status: 'Published', slug: 'has-remote', title: 'Has Remote',
+        body: 'intro\n![a shot](https://prod-files-secure.s3.us-west-2.amazonaws.com/x/y/image.png?sig=abc)\nmore' },
+      { tag: 'Blog', status: 'Published', slug: 'already-local', title: 'Already Local',
+        body: 'intro\n![local](/media/already-local/01.png)\nmore' },
+      { tag: 'Mood', status: 'Published', content: 'not a page row' },
+    ],
+  };
+  const report = await materializeBodyImages(input, { dryRun: true });
+  assert.equal(report.length, 1, 'only the one remote image is picked up');
+  assert.equal(report[0].post, 'Has Remote');
+  assert.match(report[0].src, /amazonaws\.com/);
+  assert.match(report[0].path, /would download to \/media\/has-remote\/01\.<ext>/);
 });
 
 test('transform refuses an empty fetch', () => {
@@ -553,6 +568,13 @@ test('scraped card text is escaped, not injected', () => {
   assert.match(card, /&lt;script&gt;/);
   assert.equal(escapeHtml('a&b"c'), 'a&amp;b&quot;c');
 });
+
+// Run sequentially so output stays ordered; awaiting a non-promise is harmless,
+// so this supports both sync and async test bodies.
+for (const { name, fn } of tests) {
+  try { await fn(); pass++; console.log(`  ✓ ${name}`); }
+  catch (err) { fail++; console.error(`  ✗ ${name}\n    ${err.message}`); }
+}
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

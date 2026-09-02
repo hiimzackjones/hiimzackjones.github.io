@@ -2,7 +2,7 @@
   "name": "Zack",
   "online": true,
   "profilePic": "/profile-pic.gif",
-  "mood": "Piggy dippin in the piggy pond.",
+  "mood": "Do a barrel roll!",
   "url": "http://www.mehhspace.com",
   "contact": [
     {
@@ -48,8 +48,8 @@
   },
   "pageIntros": {
     "blog": "",
-    "lab": "Hacker projects and experiments. This section is still under construction.",
-    "classes": "Coursework, certs, and whatever I'm studying at the moment. Notes are grouped by class — pick one below or just scroll.",
+    "lab": "Dare I call this a lab, this is where I’ll be dropping stuff that I work on. Who knows.",
+    "classes": "Classes! Okay so classes started from an idea I had where I was teaching someone cyber security 1 on 1, and found that I had content and ideas and I figured I’d share some of that here. Also for funzies, some if it will be in Ukrainian.",
     "personal": "The non-professional corner. Music, writing, cars, whatever else doesn't belong on a resume. Pick a tag below or just scroll."
   }
 }
